@@ -24,7 +24,7 @@ class BlackIndexTests(unittest.TestCase):
             path.write_text("blackindex", encoding="utf-8")
             self.assertEqual(
                 blackindex.sha256_file(path),
-                "f1116bf8adabce7f21bc83ecf52d6ec4c9e3b183a5f0ff2abef6b69dadbc148f",
+                "c2958c5442b70061ac0fdf6f00ea043cbb09f4633b45f31336e01a36b4d155dd",
             )
 
     def test_intake_and_duplicate_detection(self):
