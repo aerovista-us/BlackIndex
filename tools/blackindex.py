@@ -20,6 +20,7 @@ from pathlib import Path
 DEFAULT_ROOT = Path("/srv/NXDrive/BlackIndex")
 BUFFER_SIZE = 1024 * 1024
 TEXT_EXTENSIONS = {".txt", ".md", ".csv", ".json", ".xml", ".html", ".htm"}
+DOC_METADATA_RE = re.compile(r"^[A-Z0-9_-]+-(?:[0-9]{4}|undated)-[a-z0-9-]+-[0-9]{3,}\.json$")
 
 
 def utc_now() -> str:
@@ -54,7 +55,13 @@ def ensure_layout(root: Path) -> None:
 
 
 def metadata_files(root: Path):
-    yield from (root / "metadata").glob("*.json")
+    """Yield only ingested document metadata, never schemas/support JSON."""
+    metadata_dir = root / "metadata"
+    if not metadata_dir.exists():
+        return
+    for path in metadata_dir.glob("*.json"):
+        if DOC_METADATA_RE.match(path.name):
+            yield path
 
 
 def load_json(path: Path) -> dict:
@@ -254,7 +261,11 @@ def cmd_verify(args: argparse.Namespace) -> int:
     checked = 0
     for path in metadata_files(root):
         data = load_json(path)
-        raw = Path(data.get("local_raw_path", ""))
+        raw_value = data.get("local_raw_path")
+        if not raw_value:
+            failures.append({"doc_id": data.get("doc_id"), "error": "metadata_missing_raw_path", "metadata": str(path)})
+            continue
+        raw = Path(raw_value)
         if not raw.is_file():
             failures.append({"doc_id": data.get("doc_id"), "error": "raw_missing", "path": str(raw)})
             continue
