@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """BlackIndex local intake CLI.
 
-Standard-library-only foundation for NXCore. Raw source documents are stored locally;
+Standard-library-first foundation for NXCore. Raw source documents are stored locally;
 Git tracks the system definition and research outputs, not the source corpus.
 """
 
@@ -12,12 +12,14 @@ import hashlib
 import json
 import re
 import shutil
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 DEFAULT_ROOT = Path("/srv/NXDrive/BlackIndex")
 BUFFER_SIZE = 1024 * 1024
+TEXT_EXTENSIONS = {".txt", ".md", ".csv", ".json", ".xml", ".html", ".htm"}
 
 
 def utc_now() -> str:
@@ -96,11 +98,52 @@ def safe_copy_immutable(source: Path, destination: Path) -> None:
     destination.chmod(0o444)
 
 
+def normalize_text(raw_path: Path, root: Path, doc_id: str) -> tuple[Path | None, str]:
+    """Create a plain-text derivative when the format is supported.
+
+    PDFs use the system `pdftotext` executable if installed. Text-like formats are
+    decoded locally. OCR is intentionally not automatic; image-only PDFs are marked
+    for later review rather than silently producing unreliable text.
+    """
+    out = root / "normalized/text" / f"{doc_id}.txt"
+    suffix = raw_path.suffix.lower()
+
+    if suffix in TEXT_EXTENSIONS:
+        try:
+            text = raw_path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            text = raw_path.read_text(encoding="utf-8", errors="replace")
+        out.write_text(text, encoding="utf-8")
+        return out, "native-text"
+
+    if suffix == ".pdf":
+        executable = shutil.which("pdftotext")
+        if not executable:
+            return None, "pdftotext-unavailable"
+        result = subprocess.run(
+            [executable, "-layout", str(raw_path), str(out)],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode != 0:
+            if out.exists():
+                out.unlink()
+            return None, f"pdftotext-error:{result.returncode}"
+        if not out.exists() or not out.read_text(encoding="utf-8", errors="ignore").strip():
+            if out.exists():
+                out.unlink()
+            return None, "pdf-no-text-layer"
+        return out, "pdftotext"
+
+    return None, "unsupported-format"
+
+
 def write_extraction_stub(root: Path, metadata: dict) -> Path:
     path = root / "extractions" / f"{metadata['doc_id']}.md"
     if path.exists():
         return path
-    body = f"""# {metadata['title']}\n\n- **Doc ID:** `{metadata['doc_id']}`\n- **Call ID:** `{metadata.get('call_id') or 'UNASSIGNED'}`\n- **Source:** {metadata['source']}\n- **Document date:** {metadata.get('document_date') or 'Unknown'}\n- **SHA-256:** `{metadata['sha256']}`\n- **Provenance:** {metadata.get('source_url') or 'Local intake; source URL not recorded'}\n\n## Evidence established by the document\n\n- TODO\n\n## Corroboration\n\n- TODO\n\n## Inferences\n\n- TODO\n\n## Mechanisms / patterns\n\n- TODO\n\n## Failure modes\n\n- TODO\n\n## Operational analogs\n\n- TODO\n\n## Candidate controls\n\n- TODO\n\n## Candidate detections\n\n- TODO\n\n## Watch-outs / alternative explanations\n\n- TODO\n\n## Confidence / gaps\n\n- TODO\n"""
+    body = f"""# {metadata['title']}\n\n- **Doc ID:** `{metadata['doc_id']}`\n- **Call ID:** `{metadata.get('call_id') or 'UNASSIGNED'}`\n- **Source:** {metadata['source']}\n- **Document date:** {metadata.get('document_date') or 'Unknown'}\n- **SHA-256:** `{metadata['sha256']}`\n- **Provenance:** {metadata.get('source_url') or 'Local intake; source URL not recorded'}\n- **Normalized text:** {metadata.get('normalized_text_path') or 'Unavailable'}\n\n## Evidence established by the document\n\n- TODO\n\n## Corroboration\n\n- TODO\n\n## Inferences\n\n- TODO\n\n## Mechanisms / patterns\n\n- TODO\n\n## Failure modes\n\n- TODO\n\n## Operational analogs\n\n- TODO\n\n## Candidate controls\n\n- TODO\n\n## Candidate detections\n\n- TODO\n\n## Watch-outs / alternative explanations\n\n- TODO\n\n## Confidence / gaps\n\n- TODO\n"""
     path.write_text(body, encoding="utf-8")
     return path
 
@@ -111,9 +154,24 @@ def append_log(root: Path, event: dict) -> None:
         handle.write(json.dumps(event, sort_keys=True) + "\n")
 
 
+def build_manifest(root: Path) -> Path:
+    records = []
+    for path in sorted(metadata_files(root)):
+        data = load_json(path)
+        if data:
+            records.append(data)
+    manifest = root / "local/index/manifest.json"
+    manifest.write_text(
+        json.dumps({"generated_at": utc_now(), "count": len(records), "documents": records}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return manifest
+
+
 def cmd_init(args: argparse.Namespace) -> int:
     root = Path(args.root)
     ensure_layout(root)
+    build_manifest(root)
     print(f"BlackIndex initialized: {root}")
     return 0
 
@@ -139,6 +197,7 @@ def cmd_intake(args: argparse.Namespace) -> int:
     raw_path = raw_dir / f"{doc_id}{ext}"
     safe_copy_immutable(source_path, raw_path)
 
+    normalized_path, normalization_status = normalize_text(raw_path, root, doc_id)
     metadata = {
         "schema_version": 1,
         "doc_id": doc_id,
@@ -152,6 +211,8 @@ def cmd_intake(args: argparse.Namespace) -> int:
         "retrieved_at": utc_now(),
         "original_filename": source_path.name,
         "local_raw_path": str(raw_path),
+        "normalized_text_path": str(normalized_path) if normalized_path else None,
+        "normalization_status": normalization_status,
         "mime_hint": ext.lstrip("."),
         "size_bytes": raw_path.stat().st_size,
         "sha256": checksum,
@@ -164,15 +225,25 @@ def cmd_intake(args: argparse.Namespace) -> int:
     metadata_path = root / "metadata" / f"{doc_id}.json"
     metadata_path.write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     extraction_path = write_extraction_stub(root, metadata)
-    append_log(root, {"event": "intake", "at": utc_now(), "doc_id": doc_id, "sha256": checksum})
+    manifest_path = build_manifest(root)
+    append_log(root, {
+        "event": "intake",
+        "at": utc_now(),
+        "doc_id": doc_id,
+        "sha256": checksum,
+        "normalization_status": normalization_status,
+    })
 
     print(json.dumps({
         "status": "ingested",
         "doc_id": doc_id,
         "sha256": checksum,
         "raw": str(raw_path),
+        "normalized": str(normalized_path) if normalized_path else None,
+        "normalization_status": normalization_status,
         "metadata": str(metadata_path),
         "extraction": str(extraction_path),
+        "manifest": str(manifest_path),
     }, indent=2))
     return 0
 
@@ -193,6 +264,49 @@ def cmd_verify(args: argparse.Namespace) -> int:
             failures.append({"doc_id": data.get("doc_id"), "error": "hash_mismatch", "expected": data.get("sha256"), "actual": actual})
     print(json.dumps({"checked": checked, "failures": failures, "ok": not failures}, indent=2))
     return 1 if failures else 0
+
+
+def cmd_manifest(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    ensure_layout(root)
+    path = build_manifest(root)
+    print(path)
+    return 0
+
+
+def cmd_search(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    query = args.query.lower()
+    results = []
+    for path in sorted(metadata_files(root)):
+        data = load_json(path)
+        haystack = " ".join([
+            str(data.get("doc_id", "")), str(data.get("title", "")),
+            str(data.get("collection", "")), str(data.get("source", "")),
+            " ".join(data.get("tags", [])),
+        ]).lower()
+        text_path = data.get("normalized_text_path")
+        snippet = None
+        matched = query in haystack
+        if text_path and Path(text_path).is_file():
+            text = Path(text_path).read_text(encoding="utf-8", errors="ignore")
+            lower = text.lower()
+            index = lower.find(query)
+            if index >= 0:
+                matched = True
+                start = max(0, index - 120)
+                end = min(len(text), index + len(args.query) + 220)
+                snippet = re.sub(r"\s+", " ", text[start:end]).strip()
+        if matched:
+            results.append({
+                "doc_id": data.get("doc_id"),
+                "title": data.get("title"),
+                "call_id": data.get("call_id"),
+                "source": data.get("source"),
+                "snippet": snippet,
+            })
+    print(json.dumps({"query": args.query, "count": len(results), "results": results[: args.limit]}, indent=2))
+    return 0
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -219,6 +333,14 @@ def build_parser() -> argparse.ArgumentParser:
 
     verify = sub.add_parser("verify", help="rehash local raw files and compare to metadata")
     verify.set_defaults(func=cmd_verify)
+
+    manifest = sub.add_parser("manifest", help="rebuild local document manifest")
+    manifest.set_defaults(func=cmd_manifest)
+
+    search = sub.add_parser("search", help="search metadata and normalized text")
+    search.add_argument("query")
+    search.add_argument("--limit", type=int, default=20)
+    search.set_defaults(func=cmd_search)
     return parser
 
 
