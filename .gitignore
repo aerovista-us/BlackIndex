@@ -1,5 +1,7 @@
-# Raw/source corpus stays on NXCore
+# BlackIndex local corpus / runtime state stays on NXCore
 source-vault/**
+normalized/**
+local/**
 raw/**
 *.pdf
 *.zip
