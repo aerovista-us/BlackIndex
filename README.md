@@ -17,9 +17,11 @@ BlackIndex is a local-first research and implementation system for collecting na
 ## Architecture
 
 ```text
-BlackIndex/
+blackindex/
+├── bootstrap/         # location-relative deploy/bootstrap entrypoint
 ├── registry/          # Named collections / callable entries
-├── source-vault/      # Raw source documents (local/NXCore; not Git)
+├── source-vault/      # Raw source documents (local only; not Git)
+├── normalized/        # Local normalized text
 ├── metadata/          # Provenance + hashes + document descriptors
 ├── extractions/       # Structured research summaries
 ├── patterns/          # Reusable mechanisms / failure modes
@@ -27,19 +29,45 @@ BlackIndex/
 ├── detections/        # Monitoring and detection concepts
 ├── training/          # Training scenarios
 ├── playbooks/         # Response and implementation playbooks
+├── local/             # Local indexes, cache and logs
 ├── docs/              # Governance, taxonomy, architecture
 └── tools/             # Local indexing / intake utilities
 ```
 
-## Important storage rule
+## Canonical NXCore placement
 
-Large raw PDFs and archive corpora belong on the canonical NXCore BlackIndex vault, **not in GitHub**. GitHub stores the system definition, metadata, extractions, controls, detections, playbooks, and code. This keeps repository history useful and avoids turning Git into binary storage.
-
-Recommended NXCore path:
+BlackIndex is intended to live at:
 
 ```text
-/srv/NXDrive/BlackIndex/
+/srv/Collab/mini.shops/blackindex/
 ```
+
+The repository itself is the application root. There is **no nested `system/` checkout**.
+
+Deployment is location-relative. `bootstrap/deploy.sh` resolves its own directory and treats its parent as the BlackIndex app root.
+
+For example:
+
+```text
+/srv/Collab/mini.shops/blackindex/bootstrap/deploy.sh
+                                  └──── parent app root ────┘
+```
+
+So running:
+
+```bash
+cd /srv/Collab/mini.shops/blackindex
+chmod +x bootstrap/deploy.sh
+./bootstrap/deploy.sh
+```
+
+initializes and validates `/srv/Collab/mini.shops/blackindex/` directly.
+
+Set `BLACKINDEX_UPDATE=1` when you intentionally want deployment to first perform a fast-forward-only Git pull.
+
+## Important storage rule
+
+Large raw PDFs and archive corpora belong in the local BlackIndex `source-vault/`, **not in GitHub**. GitHub stores the system definition, metadata, extractions, controls, detections, playbooks, and code. This keeps repository history useful and avoids turning Git into binary storage.
 
 ## Evidence discipline
 
@@ -55,4 +83,4 @@ Declassified does not mean complete. Redactions, missing annexes, later correcti
 
 **v0.1 — Foundation build**
 
-Initial work: registry, intake schema, source taxonomy, extraction format, control/detection libraries, NXCore deployment plan, and first research phase.
+Initial work: registry, intake schema, source taxonomy, extraction format, control/detection libraries, location-relative NXCore deployment, and first research phase.
