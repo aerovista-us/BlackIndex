@@ -10,9 +10,10 @@ BlackIndex is a local-first research and implementation system for collecting na
 2. **Collect** primary-source records with provenance and checksums.
 3. **Store** immutable originals separately from normalized derivatives.
 4. **Extract** evidence, mechanisms, failure modes, and operational analogs.
-5. **Call** the index when a relevant risk, incident, or question appears.
-6. **Implement** controls, detections, training, and playbooks.
-7. **Review** outcomes and retire weak or misleading patterns.
+5. **Compare** reviewed records and promote only mechanisms that survive cross-document review.
+6. **Call** the index when a relevant risk, incident, or question appears.
+7. **Implement** controls, detections, training, and playbooks.
+8. **Review** outcomes and retire weak or misleading patterns.
 
 ## Architecture
 
@@ -23,14 +24,14 @@ blackindex/
 ├── source-vault/      # Raw source documents (local only; not Git)
 ├── normalized/        # Local normalized text
 ├── metadata/          # Provenance + hashes + document descriptors
-├── extractions/       # Structured research summaries
-├── patterns/          # Reusable mechanisms / failure modes
+├── extractions/       # Structured evidence reviews
+├── patterns/          # Reusable cross-document mechanisms / failure modes
 ├── controls/          # Operational safeguards
 ├── detections/        # Monitoring and detection concepts
 ├── training/          # Training scenarios
 ├── playbooks/         # Response and implementation playbooks
 ├── local/             # Local indexes, cache and logs
-├── docs/              # Governance, taxonomy, architecture
+├── docs/              # Governance, taxonomy, architecture, synthesis reviews
 └── tools/             # Local indexing / intake utilities
 ```
 
@@ -46,22 +47,11 @@ The repository itself is the application root. There is **no nested `system/` ch
 
 Deployment is location-relative. `bootstrap/deploy.sh` resolves its own directory and treats its parent as the BlackIndex app root.
 
-For example:
-
-```text
-/srv/Collab/mini.shops/blackindex/bootstrap/deploy.sh
-                                  └──── parent app root ────┘
-```
-
-So running:
-
 ```bash
 cd /srv/Collab/mini.shops/blackindex
 chmod +x bootstrap/deploy.sh
 ./bootstrap/deploy.sh
 ```
-
-initializes and validates `/srv/Collab/mini.shops/blackindex/` directly.
 
 Set `BLACKINDEX_UPDATE=1` when you intentionally want deployment to first perform a fast-forward-only Git pull.
 
@@ -77,8 +67,9 @@ Local-only on NXCore:
 Published to GitHub:
 - document metadata and SHA-256 provenance records
 - reviewed extraction files
+- cross-document synthesis reviews and promoted patterns
 - registries and source targets
-- promoted patterns, controls, detections, training scenarios and playbooks
+- controls, detections, training scenarios and playbooks
 - code, schemas and governance documentation
 
 This keeps GitHub useful as the auditable knowledge/history layer without turning Git into bulk binary or derivative-text storage.
@@ -92,7 +83,7 @@ chmod +x tools/publish-ingest.sh
 ./tools/publish-ingest.sh SENATE-1976-church-committee-001
 ```
 
-The publish helper runs BlackIndex integrity verification first, stages only that document's `metadata/<DOC_ID>.json` and `extractions/<DOC_ID>.md`, rejects local corpus/runtime paths, then commits and pushes the durable record.
+The publish helper runs BlackIndex integrity verification first, stages only that document's metadata/extraction, rejects local corpus/runtime paths, then commits and pushes the durable record.
 
 ## Evidence discipline
 
@@ -104,8 +95,20 @@ BlackIndex distinguishes between:
 
 Declassified does not mean complete. Redactions, missing annexes, later corrections, and historical context must be recorded.
 
+### Promotion discipline
+
+A dramatic excerpt is not automatically a reusable pattern. Promotion requires:
+
+- direct-source grounding;
+- proposal/approval/execution/outcome states kept distinct;
+- review of alternative explanations and context gaps;
+- preferably independent support from more than one reviewed record;
+- explicit confidence and guardrails against guilt-by-similarity.
+
+Current promoted patterns live under `patterns/` and cross-document reasoning under `docs/reviews/`.
+
 ## Status
 
-**v0.1 — Foundation build**
+**v0.1 — Phase 2 evidence corpus underway**
 
-Initial work: registry, intake schema, source taxonomy, extraction format, control/detection libraries, location-relative NXCore deployment, and first research phase.
+The first reviewed corpus includes Church Committee Book II, Operation Northwoods, and an FBI COINTELPRO-New Left Alexandria packet. The first cross-document synthesis has promoted three governance mechanisms for continued testing against Family Jewels, VENONA, Pentagon Papers, and Iran-Contra records.
