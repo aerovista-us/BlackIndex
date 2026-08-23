@@ -1,0 +1,28 @@
+name: BlackIndex Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: CLI smoke test
+        run: |
+          python tools/blackindex.py --root /tmp/blackindex-ci init
+          printf 'blackindex smoke test' >/tmp/blackindex-source.txt
+          python tools/blackindex.py --root /tmp/blackindex-ci intake /tmp/blackindex-source.txt \
+            --source TEST --collection "CI Smoke" --year 2026 --call-id CALL-CI
+          python tools/blackindex.py --root /tmp/blackindex-ci search "smoke test"
+          python tools/blackindex.py --root /tmp/blackindex-ci verify
