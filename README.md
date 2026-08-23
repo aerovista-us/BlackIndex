@@ -65,9 +65,34 @@ initializes and validates `/srv/Collab/mini.shops/blackindex/` directly.
 
 Set `BLACKINDEX_UPDATE=1` when you intentionally want deployment to first perform a fast-forward-only Git pull.
 
-## Important storage rule
+## Storage and publication rule
 
-Large raw PDFs and archive corpora belong in the local BlackIndex `source-vault/`, **not in GitHub**. GitHub stores the system definition, metadata, extractions, controls, detections, playbooks, and code. This keeps repository history useful and avoids turning Git into binary storage.
+BlackIndex deliberately splits **corpus storage** from the **durable research record**.
+
+Local-only on NXCore:
+- raw source PDFs and archives under `source-vault/`
+- normalized text derivatives under `normalized/`
+- indexes, caches and logs under `local/`
+
+Published to GitHub:
+- document metadata and SHA-256 provenance records
+- reviewed extraction files
+- registries and source targets
+- promoted patterns, controls, detections, training scenarios and playbooks
+- code, schemas and governance documentation
+
+This keeps GitHub useful as the auditable knowledge/history layer without turning Git into bulk binary or derivative-text storage.
+
+### Publish one ingested document
+
+After intake, normalization and review, publish its durable record with:
+
+```bash
+chmod +x tools/publish-ingest.sh
+./tools/publish-ingest.sh SENATE-1976-church-committee-001
+```
+
+The publish helper runs BlackIndex integrity verification first, stages only that document's `metadata/<DOC_ID>.json` and `extractions/<DOC_ID>.md`, rejects local corpus/runtime paths, then commits and pushes the durable record.
 
 ## Evidence discipline
 
