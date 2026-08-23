@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blackindex.aerovista.us/schema/metadata-v1.json",
+  "title": "BlackIndex Document Metadata v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "doc_id",
+    "title",
+    "source",
+    "collection",
+    "retrieved_at",
+    "local_raw_path",
+    "size_bytes",
+    "sha256",
+    "evidence_status"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "doc_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_-]+-(?:[0-9]{4}|undated)-[a-z0-9-]+-[0-9]{3,}$"
+    },
+    "call_id": {"type": ["string", "null"]},
+    "title": {"type": "string", "minLength": 1},
+    "source": {"type": "string", "minLength": 2},
+    "collection": {"type": "string", "minLength": 1},
+    "document_date": {"type": ["string", "null"]},
+    "year_bucket": {"type": "string"},
+    "source_url": {"type": ["string", "null"]},
+    "retrieved_at": {"type": "string"},
+    "original_filename": {"type": "string"},
+    "local_raw_path": {"type": "string", "minLength": 1},
+    "mime_hint": {"type": "string"},
+    "size_bytes": {"type": "integer", "minimum": 0},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "tags": {"type": "array", "items": {"type": "string"}},
+    "classification_note": {"type": ["string", "null"]},
+    "redaction_note": {"type": ["string", "null"]},
+    "evidence_status": {
+      "enum": ["unreviewed", "reviewed", "corroborated", "contested", "retired"]
+    }
+  },
+  "additionalProperties": true
+}
