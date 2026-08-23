@@ -1,0 +1,30 @@
+# Raw/source corpus stays on NXCore
+source-vault/**
+raw/**
+*.pdf
+*.zip
+*.7z
+*.tar
+*.tar.gz
+
+# Local indexes / models
+index/**
+embeddings/**
+*.sqlite
+*.db
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
