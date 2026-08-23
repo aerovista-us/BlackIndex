@@ -1,0 +1,11 @@
+call_id,call_name,primary_source,collection_type,timeframe,scope_tags,why_it_matters,expected_yields,status
+CALL-001,Church Committee — Intelligence Activities and the Rights of Americans,U.S. Senate,report,1975–1976,oversight|governance|domestic_intel|reform,High-value lessons in oversight failure accountability and reform,controls|detections|training|patterns,seed
+CALL-002,FBI Vault — COINTELPRO,FBI,collection,1956–1971,domestic_intel|process_abuse|documentation|oversight,Shows how process and documentation can be misused and why independent review matters,controls|detections|training|patterns,seed
+CALL-003,CIA Reading Room — Family Jewels,CIA,collection,1960s–1970s,oversight|internal_audit|risk_catalog,Internal catalog of questionable activities useful for self-audit design,controls|detections|training|patterns,seed
+CALL-004,Pentagon Papers,National Archives,report,1945–1967,decision_making|narrative_vs_reality|governance,Decision-chain and narrative-drift lessons,controls|training|patterns,seed
+CALL-005,National Security Archive — Iran-Contra,National Security Archive,curated_set,1980s,oversight|contractors|fragmented_authority|exceptions,Useful for exception ownership and contractor governance analogs,controls|detections|training|patterns,seed
+CALL-006,Operation Northwoods memorandum,DoD / National Security Archive,document,1962,pretext|decision_memos|ethical_risk,Cautionary case for pretext recognition and decision review,training|controls|patterns,seed
+CALL-007,NSA Historical Release — VENONA,NSA,collection,1940s–1980s,sigint|counterintelligence|analysis|signals,Useful for evidence correlation and confidence discipline,detections|patterns|training,seed
+CALL-008,CIA CREST 25-Year Program Archive,CIA,archive,1940s–1990s,archive|analysis|history,Large corpus for later targeted pattern research,patterns|controls|detections,seed
+CALL-009,JFK Assassination Records Collection,National Archives,archive,1950s–1990s,cross_reference|evidence_handling|large_corpus,Useful for evidence-linking and provenance discipline,patterns|training,seed
+CALL-010,FBI Vault — Espionage / Counterintelligence,FBI,collection,varies,counterintelligence|insider_risk|compartmentation,Useful analogs for insider-risk and anomalous-access analysis,detections|training|patterns,seed
