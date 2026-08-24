@@ -62,3 +62,7 @@ Cross-document questions:
 ## Promotion gate
 
 No Family Jewels item should be promoted to a reusable BlackIndex pattern solely because it is sensational. Each candidate must preserve the difference between what the 1973 compilation directly records, what later inquiries corroborate, and what remains inference or unresolved due to redaction/context gaps.
+
+## Sprint disposition
+
+Repository-side work is complete: source provenance is documented and the URL importer is hardened. The only remaining gate is successful NXCore acquisition of the CIA-hosted PDF. Once that succeeds, the normal BlackIndex intake/verify/publish path can run without manual metadata editing.
