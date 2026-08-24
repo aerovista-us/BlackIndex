@@ -11,10 +11,15 @@ usage: tools/ingest-url.sh <artifact-url> [--publish] [blackindex intake args...
 Downloads one remote artifact into local/cache, ingests + normalizes it,
 verifies the local vault, and optionally publishes only metadata/extraction.
 
+The downloader presents a normal browser user-agent and, when --landing-url is
+supplied, uses that page as the HTTP Referer. This improves compatibility with
+legacy government archives while preserving the supplied provenance metadata.
+
 Example:
   tools/ingest-url.sh https://example.gov/doc.pdf \
     --source NARA --collection "Example" --year 1975 \
-    --title "Example document" --call-id CALL-999 --publish
+    --title "Example document" --landing-url https://example.gov/record \
+    --call-id CALL-999 --publish
 EOF
 }
 
@@ -26,12 +31,22 @@ fi
 URL="$1"
 shift
 PUBLISH=0
+REFERER=""
 ARGS=()
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --publish)
       PUBLISH=1
       shift
+      ;;
+    --landing-url)
+      if [[ $# -lt 2 ]]; then
+        echo "error: --landing-url requires a value" >&2
+        exit 2
+      fi
+      REFERER="$2"
+      ARGS+=("$1" "$2")
+      shift 2
       ;;
     *)
       ARGS+=("$1")
@@ -45,13 +60,28 @@ command -v python3 >/dev/null 2>&1 || { echo "error: python3 is required" >&2; e
 
 mkdir -p "$ROOT/local/cache"
 TMP="$(mktemp "$ROOT/local/cache/url-ingest.XXXXXX.pdf")"
-cleanup() { rm -f "$TMP"; }
+COOKIE_JAR="$(mktemp "$ROOT/local/cache/url-ingest.cookies.XXXXXX")"
+cleanup() { rm -f "$TMP" "$COOKIE_JAR"; }
 trap cleanup EXIT
 
 echo "Downloading: $URL"
-curl -fL --retry 3 --retry-delay 2 --connect-timeout 20 \
-  -A 'BlackIndex/0.1 (+https://github.com/aerovista-us/BlackIndex)' \
-  -o "$TMP" "$URL"
+CURL_ARGS=(
+  -fL
+  --retry 3
+  --retry-delay 2
+  --connect-timeout 20
+  --max-time 300
+  --compressed
+  -A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/151 Safari/537.36'
+  -H 'Accept: application/pdf,application/octet-stream;q=0.9,*/*;q=0.8'
+  --cookie-jar "$COOKIE_JAR"
+  --cookie "$COOKIE_JAR"
+  -o "$TMP"
+)
+if [[ -n "$REFERER" ]]; then
+  CURL_ARGS+=(-e "$REFERER")
+fi
+curl "${CURL_ARGS[@]}" "$URL"
 
 # Guard against accidentally ingesting an HTML error/landing page as a PDF.
 MAGIC="$(head -c 5 "$TMP" || true)"
