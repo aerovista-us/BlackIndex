@@ -10,6 +10,15 @@ No collection should receive a final `proved / disproved / confirmed / unsupport
 
 ---
 
+## Current corpus checkpoint
+
+- **Verified local corpus:** `25`
+- **Hash failures:** `0`
+- **Evidence-map objects:** published
+- **Corpus Milestone 1:** reached
+
+---
+
 ## P0 — Core Collection
 
 | Collection | Primary Research Question |
@@ -198,6 +207,53 @@ Do not elevate a later investigative conclusion without recording its scope, ind
 
 ---
 
+# P1 — Rothschild / Finance & Intelligence
+
+Dedicated cluster:
+
+`docs/research-clusters/Rothschild Finance and Intelligence.md`
+
+Research graph namespace:
+
+`entities/rothschild/`
+
+## P0
+- Victor Rothschild — MI5 personnel/counterintelligence records
+- Victor Rothschild ↔ Anthony Blunt
+- Victor Rothschild ↔ Cambridge Apostles / Cambridge spy investigation
+- Victor Rothschild WWII counter-sabotage/intelligence records
+
+## P1
+- Victor Rothschild “Fifth Man” allegations and counter-assessments
+- Rothschild banking communications/intelligence network
+- Nathan Rothschild / Waterloo claims and contemporary-source comparison
+- Lionel Rothschild / Suez Canal financing
+- Lord Rothschild / Balfour Declaration + Cabinet/Foreign Office correspondence
+- N.M. Rothschild & Sons interactions with governments/intelligence agencies
+
+## P2
+- FBI `Robert Rothschild #62-75295` — identify subject before family linkage
+- Evelyn de Rothschild / business-government records
+- CIA / State / NSA occurrences by person, date, institution, and operation
+
+### Family graph rule
+
+Build genealogy as a source-verified research graph:
+
+`Person → Parent/Spouse → Bank → Government → Intelligence Agency → Political Office → Company → Event → Document`
+
+Genealogy establishes lineage only. No inherited guilt, suspicion, intelligence relevance, influence, or association scoring is permitted.
+
+### Mandatory source genealogy
+
+For every material assertion, trace:
+
+`earliest available primary source → direct reproductions → later official interpretation → independent analysis → derivative retellings`
+
+Repeated derivative claims remain one evidentiary lineage. Association, surname, business contact, or proximity to a genuine espionage case does not independently establish wrongdoing.
+
+---
+
 # P2 — Scientific / Unusual Programs
 
 ### STARGATE
@@ -223,14 +279,14 @@ Lower-priority exploratory collection. Preserve military/intelligence records, s
 # Priority Ingestion Order
 
 1. NORTHWOODS — done
-2. MKULTRA — current P0 batch
+2. MKULTRA — done / deeper MKSEARCH material started
 3. Family Jewels — done
 4. Church Committee — done
 5. COINTELPRO — done
-6. SHAMROCK / MINARET — current P0 batch
-7. TPAJAX — current P0 batch
-8. PBSUCCESS — current P0 batch; `CIA-1954-pbsuccess-001` published
-9. Gulf of Tonkin
+6. SHAMROCK / MINARET — done
+7. TPAJAX — initial + deeper records started
+8. PBSUCCESS — initial + deeper records started
+9. Gulf of Tonkin — started
 10. Pentagon Papers — index/corpus map started
 11. 9/11 Operation Encore cluster
 12. JFK 2025–26
@@ -238,13 +294,14 @@ Lower-priority exploratory collection. Preserve military/intelligence records, s
 14. RFK 2025
 15. LOOKING GLASS
 16. CIA assassination records
-17. MHCHAOS
+17. MHCHAOS — started
 18. 2016 ICA / Durham / Crossfire cluster
 19. CIA detention/interrogation
 20. Iran-Contra — initial primary records started
 21. Atkinson / 2019 impeachment cluster
 22. domestic-terrorism Strategic Implementation Plan
-23. Amelia Earhart files
+23. Rothschild / Finance & Intelligence — Victor Rothschild / Blunt / MI5 first
+24. Amelia Earhart files
 
 ---
 
