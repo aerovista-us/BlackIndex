@@ -5,6 +5,7 @@ ROOT="${BLACKINDEX_ROOT:-$(cd -- "$SCRIPT_DIR/.." && pwd -P)}"
 START_PORT="${1:-8787}"
 
 python3 "$ROOT/tools/evidence_map.py" --root "$ROOT" dashboard
+python3 "$ROOT/tools/fix-dashboard-html.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 
 if command -v tailscale >/dev/null 2>&1; then
   BIND="$(tailscale ip -4 2>/dev/null | head -n1 || true)"
