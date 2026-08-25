@@ -73,7 +73,6 @@ run_one "OFTEN/CHICKWIT — later CIA program reconstruction" \
 
 python3 "$EVIDENCE" --root "$ROOT" bootstrap
 
-# Record that the MKSEARCH documentary base is itself described as fragmentary.
 python3 "$EVIDENCE" --root "$ROOT" investigator-review \
   --report-or-finding "DCI testimony concerning MKSEARCH records discovered in 1977" \
   --investigator "Director of Central Intelligence / CIA review staff" \
@@ -84,7 +83,6 @@ python3 "$EVIDENCE" --root "$ROOT" investigator-review \
   --workpapers-status "requires linkage to the underlying financial records and later program histories" \
   --note "Attributed record-state finding only; not adopted as a final conclusion about every MKSEARCH activity."
 
-# Record a concrete archive-gap object against the MKSEARCH document after ingestion.
 MKDOC="$(python3 - "$ROOT" <<'PY'
 import json, pathlib, sys
 root=pathlib.Path(sys.argv[1])
@@ -108,6 +106,7 @@ fi
 python3 "$EVIDENCE" --root "$ROOT" index
 python3 "$EVIDENCE" --root "$ROOT" dashboard
 python3 "$ROOT/tools/blackindex.py" --root "$ROOT" verify
+python3 "$EVIDENCE" --root "$ROOT" publish --push
 
 echo "Deep covert-action + behavioral-research batch complete."
 git -C "$ROOT" status --short
