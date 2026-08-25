@@ -2,7 +2,7 @@
 set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 ROOT="${BLACKINDEX_ROOT:-$(cd -- "$SCRIPT_DIR/.." && pwd -P)}"
-PORT="${1:-8787}"
+START_PORT="${1:-8787}"
 
 python3 "$ROOT/tools/evidence_map.py" --root "$ROOT" dashboard
 
@@ -15,6 +15,37 @@ fi
 if [[ -z "$BIND" ]]; then
   echo "warning: Tailscale IPv4 not found; binding loopback only" >&2
   BIND="127.0.0.1"
+fi
+
+find_free_port() {
+  local host="$1"
+  local start="$2"
+  python3 - "$host" "$start" <<'PY'
+import socket, sys
+host = sys.argv[1]
+start = int(sys.argv[2])
+for port in range(start, min(start + 200, 65536)):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        s.bind((host, port))
+    except OSError:
+        s.close()
+        continue
+    else:
+        s.close()
+        print(port)
+        raise SystemExit(0)
+raise SystemExit(1)
+PY
+}
+
+if ! PORT="$(find_free_port "$BIND" "$START_PORT")"; then
+  echo "error: no free TCP port found from $START_PORT through $((START_PORT + 199)) on $BIND" >&2
+  exit 3
+fi
+
+if [[ "$PORT" != "$START_PORT" ]]; then
+  echo "Port $START_PORT is in use; selected free port $PORT instead."
 fi
 
 echo "BlackIndex dashboard: http://$BIND:$PORT/blackindex-dashboard.html"
