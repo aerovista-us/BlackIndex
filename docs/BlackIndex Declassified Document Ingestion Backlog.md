@@ -1,29 +1,37 @@
 # BlackIndex Declassified Document Ingestion Backlog
 
-## P0 — Core Collection
+## Project posture
 
-These should be ingested and scored first.
+BlackIndex is an evidence map, not a verdict machine.
+
+Every collection below should preserve primary records, official interpretations, independent analysis, source attribution, corroboration, conflicts, missing evidence, redactions, record custody, version history, and unresolved questions.
+
+No collection should receive a final `proved / disproved / confirmed / unsupported` judgment merely because one document or investigation says so.
+
+---
+
+## P0 — Core Collection
 
 | Collection | Primary Research Question |
 |---|---|
-| **Operation NORTHWOODS** | What false-flag/pretext scenarios were actually proposed? |
-| **MKULTRA / MKSEARCH** | What experimentation actually occurred and what records were destroyed? |
-| **COINTELPRO** | How far did FBI disruption of domestic political activity extend? |
-| **CIA Family Jewels** | What potentially illegal/improper CIA activities were internally documented? |
-| **Church Committee** | What intelligence abuses were conclusively established? |
-| **SHAMROCK / MINARET** | How extensively were Americans' communications monitored? |
-| **MHCHAOS / Operation CHAOS** | What domestic intelligence activity did CIA conduct? |
-| **TPAJAX — Iran 1953** | What role did CIA/U.K. intelligence play in removing Mossadegh? |
-| **PBSUCCESS — Guatemala 1954** | What covert activity produced the Árbenz regime-change operation? |
-| **Pentagon Papers** | Where did internal Vietnam assessments conflict with public statements? |
-| **Gulf of Tonkin Files** | What did intelligence actually show about the August 4 incident? |
-| **CIA Assassination Files** | Which assassination proposals/operations were approved, attempted, or abandoned? |
+| **Operation NORTHWOODS** | What false-flag/pretext scenarios were proposed, how were they framed, and what is the surviving approval/disposition record? |
+| **MKULTRA / MKSEARCH** | What experimentation is documented, what records were destroyed, and what can later-discovered files reconstruct? |
+| **COINTELPRO** | How far did FBI disruption of domestic political activity extend, and how were collection and disruption connected? |
+| **CIA Family Jewels** | What potentially improper activities were internally recorded, how were they characterized, and what authorization/corrective-action records survive? |
+| **Church Committee** | What findings did the committee report, what source records underlie those findings, and where are the archival limits? |
+| **SHAMROCK / MINARET** | How extensively were communications accessed/selected, how were U.S.-person watch lists used, and what oversight existed? |
+| **MHCHAOS / Operation CHAOS** | What domestic intelligence activity did CIA conduct, under what authority, and how did stated purpose differ from actual collection/use? |
+| **TPAJAX — Iran 1953** | What primary records map planning, funding, implementation, British/U.S. roles, public statements, and later official histories? |
+| **PBSUCCESS — Guatemala 1954** | What covert planning, propaganda, logistics, finance, and operational records survive, and how do planned actions map to outcomes? |
+| **Pentagon Papers** | Where do contemporaneous internal assessments differ from contemporaneous public statements, and how did those assessments evolve? |
+| **Gulf of Tonkin Files** | What did contemporaneous SIGINT and operational reporting show about August 4, and how did later official interpretations change? |
+| **CIA Assassination Files** | Which proposals, approvals, attempts, operational contacts, terminations, and later descriptions can be separately documented? |
 
 ---
 
 # P0 — 9/11 Cluster
 
-Keep these together rather than treating them independently.
+Keep these together and preserve the chronology of changing official assessments.
 
 ### Operation Encore
 Hazmi/Mihdhar assistance network and later FBI investigation.
@@ -41,11 +49,17 @@ CIA intelligence-sharing and operational failures.
 Later investigations concerning logistical/support relationships.
 
 ### Terrorist Financing Staff Monograph
-Important counter-evidence and financing analysis.
+Important financing analysis and negative findings, with investigator scope/access recorded separately.
 
-### Primary Hypothesis
+### Primary research question
 
-Who assisted Hazmi and Mihdhar, what did those individuals know, and what relationships existed between those individuals and Saudi institutions?
+Who assisted Hazmi and Mihdhar, what is documented about what those individuals knew, what relationships existed with Saudi institutions, and how did official conclusions change from early leads through later investigations/declassification?
+
+Required timeline form:
+
+`lead → interim assessment → 9/11 Commission treatment → follow-on investigation → Operation Encore → later declassification/reassessment`
+
+Negative findings must remain attributed investigator statements, not automatic facts.
 
 ---
 
@@ -53,7 +67,6 @@ Who assisted Hazmi and Mihdhar, what did those individuals know, and what relati
 
 ### JFK Records — especially 2025–2026 releases
 Prioritize:
-
 - Oswald
 - Mexico City
 - CIA surveillance
@@ -63,24 +76,26 @@ Prioritize:
 - document withholding
 - destruction/missing records
 - conflicting witness accounts
+- older/newer release comparison
+- record custodians and withholding authorities
 
 ### MLK Records — 2025
 Prioritize:
-
 - FBI surveillance
 - assassination investigation
 - informants
 - COINTELPRO overlap
 - intelligence handling
+- version/redaction history
 
 ### RFK Records — 2025
 Prioritize:
-
 - KENSALT investigation
 - Sirhan evidence
 - witness discrepancies
 - intelligence traces
 - forensic questions
+- investigative workpapers and negative findings
 
 ---
 
@@ -90,7 +105,6 @@ Prioritize:
 Airborne nuclear command-and-control continuity.
 
 Connect with:
-
 - SIOP
 - SAC nuclear command
 - DEFCON records
@@ -103,7 +117,9 @@ Connect with:
 
 Primary question:
 
-**Does the surviving documentation show normal continuity planning, or evidence of authorities/capabilities extending beyond the publicly understood mission?**
+**What authorities, capabilities, command relationships, and continuity procedures are actually documented, and how do internal records compare with public descriptions?**
+
+Avoid assuming either ordinary continuity planning or extraordinary hidden authority before the corpus is mature.
 
 ---
 
@@ -111,28 +127,28 @@ Primary question:
 
 ### 2016 Intelligence Community Assessment
 Include:
-
 - original ICA
 - 2025 CIA Tradecraft Review
 - Clapper/Rogers communications
 - Senate Intelligence Committee findings
+- underlying source provenance where available
 
 ### Durham Classified Appendix
-Separate underlying intelligence from later interpretations of it.
+Separate underlying intelligence, source reporting, investigator interpretation, later political characterization, and negative findings.
 
 ### Crossfire Hurricane Records
-Investigative origins, source handling, FISA and internal communications.
+Investigative origins, source handling, FISA, internal communications, public statements, and later reviews.
 
-Do not treat competing official assessments as automatically authoritative.
+### Atkinson / 2019 impeachment-related material
+Add the 2026 declassified/released Atkinson-related materials and associated whistleblower/impeachment records as a separate evidence cluster. Preserve original complaint/source material, inspector-general interpretation, executive-branch interpretation, congressional use, later declassification, and source-independence questions.
 
-Compare them directly.
+Do not treat competing official assessments as automatically authoritative. Compare their evidence access, independence, methods, scope, and chronology directly.
 
 ---
 
 # P1 — Covert War / Foreign Policy
 
 Add:
-
 - **Bay of Pigs CIA histories**
 - **Operation MONGOOSE**
 - **Chile / Allende files**
@@ -143,12 +159,13 @@ Add:
 - **Nazi intelligence recruitment / war-crimes records**
 - **VENONA**
 
+For covert-action collections, separate objective, proposal, authorization, funding, implementation, execution, operational reporting, outcome attribution, and later official history.
+
 ---
 
 # P1 — Surveillance / Rights
 
 Add:
-
 - Church Committee supporting exhibits
 - FBI domestic intelligence manuals
 - CIA mail-opening programs
@@ -157,13 +174,15 @@ Add:
 - warrantless surveillance records
 - post-9/11 NSA surveillance documentation
 - domestic terrorism strategy documents
+- **recently declassified domestic-terrorism Strategic Implementation Plan**
+
+For the Strategic Implementation Plan, preserve policy text, implementation records, later public descriptions, statutory/constitutional analysis, and evidence of actual implementation separately.
 
 ---
 
 # P1 — Detention / Interrogation
 
 Add:
-
 - CIA Detention and Interrogation Program
 - Senate Intelligence torture report material
 - DOJ interrogation memoranda
@@ -171,22 +190,24 @@ Add:
 - extraordinary rendition
 - detainee transfer records
 
-Focus on differences between:
+Focus on differences among:
 
-**internal knowledge / legal justification / public statements / later findings.**
+`internal knowledge → legal justification → operational record → public statement → investigation/review → later declassification`
+
+Do not elevate a later investigative conclusion without recording its scope, independence, access, missing records, and reproducibility.
 
 ---
 
 # P2 — Scientific / Unusual Programs
 
 ### STARGATE
-Government remote-viewing research.
+Government remote-viewing research. Separate documented program activity, experimental results, evaluator conclusions, and later popular claims.
 
 ### UAP / AARO / IMMACULATE CONSTELLATION
-Separate documented investigations from claims contained inside them.
+Separate documented investigations, source reports, official conclusions, anonymous assertions, and claims contained inside reports.
 
 ### COVID Origins — 2026 Declassifications
-Compare intelligence assessments, scientific evidence and internal communications.
+Compare intelligence assessments, scientific evidence, source provenance, confidence language, internal communications, and later changes in assessment.
 
 ### Overseas Biological Laboratory Records
 Document actual programs while distinguishing legitimate biological research from unsupported bioweapons claims.
@@ -194,22 +215,23 @@ Document actual programs while distinguishing legitimate biological research fro
 ### Edgewood / Human Experimentation
 Connect with MKULTRA and related behavioral/chemical research.
 
+### Amelia Earhart files
+Lower-priority exploratory collection. Preserve military/intelligence records, search records, later claims, archival provenance, and source independence without treating later speculation as equivalent to contemporaneous records.
+
 ---
 
 # Priority Ingestion Order
 
-Start with:
-
-1. NORTHWOODS
-2. MKULTRA
-3. Family Jewels
-4. Church Committee
-5. COINTELPRO
-6. SHAMROCK / MINARET
-7. TPAJAX
-8. PBSUCCESS
+1. NORTHWOODS — done
+2. MKULTRA — current P0 batch
+3. Family Jewels — done
+4. Church Committee — done
+5. COINTELPRO — done
+6. SHAMROCK / MINARET — current P0 batch
+7. TPAJAX — current P0 batch
+8. PBSUCCESS — current P0 batch; `CIA-1954-pbsuccess-001` published
 9. Gulf of Tonkin
-10. Pentagon Papers
+10. Pentagon Papers — index/corpus map started
 11. 9/11 Operation Encore cluster
 12. JFK 2025–26
 13. MLK 2025
@@ -219,62 +241,191 @@ Start with:
 17. MHCHAOS
 18. 2016 ICA / Durham / Crossfire cluster
 19. CIA detention/interrogation
-20. Iran-Contra
+20. Iran-Contra — initial primary records started
+21. Atkinson / 2019 impeachment cluster
+22. domestic-terrorism Strategic Implementation Plan
+23. Amelia Earhart files
 
 ---
 
-# Ingestion Metadata
+# Required Ingestion Metadata
 
-Every document should capture:
+Every important document should capture, where available:
 
+## Identity / dates
 - `title`
 - `date_created`
 - `date_declassified`
 - `date_publicly_released`
 - `originating_agency`
-- `classification_original`
-- `source_url`
-- `archive_location`
 - `document_type`
+- `native_id`
+- `record_group`
+- `series`
+
+## Provenance / chain of custody
+- `source_url`
+- `canonical_landing_url`
+- `artifact_url`
+- `archive_location`
+- `original_filename`
+- `sha256`
+- `artifact_type` — original scan / photocopy / OCR / transcript / reconstructed copy / later reproduction / partial release
+- `record_creator`
+- `record_custodian`
+- `declassification_authority`
+- `withholding_authority`
+- `chain_of_custody`
+- `document_integrity`
+
+## Classification / release history
+- `classification_original`
+- `classification_chronology`
+- `release_chronology`
+- `exemption_codes`
+- `alternate_versions`
+- `version_relationships`
+
+## Entities / relationships
 - `people`
 - `organizations`
 - `operations`
 - `locations`
 - `related_documents`
-- `document_integrity`
+- `source_dependencies`
+
+## Record integrity / missing evidence
 - `known_missing_material`
-- `key_claims`
-- `counter_evidence`
+- `missing_referenced_records`
+- `known_destruction`
+- `destruction_chronology`
+- `custodian_conflicts`
+- `version_conflicts`
+- `public_internal_contradictions`
+- `record_integrity`
+
+## Redactions
+- `redaction_count`
+- `redaction_density`
+- `critical_redactions`
+- `redaction_impact`
+- `redaction_clusters`
+- `exemption_codes`
+- `alternate_versions`
+
+## Evidence-map diagnostics
+- `state_of_record`
 - `plausibility_score`
-- `evidence_score`
+- `evidence_density_score`
 - `obstruction_score`
 - `archive_confidence`
-- `assessment_class`
+- `source_confidence`
+- `inference_dependency`
+
+Do not store a mandatory final `assessment_class` such as Confirmed/Unsupported for an open investigation.
 
 ---
 
-# Extraction Rule
+# Evidence Layers
+
+Store separately where available:
+
+- `primary_document`
+- `official_interpretation`
+- `independent_analysis`
+
+Official interpretation is not a substitute for the underlying record.
+
+---
+
+# Required Extraction Rule
 
 For every important passage:
 
-**CLAIM**
+## CLAIM
+What is alleged, asserted, proposed, observed, or concluded?
 
-What is alleged or proposed?
+## DOCUMENT CONTENT
+What is actually present in the primary record, described neutrally?
 
-**DOCUMENT SAYS**
+## SOURCE ATTRIBUTION
+Who is asserting it and in what role/context?
 
-What does the primary source actually establish?
+## CORROBORATION
+What other material supports the same assertion? Is it genuinely independent?
 
-**DOES NOT PROVE**
+## CONFLICTS
+What evidence, testimony, or records are inconsistent with or materially qualify it?
 
-What commonly associated conclusion goes beyond the document?
+## GAPS
+What relevant material is missing, destroyed, withheld, redacted, unavailable, or never sought?
 
-**ANOMALIES**
+## ALTERNATIVE EXPLANATIONS
+What is the strongest reasonable mundane/innocent/competing explanation for anomalies?
 
-What is missing, contradictory, unusually classified, destroyed, delayed, or otherwise noteworthy?
+## UNRESOLVED QUESTIONS
+What would we need to find to materially improve or resolve this part of the record?
 
-**SOURCE**
+## SOURCE
+Primary document citation and page/exhibit/message number. Exact quotations/page citations are required for pivotal assertions contributing materially to scoring, patterns, or contradiction findings.
 
-Primary document citation and page number.
+---
 
-This structure should be used consistently across the entire BlackIndex archive.
+# Negative Findings Rule
+
+A negative investigative finding is an attributed claim, not automatic factual absence.
+
+Capture:
+- investigator/institution
+- employer/controller
+- independence
+- conflicts/institutional interests
+- scope
+- authority/access
+- records actually reviewed
+- unavailable/excluded/destroyed/not-sought records
+- duration/resources
+- interviews/omitted witnesses
+- surviving workpapers
+- competing findings
+- reproducibility
+- exact wording
+
+Store:
+
+`Investigators reported finding no evidence of X.`
+
+Do not silently rewrite it as:
+
+`There is no evidence of X.`
+
+---
+
+# Record Integrity Object
+
+For every investigation/document family maintain:
+
+- **Completeness:** `__/5`
+- **Redaction concern:** `__/15`
+- **Known destruction:** Yes / No / Unknown
+- **Missing referenced records:** count + list
+- **Custodian conflicts:** Yes / No / Unknown
+- **Version conflicts:** Yes / No / Unknown
+- **Public/internal contradictions:** count + list
+- **Archive Confidence:** `__/5`
+
+Record integrity is part of the evidence map itself.
+
+---
+
+# Archive-selection bias
+
+The surviving archive was created, selected, controlled, classified, retained, destroyed, transferred, and released by particular actors and institutions. Some activity may never have been documented; some records may have been verbal, compartmented, routinely destroyed, intentionally destroyed, lost, misfiled, classified, or withheld.
+
+That limitation must reduce confidence in completeness without being used to manufacture evidence for events not otherwise supported.
+
+---
+
+# Core project rule
+
+**BlackIndex records assertions, evidence, provenance, contradictions, omissions, and anomalies. It does not convert incomplete historical records into final determinations. Conclusions remain provisional and may remain unresolved indefinitely.**
