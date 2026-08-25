@@ -15,6 +15,22 @@ run_one "TPAJAX — CIA institutional retrospective" \
   --landing-url "https://www.cia.gov/readingroom/" \
   --call-id CALL-TPAJAX-DEEP --tags "tpajax,iran-1953,cia,institutional-history,mossadegh,covert-action" --publish
 
+run_one "TPAJAX — The Battle for Iran" \
+  "https://www.cia.gov/readingroom/docs/THE%20BATTLE%20FOR%20IRAN%5B15688467%5D.pdf" \
+  --source CIA --collection "TPAJAX Battle for Iran" --year 2019 \
+  --title "The Battle for Iran — CIA Historical Review of TPAJAX" \
+  --native-id "C01384460" \
+  --landing-url "https://www.cia.gov/readingroom/" \
+  --call-id CALL-TPAJAX-DEEP --tags "tpajax,iran-1953,mossadegh,cia-history,press-accounts,covert-action" --publish
+
+run_one "Iran 1953 — SE-49 Current Outlook" \
+  "https://www.cia.gov/readingroom/docs/CIA-RDP79S01011A001100020009-7.pdf" \
+  --source CIA --collection "Iran Current Outlook SE49" --year 1953 --document-date "1953-08-21" \
+  --title "SE-49: The Current Outlook in Iran" \
+  --native-id "CIA-RDP79S01011A001100020009-7" \
+  --landing-url "https://www.cia.gov/readingroom/document/cia-rdp79s01011a001100020009-7" \
+  --call-id CALL-TPAJAX-DEEP --tags "iran-1953,se-49,post-coup-estimate,mossadegh,zahedi" --publish
+
 run_one "PBSUCCESS — Custody of material" \
   "https://www.cia.gov/readingroom/docs/DOC_0000914015.pdf" \
   --source CIA --collection "PBSUCCESS Record Custody" --year 1954 --document-date "1954-01-02" \
@@ -70,7 +86,7 @@ python3 "$EVIDENCE" --root "$ROOT" investigator-review \
 
 # Record a concrete archive-gap object against the MKSEARCH document after ingestion.
 MKDOC="$(python3 - "$ROOT" <<'PY'
-import json, pathlib, re, sys
+import json, pathlib, sys
 root=pathlib.Path(sys.argv[1])
 for p in sorted((root/'metadata').glob('*.json')):
     try:d=json.loads(p.read_text())
