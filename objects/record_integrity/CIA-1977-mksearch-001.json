@@ -1,0 +1,29 @@
+{
+  "alternate_versions": [],
+  "archive_confidence": null,
+  "artifact_type": "pdf",
+  "chain_of_custody": [],
+  "classification_chronology": [],
+  "completeness": null,
+  "created_at": "2026-08-25T11:52:47+00:00",
+  "custodian_conflicts": [],
+  "declassification_authority": null,
+  "destruction_chronology": [],
+  "doc_id": "CIA-1977-mksearch-001",
+  "known_destruction": "unknown",
+  "missing_referenced_records": [
+    "ME-CIA-1977-mksearch-001-20260825T115253Z-c31cb9bc"
+  ],
+  "notes": "",
+  "object_id": "RI-CIA-1977-mksearch-001",
+  "object_type": "record_integrity",
+  "public_internal_contradictions": [],
+  "record_creator": "CIA",
+  "record_custodian": null,
+  "redaction_concern": null,
+  "release_chronology": [],
+  "schema_version": 1,
+  "updated_at": "2026-08-25T11:52:53+00:00",
+  "version_conflicts": [],
+  "withholding_authority": null
+}

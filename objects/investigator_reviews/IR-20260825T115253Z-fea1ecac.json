@@ -1,0 +1,25 @@
+{
+  "access_to_evidence": null,
+  "competing_findings": [],
+  "conclusion_adopted_as_fact": false,
+  "conflict_exposure": null,
+  "created_at": "2026-08-25T11:52:53+00:00",
+  "employer_controller": "Central Intelligence Agency",
+  "exact_wording": "The surviving MKSEARCH material was described as primarily financial papers and the understanding of funded activities as fragmented and incomplete.",
+  "investigator": "Director of Central Intelligence / CIA review staff",
+  "investigator_independence": null,
+  "method_transparency": null,
+  "notes": "Attributed record-state finding only; not adopted as a final conclusion about every MKSEARCH activity.",
+  "object_id": "IR-20260825T115253Z-fea1ecac",
+  "object_type": "investigator_review",
+  "records_reviewed": [],
+  "records_unavailable": [
+    "substantive project records not present in the financial files"
+  ],
+  "report_or_finding": "DCI testimony concerning MKSEARCH records discovered in 1977",
+  "reproducibility": null,
+  "schema_version": 1,
+  "scope": "records discovered and assembled by CIA staff following the August 1977 MKULTRA hearing",
+  "witnesses_omitted": [],
+  "workpapers_status": "requires linkage to the underlying financial records and later program histories"
+}
