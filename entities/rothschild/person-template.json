@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "object_type": "person",
+  "person_id": "",
+  "canonical_name": "",
+  "alternate_names": [],
+  "birth_date": null,
+  "death_date": null,
+  "family_branch": null,
+  "parents": [],
+  "spouses": [],
+  "children": [],
+  "business_roles": [],
+  "government_roles": [],
+  "intelligence_roles": [],
+  "political_contacts": [],
+  "major_transactions_events": [],
+  "documents": [],
+  "allegations": [],
+  "corroborating_sources": [],
+  "conflicting_sources": [],
+  "identity_confidence": null,
+  "source_genealogy": {
+    "earliest_primary_source": null,
+    "direct_primary_sources": [],
+    "official_interpretations": [],
+    "independent_sources": [],
+    "derivative_sources": [],
+    "source_dependencies": []
+  },
+  "guardrails": {
+    "genealogy_only_does_not_transfer_allegations": true,
+    "association_is_not_operational_connection": true,
+    "surname_match_requires_identity_verification": true
+  }
+}
