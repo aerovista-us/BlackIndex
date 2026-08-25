@@ -9,7 +9,8 @@ usage() {
 usage: tools/ingest-url.sh <artifact-url> [--publish] [blackindex intake args...]
 
 Downloads one remote artifact into local/cache, ingests + normalizes it,
-verifies the local vault, and optionally publishes only metadata/extraction.
+creates/preserves the neutral evidence-map review record, verifies the local
+vault, and optionally publishes only durable metadata/extraction.
 
 The downloader presents a normal browser user-agent and, when --landing-url is
 supplied, uses that page as the HTTP Referer. This improves compatibility with
@@ -95,6 +96,13 @@ OUT="$(python3 "$ROOT/tools/blackindex.py" --root "$ROOT" intake "$TMP" \
 printf '%s\n' "$OUT"
 
 DOC_ID="$(printf '%s' "$OUT" | python3 -c 'import json,sys; print(json.load(sys.stdin)["doc_id"])')"
+
+# Replace only legacy auto-generated TODO stubs. Existing substantive reviews
+# are intentionally preserved.
+BLACKINDEX_ROOT="$ROOT" python3 "$ROOT/tools/generate-review-template.py" "$DOC_ID"
+
+# Ensure the first-class Record Integrity sidecar exists for every new intake.
+python3 "$ROOT/tools/evidence_map.py" --root "$ROOT" integrity "$DOC_ID"
 
 python3 "$ROOT/tools/blackindex.py" --root "$ROOT" verify
 
