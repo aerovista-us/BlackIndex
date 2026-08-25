@@ -1,0 +1,23 @@
+{
+  "access_to_evidence": null,
+  "competing_findings": [],
+  "conclusion_adopted_as_fact": false,
+  "conflict_exposure": null,
+  "created_at": "2026-08-25T10:54:50+00:00",
+  "employer_controller": "National Security Agency",
+  "exact_wording": "Retrospective review concluded that SIGINT evidence used to support the second attack was seriously flawed and identified intercepted material pointing the other way.",
+  "investigator": "NSA historical/cryptologic review author",
+  "investigator_independence": null,
+  "method_transparency": null,
+  "notes": "Stored as an attributed later investigative/analytic finding; BlackIndex does not adopt it as final fact.",
+  "object_id": "IR-20260825T105450Z-b3bfb12b",
+  "object_type": "investigator_review",
+  "records_reviewed": [],
+  "records_unavailable": [],
+  "report_or_finding": "NSA retrospective review of Gulf of Tonkin SIGINT",
+  "reproducibility": null,
+  "schema_version": 1,
+  "scope": "Released SIGINT reporting, summaries, message traffic, and later reconstruction described in the review",
+  "witnesses_omitted": [],
+  "workpapers_status": "Underlying released documents should be linked individually as the corpus expands"
+}
