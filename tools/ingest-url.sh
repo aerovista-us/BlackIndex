@@ -118,21 +118,32 @@ if [[ "$DOWNLOAD_RC" -ne 0 && "$URL" == https://vault.fbi.gov/* ]]; then
   echo "FBI Vault direct download rejected; retrying with browser-navigation headers..." >&2
   rm -f "$TMP"
   TMP="$(mktemp "$ROOT/local/cache/url-ingest.XXXXXX.pdf")"
+  FBI_ARGS=(
+    -fL
+    --http1.1
+    --retry 2
+    --retry-delay 2
+    --connect-timeout 20
+    --max-time 300
+    --compressed
+    -A "$UA"
+    -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,application/pdf;q=0.8,*/*;q=0.7'
+    -H 'Accept-Language: en-US,en;q=0.9'
+    -H 'Cache-Control: no-cache'
+    -H 'Pragma: no-cache'
+    -H 'Sec-Fetch-Dest: document'
+    -H 'Sec-Fetch-Mode: navigate'
+    -H 'Sec-Fetch-Site: same-origin'
+    -H 'Upgrade-Insecure-Requests: 1'
+    --cookie-jar "$COOKIE_JAR"
+    --cookie "$COOKIE_JAR"
+    -o "$TMP"
+  )
+  if [[ -n "$REFERER" ]]; then
+    FBI_ARGS+=(-e "$REFERER")
+  fi
   set +e
-  curl -fL --http1.1 --retry 2 --retry-delay 2 \
-    --connect-timeout 20 --max-time 300 --compressed \
-    -A "$UA" \
-    -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,application/pdf;q=0.8,*/*;q=0.7' \
-    -H 'Accept-Language: en-US,en;q=0.9' \
-    -H 'Cache-Control: no-cache' \
-    -H 'Pragma: no-cache' \
-    -H 'Sec-Fetch-Dest: document' \
-    -H 'Sec-Fetch-Mode: navigate' \
-    -H 'Sec-Fetch-Site: same-origin' \
-    -H 'Upgrade-Insecure-Requests: 1' \
-    --cookie-jar "$COOKIE_JAR" --cookie "$COOKIE_JAR" \
-    ${REFERER:+-e "$REFERER"} \
-    -o "$TMP" "$URL"
+  curl "${FBI_ARGS[@]}" "$URL"
   DOWNLOAD_RC=$?
   set -e
 fi
