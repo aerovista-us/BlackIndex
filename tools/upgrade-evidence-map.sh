@@ -20,6 +20,7 @@ python3 tools/evidence_map.py --root "$ROOT" index
 
 echo "[4/5] Building self-contained local dashboard"
 python3 tools/evidence_map.py --root "$ROOT" dashboard
+python3 tools/fix-dashboard-html.py "$ROOT/local/dashboard/blackindex-dashboard.html"
 
 echo "[5/5] Verifying corpus integrity"
 python3 tools/blackindex.py --root "$ROOT" verify
