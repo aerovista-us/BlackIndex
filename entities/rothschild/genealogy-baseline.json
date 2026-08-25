@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "cluster": "ROTHSCHILD / FINANCE & INTELLIGENCE",
+  "object_type": "genealogy_baseline",
+  "verification_status": "source-verified baseline",
+  "verification_note": "Genealogy and branch assignments below are sourced to the Rothschild Archive. Non-genealogical intelligence/business/government edges are not implied by this file.",
+  "sources": [
+    "https://www.rothschildarchive.org/family/",
+    "https://www.rothschildarchive.org/business/",
+    "https://www.rothschildarchive.org/business/m_a_rothschild_sohne_frankfurt/",
+    "https://family.rothschildarchive.org/people/21-mayer-amschel-rothschild-1744-1812",
+    "https://family.rothschildarchive.org/people/124-nathaniel-mayer-victor-rothschild-1910-1990"
+  ],
+  "founder": {
+    "person_id": "rothschild-mayer-amschel-1744",
+    "canonical_name": "Mayer Amschel Rothschild",
+    "birth_year": 1744,
+    "death_year": 1812,
+    "location": "Frankfurt",
+    "role": "founder"
+  },
+  "five_branches": [
+    {
+      "person_id": "rothschild-amschel-mayer-1773",
+      "canonical_name": "Amschel Mayer Rothschild",
+      "birth_year": 1773,
+      "death_year": 1855,
+      "branch": "Frankfurt",
+      "parent_id": "rothschild-mayer-amschel-1744"
+    },
+    {
+      "person_id": "rothschild-salomon-mayer-1774",
+      "canonical_name": "Salomon Mayer Rothschild",
+      "birth_year": 1774,
+      "death_year": 1855,
+      "branch": "Vienna",
+      "parent_id": "rothschild-mayer-amschel-1744"
+    },
+    {
+      "person_id": "rothschild-nathan-mayer-1777",
+      "canonical_name": "Nathan Mayer Rothschild",
+      "birth_year": 1777,
+      "death_year": 1836,
+      "branch": "London",
+      "parent_id": "rothschild-mayer-amschel-1744"
+    },
+    {
+      "person_id": "rothschild-carl-mayer-1788",
+      "canonical_name": "Carl Mayer Rothschild",
+      "birth_year": 1788,
+      "death_year": 1855,
+      "branch": "Naples",
+      "parent_id": "rothschild-mayer-amschel-1744"
+    },
+    {
+      "person_id": "rothschild-james-mayer-1792",
+      "canonical_name": "James Mayer Rothschild",
+      "birth_year": 1792,
+      "death_year": 1868,
+      "branch": "Paris",
+      "parent_id": "rothschild-mayer-amschel-1744"
+    }
+  ],
+  "london_branch_path_to_victor": [
+    {
+      "person_id": "rothschild-nathan-mayer-1777",
+      "canonical_name": "Nathan Mayer Rothschild",
+      "birth_year": 1777,
+      "death_year": 1836
+    },
+    {
+      "person_id": "rothschild-lionel-nathan-1808",
+      "canonical_name": "Lionel Nathan de Rothschild",
+      "birth_year": 1808,
+      "death_year": 1879
+    },
+    {
+      "person_id": "rothschild-nathaniel-mayer-1840",
+      "canonical_name": "Nathaniel Mayer Rothschild",
+      "birth_year": 1840,
+      "death_year": 1915,
+      "title": "1st Baron Rothschild"
+    },
+    {
+      "person_id": "rothschild-nathaniel-charles-1877",
+      "canonical_name": "Nathaniel Charles Rothschild",
+      "birth_year": 1877,
+      "death_year": 1923
+    },
+    {
+      "person_id": "rothschild-victor-1910",
+      "canonical_name": "Nathaniel Mayer Victor Rothschild",
+      "preferred_name": "Victor Rothschild",
+      "birth_year": 1910,
+      "death_year": 1990,
+      "title": "3rd Baron Rothschild"
+    }
+  ],
+  "rules": {
+    "no_inherited_guilt": true,
+    "no_surname_only_identity_linkage": true,
+    "non_genealogical_edges_require_independent_source": true,
+    "derivative_repetitions_count_as_one_lineage": true
+  }
+}
