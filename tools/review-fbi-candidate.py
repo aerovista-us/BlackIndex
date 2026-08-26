@@ -10,12 +10,15 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ROOT = Path(os.environ.get("BLACKINDEX_ROOT", REPO_ROOT))
 ALLOWED = {"PROMOTE", "HOLD", "MERGE", "REJECT-BOUNDARY"}
+PAGE_RE = re.compile(r"^(\d+)(?:-(\d+))?$")
+PLACEHOLDERS = {"...", "<serial>", "serial", "yyyy-mm-dd", "<yyyy-mm-dd>", "start-end", "<start-end>", "tbd", "todo"}
 
 
 def now() -> str:
@@ -26,6 +29,22 @@ def load(path: Path, default):
     if not path.exists():
         return default
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def parse_pages(value: str) -> tuple[int, int]:
+    m = PAGE_RE.match((value or "").strip())
+    if not m:
+        raise SystemExit(f"invalid --confirmed-pages value: {value!r}; expected N or N-M")
+    start = int(m.group(1))
+    end = int(m.group(2) or start)
+    if start < 1 or end < start:
+        raise SystemExit(f"invalid --confirmed-pages value: {value!r}")
+    return start, end
+
+
+def is_placeholder(value: str) -> bool:
+    v = (value or "").strip().lower()
+    return bool(v) and (v in PLACEHOLDERS or (v.startswith("<") and v.endswith(">")))
 
 
 def main() -> int:
@@ -42,6 +61,8 @@ def main() -> int:
     ap.add_argument("--source-dependency", default="")
     ap.add_argument("--duplicate-of", default="")
     ap.add_argument("--note", default="")
+    ap.add_argument("--source-checked", action="store_true", help="Assert that the original source PDF was visually checked before PROMOTE")
+    ap.add_argument("--boundary-override", action="store_true", help="Allow confirmed pages to extend outside the heuristic candidate range after explicit source review")
     args = ap.parse_args()
 
     root = Path(args.root).resolve()
@@ -53,8 +74,29 @@ def main() -> int:
     if not candidate:
         raise SystemExit(f"candidate not found: {args.container_doc_id} / {args.candidate_id}")
 
-    if args.disposition == "PROMOTE" and not args.confirmed_pages:
-        raise SystemExit("PROMOTE requires --confirmed-pages after source-PDF boundary review")
+    confirmed_start = confirmed_end = None
+    if args.confirmed_pages:
+        confirmed_start, confirmed_end = parse_pages(args.confirmed_pages)
+
+    if args.disposition == "PROMOTE":
+        if not args.confirmed_pages:
+            raise SystemExit("PROMOTE requires --confirmed-pages after source-PDF boundary review")
+        if not args.source_checked:
+            raise SystemExit("PROMOTE requires --source-checked after visually reviewing the original source PDF")
+        for label, value in (("record type", args.record_type), ("date", args.date), ("serial/case", args.serial)):
+            if is_placeholder(value):
+                raise SystemExit(f"PROMOTE rejected: {label} contains a placeholder value: {value!r}")
+
+        hs = int(candidate.get("start_page") or 0)
+        he = int(candidate.get("end_page") or hs)
+        extends = confirmed_start < hs or confirmed_end > he
+        if extends and not args.boundary_override:
+            raise SystemExit(
+                f"confirmed pages {confirmed_start}-{confirmed_end} extend outside heuristic range {hs}-{he}; "
+                "re-run with --boundary-override only after visually confirming the true source-PDF boundary"
+            )
+        if extends and not args.note.strip():
+            raise SystemExit("--boundary-override requires --note explaining the source-PDF boundary correction")
 
     ledger_path = root / "local/review/911-fbi-p0/review-ledger.json"
     ledger = load(ledger_path, {"schema_version": 1, "reviews": []})
@@ -76,7 +118,9 @@ def main() -> int:
         "source_dependency": args.source_dependency or None,
         "duplicate_of": args.duplicate_of or None,
         "note": args.note or None,
-        "promotion_ready": args.disposition == "PROMOTE",
+        "source_pdf_checked": bool(args.source_checked),
+        "boundary_override": bool(args.boundary_override),
+        "promotion_ready": args.disposition == "PROMOTE" and bool(args.source_checked),
     }
     reviews.append(review)
     reviews.sort(key=lambda r: (r.get("container_doc_id", ""), r.get("candidate_id", "")))
