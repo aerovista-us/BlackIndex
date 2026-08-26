@@ -37,7 +37,6 @@ class ReviewHandler(SimpleHTTPRequestHandler):
     bundle: Path
 
     def translate_path(self, path):
-        # Only expose the review bundle tree and generated index.
         rel = urllib.parse.urlparse(path).path.lstrip("/")
         if not rel or rel == "index.html":
             return str(self.bundle / "review-desk.html")
@@ -78,6 +77,10 @@ class ReviewHandler(SimpleHTTPRequestHandler):
             value = one(key).strip()
             if value:
                 cmd += [flag, value]
+        if one("source_checked") == "1":
+            cmd.append("--source-checked")
+        if one("boundary_override") == "1":
+            cmd.append("--boundary-override")
         result = subprocess.run(cmd, cwd=self.root, text=True, capture_output=True)
         if result.returncode != 0:
             self.send_response(400)
@@ -89,6 +92,10 @@ class ReviewHandler(SimpleHTTPRequestHandler):
         self.send_response(303)
         self.send_header("Location", "/index.html")
         self.end_headers()
+
+
+def checked(v):
+    return " checked" if v else ""
 
 
 def build_review_page(root: Path, bundle: Path):
@@ -134,6 +141,10 @@ def build_review_page(root: Path, bundle: Path):
       <label>Duplicate of<input name="duplicate_of" value="{esc(prior.get('duplicate_of') or '')}"></label>
       <label class="wide">Note<input name="note" value="{esc(prior.get('note') or '')}"></label>
     </div>
+    <div class="checks">
+      <label class="check"><input type="checkbox" name="source_checked" value="1"{checked(prior.get('source_pdf_checked'))}> I visually checked the original source PDF and confirmed these metadata/boundaries.</label>
+      <label class="check"><input type="checkbox" name="boundary_override" value="1"{checked(prior.get('boundary_override'))}> Confirmed pages intentionally extend beyond the heuristic range (requires explanatory note).</label>
+    </div>
     <div class="actions">
       <button name="disposition" value="PROMOTE">PROMOTE</button>
       <button name="disposition" value="HOLD">HOLD</button>
@@ -149,9 +160,9 @@ def build_review_page(root: Path, bundle: Path):
 body{{font:15px system-ui;margin:0;background:#111;color:#eee}} main{{max-width:1300px;margin:auto;padding:24px}}
 h1{{margin:0 0 6px}} .note{{color:#bbb;margin-bottom:24px}} .card{{background:#1b1b1b;border:1px solid #333;border-radius:12px;padding:18px;margin:18px 0}}
 .head{{display:flex;justify-content:space-between;gap:12px}} .badge{{background:#333;padding:6px 10px;border-radius:999px;height:max-content}} .meta{{margin:10px 0;color:#ccc}}
-.pdf{{width:100%;height:620px;background:white;border:0;margin:8px 0 14px}} .grid{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}} label{{display:flex;flex-direction:column;gap:4px;color:#bbb}} input{{background:#111;color:#eee;border:1px solid #444;border-radius:6px;padding:8px}} .wide{{grid-column:1/-1}} .actions{{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}} button{{padding:9px 12px;border:1px solid #555;background:#292929;color:#fff;border-radius:7px;cursor:pointer}} button:hover{{background:#3a3a3a}} code{{color:#bcd}} @media(max-width:800px){{.grid{{grid-template-columns:1fr}}.pdf{{height:500px}}}}
+.pdf{{width:100%;height:620px;background:white;border:0;margin:8px 0 14px}} .grid{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}} label{{display:flex;flex-direction:column;gap:4px;color:#bbb}} input{{background:#111;color:#eee;border:1px solid #444;border-radius:6px;padding:8px}} .wide{{grid-column:1/-1}} .checks{{display:grid;gap:8px;margin-top:12px}} .check{{display:flex;flex-direction:row;align-items:center;gap:8px;color:#ddd}} .actions{{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}} button{{padding:9px 12px;border:1px solid #555;background:#292929;color:#fff;border-radius:7px;cursor:pointer}} button:hover{{background:#3a3a3a}} code{{color:#bcd}} @media(max-width:800px){{.grid{{grid-template-columns:1fr}}.pdf{{height:500px}}}}
 </style><main><h1>BlackIndex — FBI Review Desk</h1>
-<div class="note">Review ledger only. PROMOTE here means “promotion-ready after human source review”; it does not create or publish a BlackIndex child record. Actual promotion remains a separate fail-closed step.</div>
+<div class="note">Review ledger only. PROMOTE requires the source-PDF confirmation checkbox. If confirmed pages extend beyond the heuristic range, boundary override plus an explanatory note are required. Actual corpus promotion remains a separate fail-closed step.</div>
 {''.join(cards)}</main>'''
     (bundle / "review-desk.html").write_text(body, encoding="utf-8")
 
