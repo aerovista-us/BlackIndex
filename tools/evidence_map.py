@@ -403,7 +403,19 @@ function counts(){{const c=DATA.evidence_map.counts||{{}};document.getElementByI
 function searchable(d){{return JSON.stringify(d.metadata)+' '+d.extraction+' '+d.text+' '+JSON.stringify(d.integrity)}}
 function apply(){{const q=document.getElementById('q').value.trim().toLowerCase(),s=document.getElementById('source').value;filtered=docs.filter(d=>(!s||d.metadata.source===s)&&(!q||searchable(d).toLowerCase().includes(q)));renderList();}}
 function renderList(){{const el=document.getElementById('list');el.innerHTML=filtered.map((d,i)=>`<div class="item ${{current===d?'active':''}}" data-i="${{i}}"><b>${{esc(d.metadata.title||d.metadata.doc_id)}}</b><div class="meta">${{esc(d.metadata.doc_id)}} · ${{esc(d.metadata.source)}} · ${{esc(d.metadata.collection)}}</div></div>`).join('')||'<div class="item">No matches</div>';el.querySelectorAll('[data-i]').forEach(x=>x.onclick=()=>{{current=filtered[+x.dataset.i];tab='extraction';renderList();renderView();}})}}
-function markText(text,q){{let e=esc(text);if(!q)return e;const safe=q.replace(/[.*+?^${{}}()|[\]\\]/g,'\\$&');return e.replace(new RegExp(safe,'ig'),m=>`<mark>${{m}}</mark>`);}}
+function markText(text,q){{
+  const source=String(text??'');
+  if(!q)return esc(source);
+  const needle=String(q).toLowerCase();
+  const lower=source.toLowerCase();
+  let out='',pos=0,hit;
+  while((hit=lower.indexOf(needle,pos))!==-1){{
+    out+=esc(source.slice(pos,hit));
+    out+='<mark>'+esc(source.slice(hit,hit+needle.length))+'</mark>';
+    pos=hit+needle.length;
+  }}
+  return out+esc(source.slice(pos));
+}}
 function renderView(){{if(!current)return;const d=current,m=d.metadata,r=d.integrity||{{}},q=document.getElementById('q').value.trim();const content=tab==='extraction'?d.extraction:tab==='text'?d.text:JSON.stringify(m,null,2);document.getElementById('view').innerHTML=`<h2>${{esc(m.title||m.doc_id)}}</h2><div class="meta">${{esc(m.doc_id)}} · ${{esc(m.source)}} · ${{esc(m.collection)}} · SHA ${{esc((m.sha256||'').slice(0,12))}}…</div><div class="cards"><div class="card"><span class="sub">Archive confidence</span><strong>${{esc(r.archive_confidence??'—')}}</strong></div><div class="card"><span class="sub">Completeness</span><strong>${{esc(r.completeness??'—')}}</strong></div><div class="card"><span class="sub">Redaction concern</span><strong>${{esc(r.redaction_concern??'—')}}</strong></div><div class="card"><span class="sub">Missing refs</span><strong>${{(r.missing_referenced_records||[]).length}}</strong></div></div><div class="tabs"><button data-t="extraction">Review</button> <button data-t="text">Text chunk</button> <button data-t="metadata">Metadata</button></div><pre>${{markText(content,q)}}</pre>${{m.artifact_url?`<div><a target="_blank" href="${{esc(m.artifact_url)}}">Source artifact</a></div>`:''}}`;document.querySelectorAll('[data-t]').forEach(b=>{{if(b.dataset.t===tab)b.classList.add('active');b.onclick=()=>{{tab=b.dataset.t;renderView()}}}})}}
 document.getElementById('q').oninput=()=>{{apply();renderView()}};document.getElementById('source').onchange=apply;document.getElementById('clear').onclick=()=>{{document.getElementById('q').value='';document.getElementById('source').value='';apply();}};counts();apply();
 </script></body></html>'''
