@@ -15,6 +15,14 @@ echo "== Source lineage =="
 python3 "$ROOT/tools/source-lineage.py" --root "$ROOT"
 
 echo
+echo "== Dependency audit =="
+python3 "$ROOT/tools/dependency-audit.py" --root "$ROOT"
+
+echo
+echo "== Source-lineage UI generation =="
+python3 "$ROOT/tools/source-lineage-ui.py" --root "$ROOT"
+
+echo
 echo "== Unit tests =="
 python3 -m unittest discover -s "$ROOT/tests" -p 'test_*.py'
 
