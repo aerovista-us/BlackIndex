@@ -8,7 +8,7 @@ REVIEW_PORT="${BLACKINDEX_REVIEW_PORT:-8811}"
 python3 "$ROOT/tools/source-lineage.py" --root "$ROOT"
 python3 "$ROOT/tools/dependency-audit.py" --root "$ROOT"
 python3 "$ROOT/tools/source-lineage-ui.py" --root "$ROOT"
-python3 -W ignore::SyntaxWarning "$ROOT/tools/evidence_map.py" --root "$ROOT" dashboard
+python3 "$ROOT/tools/evidence_map.py" --root "$ROOT" dashboard
 python3 "$ROOT/tools/fix-dashboard-html.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 
 if command -v tailscale >/dev/null 2>&1; then
