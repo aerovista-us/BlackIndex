@@ -14,6 +14,7 @@ on:
       - 'tools/dependency-audit.py'
       - 'tools/research-reference-audit.py'
       - 'tools/source-lineage-ui.py'
+      - 'tools/work-queue-ui.py'
       - 'tests/**'
       - '.github/workflows/object-quality.yml'
   pull_request:
@@ -28,6 +29,7 @@ on:
       - 'tools/dependency-audit.py'
       - 'tools/research-reference-audit.py'
       - 'tools/source-lineage-ui.py'
+      - 'tools/work-queue-ui.py'
       - 'tests/**'
       - '.github/workflows/object-quality.yml'
 
@@ -51,5 +53,7 @@ jobs:
         run: python3 tools/research-reference-audit.py --root .
       - name: Render source-lineage UI
         run: python3 tools/source-lineage-ui.py --root .
+      - name: Render Work Queue UI
+        run: python3 tools/work-queue-ui.py --root .
       - name: Run unit tests
         run: python3 -m unittest discover -s tests -p 'test_*.py'
