@@ -8,7 +8,9 @@ REVIEW_PORT="${BLACKINDEX_REVIEW_PORT:-8811}"
 python3 "$ROOT/tools/source-lineage.py" --root "$ROOT"
 python3 "$ROOT/tools/dependency-audit.py" --root "$ROOT"
 python3 "$ROOT/tools/research-reference-audit.py" --root "$ROOT"
+python3 "$ROOT/tools/entity-index.py" --root "$ROOT"
 python3 "$ROOT/tools/source-lineage-ui.py" --root "$ROOT"
+python3 "$ROOT/tools/entity-ui.py" --root "$ROOT"
 python3 "$ROOT/tools/work-queue-ui.py" --root "$ROOT"
 python3 "$ROOT/tools/evidence_map.py" --root "$ROOT" dashboard
 python3 "$ROOT/tools/fix-dashboard-html.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
@@ -58,6 +60,7 @@ fi
 echo "BlackIndex dashboard: http://$BIND:$PORT/blackindex-dashboard.html"
 echo "Work queue: http://$BIND:$PORT/work-queue.html"
 echo "Source lineage: http://$BIND:$PORT/source-lineage.html"
+echo "Entities: http://$BIND:$PORT/entities.html"
 echo "Resume FBI Review button will prepare/open the review desk on port $REVIEW_PORT."
 echo "Serving local/dashboard with BlackIndex local workflow actions. Ctrl-C to stop."
 exec python3 "$ROOT/tools/blackindex-ui-server.py" \
