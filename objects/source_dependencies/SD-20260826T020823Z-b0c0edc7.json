@@ -1,0 +1,12 @@
+{
+  "assertion_id": "operation-encore-2016-ec-source-base",
+  "created_at": "2026-08-26T02:08:23+00:00",
+  "dependency_type": "summary-derived-from-underlying-investigative-records",
+  "depends_on": "underlying-FBI-serials-interviews-liaison-and-analytical-products",
+  "independence": "dependent",
+  "notes": "Treat the EC as a synthesis layer; corroboration must be evaluated at the underlying-record level where possible.",
+  "object_id": "SD-20260826T020823Z-b0c0edc7",
+  "object_type": "source_dependency",
+  "schema_version": 1,
+  "source_id": "April-4-2016-EC"
+}
