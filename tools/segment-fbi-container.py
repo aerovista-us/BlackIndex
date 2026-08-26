@@ -37,9 +37,12 @@ ENTITY_PATTERNS = {
     "Khalid al-Mihdhar": re.compile(r"\b(?:Khalid\s+)?al[- ]?Mihdhar\b|\bMihdhar\b", re.I),
 }
 
+# Require an identifier to contain at least one digit. FBI case/file/serial values
+# are alphanumeric/punctuation-heavy; plain words such as "and", "agent", "was",
+# or "Western" are OCR/parser noise and must not be promoted as identifiers.
 SERIAL_PATTERNS = [
-    re.compile(r"\b(?:File|Case)\s*(?:No\.?|Number|ID)?\s*[:#]?\s*([A-Z0-9-]{5,})", re.I),
-    re.compile(r"\bSerial\s*(?:No\.?|Number)?\s*[:#]?\s*([A-Z0-9-]{2,})", re.I),
+    re.compile(r"\b(?:File|Case)\s*(?:No\.?|Number|ID)?\s*[:#]?\s*([A-Z0-9][A-Z0-9./_-]{2,})", re.I),
+    re.compile(r"\bSerial\s*(?:No\.?|Number)?\s*[:#]?\s*([A-Z0-9][A-Z0-9./_-]{1,})", re.I),
 ]
 
 DATE_PATTERNS = [
@@ -59,7 +62,6 @@ def load_json(path: Path) -> dict:
 def page_chunks(text: str) -> list[str]:
     pages = text.split("\f")
     if len(pages) == 1:
-        # pdftotext normally preserves page breaks, but keep a safe fallback.
         return [text]
     return pages
 
@@ -68,7 +70,6 @@ def guess_boundary(page: str) -> tuple[str | None, int]:
     for kind, rx in BOUNDARY_PATTERNS:
         if rx.search(page[:5000]):
             return kind, 3
-    # weaker signals for a likely new FBI record page
     score = 0
     upper = page[:3000].upper()
     if "FEDERAL BUREAU OF INVESTIGATION" in upper:
@@ -84,12 +85,21 @@ def entity_hits(text: str) -> list[str]:
     return [name for name, rx in ENTITY_PATTERNS.items() if rx.search(text)]
 
 
+def plausible_identifier(value: str) -> bool:
+    value = value.strip(" .,:;()[]{}")
+    if not value or not any(ch.isdigit() for ch in value):
+        return False
+    if len(value) < 3 or len(value) > 80:
+        return False
+    return bool(re.fullmatch(r"[A-Za-z0-9./_-]+", value))
+
+
 def serial_hits(text: str) -> list[str]:
     hits: list[str] = []
     for rx in SERIAL_PATTERNS:
         for m in rx.finditer(text[:8000]):
-            value = m.group(1).strip()
-            if value not in hits:
+            value = m.group(1).strip(" .,:;()[]{}")
+            if plausible_identifier(value) and value not in hits:
                 hits.append(value)
     return hits[:10]
 
