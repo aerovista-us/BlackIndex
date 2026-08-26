@@ -6,16 +6,22 @@ on:
     paths:
       - 'objects/**'
       - 'metadata/**'
+      - 'extractions/**'
       - 'tools/validate-evidence-objects.py'
       - 'tools/source-lineage.py'
+      - 'tools/dependency-audit.py'
+      - 'tools/source-lineage-ui.py'
       - 'tests/**'
       - '.github/workflows/object-quality.yml'
   pull_request:
     paths:
       - 'objects/**'
       - 'metadata/**'
+      - 'extractions/**'
       - 'tools/validate-evidence-objects.py'
       - 'tools/source-lineage.py'
+      - 'tools/dependency-audit.py'
+      - 'tools/source-lineage-ui.py'
       - 'tests/**'
       - '.github/workflows/object-quality.yml'
 
@@ -27,9 +33,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install schema validator
+        run: python3 -m pip install --disable-pip-version-check jsonschema
       - name: Validate durable evidence objects
         run: python3 tools/validate-evidence-objects.py --root .
       - name: Compile source lineage
         run: python3 tools/source-lineage.py --root .
+      - name: Audit unencoded document references
+        run: python3 tools/dependency-audit.py --root .
+      - name: Render source-lineage UI
+        run: python3 tools/source-lineage-ui.py --root .
       - name: Run unit tests
         run: python3 -m unittest discover -s tests -p 'test_*.py'
