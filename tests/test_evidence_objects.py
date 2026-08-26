@@ -10,6 +10,7 @@ VALIDATOR = ROOT / "tools/validate-evidence-objects.py"
 LINEAGE = ROOT / "tools/source-lineage.py"
 AUDIT = ROOT / "tools/dependency-audit.py"
 LINEAGE_UI = ROOT / "tools/source-lineage-ui.py"
+WORK_QUEUE_UI = ROOT / "tools/work-queue-ui.py"
 SCHEMA = ROOT / "objects/schema-v1.json"
 
 
@@ -122,6 +123,55 @@ class EvidenceObjectTests(unittest.TestCase):
             self.assertIn("Report-A", page)
             self.assertIn("Underlying-1", page)
             self.assertIn("Missing edges mean", page)
+        finally:
+            td.cleanup()
+
+    def test_work_queue_renders_unresolved_states_without_promoting_them(self):
+        td, root = self.make_root()
+        try:
+            doc_id = "FBI-2021-queue-001"
+            self.add_doc(root, doc_id, title="Queue Test Record", evidence_status="unreviewed")
+            missing = {
+                "schema_version": 1, "object_type": "missing_evidence", "object_id": "ME-QUEUE-1",
+                "doc_id": doc_id, "category": "UNMAPPED_REFERENCED_EVIDENCE",
+                "summary": "Referenced attachment not yet mapped", "status": "unresolved",
+            }
+            (root / "objects/missing_evidence/ME-QUEUE-1.json").write_text(json.dumps(missing), encoding="utf-8")
+            (root / "local/index").mkdir(parents=True)
+            (root / "local/index/research-reference-audit.json").write_text(json.dumps({
+                "pairs": [{
+                    "doc_a": doc_id, "doc_b": "FBI-2021-other-001", "cooccurrence_files": 1,
+                    "files": ["docs/reviews/example.md"], "status": "REVIEW_REQUIRED"
+                }]
+            }), encoding="utf-8")
+            (root / "local/review/911-fbi-p0").mkdir(parents=True)
+            (root / "local/review/911-fbi-p0/manifest.json").write_text(json.dumps({
+                "count": 2,
+                "packets": [
+                    {"container_doc_id": "FBI-2022-parent-001", "candidate_id": "CAND-0001"},
+                    {"container_doc_id": "FBI-2022-parent-001", "candidate_id": "CAND-0002"},
+                ]
+            }), encoding="utf-8")
+            (root / "local/review/911-fbi-p0/review-ledger.json").write_text(json.dumps({
+                "reviews": [{
+                    "container_doc_id": "FBI-2022-parent-001", "candidate_id": "CAND-0001",
+                    "disposition": "HOLD", "confirmed_pages": None, "note": "Needs source review"
+                }]
+            }), encoding="utf-8")
+            p = subprocess.run([sys.executable, str(WORK_QUEUE_UI), "--root", str(root)], capture_output=True, text=True)
+            self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+            summary = json.loads(p.stdout)
+            self.assertEqual(summary["unreviewed"], 1)
+            self.assertEqual(summary["missing_evidence"], 1)
+            self.assertEqual(summary["lineage_pairs"], 1)
+            self.assertEqual(summary["fbi_p0"], 2)
+            self.assertEqual(summary["fbi_pending"], 1)
+            page = (root / "local/dashboard/work-queue.html").read_text(encoding="utf-8")
+            self.assertIn("Queue Test Record", page)
+            self.assertIn("Referenced attachment not yet mapped", page)
+            self.assertIn("REVIEW REQUIRED", page)
+            self.assertIn("HOLD", page)
+            self.assertIn("process labels, not historical conclusions", page)
         finally:
             td.cleanup()
 
