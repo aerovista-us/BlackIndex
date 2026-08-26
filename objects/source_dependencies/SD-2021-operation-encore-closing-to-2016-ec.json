@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-2021-operation-encore-closing-to-2016-ec",
+  "created_at": "2026-08-26T20:53:00+00:00",
+  "assertion_id": "operation-encore-2021-closing-source-base",
+  "source_id": "Operation-Encore-2021-closing-EC",
+  "depends_on": "April-4-2016-EC",
+  "dependency_type": "later-closing-synthesis-reuses-earlier-analytical-synthesis",
+  "independence": "dependent",
+  "notes": "Durable review docs/reviews/phase2-cross-document-005-911-encore.md explicitly identifies the April 2016 FBI EC(s) as material summarized by the 2021 closure. This edge records source genealogy only; it does not adopt either report's conclusions as fact."
+}
