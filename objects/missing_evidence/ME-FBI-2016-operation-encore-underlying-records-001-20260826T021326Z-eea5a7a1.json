@@ -1,0 +1,22 @@
+{
+  "alternative_explanations": [
+    "Some underlying material may be present inside EO 14040 release packages but not yet segmented as individual records"
+  ],
+  "category": "UNMAPPED_REFERENCED_EVIDENCE",
+  "created_at": "2026-08-26T02:13:26+00:00",
+  "doc_id": "FBI-2016-operation-encore-underlying-records-001",
+  "known_creator": null,
+  "last_known_location": null,
+  "likely_custodian": null,
+  "object_id": "ME-FBI-2016-operation-encore-underlying-records-001-20260826T021326Z-eea5a7a1",
+  "object_type": "missing_evidence",
+  "potential_relevance": "Reproducibility of factual assertions, source independence, chronology, and later Operation Encore conclusions",
+  "recovery_paths": [
+    "segment cited serials/FD-302s/analytical products from EO 14040 packages and link each to the EC assertion it supports"
+  ],
+  "referenced_by": "April 4, 2016 FBI Electronic Communication",
+  "schema_version": 1,
+  "stated_reason_missing": "Not necessarily absent from the archive; currently not individually mapped to the EC's assertions",
+  "status": "unresolved",
+  "summary": "The April 4, 2016 EC relies on underlying interviews, serials, analytical products, liaison reporting, and case records that are not yet individually mapped in BlackIndex"
+}

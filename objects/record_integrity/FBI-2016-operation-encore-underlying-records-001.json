@@ -1,0 +1,29 @@
+{
+  "alternate_versions": [],
+  "archive_confidence": null,
+  "artifact_type": "pdf",
+  "chain_of_custody": [],
+  "classification_chronology": [],
+  "completeness": null,
+  "created_at": "2026-08-26T02:12:57+00:00",
+  "custodian_conflicts": [],
+  "declassification_authority": null,
+  "destruction_chronology": [],
+  "doc_id": "FBI-2016-operation-encore-underlying-records-001",
+  "known_destruction": "unknown",
+  "missing_referenced_records": [
+    "ME-FBI-2016-operation-encore-underlying-records-001-20260826T021326Z-eea5a7a1"
+  ],
+  "notes": "",
+  "object_id": "RI-FBI-2016-operation-encore-underlying-records-001",
+  "object_type": "record_integrity",
+  "public_internal_contradictions": [],
+  "record_creator": "FBI",
+  "record_custodian": null,
+  "redaction_concern": null,
+  "release_chronology": [],
+  "schema_version": 1,
+  "updated_at": "2026-08-26T02:13:26+00:00",
+  "version_conflicts": [],
+  "withholding_authority": null
+}
