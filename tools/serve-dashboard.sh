@@ -5,6 +5,9 @@ ROOT="${BLACKINDEX_ROOT:-$(cd -- "$SCRIPT_DIR/.." && pwd -P)}"
 START_PORT="${1:-8787}"
 REVIEW_PORT="${BLACKINDEX_REVIEW_PORT:-8811}"
 
+python3 "$ROOT/tools/source-lineage.py" --root "$ROOT"
+python3 "$ROOT/tools/dependency-audit.py" --root "$ROOT"
+python3 "$ROOT/tools/source-lineage-ui.py" --root "$ROOT"
 python3 -W ignore::SyntaxWarning "$ROOT/tools/evidence_map.py" --root "$ROOT" dashboard
 python3 "$ROOT/tools/fix-dashboard-html.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 
@@ -51,6 +54,7 @@ if [[ "$PORT" != "$START_PORT" ]]; then
 fi
 
 echo "BlackIndex dashboard: http://$BIND:$PORT/blackindex-dashboard.html"
+echo "Source lineage: http://$BIND:$PORT/source-lineage.html"
 echo "Resume FBI Review button will prepare/open the review desk on port $REVIEW_PORT."
 echo "Serving local/dashboard with BlackIndex local workflow actions. Ctrl-C to stop."
 exec python3 "$ROOT/tools/blackindex-ui-server.py" \
