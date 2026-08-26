@@ -41,23 +41,24 @@ def main() -> int:
 '''
     text = text[:start] + replacement + text[end:]
 
-    # Inject only once. This form intentionally uses POST so a static file server
-    # cannot accidentally execute local workflow actions; serve-dashboard.sh now
-    # launches the BlackIndex-aware UI server that handles this route.
-    marker = "<!-- BLACKINDEX_RESUME_FBI_REVIEW -->"
-    if marker not in text:
+    marker = "<!-- BLACKINDEX_WORKFLOW_CONTROLS -->"
+    legacy_marker = "<!-- BLACKINDEX_RESUME_FBI_REVIEW -->"
+    if marker not in text and legacy_marker not in text:
         control = r'''
-<!-- BLACKINDEX_RESUME_FBI_REVIEW -->
+<!-- BLACKINDEX_WORKFLOW_CONTROLS -->
 <style>
-#bi-resume-review{position:fixed;right:18px;bottom:18px;z-index:9999;background:#111;border:1px solid #555;border-radius:12px;padding:10px 12px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
-#bi-resume-review button{background:#20252b;color:#fff;border:1px solid #68727d;border-radius:8px;padding:10px 14px;font:600 13px system-ui;cursor:pointer}
-#bi-resume-review button:hover{background:#2d353d}
-#bi-resume-review small{display:block;color:#aaa;margin-top:5px;max-width:230px}
+#bi-workflow-controls{position:fixed;right:18px;bottom:18px;z-index:9999;background:#111;border:1px solid #555;border-radius:12px;padding:10px 12px;box-shadow:0 8px 30px rgba(0,0,0,.35);display:flex;gap:8px;align-items:center;flex-wrap:wrap;max-width:430px}
+#bi-workflow-controls button,#bi-workflow-controls a{background:#20252b;color:#fff;border:1px solid #68727d;border-radius:8px;padding:10px 14px;font:600 13px system-ui;cursor:pointer;text-decoration:none}
+#bi-workflow-controls button:hover,#bi-workflow-controls a:hover{background:#2d353d}
+#bi-workflow-controls small{display:block;color:#aaa;width:100%;margin-top:2px}
 </style>
-<form id="bi-resume-review" method="post" action="/actions/resume-fbi-review" target="_blank">
-  <button type="submit">Resume FBI Review</button>
-  <small>Rebuild review state, start the Review Desk, and open it.</small>
-</form>
+<div id="bi-workflow-controls">
+  <a href="/source-lineage.html" target="_blank">Source Lineage</a>
+  <form method="post" action="/actions/resume-fbi-review" target="_blank" style="margin:0">
+    <button type="submit">Resume FBI Review</button>
+  </form>
+  <small>Lineage shows encoded dependency chains. FBI review resumes the paused source-verification queue.</small>
+</div>
 '''
         body_end = text.lower().rfind("</body>")
         if body_end >= 0:
