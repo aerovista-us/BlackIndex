@@ -19,6 +19,10 @@ echo "== Dependency audit =="
 python3 "$ROOT/tools/dependency-audit.py" --root "$ROOT"
 
 echo
+echo "== Research reference audit =="
+python3 "$ROOT/tools/research-reference-audit.py" --root "$ROOT"
+
+echo
 echo "== Source-lineage UI generation =="
 python3 "$ROOT/tools/source-lineage-ui.py" --root "$ROOT"
 
