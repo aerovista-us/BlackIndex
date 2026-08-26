@@ -7,13 +7,16 @@ on:
       - 'objects/**'
       - 'metadata/**'
       - 'extractions/**'
+      - 'entities/**'
       - 'docs/reviews/**'
       - 'docs/research-clusters/**'
       - 'tools/validate-evidence-objects.py'
       - 'tools/source-lineage.py'
       - 'tools/dependency-audit.py'
       - 'tools/research-reference-audit.py'
+      - 'tools/entity-index.py'
       - 'tools/source-lineage-ui.py'
+      - 'tools/entity-ui.py'
       - 'tools/work-queue-ui.py'
       - 'tests/**'
       - '.github/workflows/object-quality.yml'
@@ -22,13 +25,16 @@ on:
       - 'objects/**'
       - 'metadata/**'
       - 'extractions/**'
+      - 'entities/**'
       - 'docs/reviews/**'
       - 'docs/research-clusters/**'
       - 'tools/validate-evidence-objects.py'
       - 'tools/source-lineage.py'
       - 'tools/dependency-audit.py'
       - 'tools/research-reference-audit.py'
+      - 'tools/entity-index.py'
       - 'tools/source-lineage-ui.py'
+      - 'tools/entity-ui.py'
       - 'tools/work-queue-ui.py'
       - 'tests/**'
       - '.github/workflows/object-quality.yml'
@@ -51,8 +57,12 @@ jobs:
         run: python3 tools/dependency-audit.py --root .
       - name: Audit research-note cross references
         run: python3 tools/research-reference-audit.py --root .
+      - name: Compile conservative entity index
+        run: python3 tools/entity-index.py --root .
       - name: Render source-lineage UI
         run: python3 tools/source-lineage-ui.py --root .
+      - name: Render entity UI
+        run: python3 tools/entity-ui.py --root .
       - name: Render Work Queue UI
         run: python3 tools/work-queue-ui.py --root .
       - name: Run unit tests
