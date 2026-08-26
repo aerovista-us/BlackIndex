@@ -128,7 +128,7 @@ DOC_ID="$(printf '%s' "$OUT" | python3 -c 'import json,sys; print(json.load(sys.
 if [[ "$INTAKE_RC" -eq 3 ]]; then echo "Resume: artifact already exists as $DOC_ID; skipping duplicate raw intake."; fi
 
 BLACKINDEX_ROOT="$ROOT" python3 "$ROOT/tools/generate-review-template.py" "$DOC_ID"
-python3 -W ignore::SyntaxWarning "$ROOT/tools/evidence_map.py" --root "$ROOT" integrity "$DOC_ID"
+python3 "$ROOT/tools/evidence_map.py" --root "$ROOT" integrity "$DOC_ID"
 python3 "$ROOT/tools/blackindex.py" --root "$ROOT" verify
 
 if [[ "$PUBLISH" -eq 1 && "$INTAKE_RC" -ne 3 ]]; then
