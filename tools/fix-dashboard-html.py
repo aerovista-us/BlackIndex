@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Repair/enhance the generated BlackIndex dashboard HTML.
+"""Inject local BlackIndex workflow controls into the generated dashboard.
 
-Repairs the historical JS highlighter escaping issue and injects local workflow
+The dashboard highlighter is now emitted correctly by evidence_map.py itself.
+This helper remains as a small post-generation injector for local workflow
 controls used by the BlackIndex-aware UI server.
 """
 from __future__ import annotations
@@ -17,30 +18,6 @@ def main() -> int:
         return 2
 
     text = path.read_text(encoding="utf-8")
-    start_marker = "function markText(text,q)"
-    end_marker = "function renderView()"
-    start = text.find(start_marker)
-    end = text.find(end_marker, start if start >= 0 else 0)
-    if start < 0 or end < 0 or end <= start:
-        print("error: dashboard highlighter block not found", file=sys.stderr)
-        return 3
-
-    replacement = r'''function markText(text,q){
-  const source=String(text??'');
-  if(!q)return esc(source);
-  const needle=String(q).toLowerCase();
-  const lower=source.toLowerCase();
-  let out='',pos=0,hit;
-  while((hit=lower.indexOf(needle,pos))!==-1){
-    out+=esc(source.slice(pos,hit));
-    out+='<mark>'+esc(source.slice(hit,hit+needle.length))+'</mark>';
-    pos=hit+needle.length;
-  }
-  return out+esc(source.slice(pos));
-}
-'''
-    text = text[:start] + replacement + text[end:]
-
     marker = "<!-- BLACKINDEX_WORKFLOW_CONTROLS -->"
     legacy_marker = "<!-- BLACKINDEX_RESUME_FBI_REVIEW -->"
     if marker not in text and legacy_marker not in text:
@@ -67,7 +44,7 @@ def main() -> int:
             text += control
 
     path.write_text(text, encoding="utf-8")
-    print(f"Dashboard JS sanitized + workflow controls injected: {path}")
+    print(f"Dashboard workflow controls injected: {path}")
     return 0
 
 
