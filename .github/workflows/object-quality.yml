@@ -7,9 +7,12 @@ on:
       - 'objects/**'
       - 'metadata/**'
       - 'extractions/**'
+      - 'docs/reviews/**'
+      - 'docs/research-clusters/**'
       - 'tools/validate-evidence-objects.py'
       - 'tools/source-lineage.py'
       - 'tools/dependency-audit.py'
+      - 'tools/research-reference-audit.py'
       - 'tools/source-lineage-ui.py'
       - 'tests/**'
       - '.github/workflows/object-quality.yml'
@@ -18,9 +21,12 @@ on:
       - 'objects/**'
       - 'metadata/**'
       - 'extractions/**'
+      - 'docs/reviews/**'
+      - 'docs/research-clusters/**'
       - 'tools/validate-evidence-objects.py'
       - 'tools/source-lineage.py'
       - 'tools/dependency-audit.py'
+      - 'tools/research-reference-audit.py'
       - 'tools/source-lineage-ui.py'
       - 'tests/**'
       - '.github/workflows/object-quality.yml'
@@ -41,6 +47,8 @@ jobs:
         run: python3 tools/source-lineage.py --root .
       - name: Audit unencoded document references
         run: python3 tools/dependency-audit.py --root .
+      - name: Audit research-note cross references
+        run: python3 tools/research-reference-audit.py --root .
       - name: Render source-lineage UI
         run: python3 tools/source-lineage-ui.py --root .
       - name: Run unit tests
