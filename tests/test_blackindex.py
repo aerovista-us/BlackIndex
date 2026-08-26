@@ -13,6 +13,30 @@ assert spec.loader is not None
 spec.loader.exec_module(blackindex)
 
 
+def intake_args(**overrides):
+    values = dict(
+        root="",
+        file="",
+        source="CIA",
+        collection="Test",
+        year="1973",
+        title="Sample",
+        document_date=None,
+        url=None,
+        artifact_url=None,
+        landing_url=None,
+        native_id=None,
+        record_group=None,
+        series=None,
+        call_id="CALL-TEST",
+        tags="",
+        classification_note=None,
+        redaction_note=None,
+    )
+    values.update(overrides)
+    return Namespace(**values)
+
+
 class BlackIndexTests(unittest.TestCase):
     def test_slugify(self):
         self.assertEqual(blackindex.slugify("Family Jewels"), "family-jewels")
@@ -33,7 +57,7 @@ class BlackIndexTests(unittest.TestCase):
             source = Path(td) / "sample.txt"
             source.write_text("primary source bytes", encoding="utf-8")
 
-            args = Namespace(
+            args = intake_args(
                 root=str(root),
                 file=str(source),
                 source="CIA",
@@ -44,8 +68,6 @@ class BlackIndexTests(unittest.TestCase):
                 url="https://example.test/source",
                 call_id="CALL-003",
                 tags="oversight,governance",
-                classification_note=None,
-                redaction_note=None,
             )
 
             self.assertEqual(blackindex.cmd_intake(args), 0)
@@ -54,6 +76,7 @@ class BlackIndexTests(unittest.TestCase):
             data = json.loads(metadata_path.read_text(encoding="utf-8"))
             self.assertEqual(data["call_id"], "CALL-003")
             self.assertEqual(data["evidence_status"], "unreviewed")
+            self.assertEqual(data["artifact_url"], "https://example.test/source")
             self.assertTrue(Path(data["local_raw_path"]).exists())
             self.assertEqual(blackindex.cmd_intake(args), 3)
 
@@ -62,11 +85,9 @@ class BlackIndexTests(unittest.TestCase):
             root = Path(td) / "vault"
             source = Path(td) / "sample.txt"
             source.write_text("original", encoding="utf-8")
-            args = Namespace(
+            args = intake_args(
                 root=str(root), file=str(source), source="NARA", collection="Test",
-                year="1970", title="Test", document_date=None, url=None,
-                call_id="CALL-TEST", tags="", classification_note=None,
-                redaction_note=None,
+                year="1970", title="Test", document_date=None,
             )
             self.assertEqual(blackindex.cmd_intake(args), 0)
             data = json.loads(next((root / "metadata").glob("*.json")).read_text(encoding="utf-8"))
