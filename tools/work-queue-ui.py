@@ -17,6 +17,7 @@ DEFAULT_ROOT = Path(os.environ.get("BLACKINDEX_ROOT", REPO_ROOT))
 
 
 def esc(v): return html.escape("" if v is None else str(v))
+def label(v): return str(v or "").replace("_", " ")
 def load(path: Path, default):
     if not path.is_file(): return default
     try: return json.loads(path.read_text(encoding="utf-8"))
@@ -63,9 +64,9 @@ def main() -> int:
     pending_fbi=max(0,int(p0_count or 0)-len(reviewed_keys))
 
     unreviewed_rows="".join(f"<tr>{'<td>'+doc_link(d.get('doc_id'))+'</td>'}<td>{esc(d.get('title'))}</td><td>{esc(d.get('source'))}</td><td>{esc(d.get('collection'))}</td></tr>" for d in unreviewed[:100])
-    mismatch_rows="".join(f"<tr><td>{doc_link(d.get('doc_id'))}</td><td>{esc(d.get('metadata_evidence_status'))}</td><td>{esc(d.get('extraction_state'))}</td><td>{esc(d.get('finding'))}</td><td>{esc(d.get('status'))}</td></tr>" for d in review_mismatches[:100])
+    mismatch_rows="".join(f"<tr><td>{doc_link(d.get('doc_id'))}</td><td>{esc(d.get('metadata_evidence_status'))}</td><td>{esc(d.get('extraction_state'))}</td><td>{esc(d.get('finding'))}</td><td>{esc(label(d.get('status')))}</td></tr>" for d in review_mismatches[:100])
     missing_rows="".join(f"<tr><td><code>{esc(d.get('object_id'))}</code></td><td>{doc_link(d.get('doc_id'))}</td><td>{esc(d.get('category'))}</td><td>{esc(d.get('summary'))}</td></tr>" for d in missing[:100])
-    lineage_rows="".join(f"<tr><td>{doc_link(x.get('doc_a'))}</td><td>{doc_link(x.get('doc_b'))}</td><td>{esc(x.get('cooccurrence_files'))}</td><td>{'<br>'.join(esc(f) for f in x.get('files',[]))}</td><td>{esc(x.get('status') or 'REVIEW_REQUIRED')}</td></tr>" for x in lineage_pairs[:100])
+    lineage_rows="".join(f"<tr><td>{doc_link(x.get('doc_a'))}</td><td>{doc_link(x.get('doc_b'))}</td><td>{esc(x.get('cooccurrence_files'))}</td><td>{'<br>'.join(esc(f) for f in x.get('files',[]))}</td><td>{esc(label(x.get('status') or 'REVIEW_REQUIRED'))}</td></tr>" for x in lineage_pairs[:100])
     review_rows="".join(f"<tr><td>{doc_link(r.get('container_doc_id'))}</td><td><code>{esc(r.get('candidate_id'))}</code></td><td>{esc(r.get('disposition'))}</td><td>{esc(r.get('confirmed_pages'))}</td><td>{esc(r.get('note'))}</td></tr>" for r in reviews)
 
     body=f'''<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BlackIndex Work Queue</title>
