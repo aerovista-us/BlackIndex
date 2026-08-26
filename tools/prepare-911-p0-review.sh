@@ -12,7 +12,7 @@ bash "$ROOT/tools/triage-911-encore-candidates.sh"
 
 echo
 echo "== Building P0 review packets =="
-python3 "$ROOT/tools/build-fbi-review-packets.py" --root "$ROOT" --band P0 --limit 26
+python3 "$ROOT/tools/build-fbi-review-packets.py" --root "$ROOT" --band P0 --limit 0
 
 echo
 echo "P0 review preparation complete."

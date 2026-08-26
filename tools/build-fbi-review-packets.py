@@ -30,8 +30,8 @@ def pages_for(root: Path, doc_id: str) -> list[str]:
 
 
 def candidate_rows(payload: dict) -> list[dict]:
-    # triage tool may store queue under any of these keys across revisions.
-    for key in ("ranked", "candidates", "queue", "items"):
+    # triage JSON uses all_candidates / top_candidates; older keys kept as fallbacks.
+    for key in ("all_candidates", "top_candidates", "ranked", "candidates", "queue", "items"):
         rows = payload.get(key)
         if isinstance(rows, list):
             return rows
@@ -50,7 +50,7 @@ def main() -> int:
     ap.add_argument("--root", default=str(DEFAULT_ROOT))
     ap.add_argument("--triage", default="local/index/triage/911-fbi-segmentation-priority.json")
     ap.add_argument("--band", default="P0")
-    ap.add_argument("--limit", type=int, default=26)
+    ap.add_argument("--limit", type=int, default=0, help="Max packets to write. 0 means all rows in the band.")
     args = ap.parse_args()
 
     root = Path(args.root).resolve()
@@ -62,10 +62,10 @@ def main() -> int:
 
     selected = []
     for row in rows:
-        band = val(row, "priority_band", "priority", "band")
+        band = val(row, "review_priority_band", "priority_band", "priority", "band")
         if band == args.band:
             selected.append(row)
-        if len(selected) >= args.limit:
+        if args.limit and len(selected) >= args.limit:
             break
 
     out_dir = root / "local/review/911-fbi-p0"
@@ -88,7 +88,7 @@ def main() -> int:
         serials = val(row, "serial_or_case_hits", "serials", "serial_case", default=[]) or []
         dates = val(row, "date_hits", "dates", default=[]) or []
         record_type = val(row, "record_type_guess", "record_type", "type", default="unknown")
-        score = val(row, "review_score", "score", default="")
+        score = val(row, "review_priority_score", "review_score", "score", default="")
 
         safe = f"{rank:02d}-{doc_id}-{cand_id}.md"
         path = out_dir / safe
