@@ -4,7 +4,10 @@
 Fail-closed rules:
 - default is dry-run; --apply is required to modify the corpus;
 - only review-ledger entries with disposition=PROMOTE are eligible;
-- confirmed page ranges are mandatory;
+- source_pdf_checked=true is mandatory;
+- confirmed page ranges are mandatory and must respect heuristic bounds unless
+  an explicit reviewed boundary override is recorded;
+- placeholder metadata is rejected;
 - the immutable parent raw PDF and its SHA-256 must match metadata;
 - page extraction must succeed before intake;
 - child metadata preserves parent container, page range, candidate id, review
@@ -29,6 +32,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ROOT = Path(os.environ.get("BLACKINDEX_ROOT", REPO_ROOT))
 PAGE_RE = re.compile(r"^(\d+)(?:-(\d+))?$")
+PLACEHOLDERS = {"...", "<serial>", "serial", "yyyy-mm-dd", "<yyyy-mm-dd>", "start-end", "<start-end>", "tbd", "todo"}
 
 
 def load(path: Path):
@@ -48,7 +52,7 @@ def sha256(path: Path) -> str:
 
 
 def parse_pages(value: str) -> tuple[int, int]:
-    m = PAGE_RE.match(value.strip())
+    m = PAGE_RE.match((value or "").strip())
     if not m:
         raise ValueError(f"invalid confirmed page range: {value!r}")
     start = int(m.group(1))
@@ -56,6 +60,39 @@ def parse_pages(value: str) -> tuple[int, int]:
     if start < 1 or end < start:
         raise ValueError(f"invalid confirmed page range: {value!r}")
     return start, end
+
+
+def is_placeholder(value) -> bool:
+    v = str(value or "").strip().lower()
+    return bool(v) and (v in PLACEHOLDERS or (v.startswith("<") and v.endswith(">")))
+
+
+def validate_review(review: dict) -> list[str]:
+    reasons: list[str] = []
+    if review.get("disposition") != "PROMOTE":
+        reasons.append("disposition is not PROMOTE")
+    if not review.get("promotion_ready"):
+        reasons.append("promotion_ready is false")
+    if review.get("source_pdf_checked") is not True:
+        reasons.append("source_pdf_checked is not true")
+    try:
+        start, end = parse_pages(review.get("confirmed_pages") or "")
+    except ValueError as e:
+        reasons.append(str(e))
+        return reasons
+
+    hs = int(review.get("heuristic_start_page") or 0)
+    he = int(review.get("heuristic_end_page") or hs)
+    if hs and he and (start < hs or end > he):
+        if review.get("boundary_override") is not True:
+            reasons.append(f"confirmed pages {start}-{end} extend outside heuristic range {hs}-{he} without boundary_override")
+        if not str(review.get("note") or "").strip():
+            reasons.append("boundary override lacks explanatory note")
+
+    for key in ("record_type", "record_date", "serial_or_case_id"):
+        if is_placeholder(review.get(key)):
+            reasons.append(f"{key} contains placeholder value {review.get(key)!r}")
+    return reasons
 
 
 def extract_pages(parent: Path, start: int, end: int, out: Path) -> str:
@@ -136,6 +173,8 @@ def enrich_child(root: Path, child_id: str, review: dict, parent_meta: dict, ext
         "promotion_reviewed_at": review.get("reviewed_at"),
         "promotion_disposition": review.get("disposition"),
         "promotion_note": review.get("note"),
+        "source_pdf_checked": review.get("source_pdf_checked"),
+        "boundary_override": review.get("boundary_override"),
         "source_dependencies": [
             {
                 "type": "extracted-from-parent-container",
@@ -152,12 +191,25 @@ def enrich_child(root: Path, child_id: str, review: dict, parent_meta: dict, ext
     write(path, meta)
 
 
-def eligible_reviews(root: Path) -> list[dict]:
+def reviewed_rows(root: Path) -> tuple[list[dict], list[dict]]:
     ledger = root / "local/review/911-fbi-p0/review-ledger.json"
     if not ledger.exists():
-        return []
+        return [], []
     payload = load(ledger)
-    return [r for r in payload.get("reviews", []) if r.get("disposition") == "PROMOTE" and r.get("promotion_ready")]
+    eligible, rejected = [], []
+    for review in payload.get("reviews", []):
+        if review.get("disposition") != "PROMOTE":
+            continue
+        reasons = validate_review(review)
+        if reasons:
+            rejected.append({
+                "container_doc_id": review.get("container_doc_id"),
+                "candidate_id": review.get("candidate_id"),
+                "reasons": reasons,
+            })
+        else:
+            eligible.append(review)
+    return eligible, rejected
 
 
 def main() -> int:
@@ -170,11 +222,13 @@ def main() -> int:
     args = ap.parse_args()
 
     root = Path(args.root).resolve()
-    rows = eligible_reviews(root)
+    rows, rejected = reviewed_rows(root)
     if args.container:
         rows = [r for r in rows if r.get("container_doc_id") == args.container]
+        rejected = [r for r in rejected if r.get("container_doc_id") == args.container]
     if args.candidate:
         rows = [r for r in rows if r.get("candidate_id") == args.candidate]
+        rejected = [r for r in rejected if r.get("candidate_id") == args.candidate]
 
     plan = []
     for review in rows:
@@ -201,8 +255,11 @@ def main() -> int:
         })
 
     if not args.apply:
-        print(json.dumps({"mode": "dry-run", "eligible": len(plan), "plan": plan}, indent=2))
+        print(json.dumps({"mode": "dry-run", "eligible": len(plan), "rejected": rejected, "plan": plan}, indent=2))
         return 0
+
+    if rejected:
+        raise SystemExit("refusing --apply while filtered PROMOTE ledger entries fail validation; run dry-run for details")
 
     if not plan:
         print(json.dumps({"mode": "apply", "promoted": 0, "message": "No reviewed PROMOTE entries are eligible."}, indent=2))
