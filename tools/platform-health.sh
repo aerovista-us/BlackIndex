@@ -27,6 +27,10 @@ echo "== Source-lineage UI generation =="
 python3 "$ROOT/tools/source-lineage-ui.py" --root "$ROOT"
 
 echo
+echo "== Work Queue UI generation =="
+python3 "$ROOT/tools/work-queue-ui.py" --root "$ROOT"
+
+echo
 echo "== Unit tests =="
 python3 -m unittest discover -s "$ROOT/tests" -p 'test_*.py'
 
