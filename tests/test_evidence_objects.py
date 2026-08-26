@@ -8,6 +8,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR = ROOT / "tools/validate-evidence-objects.py"
 LINEAGE = ROOT / "tools/source-lineage.py"
+AUDIT = ROOT / "tools/dependency-audit.py"
+LINEAGE_UI = ROOT / "tools/source-lineage-ui.py"
 SCHEMA = ROOT / "objects/schema-v1.json"
 
 
@@ -16,6 +18,7 @@ class EvidenceObjectTests(unittest.TestCase):
         td = tempfile.TemporaryDirectory()
         root = Path(td.name)
         (root / "metadata").mkdir()
+        (root / "extractions").mkdir()
         for d in [
             "record_integrity", "missing_evidence", "version_families",
             "version_comparisons", "source_dependencies", "statement_comparisons",
@@ -25,11 +28,13 @@ class EvidenceObjectTests(unittest.TestCase):
         (root / "objects/schema-v1.json").write_text(SCHEMA.read_text(encoding="utf-8"), encoding="utf-8")
         return td, root
 
-    def add_doc(self, root, doc_id):
-        (root / "metadata" / f"{doc_id}.json").write_text(json.dumps({
+    def add_doc(self, root, doc_id, **extra):
+        payload = {
             "schema_version": 1, "doc_id": doc_id, "title": doc_id,
             "source": "FBI", "collection": "Test", "sha256": "0" * 64,
-        }), encoding="utf-8")
+        }
+        payload.update(extra)
+        (root / "metadata" / f"{doc_id}.json").write_text(json.dumps(payload), encoding="utf-8")
 
     def test_validator_accepts_minimal_integrity_object(self):
         td, root = self.make_root()
@@ -80,6 +85,43 @@ class EvidenceObjectTests(unittest.TestCase):
             data = json.loads((root / "local/index/source-lineage.json").read_text(encoding="utf-8"))
             self.assertEqual(len(data["shared_lineage_families"]), 1)
             self.assertEqual(data["shared_lineage_families"][0]["member_count"], 2)
+        finally:
+            td.cleanup()
+
+    def test_dependency_audit_reports_reference_without_asserting_dependency(self):
+        td, root = self.make_root()
+        try:
+            a = "FBI-2021-alpha-001"
+            b = "FBI-2021-beta-001"
+            self.add_doc(root, a, related_documents=[b])
+            self.add_doc(root, b)
+            (root / "extractions" / f"{a}.md").write_text(f"Related record: {b}\n", encoding="utf-8")
+            p = subprocess.run([sys.executable, str(AUDIT), "--root", str(root)], capture_output=True, text=True)
+            self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+            data = json.loads((root / "local/index/dependency-audit.json").read_text(encoding="utf-8"))
+            self.assertEqual(data["candidate_count"], 1)
+            self.assertEqual(data["candidates"][0]["status"], "REVIEW_REQUIRED")
+            self.assertIn("not yet a source-dependency assertion", data["candidates"][0]["note"])
+        finally:
+            td.cleanup()
+
+    def test_lineage_ui_renders_compiled_edges(self):
+        td, root = self.make_root()
+        try:
+            obj = {
+                "schema_version": 1, "object_type": "source_dependency", "object_id": "SD-1",
+                "assertion_id": "claim-1", "source_id": "Report-A",
+                "depends_on": "Underlying-1", "dependency_type": "summary-derived-from",
+                "independence": "dependent",
+            }
+            (root / "objects/source_dependencies/SD-1.json").write_text(json.dumps(obj), encoding="utf-8")
+            self.assertEqual(subprocess.run([sys.executable, str(LINEAGE), "--root", str(root)]).returncode, 0)
+            p = subprocess.run([sys.executable, str(LINEAGE_UI), "--root", str(root)], capture_output=True, text=True)
+            self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+            page = (root / "local/dashboard/source-lineage.html").read_text(encoding="utf-8")
+            self.assertIn("Report-A", page)
+            self.assertIn("Underlying-1", page)
+            self.assertIn("Missing edges mean", page)
         finally:
             td.cleanup()
 
