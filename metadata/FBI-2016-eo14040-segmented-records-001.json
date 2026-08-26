@@ -1,0 +1,59 @@
+{
+  "artifact_type": "FD-302",
+  "artifact_url": "https://vault.fbi.gov/9-11-attacks-investigation-and-related-materials/9-11-material-released-in-response-to-executive-order-14040/documents-responsive-to-executive-order-14040-2-c-part-1/at_download/file",
+  "call_id": "CALL-911-ENCORE-SEGMENTED",
+  "canonical_landing_url": "https://vault.fbi.gov/9-11-attacks-investigation-and-related-materials/9-11-material-released-in-response-to-executive-order-14040/documents-responsive-to-executive-order-14040-2-c-part-1/view",
+  "classification_note": null,
+  "collection": "EO14040 Segmented Records",
+  "doc_id": "FBI-2016-eo14040-segmented-records-001",
+  "document_date": "2016-01-01",
+  "document_type": "FD-302",
+  "evidence_status": "reviewed",
+  "local_raw_path": "/srv/Collab/mini.shops/blackindex/source-vault/raw/fbi/eo14040-segmented-records/FBI-2016-eo14040-segmented-records-001.pdf",
+  "mime_hint": "pdf",
+  "native_id": "...",
+  "normalization_status": "pdftotext",
+  "normalized_sha256": "7b3355d42999a0a045ad27e5a252962c18d655d0f0d8199df39f8fd8fa549be5",
+  "normalized_text_path": "/srv/Collab/mini.shops/blackindex/normalized/text/FBI-2016-eo14040-segmented-records-001.txt",
+  "original_filename": "FBI-2022-eo14040-2-c-001-CAND-0020-p154-156.pdf",
+  "parent_container_doc_id": "FBI-2022-eo14040-2-c-001",
+  "parent_container_sha256": "c7960258fa7feff92d3386da7eb7b6cb0effa457780fd756cbf43ee5fc6985b6",
+  "parent_page_range": "154-156",
+  "promotion_disposition": "PROMOTE",
+  "promotion_note": null,
+  "promotion_reviewed_at": "2026-08-26T04:53:33+00:00",
+  "record_group": null,
+  "redaction_note": "PII,FBI personnel",
+  "related_documents": [
+    "FBI-2022-eo14040-2-c-001"
+  ],
+  "retrieved_at": "2026-08-26T05:07:05+00:00",
+  "schema_version": 1,
+  "segmentation_candidate_id": "CAND-0020",
+  "segmentation_extraction_method": "pdfseparate+pdfunite",
+  "series": null,
+  "sha256": "bdebeb7e8cced26f4198f57a90cb0b38afaa73485fc03720b3141759ea2d6833",
+  "size_bytes": 2198368,
+  "source": "FBI",
+  "source_dependencies": [
+    {
+      "candidate_id": "CAND-0020",
+      "page_range": "154-156",
+      "parent_doc_id": "FBI-2022-eo14040-2-c-001",
+      "parent_sha256": "c7960258fa7feff92d3386da7eb7b6cb0effa457780fd756cbf43ee5fc6985b6",
+      "type": "extracted-from-parent-container"
+    }
+  ],
+  "source_url": "https://vault.fbi.gov/9-11-attacks-investigation-and-related-materials/9-11-material-released-in-response-to-executive-order-14040/documents-responsive-to-executive-order-14040-2-c-part-1/at_download/file",
+  "state_of_record": "R1",
+  "tags": [
+    "9-11",
+    "operation-encore",
+    "fbi",
+    "segmented-record",
+    "fbi-2022-eo14040-2-c-001",
+    "cand-0020"
+  ],
+  "title": "FD-302 \u2014 segmented from FBI-2022-eo14040-2-c-001 CAND-0020",
+  "year_bucket": "2016"
+}
