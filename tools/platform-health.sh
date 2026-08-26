@@ -23,8 +23,16 @@ echo "== Research reference audit =="
 python3 "$ROOT/tools/research-reference-audit.py" --root "$ROOT"
 
 echo
+echo "== Entity index =="
+python3 "$ROOT/tools/entity-index.py" --root "$ROOT"
+
+echo
 echo "== Source-lineage UI generation =="
 python3 "$ROOT/tools/source-lineage-ui.py" --root "$ROOT"
+
+echo
+echo "== Entity UI generation =="
+python3 "$ROOT/tools/entity-ui.py" --root "$ROOT"
 
 echo
 echo "== Work Queue UI generation =="
