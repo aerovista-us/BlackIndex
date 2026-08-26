@@ -5,6 +5,10 @@ This tool does not promote evidence. It combines triage metadata with the
 normalized parent-container text and writes review packets under local/review/.
 Each packet preserves parent doc_id, page range, candidate id, entity hits,
 identifier/date hints, and the extracted text for that page span.
+
+Packets also include a promotion worksheet. A candidate may be promoted only
+after a reviewer confirms the true source-PDF boundaries and completes the
+worksheet. The tool never changes durable evidence state automatically.
 """
 from __future__ import annotations
 
@@ -30,7 +34,6 @@ def pages_for(root: Path, doc_id: str) -> list[str]:
 
 
 def candidate_rows(payload: dict) -> list[dict]:
-    # triage JSON uses all_candidates / top_candidates; older keys kept as fallbacks.
     for key in ("all_candidates", "top_candidates", "ranked", "candidates", "queue", "items"):
         rows = payload.get(key)
         if isinstance(rows, list):
@@ -99,7 +102,7 @@ def main() -> int:
 - **Review score:** {score}
 - **Parent container:** `{doc_id}`
 - **Candidate:** `{cand_id}`
-- **Container pages:** {start}–{end}
+- **Heuristic container pages:** {start}–{end}
 - **Record type guess:** `{record_type}`
 - **Entity hits:** {', '.join(entities) if entities else 'None'}
 - **Serial/case hints:** {', '.join(serials) if serials else 'None'}
@@ -119,6 +122,41 @@ def main() -> int:
 - [ ] Identify referenced attachments/serials/interviews
 - [ ] Check whether this record is reused in the 2016 EC or 2021 closing EC
 
+## Promotion worksheet
+
+Complete only after checking the original source PDF.
+
+- **Boundary confirmed:** `Yes / No`
+- **Confirmed parent-container pages:** `__–__`
+- **Canonical record type:** `__`
+- **Canonical record date:** `YYYY-MM-DD / Unknown`
+- **Canonical FBI file/case/serial ID:** `__ / Unknown`
+- **Authoring office / unit:** `__ / Unknown`
+- **Primary subject / interviewee:** `__ / Not applicable / Unknown`
+- **Redaction classes present:** `PII / FBI personnel / FBI classified / USG / FGJ / file-serial / other / none / unknown`
+- **Attachments or referenced serials:** `__`
+- **Source dependency:** `raw/firsthand / interview-summary / analytical-synthesis / derivative / mixed / unknown`
+- **Relationship to April 2016 EC:** `underlying / cited-or-summarized / later-than / unrelated / unknown`
+- **Relationship to 2021 closing EC:** `underlying / cited-or-summarized / later-than / unrelated / unknown`
+- **Duplicate or overlapping release:** `No / Yes → identify container/record / Unknown`
+- **Synthesis vs underlying evidence:** `underlying-record / synthesis / mixed / unknown`
+- **Independent evidentiary lineage:** `Yes / No / Partial / Unknown`
+- **Key assertion(s):** `__`
+- **Conflicts / corrections:** `__`
+- **Gaps / unavailable underlying material:** `__`
+- **Exact pivotal page citation(s):** `__`
+
+### Disposition
+
+Choose exactly one after review:
+
+- [ ] `PROMOTE` — distinct record with confirmed boundaries/provenance
+- [ ] `HOLD` — potentially useful but boundary/provenance/content needs more work
+- [ ] `MERGE` — duplicate/overlapping copy; link to canonical record instead
+- [ ] `REJECT-BOUNDARY` — heuristic candidate is not a real standalone record
+
+**Reviewer note:** `__`
+
 ## Extracted parent-container text
 
 ```text
@@ -136,6 +174,7 @@ def main() -> int:
             "record_type_guess": record_type,
             "entities": entities,
             "packet": str(path),
+            "promotion_state": "review_required",
         })
 
     manifest_path = out_dir / "manifest.json"
