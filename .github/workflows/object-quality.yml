@@ -1,0 +1,35 @@
+name: BlackIndex object quality
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'objects/**'
+      - 'metadata/**'
+      - 'tools/validate-evidence-objects.py'
+      - 'tools/source-lineage.py'
+      - 'tests/**'
+      - '.github/workflows/object-quality.yml'
+  pull_request:
+    paths:
+      - 'objects/**'
+      - 'metadata/**'
+      - 'tools/validate-evidence-objects.py'
+      - 'tools/source-lineage.py'
+      - 'tests/**'
+      - '.github/workflows/object-quality.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate durable evidence objects
+        run: python3 tools/validate-evidence-objects.py --root .
+      - name: Compile source lineage
+        run: python3 tools/source-lineage.py --root .
+      - name: Run unit tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py'
