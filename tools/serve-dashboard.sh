@@ -3,6 +3,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 ROOT="${BLACKINDEX_ROOT:-$(cd -- "$SCRIPT_DIR/.." && pwd -P)}"
 START_PORT="${1:-8787}"
+REVIEW_PORT="${BLACKINDEX_REVIEW_PORT:-8811}"
 
 python3 -W ignore::SyntaxWarning "$ROOT/tools/evidence_map.py" --root "$ROOT" dashboard
 python3 "$ROOT/tools/fix-dashboard-html.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
@@ -50,5 +51,10 @@ if [[ "$PORT" != "$START_PORT" ]]; then
 fi
 
 echo "BlackIndex dashboard: http://$BIND:$PORT/blackindex-dashboard.html"
-echo "Serving only local/dashboard. Ctrl-C to stop."
-exec python3 -m http.server "$PORT" --bind "$BIND" --directory "$ROOT/local/dashboard"
+echo "Resume FBI Review button will prepare/open the review desk on port $REVIEW_PORT."
+echo "Serving local/dashboard with BlackIndex local workflow actions. Ctrl-C to stop."
+exec python3 "$ROOT/tools/blackindex-ui-server.py" \
+  --root "$ROOT" \
+  --bind "$BIND" \
+  --port "$PORT" \
+  --review-port "$REVIEW_PORT"
