@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Inject local BlackIndex workflow controls into the generated dashboard.
 
-The dashboard highlighter is now emitted correctly by evidence_map.py itself.
-This helper remains as a small post-generation injector for local workflow
-controls used by the BlackIndex-aware UI server.
+The dashboard highlighter is emitted correctly by evidence_map.py itself. This
+helper only injects local workflow/navigation controls used by the BlackIndex-aware
+UI server.
 """
 from __future__ import annotations
 
@@ -24,17 +24,18 @@ def main() -> int:
         control = r'''
 <!-- BLACKINDEX_WORKFLOW_CONTROLS -->
 <style>
-#bi-workflow-controls{position:fixed;right:18px;bottom:18px;z-index:9999;background:#111;border:1px solid #555;border-radius:12px;padding:10px 12px;box-shadow:0 8px 30px rgba(0,0,0,.35);display:flex;gap:8px;align-items:center;flex-wrap:wrap;max-width:430px}
+#bi-workflow-controls{position:fixed;right:18px;bottom:18px;z-index:9999;background:#111;border:1px solid #555;border-radius:12px;padding:10px 12px;box-shadow:0 8px 30px rgba(0,0,0,.35);display:flex;gap:8px;align-items:center;flex-wrap:wrap;max-width:540px}
 #bi-workflow-controls button,#bi-workflow-controls a{background:#20252b;color:#fff;border:1px solid #68727d;border-radius:8px;padding:10px 14px;font:600 13px system-ui;cursor:pointer;text-decoration:none}
 #bi-workflow-controls button:hover,#bi-workflow-controls a:hover{background:#2d353d}
 #bi-workflow-controls small{display:block;color:#aaa;width:100%;margin-top:2px}
 </style>
 <div id="bi-workflow-controls">
+  <a href="/work-queue.html" target="_blank">Work Queue</a>
   <a href="/source-lineage.html" target="_blank">Source Lineage</a>
   <form method="post" action="/actions/resume-fbi-review" target="_blank" style="margin:0">
     <button type="submit">Resume FBI Review</button>
   </form>
-  <small>Lineage shows encoded dependency chains. FBI review resumes the paused source-verification queue.</small>
+  <small>Work Queue collects unfinished research states. Lineage separates encoded dependencies from unresolved cross-references.</small>
 </div>
 '''
         body_end = text.lower().rfind("</body>")
