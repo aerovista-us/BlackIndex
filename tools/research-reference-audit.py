@@ -37,7 +37,7 @@ def title_index(docs):
     return {t:ids[0] for t,ids in by_title.items() if len(ids)==1}
 
 def main()->int:
-    ap=argparse.ArgumentParser(); ap.add_argument("--root",default=str(DEFAULT_ROOT)); args=ap.parse_args(); root=Path(args.root).resolve()
+    ap=argparse.ArgumentParser(); ap.add_argument("--root",default=str(DEFAULT_ROOT)); ap.add_argument("--top",type=int,default=15); args=ap.parse_args(); root=Path(args.root).resolve()
     docs=load_docs(root); valid=set(docs); titles=title_index(docs); files=[]; pairs=Counter(); pair_files=defaultdict(list)
     bases=[root/"docs/reviews",root/"docs/research-clusters"]
     for base in bases:
@@ -63,6 +63,7 @@ def main()->int:
     lines=["# BlackIndex Research Reference Audit","","> Co-occurrence is not dependence, corroboration, agreement, contradiction, or evidence-flow direction.","",f"Research files with recognized documents: **{len(files)}** · Unique document pairs: **{len(ranked)}**","","| Pair | Research files |","|---|---:|"]
     for r in ranked: lines.append(f"| `{r['doc_a']}` ↔ `{r['doc_b']}` | {r['cooccurrence_files']} |")
     mp=out/"research-reference-audit.md"; mp.write_text("\n".join(lines)+"\n",encoding="utf-8")
-    print(json.dumps({"files":len(files),"pairs":len(ranked),"json":str(jp),"markdown":str(mp)},indent=2)); return 0
+    top=[{"doc_a":r["doc_a"],"doc_b":r["doc_b"],"cooccurrence_files":r["cooccurrence_files"],"files":r["files"]} for r in ranked[:max(0,args.top)]]
+    print(json.dumps({"files":len(files),"pairs":len(ranked),"top_pairs":top,"json":str(jp),"markdown":str(mp)},indent=2)); return 0
 
 if __name__=="__main__": raise SystemExit(main())
