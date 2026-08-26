@@ -25,14 +25,15 @@ blackindex/
 ├── normalized/        # Local normalized text
 ├── metadata/          # Provenance + hashes + document descriptors
 ├── extractions/       # Structured evidence reviews
+├── objects/           # Durable integrity/lineage/comparison objects
 ├── patterns/          # Reusable cross-document mechanisms / failure modes
 ├── controls/          # Operational safeguards
 ├── detections/        # Monitoring and detection concepts
 ├── training/          # Training scenarios
 ├── playbooks/         # Response and implementation playbooks
-├── local/             # Local indexes, cache and logs
+├── local/             # Local indexes, dashboards, review state, cache and logs
 ├── docs/              # Governance, taxonomy, architecture, synthesis reviews
-└── tools/             # Local indexing / intake utilities
+└── tools/             # Local indexing / intake / review utilities
 ```
 
 ## Canonical NXCore placement
@@ -62,11 +63,12 @@ BlackIndex deliberately splits **corpus storage** from the **durable research re
 Local-only on NXCore:
 - raw source PDFs and archives under `source-vault/`
 - normalized text derivatives under `normalized/`
-- indexes, caches and logs under `local/`
+- indexes, dashboards, review queues, caches and logs under `local/`
 
 Published to GitHub:
 - document metadata and SHA-256 provenance records
 - reviewed extraction files
+- evidence-map objects and object schemas
 - cross-document synthesis reviews and promoted patterns
 - registries and source targets
 - controls, detections, training scenarios and playbooks
@@ -95,6 +97,28 @@ BlackIndex distinguishes between:
 
 Declassified does not mean complete. Redactions, missing annexes, later corrections, and historical context must be recorded.
 
+### Source genealogy
+
+BlackIndex treats evidence lineage as a first-class research problem. Repetition through a shared upstream interview, serial, analytical product, report, translation, or investigation is not automatically independent corroboration.
+
+Compile the currently encoded graph with:
+
+```bash
+python3 tools/source-lineage.py --root .
+python3 tools/source-lineage-ui.py --root .
+```
+
+Audit for references that still need lineage review with:
+
+```bash
+python3 tools/dependency-audit.py --root .
+python3 tools/research-reference-audit.py --root .
+```
+
+Both audit tools are conservative. They create local review queues only; they do **not** infer or publish dependency edges.
+
+`bash tools/serve-dashboard.sh` regenerates the lineage/audit state and serves a **Source Lineage** page alongside the evidence dashboard. The dashboard also preserves the separate **Resume FBI Review** workflow for paused source-verification work.
+
 ### Promotion discipline
 
 A dramatic excerpt is not automatically a reusable pattern. Promotion requires:
@@ -107,8 +131,18 @@ A dramatic excerpt is not automatically a reusable pattern. Promotion requires:
 
 Current promoted patterns live under `patterns/` and cross-document reasoning under `docs/reviews/`.
 
+## Platform health
+
+Run the integrated local check with:
+
+```bash
+bash tools/platform-health.sh
+```
+
+It verifies corpus hashes, validates durable evidence objects against the object schema, compiles source lineage, audits unencoded references, renders the lineage UI, and runs unit tests. GitHub Actions repeats the Git-backed object/schema/lineage checks on relevant pushes and pull requests.
+
 ## Status
 
 **v0.1 — Phase 2 evidence corpus underway**
 
-The first reviewed corpus includes Church Committee Book II, Operation Northwoods, and an FBI COINTELPRO-New Left Alexandria packet. The first cross-document synthesis has promoted three governance mechanisms for continued testing against Family Jewels, VENONA, Pentagon Papers, and Iran-Contra records.
+The corpus and evidence-map layers are actively expanding. BlackIndex now includes durable evidence-object validation, source-lineage compilation, conservative lineage-backfill audits, local evidence/lineage dashboards, and gated source-review workflows in addition to the original documents-first research pipeline.
