@@ -47,6 +47,7 @@ echo "== Evidence Map UI generation =="
 python3 "$ROOT/tools/evidence_map.py" --root "$ROOT" dashboard
 python3 "$ROOT/tools/fix-dashboard-html.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 python3 "$ROOT/tools/inject-record-context.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
+python3 "$ROOT/tools/inject-research-session.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 
 echo
 echo "== Unit tests =="
