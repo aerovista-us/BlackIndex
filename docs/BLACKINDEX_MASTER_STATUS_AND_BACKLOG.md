@@ -14,12 +14,15 @@
 - `PREPARED` — ingestion/code path exists; local execution or review still required
 - `QUEUED` — explicitly in backlog; not yet materially implemented/ingested
 - `HOLD` — deliberately paused pending a review/dependency
+- `SUPERSEDED` — older implementation/acquisition target retained for history but replaced by a better current path
 
 ## Corpus checkpoint
 
-- Authoritative local verifier checkpoint: **31 checked / 0 failures**
+- Last authoritative local verifier result recorded in this ledger: **31 checked / 0 failures**
 - Historical Milestone 1: **25 verified / 0 failures**
 - Operation Encore underlying-record acquisition: **4 / 4** large FBI artifacts acquired/resumed successfully
+- Git-backed evidence now confirms the Joint Inquiry final report was acquired and published as `US CONGRESS-2002-9-11-joint-inquiry-001`
+- A post-Joint-Inquiry local verifier count has not yet been recorded here; do not infer it from GitHub metadata alone
 - Raw source artifacts remain local-only
 - GitHub stores metadata/provenance, reviewed extractions, evidence-map objects, lineage, schemas, governance, and tooling
 
@@ -117,12 +120,14 @@ The local verifier remains authoritative for raw-corpus integrity.
 | P0 review packets | `COMPLETE` | 27 packets |
 | P0 source-review bundle | `COMPLETE` | 7 FD-302 slices; 6 likely complete, 1 boundary review needed |
 | Individual child promotion | `HOLD` | do not claim promotion until source/page/boundary checks are satisfied |
-| Joint Inquiry final report | `PREPARED` | official-baseline ingestion script ready |
-| 9/11 Commission Chapter 7 | `PREPARED` | official-baseline ingestion script ready |
-| Terrorist Financing Staff Monograph | `PREPARED` | official-baseline ingestion script ready |
-| 9/11 and Terrorist Travel monograph | `PREPARED` | official-baseline ingestion script ready |
-| CIA IG 9/11 Accountability | `QUEUED` | next official-layer candidate |
-| Joint Inquiry “28 Pages” version family | `QUEUED` | dedicated release/version analysis after baseline pass |
+| Joint Inquiry final report | `PARTIAL` | acquired + published as `US CONGRESS-2002-9-11-joint-inquiry-001`; substantive review pending |
+| 9/11 Commission Chapter 7 standalone acquisition target | `SUPERSEDED` | retain as review focus; acquisition replaced by full official GovInfo final report |
+| 9/11 Commission Final Report — official government edition | `PREPARED` | controlled closeout sprint uses stable GovInfo artifact |
+| Terrorist Financing Staff Monograph | `PREPARED` | controlled closeout sprint uses stable GovInfo artifact |
+| 9/11 and Terrorist Travel monograph | `PREPARED` | controlled closeout sprint uses stable GovInfo artifact |
+| CIA IG 9/11 Accountability | `PREPARED` | added to controlled official closeout sprint |
+| Cross-document official-layer review 007 | `PREPARED` | `docs/reviews/phase2-cross-document-007-911-official-closeout.md` |
+| Joint Inquiry “28 Pages” version family | `QUEUED` | dedicated release/version analysis after closeout comparison gate |
 
 ### Assassination records
 
@@ -177,25 +182,45 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Weston Price / Vitamin K2 | `QUEUED` | lower-priority lead |
 | Chimaera monstrosa | `QUEUED` | unresolved-context discovery |
 
+## Controlled Sprint — 2026-08-27 — 9/11 Official-Layer Closeout
+
+**Sprint script:** `tools/ingest-phase2-911-official-closeout.sh`  
+**Review gate:** `docs/reviews/phase2-cross-document-007-911-official-closeout.md`
+
+### Bounded acquisition set
+
+1. 9/11 Commission Final Report — official U.S. Government edition (GovInfo/GPO)
+2. Terrorist Financing staff monograph — GovInfo preserved
+3. 9/11 and Terrorist Travel staff monograph — GovInfo preserved
+4. CIA OIG Report on CIA Accountability With Respect to the 9/11 Attacks
+
+### Why this sprint exists
+
+The earlier official-baseline pass successfully published the Joint Inquiry but did not produce Git-backed records for the other three intended Commission sources. This pass closes those known gaps using more stable government-preserved artifacts and adds the CIA OIG accountability layer before any new major cluster opens.
+
+### Sprint stop gate
+
+Do **not** count repeated statements across Joint Inquiry, Commission staff work, Commission final report, CIA OIG, and Operation Encore as independent corroboration until source genealogy is mapped.
+
 ## Current operational order
 
-1. Pull current `main`, run `platform-health.sh`, and confirm dashboard search/open remains stable and favicon no longer 404s.
-2. Run `tools/ingest-phase2-911-official-baselines.sh` locally.
-3. Record the new verifier `checked / failures` result.
-4. Build reviewed extraction stubs for the four official-baseline records.
+1. Run `tools/ingest-phase2-911-official-closeout.sh` on the local BlackIndex vault.
+2. Record the resulting local verifier `checked / failures` result in this ledger.
+3. Update each successfully acquired closeout item from `PREPARED` to `PARTIAL` and record its document ID.
+4. Start cross-document review 007 with Bayoumi / Thumairy / Hazmi-Mihdhar wording and source dependencies.
 5. Encode source genealogy before treating repeated official statements as independent corroboration.
-6. Compare Bayoumi / Thumairy / Abdullah / Hazmi-Mihdhar wording across Joint Inquiry → Commission → Encore.
-7. Implement physical PDF page mapper.
-8. Implement first-class Discovery objects + Discovery Inbox.
-9. Implement first-class time-bounded Capability Registry + UI.
-10. Populate Toka and Bentov/Gateway as first capability/discovery-era nodes.
-11. After the 9/11 comparison gate, default next corpus expansion is Operation LOOKING GLASS.
+6. Preserve negative findings as attributed investigator/institution conclusions with exact wording and scope.
+7. Implement the physical PDF page mapper before treating FBI segment indices as physical page citations.
+8. After the 9/11 comparison gate, default next corpus expansion is Operation LOOKING GLASS.
+9. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
 
 ## Completion logging rule
 
 **Never delete a completed backlog item.** Change its state instead:
 
 `QUEUED → PREPARED → PARTIAL/ACTIVE → COMPLETE`
+
+Use `SUPERSEDED` when an older target/path remains historically relevant but a safer or more authoritative replacement becomes the active path.
 
 When possible, attach completion evidence:
 
