@@ -18,11 +18,13 @@
 
 ## Corpus checkpoint
 
-- Authoritative local verifier checkpoint: **33 checked / 0 failures** (`2026-08-27` official-closeout run)
+- Authoritative local verifier checkpoint: **36 checked / 0 failures** (`2026-08-27` official-closeout resume)
 - Historical Milestone 1: **25 verified / 0 failures**
 - Operation Encore underlying-record acquisition: **4 / 4** large FBI artifacts acquired/resumed successfully
 - Joint Inquiry final report is acquired/published as `US CONGRESS-2002-9-11-joint-inquiry-001`
 - 9/11 Commission Final Report is acquired/published as `COMMISSION-2004-9-11-commission-001`
+- Terrorist Financing staff monograph is acquired/published as `COMMISSION-2004-9-11-commission-terrorist-financing-staff-monograph-001`
+- Terrorist Travel staff monograph is acquired/published as `COMMISSION-2004-9-11-commission-terrorist-travel-staff-monograph-001`
 - CIA OIG 9/11 Accountability is acquired/published as `CIA-2005-9-11-cia-accountability-001`
 - Raw source artifacts remain local-only
 - GitHub stores metadata/provenance, reviewed extractions, evidence-map objects, lineage, schemas, governance, tooling, and controlled-run reports
@@ -42,8 +44,8 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Destruction chronology | `PARTIAL` | Methodology defined; encoded corpus-by-corpus. |
 | Classification chronology | `PARTIAL` | Methodology defined; encoded when source record supports it. |
 | Public vs Internal comparisons | `COMPLETE` | Statement-comparison tooling exists. |
-| Timeline evolution of official conclusions | `PARTIAL` | Strongest current implementation is 9/11 / Encore. |
-| Source genealogy / independence | `COMPLETE` | Source-lineage + dependency-audit tooling implemented. |
+| Timeline evolution of official conclusions | `ACTIVE` | 9/11 official-layer comparison 007 now active. |
+| Source genealogy / independence | `ACTIVE` | Source-lineage + dependency-audit tooling implemented; 9/11 official-layer graph now expanding. |
 | Evidence Integrity | `PARTIAL` | Methodology locked; systematic digital/video/audio/physical records still expanding. |
 | Capability Registry | `QUEUED` | First-class durable capability object family still needed. |
 | Discovery Layer | `QUEUED` | First-class durable discovery workflow still needed. |
@@ -57,10 +59,11 @@ The local verifier remains authoritative for raw-corpus integrity.
 |---|---|---|
 | Core CLI | `COMPLETE` | init/intake/verify/manifest/search/normalize/publish |
 | URL ingestion pipeline | `COMPLETE` | provenance/hash/dedupe/normalize |
+| Intake source-token / orphan-raw hardening | `COMPLETE` | canonical/path-safe source IDs; legacy metadata enumeration; immutable raw slots reserve sequence numbers |
 | FBI/CIA browser-TLS fallback | `COMPLETE` | normal curl → browser-navigation → browser-TLS impersonation on constrained official hosts |
 | Durable evidence objects | `COMPLETE` | integrity, missing evidence, versions, dependencies, statements, investigator reviews |
 | Object validation + CI | `COMPLETE` | object-quality workflow active |
-| Source Lineage + UI | `COMPLETE` | dependency graph and independence discipline |
+| Source Lineage + UI | `ACTIVE` | dependency graph and independence discipline; official 9/11 layer now explicitly encoded |
 | Entity Index + UI | `COMPLETE` | explicit metadata/genealogy only |
 | Work Queue | `COMPLETE` | review backlog, missing refs, review-state drift |
 | Record Context | `COMPLETE` | per-record traversal of encoded relationships/gaps/reviews/versions |
@@ -123,11 +126,14 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Individual child promotion | `HOLD` | do not claim promotion until source/page/boundary checks are satisfied |
 | Joint Inquiry final report | `PARTIAL` | acquired + published as `US CONGRESS-2002-9-11-joint-inquiry-001`; substantive review pending |
 | 9/11 Commission Chapter 7 standalone acquisition target | `SUPERSEDED` | retain as review focus; acquisition replaced by full official GovInfo final report |
-| 9/11 Commission Final Report — official government edition | `PARTIAL` | existing artifact resumed as `COMMISSION-2004-9-11-commission-001`; verifier included it in 33/0 checkpoint |
-| Terrorist Financing Staff Monograph | `PREPARED` | first closeout run hit immutable raw-ID collision; collision-safe resume script prepared with dedicated collection namespace |
-| 9/11 and Terrorist Travel monograph | `PREPARED` | first closeout run hit immutable raw-ID collision; collision-safe resume script prepared with dedicated collection namespace |
+| 9/11 Commission Final Report — official government edition | `PARTIAL` | acquired/resumed as `COMMISSION-2004-9-11-commission-001`; Chapter 7 genealogy pass active |
+| Terrorist Financing Staff Monograph | `PARTIAL` | acquired + published as `COMMISSION-2004-9-11-commission-terrorist-financing-staff-monograph-001`; normalized text available |
+| 9/11 and Terrorist Travel monograph | `PARTIAL` | acquired + published as `COMMISSION-2004-9-11-commission-terrorist-travel-staff-monograph-001`; normalized text available |
 | CIA IG 9/11 Accountability | `PARTIAL` | acquired + published as `CIA-2005-9-11-cia-accountability-001`; image-only PDF currently `pdf-no-text-layer` |
-| Cross-document official-layer review 007 | `PREPARED` | `docs/reviews/phase2-cross-document-007-911-official-closeout.md`; begin after monograph resume |
+| Cross-document official-layer review 007 | `ACTIVE` | source genealogy encoded; Bayoumi / Thumairy / Hazmi-Mihdhar wording-evolution pass started |
+| Official-layer source dependency objects | `ACTIVE` | Joint Inquiry, Commission final, both staff monographs, CIA OIG and Encore relationships now encoded in part |
+| Bayoumi statement evolution | `ACTIVE` | Commission 2004 vs FBI 2016 comparison object created; underlying shared records still to map |
+| Thumairy statement evolution | `ACTIVE` | Commission scoped negative finding vs later FBI rereview comparison object created |
 | Joint Inquiry “28 Pages” version family | `QUEUED` | dedicated release/version analysis after closeout comparison gate |
 
 ### Assassination records
@@ -188,36 +194,49 @@ The local verifier remains authoritative for raw-corpus integrity.
 **Initial sprint script:** `tools/ingest-phase2-911-official-closeout.sh`  
 **Initial run report:** `docs/run-reports/2026-08-27-911-official-closeout.md`  
 **Collision-safe resume:** `tools/ingest-phase2-911-official-closeout-resume.sh`  
+**Resume run report:** `docs/run-reports/2026-08-27-911-official-closeout-resume.md`  
 **Review gate:** `docs/reviews/phase2-cross-document-007-911-official-closeout.md`
 
-### Initial run result
+### Final sprint result
 
-- Successful/resumed calls: **2 / 4**
-- Authoritative verifier: **33 checked / 0 failures**
-- 9/11 Commission Final Report: already present; duplicate-by-hash resume succeeded
+- Initial run: **2 / 4** successful/resumed; verifier **33 / 0**
+- Collision-safe resume: **2 / 2** successful; verifier **36 / 0**
+- Final Report: existing artifact resumed successfully
 - CIA OIG Accountability: newly acquired/published successfully
-- Both Commission staff monographs: acquisition bytes downloaded successfully, but intake stopped on an existing immutable `...staff-monographs-001.pdf` destination
-- The collision is an intake namespace/local-state issue, not a source-acquisition failure
+- Financing monograph: recovered under dedicated canonical collection namespace
+- Travel monograph: recovered under dedicated canonical collection namespace
+- Existing immutable artifact from the failed shared namespace was preserved, not overwritten or deleted
+- Core intake was hardened so future source labels and orphan raw slots cannot reproduce this class of collision
 
-### Recovery decision
+### Source-genealogy result so far
 
-Do **not** delete, rename, or overwrite the existing immutable raw artifact merely to free the `-001` slot. The recovery pass assigns distinct canonical collection namespaces to the Financing and Travel monographs. This preserves the existing artifact for later audit and gives each monograph an unambiguous durable document ID.
+The closeout sources are now explicitly prevented from being counted as five independent confirmations merely because they are five official publications.
+
+Encoded relationships include:
+
+- Joint Inquiry support-network assertions → underlying FBI records
+- Commission Chapter 7 → FBI/CIA source classes cited in its notes
+- Financing staff monograph → classified intelligence, law-enforcement, State/Treasury files, interviews, and shared staff work
+- Travel staff monograph → agency records, Commission interviews, prior DOJ OIG interviews, and shared staff work
+- CIA OIG CIA-accountability frame → Joint Inquiry findings relating to CIA
+- 2016 Operation Encore EC → underlying FBI serials/interviews/liaison/analysis
+- 2021 closing synthesis → 2016 EC
 
 ### Sprint stop gate
 
-Do **not** count repeated statements across Joint Inquiry, Commission staff work, Commission final report, CIA OIG, and Operation Encore as independent corroboration until source genealogy is mapped.
+Do **not** count repeated statements across Joint Inquiry, Commission staff work, Commission final report, CIA OIG, and Operation Encore as independent corroboration until the remaining named underlying source records are mapped.
 
 ## Current operational order
 
-1. Run `tools/ingest-phase2-911-official-closeout-resume.sh` on the local BlackIndex vault.
-2. Read its durable resume report from GitHub; no manual terminal transcription should be required.
-3. If verifier remains clean, update the two staff monographs from `PREPARED` to `PARTIAL` with their document IDs.
-4. Start cross-document review 007 with Bayoumi / Thumairy / Hazmi-Mihdhar wording and source dependencies.
-5. Encode source genealogy before treating repeated official statements as independent corroboration.
-6. Preserve negative findings as attributed investigator/institution conclusions with exact wording and scope.
-7. Address the CIA OIG `pdf-no-text-layer` condition with a deliberate review/extraction path; do not silently OCR during intake.
-8. Implement the physical PDF page mapper before treating FBI segment indices as physical page citations.
-9. After the 9/11 comparison gate, default next corpus expansion is Operation LOOKING GLASS.
+1. Continue cross-document review 007 from the now-complete 36/0 acquisition baseline.
+2. Map Bayoumi / Thumairy / Hazmi-Mihdhar synthesis statements to named underlying FBI serials, interviews, financial records, telephone records, and Commission memoranda where recoverable.
+3. Convert principal negative findings into attributed investigator-review objects with exact wording, date, scope, access, unavailable evidence, and competing findings.
+4. Address the CIA OIG `pdf-no-text-layer` condition through a deliberate extraction/review path; do not silently OCR during intake.
+5. Review the generated local record-integrity objects and publish them deliberately; do not commit them merely to clean the working tree.
+6. Inventory the preserved orphan immutable raw artifact from the failed first-pass staff-monograph namespace rather than deleting it.
+7. Implement the physical PDF page mapper before treating FBI segment indices as physical page citations.
+8. Run a shared-upstream audit to ensure repeated official statements are not over-counted.
+9. Once the 9/11 official-layer comparison gate is satisfied, default next corpus expansion is Operation LOOKING GLASS.
 10. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
 
 ## Completion logging rule
