@@ -18,6 +18,7 @@ python3 "$ROOT/tools/fix-dashboard-html.py" "$ROOT/local/dashboard/blackindex-da
 python3 "$ROOT/tools/inject-record-context.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 python3 "$ROOT/tools/inject-research-session.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 python3 "$ROOT/tools/inject-research-export.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
+python3 "$ROOT/tools/inject-favicon.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 
 if command -v tailscale >/dev/null 2>&1; then
   BIND="$(tailscale ip -4 2>/dev/null | head -n1 || true)"
