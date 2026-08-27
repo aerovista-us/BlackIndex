@@ -18,13 +18,14 @@
 
 ## Corpus checkpoint
 
-- Last authoritative local verifier result recorded in this ledger: **31 checked / 0 failures**
+- Authoritative local verifier checkpoint: **33 checked / 0 failures** (`2026-08-27` official-closeout run)
 - Historical Milestone 1: **25 verified / 0 failures**
 - Operation Encore underlying-record acquisition: **4 / 4** large FBI artifacts acquired/resumed successfully
-- Git-backed evidence now confirms the Joint Inquiry final report was acquired and published as `US CONGRESS-2002-9-11-joint-inquiry-001`
-- A post-Joint-Inquiry local verifier count has not yet been recorded here; do not infer it from GitHub metadata alone
+- Joint Inquiry final report is acquired/published as `US CONGRESS-2002-9-11-joint-inquiry-001`
+- 9/11 Commission Final Report is acquired/published as `COMMISSION-2004-9-11-commission-001`
+- CIA OIG 9/11 Accountability is acquired/published as `CIA-2005-9-11-cia-accountability-001`
 - Raw source artifacts remain local-only
-- GitHub stores metadata/provenance, reviewed extractions, evidence-map objects, lineage, schemas, governance, and tooling
+- GitHub stores metadata/provenance, reviewed extractions, evidence-map objects, lineage, schemas, governance, tooling, and controlled-run reports
 
 The local verifier remains authoritative for raw-corpus integrity.
 
@@ -56,7 +57,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 |---|---|---|
 | Core CLI | `COMPLETE` | init/intake/verify/manifest/search/normalize/publish |
 | URL ingestion pipeline | `COMPLETE` | provenance/hash/dedupe/normalize |
-| FBI Vault browser-TLS fallback | `COMPLETE` | normal curl → browser-navigation → browser-TLS impersonation |
+| FBI/CIA browser-TLS fallback | `COMPLETE` | normal curl → browser-navigation → browser-TLS impersonation on constrained official hosts |
 | Durable evidence objects | `COMPLETE` | integrity, missing evidence, versions, dependencies, statements, investigator reviews |
 | Object validation + CI | `COMPLETE` | object-quality workflow active |
 | Source Lineage + UI | `COMPLETE` | dependency graph and independence discipline |
@@ -122,11 +123,11 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Individual child promotion | `HOLD` | do not claim promotion until source/page/boundary checks are satisfied |
 | Joint Inquiry final report | `PARTIAL` | acquired + published as `US CONGRESS-2002-9-11-joint-inquiry-001`; substantive review pending |
 | 9/11 Commission Chapter 7 standalone acquisition target | `SUPERSEDED` | retain as review focus; acquisition replaced by full official GovInfo final report |
-| 9/11 Commission Final Report — official government edition | `PREPARED` | controlled closeout sprint uses stable GovInfo artifact |
-| Terrorist Financing Staff Monograph | `PREPARED` | controlled closeout sprint uses stable GovInfo artifact |
-| 9/11 and Terrorist Travel monograph | `PREPARED` | controlled closeout sprint uses stable GovInfo artifact |
-| CIA IG 9/11 Accountability | `PREPARED` | added to controlled official closeout sprint |
-| Cross-document official-layer review 007 | `PREPARED` | `docs/reviews/phase2-cross-document-007-911-official-closeout.md` |
+| 9/11 Commission Final Report — official government edition | `PARTIAL` | existing artifact resumed as `COMMISSION-2004-9-11-commission-001`; verifier included it in 33/0 checkpoint |
+| Terrorist Financing Staff Monograph | `PREPARED` | first closeout run hit immutable raw-ID collision; collision-safe resume script prepared with dedicated collection namespace |
+| 9/11 and Terrorist Travel monograph | `PREPARED` | first closeout run hit immutable raw-ID collision; collision-safe resume script prepared with dedicated collection namespace |
+| CIA IG 9/11 Accountability | `PARTIAL` | acquired + published as `CIA-2005-9-11-cia-accountability-001`; image-only PDF currently `pdf-no-text-layer` |
+| Cross-document official-layer review 007 | `PREPARED` | `docs/reviews/phase2-cross-document-007-911-official-closeout.md`; begin after monograph resume |
 | Joint Inquiry “28 Pages” version family | `QUEUED` | dedicated release/version analysis after closeout comparison gate |
 
 ### Assassination records
@@ -184,19 +185,23 @@ The local verifier remains authoritative for raw-corpus integrity.
 
 ## Controlled Sprint — 2026-08-27 — 9/11 Official-Layer Closeout
 
-**Sprint script:** `tools/ingest-phase2-911-official-closeout.sh`  
+**Initial sprint script:** `tools/ingest-phase2-911-official-closeout.sh`  
+**Initial run report:** `docs/run-reports/2026-08-27-911-official-closeout.md`  
+**Collision-safe resume:** `tools/ingest-phase2-911-official-closeout-resume.sh`  
 **Review gate:** `docs/reviews/phase2-cross-document-007-911-official-closeout.md`
 
-### Bounded acquisition set
+### Initial run result
 
-1. 9/11 Commission Final Report — official U.S. Government edition (GovInfo/GPO)
-2. Terrorist Financing staff monograph — GovInfo preserved
-3. 9/11 and Terrorist Travel staff monograph — GovInfo preserved
-4. CIA OIG Report on CIA Accountability With Respect to the 9/11 Attacks
+- Successful/resumed calls: **2 / 4**
+- Authoritative verifier: **33 checked / 0 failures**
+- 9/11 Commission Final Report: already present; duplicate-by-hash resume succeeded
+- CIA OIG Accountability: newly acquired/published successfully
+- Both Commission staff monographs: acquisition bytes downloaded successfully, but intake stopped on an existing immutable `...staff-monographs-001.pdf` destination
+- The collision is an intake namespace/local-state issue, not a source-acquisition failure
 
-### Why this sprint exists
+### Recovery decision
 
-The earlier official-baseline pass successfully published the Joint Inquiry but did not produce Git-backed records for the other three intended Commission sources. This pass closes those known gaps using more stable government-preserved artifacts and adds the CIA OIG accountability layer before any new major cluster opens.
+Do **not** delete, rename, or overwrite the existing immutable raw artifact merely to free the `-001` slot. The recovery pass assigns distinct canonical collection namespaces to the Financing and Travel monographs. This preserves the existing artifact for later audit and gives each monograph an unambiguous durable document ID.
 
 ### Sprint stop gate
 
@@ -204,15 +209,16 @@ Do **not** count repeated statements across Joint Inquiry, Commission staff work
 
 ## Current operational order
 
-1. Run `tools/ingest-phase2-911-official-closeout.sh` on the local BlackIndex vault.
-2. Record the resulting local verifier `checked / failures` result in this ledger.
-3. Update each successfully acquired closeout item from `PREPARED` to `PARTIAL` and record its document ID.
+1. Run `tools/ingest-phase2-911-official-closeout-resume.sh` on the local BlackIndex vault.
+2. Read its durable resume report from GitHub; no manual terminal transcription should be required.
+3. If verifier remains clean, update the two staff monographs from `PREPARED` to `PARTIAL` with their document IDs.
 4. Start cross-document review 007 with Bayoumi / Thumairy / Hazmi-Mihdhar wording and source dependencies.
 5. Encode source genealogy before treating repeated official statements as independent corroboration.
 6. Preserve negative findings as attributed investigator/institution conclusions with exact wording and scope.
-7. Implement the physical PDF page mapper before treating FBI segment indices as physical page citations.
-8. After the 9/11 comparison gate, default next corpus expansion is Operation LOOKING GLASS.
-9. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
+7. Address the CIA OIG `pdf-no-text-layer` condition with a deliberate review/extraction path; do not silently OCR during intake.
+8. Implement the physical PDF page mapper before treating FBI segment indices as physical page citations.
+9. After the 9/11 comparison gate, default next corpus expansion is Operation LOOKING GLASS.
+10. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
 
 ## Completion logging rule
 
