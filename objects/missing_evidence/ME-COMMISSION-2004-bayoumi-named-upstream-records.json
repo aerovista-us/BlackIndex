@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "object_type": "missing_evidence",
+  "object_id": "ME-COMMISSION-2004-bayoumi-named-upstream-records",
+  "created_at": "2026-08-27T21:44:00+00:00",
+  "doc_id": "COMMISSION-2004-9-11-commission-001",
+  "category": "UNMAPPED_REFERENCED_EVIDENCE",
+  "summary": "Named FBI, CIA, employment, hotel, telephone, immigration, and interview records cited by the Commission for the Bayoumi encounter/knowledge question are not yet individually mapped in BlackIndex",
+  "referenced_by": "9/11 Commission Report, Chapter 7 and Notes to Chapter 7, especially notes 15-20",
+  "last_known_location": "FBI/CIA investigative and analytical files plus Commission source files; some may be embedded in EO 14040 release containers already held locally",
+  "known_creator": "FBI, CIA, Saudi Civil Aviation Authority, INS, and Commission source collection",
+  "likely_custodian": "FBI / CIA / NARA / Commission records custody depending on source",
+  "stated_reason_missing": "Not established as absent. Exact records have not yet been individually recovered and linked to the Commission assertions in BlackIndex.",
+  "potential_relevance": "Tests the provenance of the Commission's judgment about Bayoumi's knowledge/intent, the chance-versus-design question surrounding the February 1 encounter, and the independence of later FBI reassessments",
+  "alternative_explanations": [
+    "Some records may be embedded in EO 14040 containers under generic FBI headers rather than the descriptive titles used by Commission notes",
+    "Commission source files may reference copies or summaries whose public-release labels differ from the original record titles"
+  ],
+  "recovery_paths": [
+    "scan local normalized EO 14040 containers for Bayoumi title/date combinations and exact quoted report titles",
+    "match candidate hits to segmentation boundaries and parent container SHA",
+    "compare recovered 2001-2004 FBI source records with the 2016 Operation Encore synthesis",
+    "search CIA/NARA/Commission releases for the cited CTC analytic report and other non-FBI source material"
+  ],
+  "status": "unresolved",
+  "named_records": [
+    "FBI EC Omar Ahmed Al Bayoumi — 1999-06-07",
+    "FBI LHM investigation of Bayoumi — 2002-04-15",
+    "FBI EC/interview of Bayoumi — 2003-09-17",
+    "Omar al Bayoumi interviews — 2003-08-04/05 and 2003-10-16/17",
+    "FBI recovery of hotel records — 2002-01-15",
+    "FBI report Connections of San Diego PENTTBOM Subjects to the Government of Saudi Arabia — undated",
+    "Saudi Civil Aviation Authority employment records — 2000-03 through 2002-01",
+    "CIA analytic report Al-Qa'ida Travel Issues, CTC 2004-40002H — 2003-11-14",
+    "Caysan Bin Don / Isamu Dyson interviews — 2001-10-08 and 2004-04-20"
+  ]
+}
