@@ -49,6 +49,7 @@ python3 "$ROOT/tools/fix-dashboard-html.py" "$ROOT/local/dashboard/blackindex-da
 python3 "$ROOT/tools/inject-record-context.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 python3 "$ROOT/tools/inject-research-session.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 python3 "$ROOT/tools/inject-research-export.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
+python3 "$ROOT/tools/inject-favicon.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 
 echo
 echo "== Unit tests =="
