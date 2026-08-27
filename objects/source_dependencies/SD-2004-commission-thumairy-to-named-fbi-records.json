@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-2004-commission-thumairy-to-named-fbi-records",
+  "created_at": "2026-08-27T21:40:00+00:00",
+  "assertion_id": "commission-2004-thumairy-assistance-finding-source-chain",
+  "source_id": "COMMISSION-2004-9-11-commission-001",
+  "depends_on": "FBI-Thumairy-Benomrane-Abdullah-source-bundle-2002-2004",
+  "dependency_type": "commission-negative-finding-derived-from-named-investigative-records-and-corroboration-checks",
+  "independence": "dependent",
+  "notes": "Commission Report Chapter 7 and Notes to Chapter 7 identify specific upstream records for the Thumairy assistance question, including FBI EC 'Fahad Al-Thumairy' (Sept. 4, 2002), FBI EC 'Fahad Althumairy' (Oct. 25, 2002), FBI EC 'Fahad Al-Thumairy' (Nov. 20, 2002), Mohdar Abdullah interview (July 23, 2002), Qualid Moncef Benomrane interviews (Mar. 7, Mar. 13, and May 23, 2002), Ashour E. interview (May 20, 2004), Thumairy interviews (Feb. 23-25, 2004), apartment/visitor-record checks, and related State Department material. The Commission reports that its inquiry did not substantiate the Benomrane theory and did not find evidence Thumairy assisted Hazmi and Mihdhar. This object records source genealogy only; those findings remain attributed Commission conclusions and the named underlying records must be recovered/reviewed independently where possible."
+}
