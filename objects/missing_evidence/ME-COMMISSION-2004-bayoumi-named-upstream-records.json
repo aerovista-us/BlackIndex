@@ -3,6 +3,7 @@
   "object_type": "missing_evidence",
   "object_id": "ME-COMMISSION-2004-bayoumi-named-upstream-records",
   "created_at": "2026-08-27T21:44:00+00:00",
+  "updated_at": "2026-08-27T23:54:00+00:00",
   "doc_id": "COMMISSION-2004-9-11-commission-001",
   "category": "UNMAPPED_REFERENCED_EVIDENCE",
   "summary": "Named FBI, CIA, employment, hotel, telephone, immigration, and interview records cited by the Commission for the Bayoumi encounter/knowledge question are not yet individually mapped in BlackIndex",
@@ -17,12 +18,24 @@
     "Commission source files may reference copies or summaries whose public-release labels differ from the original record titles"
   ],
   "recovery_paths": [
-    "scan local normalized EO 14040 containers for Bayoumi title/date combinations and exact quoted report titles",
-    "match candidate hits to segmentation boundaries and parent container SHA",
+    "review the Caysan Bin Don / Isamu Dyson candidate occurrences in FBI-2022-eo14040-2-c-001 at normalized text-page indices 60 and 118",
+    "match candidate hits to segmentation boundaries and parent container SHA before any child promotion",
     "compare recovered 2001-2004 FBI source records with the 2016 Operation Encore synthesis",
-    "search CIA/NARA/Commission releases for the cited CTC analytic report and other non-FBI source material"
+    "continue searching CIA/NARA/Commission releases for the cited CTC analytic report and other non-FBI source material"
   ],
   "status": "unresolved",
+  "recovery_status": "partially_localized_container_candidates",
+  "recovery_checkpoint": "2026-08-27-review-007-named-source-recovery",
+  "candidate_locations": [
+    {
+      "named_record_family": "Caysan Bin Don / Isamu Dyson interviews — 2001-10-08 and 2004-04-20",
+      "parent_doc_id": "FBI-2022-eo14040-2-c-001",
+      "parent_sha256": "c7960258fa7feff92d3386da7eb7b6cb0effa457780fd756cbf43ee5fc6985b6",
+      "text_page_indices": [60, 118],
+      "physical_page_verified": false,
+      "status": "candidate_boundary_review_required"
+    }
+  ],
   "named_records": [
     "FBI EC Omar Ahmed Al Bayoumi — 1999-06-07",
     "FBI LHM investigation of Bayoumi — 2002-04-15",
