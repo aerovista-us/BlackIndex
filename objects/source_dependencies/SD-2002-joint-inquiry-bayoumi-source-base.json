@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-2002-joint-inquiry-bayoumi-source-base",
+  "created_at": "2026-08-27T21:23:00+00:00",
+  "assertion_id": "joint-inquiry-bayoumi-assistance-source-base",
+  "source_id": "US CONGRESS-2002-9-11-joint-inquiry-001",
+  "depends_on": "FBI-written-responses-interviews-financial-records-and-investigative-documents",
+  "dependency_type": "congressional-synthesis-relies-on-FBI-records-for-Bayoumi-assistance-and-meeting-assessment",
+  "independence": "dependent",
+  "notes": "The public Joint Inquiry text attributes key Bayoumi propositions to FBI written responses, FBI agents, interviewed persons, and financial/bank records, including conflicting record interpretations concerning reimbursement. This edge applies to those support-network assertions and prevents the congressional report from being counted as independent corroboration of the underlying FBI material."
+}
