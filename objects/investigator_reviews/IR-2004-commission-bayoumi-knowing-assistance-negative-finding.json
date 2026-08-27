@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "object_type": "investigator_review",
+  "object_id": "IR-2004-commission-bayoumi-knowing-assistance-negative-finding",
+  "created_at": "2026-08-27T21:31:00+00:00",
+  "report_or_finding": "9/11 Commission Final Report Chapter 7 — Bayoumi knowledge/intent negative finding",
+  "investigator": "National Commission on Terrorist Attacks Upon the United States",
+  "employer_controller": "Independent bipartisan commission created by U.S. law",
+  "exact_wording": "we have seen no credible evidence that he believed in violent extremism or knowingly aided extremist groups.",
+  "scope": "Bayoumi's belief in violent extremism or knowing assistance to extremist groups; this finding does not deny that he provided documented practical assistance to Hazmi and Mihdhar.",
+  "records_reviewed": [
+    "FBI interviews and reports cited in Chapter 7 notes",
+    "telephone and subscriber records cited in Chapter 7 notes",
+    "Saudi Civil Aviation employment records provided by the FBI",
+    "CIA analytic reporting cited in Chapter 7 notes",
+    "Commission interviews"
+  ],
+  "records_unavailable": [
+    "The exact source chain for all later Operation Encore evidence was not part of the 2004 Commission record and remains to be mapped."
+  ],
+  "witnesses_omitted": [],
+  "workpapers_status": "Public report notes identify many underlying records, but not all workpapers/interview memoranda are reproduced in the report itself.",
+  "competing_findings": [
+    "The 2016 Operation Encore EC documents later FBI rereview of the encounter, communications, statements, and assistance network."
+  ],
+  "investigator_independence": null,
+  "access_to_evidence": null,
+  "method_transparency": null,
+  "reproducibility": null,
+  "conflict_exposure": null,
+  "notes": "Preserve the distinction between documented assistance and the separate proposition of knowing extremist assistance or plot knowledge.",
+  "conclusion_adopted_as_fact": false
+}
