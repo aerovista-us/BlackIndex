@@ -13,9 +13,11 @@ class Official911CloseoutResumeTests(unittest.TestCase):
         self.assertIn("GOVPUB-Y3-PURL-LPS53198.pdf", text)
         self.assertIn("GOVPUB-Y3-PURL-LPS53197.pdf", text)
 
-        # The failed run used one shared collection namespace for both sources.
-        # Recovery must keep separate canonical namespaces so immutable raw
-        # artifacts can never collide on the same generated document ID.
+        # The failed run used one shared collection namespace and a path-bearing
+        # source label. Recovery uses the canonical source token plus separate
+        # collection namespaces so immutable raw artifacts cannot collide.
+        self.assertEqual(text.count('--source "COMMISSION"'), 2)
+        self.assertNotIn('--source "9/11 Commission"', text)
         self.assertIn('9/11 Commission Terrorist Financing Staff Monograph', text)
         self.assertIn('9/11 Commission Terrorist Travel Staff Monograph', text)
         self.assertNotIn('--collection "9/11 Commission Staff Monographs"', text)
