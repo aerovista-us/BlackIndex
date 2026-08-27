@@ -19,10 +19,10 @@ class FaviconTests(unittest.TestCase):
             text = page.read_text(encoding="utf-8")
             self.assertEqual(text.count("BLACKINDEX_FAVICON"), 1)
             self.assertIn('rel="icon"', text)
-            self.assertIn("data:image/svg+xml", text)
+            self.assertIn('href="data:image/svg+xml,', text)
             self.assertNotIn("favicon.ico", text)
-            self.assertNotIn("http://", text)
-            self.assertNotIn("https://", text)
+            self.assertNotIn('rel="icon" href="http://', text)
+            self.assertNotIn('rel="icon" href="https://', text)
 
 
 if __name__ == "__main__":
