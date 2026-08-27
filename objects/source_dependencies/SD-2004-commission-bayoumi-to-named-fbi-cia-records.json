@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-2004-commission-bayoumi-to-named-fbi-cia-records",
+  "created_at": "2026-08-27T21:41:00+00:00",
+  "assertion_id": "commission-2004-bayoumi-knowledge-intent-finding-source-chain",
+  "source_id": "COMMISSION-2004-9-11-commission-001",
+  "depends_on": "FBI-CIA-Bayoumi-source-bundle-1999-2004",
+  "dependency_type": "commission-assessment-derived-from-named-interviews-record-checks-employment-records-and-intelligence-analysis",
+  "independence": "dependent",
+  "notes": "Commission Report Chapter 7 and Notes to Chapter 7 identify named upstream material for Bayoumi, including FBI EC 'Omar Ahmed Al Bayoumi' (June 7, 1999), FBI letterhead memorandum investigation of Bayoumi (Apr. 15, 2002), FBI EC/interview of Bayoumi (Sept. 17, 2003), Bayoumi interviews (Aug. 4-5, 2003 and Oct. 16-17, 2003), Caysan Bin Don/Isamu Dyson interviews, FBI recovery of hotel records (Jan. 15, 2002), Saudi Civil Aviation Authority employment records, FBI reporting on connections of San Diego PENTTBOM subjects to the Government of Saudi Arabia, telephone records, KSM interrogation reporting, INS passport records, and CIA analytic report 'Al-Qa'ida Travel Issues' CTC 2004-40002H (Nov. 14, 2003). The Commission's published judgment about Bayoumi's extremist knowledge/intent is therefore a synthesis of these sources, not an independent underlying observation."
+}
