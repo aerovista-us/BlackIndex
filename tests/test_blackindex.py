@@ -42,6 +42,12 @@ class BlackIndexTests(unittest.TestCase):
         self.assertEqual(blackindex.slugify("Family Jewels"), "family-jewels")
         self.assertEqual(blackindex.slugify("  JFK / Records  "), "jfk-records")
 
+    def test_source_token_is_path_safe(self):
+        self.assertEqual(blackindex.source_token("CIA"), "CIA")
+        self.assertEqual(blackindex.source_token("US Congress"), "US_CONGRESS")
+        self.assertEqual(blackindex.source_token("9/11 Commission"), "9_11_COMMISSION")
+        self.assertNotIn("/", blackindex.source_token("9/11 Commission"))
+
     def test_sha256(self):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "a.txt"
@@ -79,6 +85,50 @@ class BlackIndexTests(unittest.TestCase):
             self.assertEqual(data["artifact_url"], "https://example.test/source")
             self.assertTrue(Path(data["local_raw_path"]).exists())
             self.assertEqual(blackindex.cmd_intake(args), 3)
+
+    def test_path_bearing_source_label_cannot_escape_generated_paths(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td) / "vault"
+            source = Path(td) / "sample.txt"
+            source.write_text("staff monograph bytes", encoding="utf-8")
+            args = intake_args(
+                root=str(root), file=str(source), source="9/11 Commission",
+                collection="Staff Monographs", year="2004", title="Sample",
+            )
+            self.assertEqual(blackindex.cmd_intake(args), 0)
+            metadata = next((root / "metadata").glob("*.json"))
+            self.assertEqual(metadata.name, "9_11_COMMISSION-2004-staff-monographs-001.json")
+            data = json.loads(metadata.read_text(encoding="utf-8"))
+            raw = Path(data["local_raw_path"])
+            self.assertEqual(raw.parent.name, "staff-monographs")
+            self.assertEqual(raw.parent.parent.name, "9-11-commission")
+            self.assertEqual(raw.name, "9_11_COMMISSION-2004-staff-monographs-001.txt")
+
+    def test_legacy_space_bearing_metadata_stays_enumerable(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td) / "vault"
+            blackindex.ensure_layout(root)
+            legacy = root / "metadata" / "US CONGRESS-2002-9-11-joint-inquiry-001.json"
+            legacy.write_text(json.dumps({
+                "doc_id": "US CONGRESS-2002-9-11-joint-inquiry-001",
+                "sha256": "abc",
+            }), encoding="utf-8")
+            support = root / "metadata" / "schema-v1.json"
+            support.write_text(json.dumps({"schema_version": 1}), encoding="utf-8")
+            self.assertEqual([p.name for p in blackindex.metadata_files(root)], [legacy.name])
+
+    def test_orphan_raw_sequence_is_reserved(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td) / "vault"
+            blackindex.ensure_layout(root)
+            raw_dir = blackindex.raw_collection_dir(root, "COMMISSION", "Staff Monographs")
+            raw_dir.mkdir(parents=True, exist_ok=True)
+            orphan = raw_dir / "COMMISSION-2004-staff-monographs-001.pdf"
+            orphan.write_bytes(b"%PDF-orphan")
+            self.assertEqual(
+                blackindex.make_doc_id(root, "COMMISSION", "2004", "Staff Monographs"),
+                "COMMISSION-2004-staff-monographs-002",
+            )
 
     def test_verify_detects_tamper(self):
         with tempfile.TemporaryDirectory() as td:
