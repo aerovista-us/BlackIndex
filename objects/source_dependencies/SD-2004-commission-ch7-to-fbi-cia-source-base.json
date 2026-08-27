@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-2004-commission-ch7-to-fbi-cia-source-base",
+  "created_at": "2026-08-27T21:23:00+00:00",
+  "assertion_id": "commission-ch7-california-support-network-source-base",
+  "source_id": "COMMISSION-2004-9-11-commission-001",
+  "depends_on": "FBI-interviews-ECs-investigative-reports-telephone-records-and-CIA-analysis-cited-in-Chapter-7-notes",
+  "dependency_type": "chapter-7-support-network-synthesis-uses-underlying-FBI-and-CIA-records",
+  "independence": "dependent",
+  "notes": "The Commission Final Report's Chapter 7 notes for the Thumairy/Bayoumi/Hazmi-Mihdhar discussion cite FBI electronic communications, reports of investigation, interviews, telephone records, prepared statements, and CIA analytic reporting. This edge records source genealogy only. The Commission's synthesis remains a distinct institutional interpretation, but repeated factual propositions drawn from those records must not be counted as independent corroboration merely because they appear in the final report."
+}
