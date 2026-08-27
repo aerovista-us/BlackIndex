@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "object_type": "missing_evidence",
+  "object_id": "ME-COMMISSION-2004-abdullah-named-upstream-records",
+  "created_at": "2026-08-27T21:45:00+00:00",
+  "doc_id": "COMMISSION-2004-9-11-commission-001",
+  "category": "UNMAPPED_REFERENCED_EVIDENCE",
+  "summary": "Named FBI interviews and electronic communications cited by the Commission for Mohdar Abdullah's assistance and alleged advance-knowledge statements are not yet individually mapped in BlackIndex",
+  "referenced_by": "9/11 Commission Report, Chapter 7 and Notes to Chapter 7, especially notes 20-23",
+  "last_known_location": "FBI investigative files and Commission source files; some may be embedded in EO 14040 release containers already held locally",
+  "known_creator": "FBI / Commission source collection",
+  "likely_custodian": "FBI / NARA / Commission records custody depending on source",
+  "stated_reason_missing": "Not established as absent. Exact records have not yet been individually recovered and linked to the Commission assertions in BlackIndex.",
+  "potential_relevance": "Necessary to distinguish Abdullah's own statements, inmate hearsay, investigator assessments, and the Commission's inability to corroborate particular advance-knowledge accounts",
+  "alternative_explanations": [
+    "Relevant records may already be present in EO 14040 containers but remain unsegmented",
+    "The Commission may cite source-file labels that do not match later public-release titles"
+  ],
+  "recovery_paths": [
+    "scan local normalized EO 14040 containers for Abdullah/date combinations and witness names",
+    "recover the FBI EC Abdullah investigation dated 2004-05-19",
+    "recover the Charles Sabah Toma interview EC dated 2004-05-18",
+    "recover the May 17, 2004 FBI interview EC cited for alleged advance knowledge",
+    "compare each underlying statement version before treating later summaries as corroboration"
+  ],
+  "status": "unresolved",
+  "named_records": [
+    "FBI ROI/interview Mohdar Abdullah — 2001-09-22",
+    "FBI ROI/interview Mohdar Abdullah — 2002-01-15",
+    "FBI ROI/interview Mohdar Abdullah — 2002-07-23",
+    "FBI EC Abdullah investigation — 2004-05-19",
+    "FBI EC interview Charles Sabah Toma — 2004-05-18",
+    "FBI EC interview concerning Abdullah advance-knowledge claims — 2004-05-17"
+  ]
+}
