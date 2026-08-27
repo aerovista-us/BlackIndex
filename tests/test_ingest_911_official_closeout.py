@@ -28,6 +28,16 @@ class Official911CloseoutSprintTests(unittest.TestCase):
         self.assertIn("STOP GATE", text)
         self.assertIn("not evidence gaps", text)
 
+        # The operator should not have to copy verifier output back manually.
+        # A durable status-only run report is generated and pushed after each
+        # document's normal metadata/extraction publication.
+        self.assertIn("docs/run-reports/2026-08-27-911-official-closeout.md", text)
+        self.assertIn("BLACKINDEX_SPRINT_VERIFY_JSON", text)
+        self.assertIn("Verifier checked", text)
+        self.assertIn("CALL-911-OFFICIAL-CLOSEOUT", text)
+        self.assertIn("record 9/11 official closeout sprint result", text)
+        self.assertIn("pre-existing staged changes detected", text)
+
         # Keep UI generation on the same current path, including embedded favicon.
         self.assertIn("inject-record-context.py", text)
         self.assertIn("inject-research-session.py", text)
