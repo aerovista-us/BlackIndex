@@ -3,6 +3,7 @@
   "object_type": "missing_evidence",
   "object_id": "ME-COMMISSION-2004-abdullah-named-upstream-records",
   "created_at": "2026-08-27T21:45:00+00:00",
+  "updated_at": "2026-08-27T23:54:00+00:00",
   "doc_id": "COMMISSION-2004-9-11-commission-001",
   "category": "UNMAPPED_REFERENCED_EVIDENCE",
   "summary": "Named FBI interviews and electronic communications cited by the Commission for Mohdar Abdullah's assistance and alleged advance-knowledge statements are not yet individually mapped in BlackIndex",
@@ -13,17 +14,21 @@
   "stated_reason_missing": "Not established as absent. Exact records have not yet been individually recovered and linked to the Commission assertions in BlackIndex.",
   "potential_relevance": "Necessary to distinguish Abdullah's own statements, inmate hearsay, investigator assessments, and the Commission's inability to corroborate particular advance-knowledge accounts",
   "alternative_explanations": [
-    "Relevant records may already be present in EO 14040 containers but remain unsegmented",
+    "Relevant records may already be present in EO 14040 containers but remain unsegmented or use signatures not captured by the current recovery scan",
     "The Commission may cite source-file labels that do not match later public-release titles"
   ],
   "recovery_paths": [
-    "scan local normalized EO 14040 containers for Abdullah/date combinations and witness names",
+    "continue targeted EO 14040 searches for Abdullah/date combinations and witness names beyond the current exact-signature scan",
     "recover the FBI EC Abdullah investigation dated 2004-05-19",
     "recover the Charles Sabah Toma interview EC dated 2004-05-18",
     "recover the May 17, 2004 FBI interview EC cited for alleged advance knowledge",
     "compare each underlying statement version before treating later summaries as corroboration"
   ],
   "status": "unresolved",
+  "recovery_status": "citation_localized_only",
+  "recovery_checkpoint": "2026-08-27-review-007-named-source-recovery",
+  "candidate_locations": [],
+  "recovery_note": "The controlled 2026-08-27 scan found the named Abdullah source signatures in Commission citation text but did not locate an EO 14040 FBI-container candidate under the current signatures. This is not evidence that the underlying records are absent.",
   "named_records": [
     "FBI ROI/interview Mohdar Abdullah — 2001-09-22",
     "FBI ROI/interview Mohdar Abdullah — 2002-01-15",
