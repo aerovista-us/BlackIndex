@@ -2,50 +2,72 @@
 
 ## Status
 
-`PREPARED — acquisition/review gate`
+`ACTIVE — source-genealogy and wording-evolution pass started`
 
 This review closes the currently defined official-interpretation layer around the existing Operation Encore corpus before BlackIndex opens a new major research cluster.
 
 It does not render a final historical conclusion.
 
+## Acquisition gate — COMPLETE
+
+The controlled official-layer closeout and collision-safe resume are complete.
+
+Authoritative local verifier after the resume:
+
+- **36 checked**
+- **0 failures**
+- `ok: true`
+
+Durable run reports:
+
+- `docs/run-reports/2026-08-27-911-official-closeout.md`
+- `docs/run-reports/2026-08-27-911-official-closeout-resume.md`
+
+The two failed first-pass monograph intakes were recovered without deleting or overwriting the pre-existing immutable raw artifact. The recovery used canonical source `COMMISSION` plus separate collection namespaces.
+
 ## Source set
 
-### Already present
+### Congressional inquiry layer
 
 - `US CONGRESS-2002-9-11-joint-inquiry-001`
   - Joint Inquiry into Intelligence Community Activities Before and After the Terrorist Attacks of September 11, 2001 — declassified final report
   - early congressional inquiry / official interpretation layer
-  - substantive review still pending
+  - substantive review remains incomplete
 
-### Controlled closeout sprint
+### Commission layer
 
-Prepared in:
+- `COMMISSION-2004-9-11-commission-001`
+  - official U.S. Government edition of the 9/11 Commission Final Report
+  - adopted Commission report
+  - Chapter 7 is the principal current comparison focus for Hazmi / Mihdhar / Bayoumi / Thumairy
 
-`tools/ingest-phase2-911-official-closeout.sh`
+- `COMMISSION-2004-9-11-commission-terrorist-financing-staff-monograph-001`
+  - staff analytical monograph
+  - explicitly not Commissioner-approved text
+  - staff says evolving monograph material was used in staff statements and draft final-report sections
+  - staff also reports significant access to classified raw/finished intelligence, law-enforcement records, State/Treasury files, and interviews
 
-1. **9/11 Commission Final Report — official U.S. Government edition**
-   - GovInfo / GPO
-   - final Commission report
-   - includes Chapter 7 treatment of the California support network
+- `COMMISSION-2004-9-11-commission-terrorist-travel-staff-monograph-001`
+  - staff analytical monograph
+  - explicitly not Commissioner-approved text
+  - based on extensive agency records and more than 200 interviews
+  - some border-inspection source material reused prior DOJ OIG interviews that were available to Commission staff
 
-2. **Monograph on Terrorist Financing — Staff Report to the Commission**
-   - GovInfo-preserved government publication
-   - staff analytical layer
-   - not interchangeable with underlying bank/FBI/intelligence records
+### CIA accountability layer
 
-3. **9/11 and Terrorist Travel — Staff Report**
-   - GovInfo-preserved government publication
-   - staff analytical layer
-   - the monograph itself states that Commissioners had not approved the text and that it did not necessarily reflect their views
+- `CIA-2005-9-11-cia-accountability-001`
+  - CIA Office of Inspector General report
+  - official retrospective/accountability review
+  - image-only local PDF at intake; deliberate extraction path still required
+  - the released report explicitly states that its review focuses on Joint Inquiry findings relating to CIA
 
-4. **CIA OIG Report on CIA Accountability With Respect to the 9/11 Attacks**
-   - CIA Office of Inspector General
-   - official retrospective/accountability review
-   - explicitly reviews CIA-related Joint Inquiry findings and conclusions
+### Existing later FBI investigative layer
 
-### Existing later investigative layer
+- `FBI-2016-operation-encore-underlying-records-001`
+  - April 4, 2016 Operation Encore EC
+  - substantive first-pass extraction complete
+  - synthesis layer dependent on interviews, communications analysis, financial/logistical records, historical serials, source reporting, and liaison material
 
-- 2016 Operation Encore Electronic Communication
 - EO 14040 §2(b)(i) Part 1
 - EO 14040 §2(b)(i) Part 2
 - EO 14040 §2(c) Part 1
@@ -66,11 +88,111 @@ These sources must remain distinct:
 
 Repeated statements across these layers are not independent corroboration when they derive from the same underlying record.
 
-## Required comparison topics
+## Source genealogy — initial encoded pass
+
+The following durable dependency objects now exist:
+
+- `SD-2002-joint-inquiry-bayoumi-source-base`
+  - Joint Inquiry Bayoumi/support assertions → FBI written responses, interviews, financial records, and investigative documents
+
+- `SD-2004-commission-ch7-to-fbi-cia-source-base`
+  - Commission Chapter 7 California-support synthesis → FBI interviews/ECs/reports/telephone records plus CIA analytical material cited in the notes
+
+- `SD-2004-financing-monograph-source-base`
+  - financing monograph → classified intelligence, law-enforcement records, State/Treasury files, interviews, and shared Commission staff work
+
+- `SD-2004-travel-monograph-source-base`
+  - travel monograph → agency records, Commission interviews, prior DOJ OIG interviews, and shared Commission staff work
+
+- `SD-2005-cia-oig-to-joint-inquiry`
+  - CIA OIG accountability frame → Joint Inquiry findings relating to CIA
+
+Already-existing Operation Encore genealogy remains in force:
+
+- 2016 EC → underlying FBI serials/interviews/liaison/analytical products
+- 2021 closing EC → 2016 EC
+
+### Current graph interpretation
+
+The safe model is therefore not:
+
+`Joint Inquiry + Commission + CIA OIG + FBI EC = four independent confirmations`
+
+It is closer to:
+
+`underlying FBI / CIA / financial / telecom / interview / agency records`
+
+`→ Joint Inquiry synthesis`
+
+`→ Commission staff studies and adopted Commission synthesis`
+
+`→ CIA OIG review for CIA-related Joint Inquiry findings`
+
+and, on a partially overlapping later path:
+
+`underlying FBI serials / later interviews / communications / liaison / analytical products`
+
+`→ 2016 Operation Encore EC`
+
+`→ later FBI rereview / closing synthesis`
+
+Some upstream records overlap across the branches. The exact overlap is still being mapped.
+
+## Wording-evolution pass — started
+
+### Hazmi and Mihdhar — arrival and assistance
+
+The Commission Final Report places Hazmi and Mihdhar in Los Angeles on January 15, 2000 and says their first two weeks remain incompletely reconstructed. It explicitly treats advance assistance as plausible and says it did not credit KSM's denial that al Qaeda had agents in Southern California, while distinguishing that inference from proof of any particular helper's knowledge.
+
+This is important because BlackIndex must keep separate:
+
+`need for assistance` → `actual assistance` → `knowledge of the plot` → `direction by another actor or institution`
+
+The source record strongly supports that practical assistance occurred. Knowledge and direction remain separate propositions.
+
+### Omar al-Bayoumi — Joint Inquiry → Commission → 2016 FBI rereview
+
+The public Joint Inquiry records a more suspicious presentation of the February 2000 encounter: it attributes to FBI agents and written FBI responses the view that the restaurant meeting may not have been accidental, and it describes substantial assistance after the move to San Diego. It also preserves conflicting record interpretations about whether Hazmi and Mihdhar reimbursed the rent/deposit money.
+
+The 2004 Commission Final Report is more cautious on intentionality. It says it did not know whether the lunch encounter occurred by chance or design. It separately states that the Commission had seen no credible evidence that Bayoumi believed in violent extremism or knowingly aided extremist groups. At the same time, it documents concrete assistance: apartment search, lease help, co-signing, bank-account assistance, certified-check/deposit help, community introductions, and later logistical assistance.
+
+The 2016 FBI EC then reexamines the encounter, prior and later statements, communications analysis, and the assistance network. The EC is not treated as a final reversal of the Commission. It is evidence that the questions remained subject to later investigative analysis and that some evidentiary inputs changed or were revisited.
+
+Durable comparison object:
+
+- `SC-2004-2016-bayoumi-assistance-evolution`
+
+### Fahad al-Thumairy — Commission negative finding → later FBI rereview
+
+The Commission reported circumstantial reasons Thumairy was a logical person to investigate and documented problems with some of his denials about contacts. It nevertheless recorded a scoped negative finding: after exploring the available leads, the Commission said it had not found evidence that Thumairy provided assistance to Hazmi and Mihdhar.
+
+The 2016 FBI EC contains later Thumairy / King Fahad Mosque relationship and communications material and questions concerning possible prior knowledge or facilitation. Much of the surrounding detail remains redacted.
+
+This is not yet encoded as a contradiction. The correct question is whether later records or interviews materially changed the evidence set underlying the Commission's 2004 negative finding.
+
+Durable comparison object:
+
+- `SC-2004-2016-thumairy-assistance-evolution`
+
+### Financing — scope warning
+
+The Terrorist Financing staff monograph reports that extensive investigation found no substantial domestic source of financial support for the hijackers and separately states that it found no persuasive evidence that al Qaeda was financially sponsored by a foreign government. Those are staff findings with defined scope and source access, not universal statements that no foreign-linked assistance of any type occurred.
+
+The monograph also distinguishes al Qaeda's overall funding ecology from financing of the specific 9/11 plot. BlackIndex must not collapse:
+
+`al Qaeda funding` → `9/11 plot funding` → `domestic logistical assistance` → `government direction`
+
+into one financial-support claim.
+
+### Travel — source reuse warning
+
+The Terrorist Travel monograph is particularly useful for entry chronology, visa/passport issues, watchlisting, border processes, and information flow. Its source base mixes original Commission interviews with large agency-record collections and reused DOJ OIG interview material. Its repetition of a fact therefore cannot automatically be counted as independent corroboration of another report using the same upstream record.
+
+## Required comparison topics still open
 
 ### 1. Hazmi and Mihdhar — California arrival / early support
 
-Capture separately:
+Continue capturing separately:
 
 - established chronology;
 - source for chronology;
@@ -93,7 +215,7 @@ For every important statement record:
 
 ### 3. Fahad al-Thumairy
 
-Separate:
+Continue separating:
 
 - contact / association evidence;
 - institutional role;
@@ -174,26 +296,6 @@ For every important `no evidence`, `unable to substantiate`, `no credible eviden
 
 Never normalize these phrases into a generic statement of factual absence.
 
-## Source-dependency target graph
-
-The desired graph is not:
-
-`five official reports = five independent confirmations`
-
-It is:
-
-`underlying interview / serial / financial / telecom / liaison record`
-
-`→ congressional or Commission staff synthesis`
-
-`→ Commission final-report treatment`
-
-`→ CIA OIG review where applicable`
-
-`→ later FBI / Operation Encore synthesis and rereview`
-
-The same underlying record may feed multiple downstream documents.
-
 ## Record-integrity questions
 
 For each document family capture:
@@ -207,16 +309,27 @@ For each document family capture:
 - whether the public copy is complete or a release subset;
 - whether later releases alter the evidentiary picture.
 
-## Stop conditions
+The local run currently has uncommitted generated record-integrity objects for several 9/11 records. They should be reviewed/published as evidence objects deliberately rather than committed merely to clean the working tree.
 
-Do not open the next major corpus cluster until:
+## Gate status
 
-1. the controlled closeout sprint has run;
-2. local verifier result is recorded;
-3. each successfully ingested record has at least a review stub;
-4. source-class distinctions above are preserved;
-5. at least the Bayoumi / Thumairy / Hazmi-Mihdhar comparison is started;
-6. no document is counted as independent corroboration merely because it repeats an earlier official narrative.
+Completed:
+
+1. controlled closeout acquisition run;
+2. collision-safe resume;
+3. local verifier recorded at 36 / 0;
+4. review stubs exist for ingested records;
+5. source-class distinctions preserved;
+6. Bayoumi / Thumairy / Hazmi-Mihdhar comparison started;
+7. initial source dependencies encoded.
+
+Still required before opening the next major corpus cluster:
+
+1. deepen the source map from synthesis documents to named underlying serials / interviews where recoverable;
+2. capture the principal negative findings as attributed investigator-review objects with exact wording and scope;
+3. address the CIA OIG image-only PDF through a deliberate extraction/review path;
+4. resolve or explicitly inventory the orphan immutable raw artifact from the failed first-pass monograph namespace;
+5. verify no major comparison is being counted twice through shared upstream sources.
 
 ## Next cluster after gate
 
