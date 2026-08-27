@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "object_type": "missing_evidence",
+  "object_id": "ME-COMMISSION-2004-thumairy-named-upstream-records",
+  "created_at": "2026-08-27T21:43:00+00:00",
+  "doc_id": "COMMISSION-2004-9-11-commission-001",
+  "category": "UNMAPPED_REFERENCED_EVIDENCE",
+  "summary": "Named FBI interviews, electronic communications, visitor/apartment checks, and related records cited by the Commission for the Thumairy assistance question are not yet individually mapped in BlackIndex",
+  "referenced_by": "9/11 Commission Report, Chapter 7 and Notes to Chapter 7, especially notes 13-14",
+  "last_known_location": "FBI investigative files and Commission source files; some may be embedded in EO 14040 release containers already held locally",
+  "known_creator": "FBI / 9/11 Commission source collection; related State Department material also cited",
+  "likely_custodian": "FBI / NARA / Commission records custody depending on source",
+  "stated_reason_missing": "Not established as absent. Exact records have not yet been individually recovered and linked to the Commission assertions in BlackIndex.",
+  "potential_relevance": "Directly tests the scope and reproducibility of the Commission's Thumairy assistance finding and separates telephone/contact evidence from assistance/knowledge evidence",
+  "alternative_explanations": [
+    "The records may already exist inside the large EO 14040 FBI containers but remain unsegmented or indexed under variant titles",
+    "Commission copies may differ from public FBI release labels or contain source-file references not preserved in public-facing titles"
+  ],
+  "recovery_paths": [
+    "scan local normalized EO 14040 containers for exact title/date/name combinations",
+    "map candidate hits back to parent container SHA and text-page index",
+    "review candidate source boundaries before any child promotion",
+    "search Commission/NARA source-file releases if a named FBI record is not present in EO 14040 containers"
+  ],
+  "status": "unresolved",
+  "named_records": [
+    "FBI EC Fahad Al-Thumairy — 2002-09-04",
+    "FBI EC Fahad Althumairy — 2002-10-25",
+    "FBI EC Fahad Al-Thumairy — 2002-11-20",
+    "FBI ROI/interview Mohdar Abdullah — 2002-07-23",
+    "Qualid Moncef Benomrane FBI interviews — 2002-03-07, 2002-03-13, 2002-05-23",
+    "Fahad al-Thumairy interviews — 2004-02-23 through 2004-02-25",
+    "Ashour E. interview — 2004-05-20"
+  ]
+}
