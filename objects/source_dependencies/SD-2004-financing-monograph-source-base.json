@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-2004-financing-monograph-source-base",
+  "created_at": "2026-08-27T21:23:00+00:00",
+  "assertion_id": "terrorist-financing-monograph-source-base",
+  "source_id": "COMMISSION-2004-9-11-commission-terrorist-financing-staff-monograph-001",
+  "depends_on": "classified-raw-and-finished-intelligence-law-enforcement-State-Treasury-files-and-interviews",
+  "dependency_type": "staff-monograph-synthesis-built-from-multiple-government-record-and-interview-classes",
+  "independence": "partially-independent",
+  "notes": "The monograph states that Commission staff had significant access to highly classified raw and finished intelligence, reviewed law-enforcement, State Department, and Treasury files, and conducted extensive interviews. It also states that staff often relied on colleagues' work and that evolving study material fed staff statements and draft final-report sections. Treat the monograph as an analytical synthesis with some original staff investigation, not as an independent primary source for every factual proposition it contains."
+}
