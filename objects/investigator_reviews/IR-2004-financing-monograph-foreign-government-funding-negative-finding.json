@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "object_type": "investigator_review",
+  "object_id": "IR-2004-financing-monograph-foreign-government-funding-negative-finding",
+  "created_at": "2026-08-27T21:31:00+00:00",
+  "report_or_finding": "9/11 Commission Terrorist Financing Staff Monograph — foreign-government sponsorship negative finding",
+  "investigator": "9/11 Commission staff terrorist-financing team",
+  "employer_controller": "National Commission on Terrorist Attacks Upon the United States",
+  "exact_wording": "No persuasive evidence exists that al Qaeda was financially sponsored by any foreign government.",
+  "scope": "Commission staff's investigation of al Qaeda financing, principally from 1998 through the post-9/11 period; this is not equivalent to a finding that no foreign-linked individual, institution, or official ever provided non-financial assistance to any hijacker.",
+  "records_reviewed": [
+    "highly classified raw and finished intelligence",
+    "law-enforcement files",
+    "State Department files",
+    "Treasury Department files",
+    "interviews with government officials and non-government experts"
+  ],
+  "records_unavailable": [
+    "The monograph states it did not attempt a comprehensive survey of every known datum or every government action concerning al Qaeda financing."
+  ],
+  "witnesses_omitted": [],
+  "workpapers_status": "Published staff monograph summarizes a broad investigation; the complete underlying classified and agency record set is not reproduced in the public monograph.",
+  "competing_findings": [
+    "Other records may address logistical assistance, institutional relationships, charity oversight, or individual conduct; those propositions must not be collapsed into the narrower foreign-government financial-sponsorship finding."
+  ],
+  "investigator_independence": null,
+  "access_to_evidence": null,
+  "method_transparency": null,
+  "reproducibility": null,
+  "conflict_exposure": null,
+  "notes": "The monograph itself is staff work, not Commissioner-approved text. Preserve that source-class distinction whenever this negative finding is cited.",
+  "conclusion_adopted_as_fact": false
+}
