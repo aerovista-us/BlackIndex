@@ -28,8 +28,9 @@ class DashboardUtilityTests(unittest.TestCase):
                 self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
             text = page.read_text(encoding="utf-8")
             self.assertEqual(text.count("BLACKINDEX_UI_UTILITY"), 1)
-            for label in ("Work Queue", "Lineage", "Entities", "Unreviewed", "Missing refs", "Export record", "Resume FBI Review"):
+            for label in ("Work Queue", "Named Sources", "Lineage", "Entities", "Unreviewed", "Missing refs", "Export record", "Resume FBI Review"):
                 self.assertIn(label, text)
+            self.assertIn('/named-source-recovery.html', text)
             self.assertIn("data-bi-mode", text)
             self.assertIn("history.replaceState", text)
             self.assertIn("navigator.clipboard", text)
