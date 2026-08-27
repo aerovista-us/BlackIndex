@@ -24,16 +24,16 @@ run_one(){
   fi
 }
 
-# Recovery for the two staff monographs that collided in the shared
-# "9/11 Commission Staff Monographs" collection namespace. The immutable raw
-# file that already occupies -001 is intentionally left untouched. Each
-# monograph now gets a distinct canonical collection namespace so intake can
-# assign an unambiguous document ID without overwriting or guessing about the
-# prior orphan/local artifact.
+# Recovery for the two staff monographs that failed in the original shared
+# namespace. The original run also used a non-canonical source value containing
+# a slash ("9/11 Commission"), which can become path-bearing when used in a
+# generated document ID. This recovery uses the existing canonical source token
+# COMMISSION and gives each monograph a distinct collection namespace. Existing
+# immutable raw artifacts are intentionally left untouched for later audit.
 
 run_one "9/11 Commission Staff Monograph — Terrorist Financing (GovInfo preserved)" \
   "https://www.govinfo.gov/content/pkg/GOVPUB-Y3-PURL-LPS53198/pdf/GOVPUB-Y3-PURL-LPS53198.pdf" \
-  --source "9/11 Commission" \
+  --source "COMMISSION" \
   --collection "9/11 Commission Terrorist Financing Staff Monograph" \
   --year 2004 --document-date "2004-08-21" \
   --title "Monograph on Terrorist Financing — Staff Report to the 9/11 Commission" \
@@ -44,7 +44,7 @@ run_one "9/11 Commission Staff Monograph — Terrorist Financing (GovInfo preser
 
 run_one "9/11 Commission Staff Monograph — 9/11 and Terrorist Travel (GovInfo preserved)" \
   "https://www.govinfo.gov/content/pkg/GOVPUB-Y3-PURL-LPS53197/pdf/GOVPUB-Y3-PURL-LPS53197.pdf" \
-  --source "9/11 Commission" \
+  --source "COMMISSION" \
   --collection "9/11 Commission Terrorist Travel Staff Monograph" \
   --year 2004 --document-date "2004-08-21" \
   --title "9/11 and Terrorist Travel — Staff Report of the National Commission on Terrorist Attacks Upon the United States" \
@@ -103,7 +103,7 @@ lines = [
     f"- **Verifier ok:** `{verify.get('ok')}`",
     f"- **Verifier failures:** `{len(verify.get('failures') or [])}`",
     "",
-    "> Recovery note: the original shared collection namespace contained an existing immutable `-001` raw artifact with no usable metadata slot for these retries. This resume deliberately used distinct canonical collection namespaces and did not overwrite or delete that artifact.",
+    "> Recovery note: the first closeout run used a shared staff-monograph collection and the non-canonical source label `9/11 Commission`. This resume uses canonical source `COMMISSION` plus distinct collection namespaces. Existing immutable raw artifacts from the failed path are preserved and are not overwritten or deleted.",
     "",
     "## Durable records produced by this resume",
     "",
