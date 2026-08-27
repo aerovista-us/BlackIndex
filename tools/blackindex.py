@@ -23,7 +23,6 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ROOT = Path(os.environ.get("BLACKINDEX_ROOT", REPO_ROOT))
 BUFFER_SIZE = 1024 * 1024
 TEXT_EXTENSIONS = {".txt", ".md", ".csv", ".json", ".xml", ".html", ".htm"}
-DOC_METADATA_RE = re.compile(r"^[A-Z0-9_-]+-(?:[0-9]{4}|undated)-[a-z0-9-]+-[0-9]{3,}\.json$")
 
 
 def utc_now() -> str:
@@ -34,6 +33,17 @@ def slugify(value: str) -> str:
     value = value.lower().strip()
     value = re.sub(r"[^a-z0-9]+", "-", value)
     return value.strip("-") or "document"
+
+
+def source_token(value: str) -> str:
+    """Return a path-safe stable source token for generated document IDs.
+
+    Human-facing source labels may contain spaces or punctuation (for example
+    "US Congress"), but generated IDs and raw directory components must never
+    inherit path separators or whitespace from that label.
+    """
+    token = re.sub(r"[^A-Z0-9]+", "_", value.upper().strip()).strip("_")
+    return token or "SOURCE"
 
 
 def sha256_file(path: Path) -> str:
@@ -57,21 +67,28 @@ def ensure_layout(root: Path) -> None:
         (root / relative).mkdir(parents=True, exist_ok=True)
 
 
-def metadata_files(root: Path):
-    """Yield only ingested document metadata, never schemas/support JSON."""
-    metadata_dir = root / "metadata"
-    if not metadata_dir.exists():
-        return
-    for path in metadata_dir.glob("*.json"):
-        if DOC_METADATA_RE.match(path.name):
-            yield path
-
-
 def load_json(path: Path) -> dict:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         return {}
+
+
+def metadata_files(root: Path):
+    """Yield ingested document metadata by content, not filename spelling.
+
+    Early BlackIndex records include a small number of legacy document IDs with
+    spaces in the source segment. Content-based enumeration keeps those records
+    inside verify/manifest/dedup while future IDs are generated with source_token().
+    Support/schema JSON is ignored because it has no top-level doc_id.
+    """
+    metadata_dir = root / "metadata"
+    if not metadata_dir.exists():
+        return
+    for path in metadata_dir.glob("*.json"):
+        data = load_json(path)
+        if isinstance(data, dict) and data.get("doc_id"):
+            yield path
 
 
 def write_json(path: Path, data: dict) -> None:
@@ -90,22 +107,44 @@ def find_duplicate(root: Path, checksum: str) -> dict | None:
     return None
 
 
+def raw_collection_dir(root: Path, source: str, collection: str) -> Path:
+    return root / "source-vault/raw" / slugify(source) / slugify(collection)
+
+
+def _sequence_from_doc_id(doc_id: str, prefix: str) -> int | None:
+    if not doc_id.startswith(prefix):
+        return None
+    try:
+        return int(doc_id.rsplit("-", 1)[1])
+    except ValueError:
+        return None
+
+
 def next_sequence(root: Path, source: str, year: str, collection: str) -> int:
-    prefix = f"{source.upper()}-{year}-{slugify(collection)}-"
+    prefix = f"{source_token(source)}-{year}-{slugify(collection)}-"
     highest = 0
     for path in metadata_files(root):
-        doc_id = path.stem
-        if doc_id.startswith(prefix):
-            try:
-                highest = max(highest, int(doc_id.rsplit("-", 1)[1]))
-            except ValueError:
-                pass
+        seq = _sequence_from_doc_id(path.stem, prefix)
+        if seq is not None:
+            highest = max(highest, seq)
+
+    # Raw bytes are immutable and may survive an interrupted intake before
+    # metadata is written. Reserve those sequence numbers too so a retry never
+    # attempts to overwrite an orphaned-but-preserved raw artifact.
+    raw_dir = raw_collection_dir(root, source, collection)
+    if raw_dir.exists():
+        for path in raw_dir.iterdir():
+            if not path.is_file():
+                continue
+            seq = _sequence_from_doc_id(path.stem, prefix)
+            if seq is not None:
+                highest = max(highest, seq)
     return highest + 1
 
 
 def make_doc_id(root: Path, source: str, year: str, collection: str) -> str:
     seq = next_sequence(root, source, year, collection)
-    return f"{source.upper()}-{year}-{slugify(collection)}-{seq:03d}"
+    return f"{source_token(source)}-{year}-{slugify(collection)}-{seq:03d}"
 
 
 def safe_copy_immutable(source: Path, destination: Path) -> None:
@@ -208,7 +247,7 @@ def cmd_intake(args: argparse.Namespace) -> int:
     year = str(args.year or "undated")
     doc_id = make_doc_id(root, args.source, year, args.collection)
     ext = source_path.suffix.lower()
-    raw_dir = root / "source-vault/raw" / args.source.lower() / slugify(args.collection)
+    raw_dir = raw_collection_dir(root, args.source, args.collection)
     raw_path = raw_dir / f"{doc_id}{ext}"
     safe_copy_immutable(source_path, raw_path)
 
