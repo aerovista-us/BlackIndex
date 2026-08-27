@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-2004-travel-monograph-source-base",
+  "created_at": "2026-08-27T21:23:00+00:00",
+  "assertion_id": "terrorist-travel-monograph-source-base",
+  "source_id": "COMMISSION-2004-9-11-commission-terrorist-travel-staff-monograph-001",
+  "depends_on": "agency-records-Commission-interviews-prior-DOJ-OIG-interviews-and-colleague-work",
+  "dependency_type": "staff-travel-study-combines-original-interviews-with-reused-government-records-and-prior-interviews",
+  "independence": "partially-independent",
+  "notes": "The travel monograph identifies thousands of pages of records from State, INS/DHS, DOJ, FBI, CIA, and Defense plus more than 200 interviews. In its border-inspection analysis it also states that several inspectors had previously been interviewed by DOJ OIG and that the Commission possessed copies of those interviews. The monograph therefore contains both Commission-originated work and reused upstream material."
+}
