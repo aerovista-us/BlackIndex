@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "object_type": "statement_comparison",
+  "object_id": "SC-2004-2016-thumairy-assistance-evolution",
+  "created_at": "2026-08-27T21:23:00+00:00",
+  "topic": "Fahad al-Thumairy — possible assistance to Hazmi/Mihdhar",
+  "public_source": "COMMISSION-2004-9-11-commission-001",
+  "public_statement": "After reviewing the available leads, the Commission reported that it had not found evidence that Thumairy provided assistance to Hazmi and Mihdhar, while also describing circumstantial reasons he was a logical person to investigate and documenting contradictions in some of his denials about associates.",
+  "internal_source": "FBI-2016-operation-encore-underlying-records-001",
+  "internal_content": "The 2016 FBI EC includes Thumairy/King Fahad Mosque relationship and communications material and later investigative questions concerning possible prior knowledge or facilitation. Substantial surrounding detail is redacted, and the EC should be traced to its underlying interviews and communications products.",
+  "relationship": "later-investigative-rereview-of-a-question-on-which-the-Commission-recorded-a-scoped-negative-finding",
+  "notes": "Do not convert this into 'Commission disproved' or 'FBI proved.' The correct comparison is temporal and evidentiary: what records were available in 2004, what additional records or interviews were considered later, and whether the later material changes the scope of the earlier negative finding."
+}
