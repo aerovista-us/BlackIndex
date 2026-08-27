@@ -16,6 +16,8 @@ class NamedSourceRecoveryUITests(unittest.TestCase):
         text = MODULE_PATH.read_text(encoding="utf-8")
         self.assertIn("Candidate recovery only", text)
         self.assertIn("not verified physical PDF page numbers", text)
+        self.assertIn("EO 14040 target families", text)
+        self.assertIn("Citation/synthesis only", text)
         self.assertIn("named-source-recovery.html", text)
         self.assertIn("/blackindex-dashboard.html", text)
         self.assertNotIn("https://", text)
@@ -23,9 +25,31 @@ class NamedSourceRecoveryUITests(unittest.TestCase):
     def test_scan_absent_is_safe_empty_state(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
-            # Exercise the same report-loading contract used by the page.
             report = mod.load(root / "local/index/911-named-source-recovery.json", None)
             self.assertIsNone(report)
+
+    def test_hit_class_distinguishes_commission_from_eo14040(self):
+        kind, label = mod.hit_class({"doc_id": "COMMISSION-2004-9-11-commission-001", "source": "COMMISSION"})
+        self.assertEqual(kind, "CITATION_OR_SYNTHESIS")
+        self.assertIn("Commission", label)
+
+        kind, label = mod.hit_class({"doc_id": "FBI-2022-eo14040-2-c-001", "source": "FBI"})
+        self.assertEqual(kind, "EO14040_CONTAINER_CANDIDATE")
+        self.assertIn("EO 14040", label)
+
+    def test_target_classification_requires_eo14040_candidate_for_underlying_container_label(self):
+        citation_only = {
+            "candidates": [{"doc_id": "COMMISSION-2004-9-11-commission-001", "source": "COMMISSION"}]
+        }
+        self.assertEqual(mod.target_classification(citation_only), "CITATION_OR_SYNTHESIS_ONLY")
+
+        with_container = {
+            "candidates": [
+                {"doc_id": "COMMISSION-2004-9-11-commission-001", "source": "COMMISSION"},
+                {"doc_id": "FBI-2021-eo14040-2-b-i-001", "source": "FBI"},
+            ]
+        }
+        self.assertEqual(mod.target_classification(with_container), "UNDERLYING_CONTAINER_CANDIDATE")
 
     def test_candidate_contract_is_renderable(self):
         with tempfile.TemporaryDirectory() as td:
@@ -43,7 +67,7 @@ class NamedSourceRecoveryUITests(unittest.TestCase):
                     "label": "Named record",
                     "candidate_count": 1,
                     "candidates": [{
-                        "doc_id": "FBI-TEST-001",
+                        "doc_id": "FBI-2021-eo14040-2-b-i-001",
                         "source": "FBI",
                         "text_page_index": 2,
                         "physical_page_index": None,
@@ -55,7 +79,9 @@ class NamedSourceRecoveryUITests(unittest.TestCase):
             }
             path.write_text(json.dumps(payload), encoding="utf-8")
             loaded = mod.load(path, None)
-            self.assertEqual(loaded["targets"][0]["candidates"][0]["physical_page_index"], None)
+            candidate = loaded["targets"][0]["candidates"][0]
+            self.assertIsNone(candidate["physical_page_index"])
+            self.assertEqual(mod.hit_class(candidate)[0], "EO14040_CONTAINER_CANDIDATE")
 
 
 if __name__ == "__main__":
