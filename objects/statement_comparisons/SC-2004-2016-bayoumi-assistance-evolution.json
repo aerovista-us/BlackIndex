@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "object_type": "statement_comparison",
+  "object_id": "SC-2004-2016-bayoumi-assistance-evolution",
+  "created_at": "2026-08-27T21:23:00+00:00",
+  "topic": "Omar al-Bayoumi — first encounter with Hazmi/Mihdhar and later logistical assistance",
+  "public_source": "COMMISSION-2004-9-11-commission-001",
+  "public_statement": "The Commission reported that it could not determine whether the February 1, 2000 lunch encounter occurred by chance or design. It also reported no credible evidence that Bayoumi believed in violent extremism or knowingly aided extremist groups, while separately describing substantial housing and logistical assistance to Hazmi and Mihdhar and stating that the apartment deposit was reimbursed on the spot.",
+  "internal_source": "FBI-2016-operation-encore-underlying-records-001",
+  "internal_content": "The 2016 FBI EC reexamines the encounter, earlier and later statements, communications analysis, and forms of logistical assistance attributed to Bayoumi. The EC is itself a synthesis layer and requires mapping back to interviews, telephone records, financial records, leases, and other underlying serials before its propositions are treated as independently established.",
+  "relationship": "later-investigative-rereview-of-questions-on-which-the-Commission-recorded-scoped-negative-or-uncertain-findings",
+  "notes": "This is not encoded as a contradiction. The 2004 Commission finding is scoped to the evidence then available and to knowing extremist assistance; the 2016 FBI record documents continued/reopened investigative analysis. Compare the lowest-level shared source records before deciding whether any specific proposition materially changed."
+}
