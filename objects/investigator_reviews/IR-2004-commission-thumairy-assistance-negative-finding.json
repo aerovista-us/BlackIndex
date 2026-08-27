@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "object_type": "investigator_review",
+  "object_id": "IR-2004-commission-thumairy-assistance-negative-finding",
+  "created_at": "2026-08-27T21:31:00+00:00",
+  "report_or_finding": "9/11 Commission Final Report Chapter 7 — Thumairy assistance negative finding",
+  "investigator": "National Commission on Terrorist Attacks Upon the United States",
+  "employer_controller": "Independent bipartisan commission created by U.S. law",
+  "exact_wording": "we have not found evidence that Thumairy provided assistance to the two operatives.",
+  "scope": "Whether Fahad al-Thumairy provided assistance to Nawaf al-Hazmi and Khalid al-Mihdhar, based on the leads available to the Commission by publication in July 2004.",
+  "records_reviewed": [
+    "FBI electronic communications and reports cited in Chapter 7 notes",
+    "FBI and Commission interviews cited in Chapter 7 notes",
+    "telephone/contact records described in Chapter 7 notes"
+  ],
+  "records_unavailable": [
+    "The Commission stated that Hazmi and Mihdhar's activities during their first two weeks in the United States were not fully ascertained."
+  ],
+  "witnesses_omitted": [],
+  "workpapers_status": "Underlying Commission interview memoranda and cited agency records are only partly represented in the public final report; source-by-source mapping remains in progress.",
+  "competing_findings": [
+    "The 2016 Operation Encore EC records later FBI rereview of Thumairy-related contacts, communications, and possible facilitation questions."
+  ],
+  "investigator_independence": null,
+  "access_to_evidence": null,
+  "method_transparency": null,
+  "reproducibility": null,
+  "conflict_exposure": null,
+  "notes": "This is a scoped institutional negative finding, not a timeless factual assertion. Later investigative activity does not automatically negate it; the evidence sets must be compared.",
+  "conclusion_adopted_as_fact": false
+}
