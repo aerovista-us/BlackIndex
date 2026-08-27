@@ -51,6 +51,7 @@ SCRIPT = r'''
   bar.innerHTML=`
     <div class="bi-nav">
       <a href="/work-queue.html">Work Queue</a>
+      <a href="/named-source-recovery.html">Named Sources</a>
       <a href="/source-lineage.html">Lineage</a>
       <a href="/entities.html">Entities</a>
     </div>
