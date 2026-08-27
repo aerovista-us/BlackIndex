@@ -43,6 +43,10 @@ echo "== Work Queue UI generation =="
 python3 "$ROOT/tools/work-queue-ui.py" --root "$ROOT"
 
 echo
+echo "== Named Source Recovery UI generation =="
+python3 "$ROOT/tools/named-source-recovery-ui.py" --root "$ROOT"
+
+echo
 echo "== Evidence Map UI generation =="
 python3 "$ROOT/tools/evidence_map.py" --root "$ROOT" dashboard
 python3 "$ROOT/tools/fix-dashboard-html.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
