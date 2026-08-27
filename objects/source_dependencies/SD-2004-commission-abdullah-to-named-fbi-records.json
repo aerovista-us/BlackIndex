@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-2004-commission-abdullah-to-named-fbi-records",
+  "created_at": "2026-08-27T21:42:00+00:00",
+  "assertion_id": "commission-2004-mohdar-abdullah-support-and-advance-knowledge-source-chain",
+  "source_id": "COMMISSION-2004-9-11-commission-001",
+  "depends_on": "FBI-Mohdar-Abdullah-source-bundle-2001-2004",
+  "dependency_type": "commission-treatment-derived-from-interviews-electronic-communications-and-witness-reporting",
+  "independence": "dependent",
+  "notes": "Commission Report Chapter 7 and Notes to Chapter 7 identify named upstream records for Mohdar Abdullah, including FBI reports of investigation/interviews (Sept. 22, 2001; Jan. 15, 2002; July 23, 2002), FBI EC 'Abdullah investigation' (May 19, 2004), FBI EC interview of Charles Sabah Toma (May 18, 2004), an FBI EC interview dated May 17, 2004 concerning alleged advance knowledge, and other witness interviews. The Commission explicitly reports inconsistent inmate accounts and states that one account could not be corroborated. This object preserves that source dependency and does not adopt the inmate claims or the Commission's inability to corroborate them as independent historical fact."
+}
