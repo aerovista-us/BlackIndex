@@ -8,6 +8,7 @@ CALL_ID="CALL-911-CIA-OIG-EXEC-SUMMARY"
 PURL="https://purl.fdlp.gov/GPO/LPS93679"
 ACQ_STATUS="ACQUISITION_GAP"
 ACQ_RC=0
+RECONCILE_RC=0
 
 mkdir -p "$(dirname "$REPORT")"
 
@@ -36,10 +37,6 @@ else
 fi
 
 echo
-echo "== Reconcile living master ledger =="
-python3 "$ROOT/tools/reconcile-review-007-ledger.py" --root "$ROOT"
-
-echo
 echo "== Corpus verifier =="
 set +e
 VERIFY_JSON="$(python3 "$ROOT/tools/blackindex.py" --root "$ROOT" verify)"
@@ -47,8 +44,25 @@ VERIFY_RC=$?
 set -e
 printf '%s\n' "$VERIFY_JSON"
 
+CHECKED="$(python3 -c 'import json,sys; d=json.load(sys.stdin); print(d.get("checked", ""))' <<<"$VERIFY_JSON" 2>/dev/null || true)"
+FAIL_COUNT="$(python3 -c 'import json,sys; d=json.load(sys.stdin); f=d.get("failures") or []; print(len(f) if isinstance(f,list) else "")' <<<"$VERIFY_JSON" 2>/dev/null || true)"
+
+echo
+echo "== Reconcile living master ledger =="
+set +e
+if [[ -n "$CHECKED" && -n "$FAIL_COUNT" ]]; then
+  python3 "$ROOT/tools/reconcile-review-007-ledger.py" --root "$ROOT" --verifier-checked "$CHECKED" --verifier-failures "$FAIL_COUNT"
+else
+  python3 "$ROOT/tools/reconcile-review-007-ledger.py" --root "$ROOT"
+fi
+RECONCILE_RC=$?
+set -e
+if [[ "$RECONCILE_RC" -ne 0 ]]; then
+  echo "warning: living-ledger reconciliation failed (rc=$RECONCILE_RC); continuing so the durable run report is still written." >&2
+fi
+
 export BLACKINDEX_007C_VERIFY_JSON="$VERIFY_JSON"
-python3 - "$ROOT" "$REPORT" "$CALL_ID" "$PURL" "$ACQ_STATUS" "$ACQ_RC" <<'PY'
+python3 - "$ROOT" "$REPORT" "$CALL_ID" "$PURL" "$ACQ_STATUS" "$ACQ_RC" "$RECONCILE_RC" <<'PY'
 from __future__ import annotations
 import json, os, sys
 from datetime import datetime, timezone
@@ -60,6 +74,7 @@ call_id = sys.argv[3]
 purl = sys.argv[4]
 acq_status = sys.argv[5]
 acq_rc = int(sys.argv[6])
+reconcile_rc = int(sys.argv[7])
 verify = json.loads(os.environ.get("BLACKINDEX_007C_VERIFY_JSON", "{}"))
 
 records = []
@@ -80,6 +95,7 @@ lines = [
     f"- **Government persistent identifier:** `{purl}`",
     f"- **Acquisition status:** `{acq_status}`",
     f"- **Acquisition exit code:** `{acq_rc}`",
+    f"- **Ledger reconciliation exit code:** `{reconcile_rc}`",
     f"- **Verifier:** `{verify.get('checked', 'unknown')}` checked / `{len(verify.get('failures') or []) if isinstance(verify.get('failures'), list) else 'unknown'}` failures",
     "- **Third-party source substitution:** `false`",
     "- **OCR performed by this checkpoint:** `false`",
@@ -156,5 +172,8 @@ git -C "$ROOT" status --short
 
 if [[ "$VERIFY_RC" -ne 0 ]]; then
   exit "$VERIFY_RC"
+fi
+if [[ "$RECONCILE_RC" -ne 0 ]]; then
+  exit "$RECONCILE_RC"
 fi
 exit 0
