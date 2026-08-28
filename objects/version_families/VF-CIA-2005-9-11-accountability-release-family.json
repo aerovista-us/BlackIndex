@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "object_type": "version_family",
+  "object_id": "VF-CIA-2005-9-11-accountability-release-family",
+  "created_at": "2026-08-28T13:19:00+00:00",
+  "title": "CIA OIG 9/11 Accountability release family — full report and Executive Summary companion",
+  "doc_ids": [
+    "CIA-2005-9-11-cia-accountability-001",
+    "CIA-2005-9-11-cia-accountability-executive-summary-001"
+  ],
+  "relationship_scope": "companion/subset release family; not two byte-level versions of the same full-text artifact",
+  "release_chronology": [
+    {
+      "release": "Executive Summary",
+      "public_release_year": 2007,
+      "doc_id": "CIA-2005-9-11-cia-accountability-executive-summary-001",
+      "native_id": "GPO-LPS93679"
+    },
+    {
+      "release": "Redacted full OIG report",
+      "public_release_year": 2015,
+      "doc_id": "CIA-2005-9-11-cia-accountability-001",
+      "native_id": "C06184107"
+    }
+  ],
+  "notes": "The family preserves release chronology and comparison context. The Executive Summary is a subset/summary companion, not an independent evidentiary source and not a full-text surrogate for the complete report. Both preserved BlackIndex artifacts are image-only."
+}
