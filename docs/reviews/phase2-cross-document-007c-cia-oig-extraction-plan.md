@@ -2,25 +2,26 @@
 
 ## Status
 
-`ACTIVE — primary artifact preserved; release/version identity clarified; text extraction still requires page-image verification`
+`ACTIVE — full report + official 2007 Executive Summary companion preserved; both image-only; pivotal page-image verification is next`
 
-Primary BlackIndex record:
+Primary BlackIndex records:
 
-`CIA-2005-9-11-cia-accountability-001`
+- `CIA-2005-9-11-cia-accountability-001` — redacted full report
+- `CIA-2005-9-11-cia-accountability-executive-summary-001` — separately released Executive Summary companion
 
-Local intake verified the official CIA artifact by SHA-256, but `pdftotext` found no usable text layer. The record therefore remains a valid primary artifact with `normalization_status: pdf-no-text-layer`.
+Local intake verified both official artifacts by SHA-256, but `pdftotext` found no usable native text layer in either. Both therefore remain valid primary/official release artifacts with `normalization_status: pdf-no-text-layer`.
 
 This plan deliberately separates **artifact integrity** from **text convenience**.
 
 ## Non-negotiable rule
 
-Do not silently OCR the primary source during intake and do not replace the official CIA PDF with a third-party transcription.
+Do not silently OCR either official source during intake and do not replace either artifact with a third-party transcription.
 
-The official artifact remains primary evidence.
+The official artifacts remain the evidence layer.
 
 ## 2026-08-28 release/version checkpoint
 
-Review 007C verified that the BlackIndex artifact URL is the CIA Reading Room release:
+The BlackIndex full-report artifact is the CIA Reading Room release:
 
 `https://www.cia.gov/readingroom/docs/DOC_0006184107.pdf`
 
@@ -34,40 +35,36 @@ Official CIA release notice:
 
 `https://www.cia.gov/stories/story/cia-releases-declassified-documents-related-to-9-11-attacks/`
 
-This means the apparent searchable "2015 companion" discovered through public indexing is **not a second BlackIndex source artifact**. It is the same full-report CIA release already represented by `CIA-2005-9-11-cia-accountability-001`.
-
-Do not create a duplicate document record merely because a public search system exposes machine-readable/indexed text for the same CIA PDF.
-
-### 2007 executive-summary release remains a distinct companion target
-
-A Federal Depository Library Program/GPO catalog record identifies the separately released official executive summary under persistent identifier:
-
-`GPO/LPS93679`
-
-Catalog metadata describes it as:
-
-- United States Central Intelligence Agency, Inspector General;
-- June 2005;
-- approved for release August 2007;
-- redacted;
-- pages v-xxiii;
-- SuDoc `PREX 3.2:AT 8/EXEC.SUM.`.
-
-Persistent government identifier:
+The 2007 Executive Summary was subsequently acquired from the official FDLP/GPO persistent identifier:
 
 `https://purl.fdlp.gov/GPO/LPS93679`
 
-Congressional release context is independently documented in section 605 of the Implementing Recommendations of the 9/11 Commission Act of 2007, which required CIA to prepare and make publicly available a version of the Executive Summary declassified to the maximum extent possible consistent with national security.
+BlackIndex record:
 
-Official Senate statutory text:
+`CIA-2005-9-11-cia-accountability-executive-summary-001`
 
-`https://www.intelligence.senate.gov/2007/08/03/laws-implementing-recommendations-911-commission-act-2007/`
+SHA-256:
 
-The 2007 executive summary may therefore be ingested later as a **separate companion/release object**, never as a replacement for the 2015 full-report artifact.
+`4ad41550122f7a92090f4da7c4e03c60f0c671a324b8b070b6292d9034587bd2`
+
+The companion also has no usable native text layer. No OCR was performed.
+
+### Durable relationship encoding
+
+BlackIndex now records both:
+
+- `objects/source_dependencies/SD-2005-cia-oig-exec-summary-to-full-report.json`
+- `objects/version_families/VF-CIA-2005-9-11-accountability-release-family.json`
+
+The relationship is intentionally narrow:
+
+`Executive Summary companion/subset → same CIA OIG report lineage`
+
+It does **not** mean the two files are byte-level versions of the same full-text artifact, and it does **not** make them independent corroboration of each other.
 
 ## Search/index text policy
 
-Public search systems currently expose machine-readable text associated with the official CIA PDF even though BlackIndex's preserved artifact has no usable native text layer.
+Public search systems may expose machine-readable text associated with the official CIA PDFs even though BlackIndex's preserved artifacts have no usable native text layer.
 
 That indexed text may be used only as:
 
@@ -91,44 +88,38 @@ That makes it an official review layer, not independent proof of every underlyin
 
 ## Extraction strategy
 
-### Stage A — preserve primary artifact
+### Stage A — preserve official artifacts
 
-Already complete:
+Complete:
 
-- official CIA acquisition;
-- immutable local raw artifact;
+- official CIA full-report acquisition;
+- official FDLP/GPO Executive Summary acquisition;
+- immutable local raw artifacts;
 - SHA-256 provenance;
-- durable metadata/extraction stub;
-- local verifier clean;
-- record-integrity object generated locally.
+- durable metadata/extraction stubs;
+- local verifier clean at **37 / 0** after companion acquisition;
+- record-integrity sidecars generated locally;
+- no OCR during intake.
 
-No transformation should alter that artifact.
+No transformation should alter either artifact.
 
 ### Stage B — official release/version mapping
 
-Current state:
+Complete to the current milestone:
 
-- full 2005 OIG report, redacted CIA Reading Room release published in 2015: **represented in BlackIndex**;
-- 2007 redacted executive summary: **official companion target confirmed, not yet separately ingested**;
-- public search/index rendering of `DOC_0006184107.pdf`: **navigation derivative only, not a separate source**.
+- 2007 redacted Executive Summary: represented in BlackIndex;
+- 2015 redacted full-report CIA release: represented in BlackIndex;
+- companion/dependency relationship: encoded;
+- release family: encoded;
+- public search/index rendering: classified as navigation derivative only, not a separate source.
 
-If the FDLP/GPO persistent executive-summary URL is acquired successfully, ingest it as a separate companion record.
+Open release-integrity questions remain suitable for later targeted comparison:
 
-Suggested collection:
+- exact redaction differences between summary and full report;
+- whether later releases changed any redactions/pages;
+- whether the FDLP/GPO copy is byte-identical to CIA's original 2007 public copy or a preserved government reproduction.
 
-`9/11 CIA Accountability Executive Summary`
-
-Suggested source token:
-
-`CIA`
-
-Suggested relationship after successful ingest:
-
-`version_family / companion-release relationship`
-
-with explicit note that the executive summary is a subset/summary, not a full-text surrogate for the complete released report.
-
-### Stage C — use searchable transcriptions only as navigation aids
+### Stage C — use searchable text only as navigation
 
 Searchable reproductions or search-index text may help locate phrases or section headings, but they must not become the cited primary evidence layer.
 
@@ -142,14 +133,17 @@ Not permitted:
 
 ### Stage D — manual or vision-assisted page verification for pivotal passages
 
+This is the active next gate.
+
 For any pivotal CIA OIG finding used in Review 007:
 
-1. identify the passage using the official executive summary or a navigation transcription/index;
-2. inspect the corresponding page in the official CIA artifact;
+1. identify the candidate passage using a navigation transcription/index or document structure;
+2. inspect the corresponding page in the official full report and/or Executive Summary artifact;
 3. capture the physical PDF page/image location;
 4. record exact wording conservatively;
 5. note redactions that materially limit scope;
-6. classify the passage as OIG finding, Joint Inquiry quotation/paraphrase, underlying fact claim, or recommendation.
+6. classify the passage as OIG finding, Joint Inquiry quotation/paraphrase, underlying fact claim, or recommendation;
+7. when the same proposition appears in both releases, treat that as same-lineage repetition unless the comparison itself is the research object.
 
 ## Priority extraction topics
 
@@ -189,10 +183,10 @@ Before marking CIA OIG review complete, capture:
 - June 2005 preparation date;
 - August 2007 executive-summary release/approval chronology;
 - 2015 CIA release of the redacted full report;
-- relationship between the 2007 executive-summary artifact and the 2015 full-report release;
+- relationship between the 2007 Executive Summary artifact and the 2015 full-report release;
 - page count and redaction differences;
 - whether later CIA releases contain additional pages or reduced redactions;
-- whether the persistent GPO/FDLP copy is byte-identical to CIA's 2007 executive-summary release or merely a preserved companion copy.
+- whether the persistent GPO/FDLP copy is byte-identical to CIA's 2007 executive-summary public copy or a preserved government reproduction.
 
 ## OCR policy
 
@@ -207,15 +201,18 @@ If OCR is eventually required:
 - pivotal quotes require visual verification against the official page image;
 - never treat OCR uncertainty as source uncertainty.
 
+Whole-document OCR is not required for the current Review 007 gate.
+
 ## Gate contribution
 
-Review 007 can continue without completing full-document OCR. The minimum CIA OIG gate is:
+Review 007 can continue without completing full-document OCR. The current CIA OIG minimum gate is now:
 
 1. preserve source-dependency relationship to Joint Inquiry;
-2. preserve the 2007 executive-summary versus 2015 full-report release distinction;
-3. verify pivotal executive-summary findings against an official release/page image;
-4. encode negative/accountability findings as attributed investigator-review objects;
-5. record version/release limitations.
+2. preserve the 2007 Executive Summary versus 2015 full-report release distinction;
+3. preserve the Executive Summary → full-report companion/dependency relationship;
+4. verify pivotal findings against official page images;
+5. encode negative/accountability findings as attributed investigator-review objects;
+6. record remaining version/redaction limitations.
 
 ## Core rule
 
