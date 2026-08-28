@@ -28,6 +28,8 @@
 - CIA OIG 9/11 Accountability is acquired/published as `CIA-2005-9-11-cia-accountability-001`
 - Review 007 local named-source scan: **25 normalized documents / 4657 text-page chunks / 15 targets**
 - Review 007 localization result: **15/15 target families had a citation/synthesis hit; 2/15 also had EO 14040 FBI-container candidates; 13/15 remain citation-localized only**
+- Review 007 physical-page result: **4/4 exact physical-page mappings; 0 unresolved; no OCR/fuzzy matching**
+- Review 007 verified source bundle: **3/3 review slices ready; 0 boundary claims; 0 promotions**
 - Raw source artifacts remain local-only
 - GitHub stores metadata/provenance, reviewed extractions, evidence-map objects, lineage, schemas, governance, tooling, and controlled-run reports
 
@@ -80,7 +82,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Named-source recovery scanner | `COMPLETE` | read-only local normalized-text signature scanner; never promotes records or claims physical pages |
 | Named Source Recovery UI | `COMPLETE` | standalone searchable page; now separates Commission citation/synthesis hits from EO 14040 container candidates |
 | Review 007 one-command local checkpoint | `COMPLETE` | executed successfully; sanitized self-report published; verifier remained 36/0 |
-| Physical PDF page mapper | `QUEUED` | required before segment/text-page indices can be treated as physical pages |
+| Physical PDF page mapper | `COMPLETE` | Review 007 exact mapper verified 4/4 named-source positions against physical PDF pages with no OCR/fuzzy matching |
 | Capability Registry UI | `QUEUED` | waits on durable capability object family |
 | Discovery Inbox UI | `QUEUED` | waits on durable Discovery object workflow |
 
@@ -142,6 +144,9 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Review 007B shared-upstream risk register | `ACTIVE` | structural and proposition-level overcount risks explicitly recorded |
 | Review 007C CIA OIG extraction plan | `PREPARED` | preserve primary image-only artifact; official text-bearing companion preferred; OCR last-resort derivative |
 | Review 007D recovery interpretation | `ACTIVE` | durable interpretation separates citation localization from underlying-container recovery |
+| Review 007E physical-page gate | `COMPLETE` | 4/4 target positions exact-mapped to physical PDF pages; 0 unresolved; no OCR/fuzzy matching |
+| Review 007 verified source-image bundle | `COMPLETE` | 3/3 bounded review slices created only after every page in each range exact-matched the parent PDF |
+| Review 007 boundary diagnostic | `PREPARED` | structural before/range/after diagnostic ready; publishes no source text and cannot promote records |
 | Named upstream Thumairy source bundle | `ACTIVE` | Benomrane family has §2(b)(i) candidates at normalized text pages 173/175; core 2002 Thumairy ECs remain unmapped |
 | Named upstream Bayoumi source bundle | `ACTIVE` | Caysan Bin Don / Isamu Dyson family has §2(c) candidates at normalized text pages 60/118; other named Bayoumi records remain unmapped |
 | Named upstream Mohdar Abdullah source bundle | `ACTIVE` | current scan localized citations only; no EO 14040 exact-signature candidate yet |
