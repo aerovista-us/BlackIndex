@@ -34,6 +34,15 @@ class Review007LedgerReconcilerTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             mod.ensure_after("different", "anchor", "line")
 
+    def test_ensure_row_after_does_not_duplicate_advanced_status(self):
+        anchor = "| prior row | `COMPLETE` | x |"
+        existing = "| Review 007 boundary diagnostic | `COMPLETE` | already advanced |"
+        prepared = "| Review 007 boundary diagnostic | `PREPARED` | stale |"
+        text = f"{anchor}\n{existing}"
+        result = mod.ensure_row_after(text, anchor, "| Review 007 boundary diagnostic |", prepared)
+        self.assertEqual(result, text)
+        self.assertNotIn(prepared, result)
+
     def test_current_review007_outcomes_are_encoded(self):
         text = MODULE_PATH.read_text(encoding="utf-8")
         self.assertIn("CAND-0005 / CAND-0013 bracketed pending visual confirmation", text)
