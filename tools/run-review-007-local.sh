@@ -32,6 +32,7 @@ printf '%s\n' "$VERIFY_JSON"
 python3 - "$ROOT" "$OUT_DIR" "$REPORT" "$VERIFY_RC" "$VERIFY_JSON" <<'PY'
 from __future__ import annotations
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -44,6 +45,32 @@ verify = json.loads(sys.argv[5])
 recovery_path = root / "local/index/911-named-source-recovery.json"
 recovery = json.loads(recovery_path.read_text(encoding="utf-8")) if recovery_path.is_file() else {}
 generated_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+eo_re = re.compile(r"^FBI-(?:2021|2022)-eo14040-")
+
+
+def hit_class(cand: dict) -> str:
+    doc_id = str(cand.get("doc_id") or "")
+    source = str(cand.get("source") or "").upper()
+    if eo_re.match(doc_id):
+        return "EO14040_CONTAINER_CANDIDATE"
+    if source == "COMMISSION":
+        return "CITATION_OR_SYNTHESIS"
+    if doc_id.startswith("FBI-2016-operation-encore"):
+        return "LATER_FBI_SYNTHESIS"
+    return "OTHER_REFERENCE_CANDIDATE"
+
+
+def target_has_eo(target: dict) -> bool:
+    return any(hit_class(c) == "EO14040_CONTAINER_CANDIDATE" for c in target.get("candidates") or [])
+
+
+def target_has_any(target: dict) -> bool:
+    return bool(target.get("candidates") or [])
+
+
+targets = recovery.get("targets") or []
+eo14040_target_families = sum(1 for t in targets if target_has_eo(t))
+citation_or_synthesis_only = sum(1 for t in targets if target_has_any(t) and not target_has_eo(t))
 
 checkpoint = {
     "schema_version": 1,
@@ -53,7 +80,9 @@ checkpoint = {
     "verifier_exit_code": verify_rc,
     "named_source_recovery": {
         "target_count": recovery.get("target_count", 0),
-        "targets_with_candidates": recovery.get("targets_with_candidates", 0),
+        "targets_with_any_candidates": recovery.get("targets_with_candidates", 0),
+        "targets_with_eo14040_container_candidates": eo14040_target_families,
+        "targets_citation_or_synthesis_only": citation_or_synthesis_only,
         "scanned_documents": recovery.get("scanned_documents", 0),
         "scanned_text_pages": recovery.get("scanned_text_pages", 0),
         "physical_page_claim": False,
@@ -70,10 +99,12 @@ local_lines = [
     f"- Verifier: **{verify.get('checked')} checked / {len(verify.get('failures') or [])} failures**",
     f"- Verifier ok: `{verify.get('ok')}`",
     f"- Recovery targets: **{recovery.get('target_count', 0)}**",
-    f"- Targets with candidate hits: **{recovery.get('targets_with_candidates', 0)}**",
+    f"- Targets with any candidate hit: **{recovery.get('targets_with_candidates', 0)}**",
+    f"- Targets with EO 14040 container candidates: **{eo14040_target_families}**",
+    f"- Targets with citation/synthesis hits only: **{citation_or_synthesis_only}**",
     f"- Scanned normalized documents: **{recovery.get('scanned_documents', 0)}**",
     "",
-    "> This checkpoint does not promote records, change evidence status, or claim that text-page indices are physical PDF pages.",
+    "> This checkpoint does not promote records, change evidence status, or claim that text-page indices are physical PDF pages. A citation hit is not an underlying-record recovery.",
     "",
     "## Recovery outputs",
     "",
@@ -85,7 +116,7 @@ local_lines = [
     "",
     "## Next gate",
     "",
-    "Review candidate hits against source boundaries and physical pages before promoting any named record. A no-hit target remains UNMAPPED_REFERENCED_EVIDENCE, not proof that the record is absent.",
+    "Review EO 14040 container candidates against source boundaries and physical pages before promoting any named record. Citation-only targets remain UNMAPPED_REFERENCED_EVIDENCE, not proof that the record is absent.",
     "",
 ]
 (out / "checkpoint.md").write_text("\n".join(local_lines), encoding="utf-8")
@@ -103,27 +134,27 @@ report_lines = [
     f"- **Normalized documents scanned:** `{recovery.get('scanned_documents', 0)}`",
     f"- **Text-page chunks scanned:** `{recovery.get('scanned_text_pages', 0)}`",
     f"- **Recovery targets:** `{recovery.get('target_count', 0)}`",
-    f"- **Targets with candidate hits:** `{recovery.get('targets_with_candidates', 0)}`",
+    f"- **Targets with any candidate hit:** `{recovery.get('targets_with_candidates', 0)}`",
+    f"- **Targets with EO 14040 container candidates:** `{eo14040_target_families}`",
+    f"- **Targets with citation/synthesis hits only:** `{citation_or_synthesis_only}`",
     "- **Physical-page claims made:** `false`",
     "- **Evidence-state mutations:** `none`",
     "",
-    "> This is a recovery/run record, not a historical finding. Candidate hits are navigation leads only. Text-page indices are normalized-text/form-feed positions, not verified physical PDF pages.",
+    "> This is a recovery/run record, not a historical finding. A citation inside a synthesis document is not an underlying-record recovery. Text-page indices are normalized-text/form-feed positions, not verified physical PDF pages.",
     "",
     "## Candidate recovery summary",
     "",
 ]
 
-for target in recovery.get("targets", []):
+for target in targets:
     label = target.get("label") or target.get("target_id") or "Unnamed target"
     candidates = target.get("candidates") or []
-    report_lines += [f"### {label}", "", f"- Candidate count: **{len(candidates)}**"]
-    if not candidates:
-        report_lines += ["- Status: `NO_LOCAL_CANDIDATE_FOUND`", ""]
-        continue
-    report_lines.append("- Status: `CANDIDATE_RECOVERY_REVIEW_REQUIRED`")
+    target_status = "UNDERLYING_CONTAINER_CANDIDATE_REVIEW_REQUIRED" if target_has_eo(target) else ("CITATION_OR_SYNTHESIS_ONLY" if candidates else "NO_LOCAL_CANDIDATE_FOUND")
+    report_lines += [f"### {label}", "", f"- Candidate count: **{len(candidates)}**", f"- Status: `{target_status}`"]
     for cand in candidates:
         report_lines += [
             f"- Parent document: `{cand.get('doc_id')}`",
+            f"  - Hit class: `{hit_class(cand)}`",
             f"  - Source: `{cand.get('source') or ''}`",
             f"  - Parent SHA-256: `{cand.get('container_sha256') or ''}`",
             f"  - Text-page index: `{cand.get('text_page_index')}`",
@@ -140,7 +171,7 @@ report_lines += [
     "",
     "## Interpretation guard",
     "",
-    "A candidate hit does not establish that the complete cited record boundary was recovered. A no-hit result does not establish that the record is absent, destroyed, or withheld. Child promotion remains blocked until parent hash, source boundary, title/date/type, and physical-page evidence are reviewed under the existing FBI source safeguards.",
+    "A candidate hit does not establish that the complete cited record boundary was recovered. A Commission citation hit localizes the reference only. An EO 14040 container hit is a stronger recovery candidate, but child promotion remains blocked until parent hash, source boundary, title/date/type, and physical-page evidence are reviewed under the existing FBI source safeguards.",
     "",
 ]
 report_path.write_text("\n".join(report_lines), encoding="utf-8")
@@ -150,6 +181,8 @@ print(json.dumps({
     "checkpoint_markdown": str(out / "checkpoint.md"),
     "durable_report": str(report_path),
     "durable_report_contains_previews": False,
+    "targets_with_eo14040_container_candidates": eo14040_target_families,
+    "targets_citation_or_synthesis_only": citation_or_synthesis_only,
 }, indent=2))
 PY
 
