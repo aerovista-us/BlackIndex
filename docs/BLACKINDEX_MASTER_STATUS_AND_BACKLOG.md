@@ -146,7 +146,9 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Review 007D recovery interpretation | `ACTIVE` | durable interpretation separates citation localization from underlying-container recovery |
 | Review 007E physical-page gate | `COMPLETE` | 4/4 target positions exact-mapped to physical PDF pages; 0 unresolved; no OCR/fuzzy matching |
 | Review 007 verified source-image bundle | `COMPLETE` | 3/3 bounded review slices created only after every page in each range exact-matched the parent PDF |
-| Review 007 boundary diagnostic | `PREPARED` | structural before/range/after diagnostic ready; publishes no source text and cannot promote records |
+| Review 007 boundary diagnostic | `COMPLETE` | executed at 36/0; CAND-0005 and CAND-0013 require visual confirmation; Benomrane remains a segmentation-gap review |
+| Review 007F boundary hypotheses | `ACTIVE` | CAND-0005 and CAND-0013 may be bracketed by a next-record start but remain unconfirmed pending visual/source-image review |
+| Review 007F Benomrane expansion | `ACTIVE` | widened exact-page structural search seeks nearest strong record starts around pages 173/175; any emitted range is review-only |
 | Named upstream Thumairy source bundle | `ACTIVE` | Benomrane family has §2(b)(i) candidates at normalized text pages 173/175; core 2002 Thumairy ECs remain unmapped |
 | Named upstream Bayoumi source bundle | `ACTIVE` | Caysan Bin Don / Isamu Dyson family has §2(c) candidates at normalized text pages 60/118; other named Bayoumi records remain unmapped |
 | Named upstream Mohdar Abdullah source bundle | `ACTIVE` | current scan localized citations only; no EO 14040 exact-signature candidate yet |
