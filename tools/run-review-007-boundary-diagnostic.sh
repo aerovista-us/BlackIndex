@@ -4,6 +4,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 ROOT="${BLACKINDEX_ROOT:-$(cd -- "$SCRIPT_DIR/.." && pwd -P)}"
 LOCAL_JSON="$ROOT/local/index/911-review-007-boundary-diagnostic.json"
 REPORT="$ROOT/docs/run-reports/2026-08-27-review-007-boundary-diagnostic.md"
+LEDGER="$ROOT/docs/BLACKINDEX_MASTER_STATUS_AND_BACKLOG.md"
 mkdir -p "$(dirname "$REPORT")"
 
 echo "== Review 007 structural boundary diagnostic =="
@@ -104,18 +105,22 @@ print(json.dumps({
 }, indent=2))
 PY
 
+echo
+echo "== Reconcile living master ledger =="
+python3 "$ROOT/tools/reconcile-review-007-ledger.py" --root "$ROOT"
+
 PRESTAGED="$(git -C "$ROOT" diff --cached --name-only)"
 if [[ -n "$PRESTAGED" ]]; then
-  echo "warning: pre-existing staged changes detected; leaving Review 007 boundary report uncommitted:" >&2
+  echo "warning: pre-existing staged changes detected; leaving Review 007 boundary report and ledger uncommitted:" >&2
   printf '%s\n' "$PRESTAGED" >&2
 else
-  git -C "$ROOT" add -- "$REPORT"
-  if ! git -C "$ROOT" diff --cached --quiet -- "$REPORT"; then
-    git -C "$ROOT" commit -m "BlackIndex: record Review 007 boundary diagnostic" -- "$REPORT"
+  git -C "$ROOT" add -- "$REPORT" "$LEDGER"
+  if ! git -C "$ROOT" diff --cached --quiet -- "$REPORT" "$LEDGER"; then
+    git -C "$ROOT" commit -m "BlackIndex: record Review 007 boundary diagnostic" -- "$REPORT" "$LEDGER"
     git -C "$ROOT" push
-    echo "Published sanitized Review 007 boundary-diagnostic report."
+    echo "Published sanitized Review 007 boundary-diagnostic report and reconciled living ledger."
   else
-    echo "Review 007 boundary-diagnostic report unchanged; nothing new to publish."
+    echo "Review 007 boundary-diagnostic report/ledger unchanged; nothing new to publish."
   fi
 fi
 
@@ -124,6 +129,7 @@ echo "Review 007 boundary-diagnostic checkpoint complete."
 echo "No evidence-state mutation, confirmed boundary claim, or record promotion was performed."
 echo "Local diagnostic: $LOCAL_JSON"
 echo "Durable sanitized report: $REPORT"
+echo "Living ledger: $LEDGER"
 git -C "$ROOT" status --short
 
 if [[ "$VERIFY_RC" -ne 0 ]]; then
