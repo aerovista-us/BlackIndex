@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Build small source-PDF review artifacts for triaged FBI candidates.
 
-Review-only: this extracts heuristic candidate page ranges from immutable parent
-containers into local/review/source-bundles so a reviewer can confirm true
-record boundaries against the source images. It does not ingest or promote the
-extracted files.
+DEPRECATED PAGE ASSUMPTION: historical versions of this helper fed heuristic
+normalized-text page ranges directly to PDF extraction tools. BlackIndex no
+longer treats those ranges as physical PDF page numbers. The helper therefore
+fails closed unless a caller explicitly opts into the legacy unsafe behavior.
+
+Prefer the physical-page verification workflow before extracting source-image
+slices. This tool never ingests or promotes extracted files.
 """
 from __future__ import annotations
 
@@ -56,7 +59,18 @@ def main() -> int:
     ap.add_argument("--band", default="P0")
     ap.add_argument("--record-type", default="fd_302", help="Filter record_type_guess; empty means any")
     ap.add_argument("--limit", type=int, default=8)
+    ap.add_argument(
+        "--legacy-unsafe-heuristic-pages",
+        action="store_true",
+        help="Explicitly allow the historical behavior of treating heuristic normalized-text page ranges as physical PDF pages. Not recommended.",
+    )
     args = ap.parse_args()
+
+    if not args.legacy_unsafe_heuristic_pages:
+        raise RuntimeError(
+            "refusing heuristic text-page -> physical-PDF slicing; run the physical-page verification workflow first. "
+            "The --legacy-unsafe-heuristic-pages flag exists only for deliberate inspection of the historical behavior."
+        )
 
     root = Path(args.root).resolve()
     triage = Path(args.triage)
@@ -103,7 +117,7 @@ def main() -> int:
             "source_pdf": str(out),
             "source_pdf_sha256": sha256(out),
             "extraction_method": method,
-            "status": "REVIEW_ONLY_UNCONFIRMED_BOUNDARY",
+            "status": "REVIEW_ONLY_UNCONFIRMED_BOUNDARY_LEGACY_UNSAFE_PAGE_ASSUMPTION",
         })
 
     manifest_path = out_dir / "manifest.json"
