@@ -18,7 +18,7 @@
 
 ## Corpus checkpoint
 
-- Authoritative local verifier checkpoint: **36 checked / 0 failures** (`2026-08-27` official-closeout resume)
+- Authoritative local verifier checkpoint: **36 checked / 0 failures** (`2026-08-27` Review 007 named-source recovery)
 - Historical Milestone 1: **25 verified / 0 failures**
 - Operation Encore underlying-record acquisition: **4 / 4** large FBI artifacts acquired/resumed successfully
 - Joint Inquiry final report is acquired/published as `US CONGRESS-2002-9-11-joint-inquiry-001`
@@ -26,6 +26,8 @@
 - Terrorist Financing staff monograph is acquired/published as `COMMISSION-2004-9-11-commission-terrorist-financing-staff-monograph-001`
 - Terrorist Travel staff monograph is acquired/published as `COMMISSION-2004-9-11-commission-terrorist-travel-staff-monograph-001`
 - CIA OIG 9/11 Accountability is acquired/published as `CIA-2005-9-11-cia-accountability-001`
+- Review 007 local named-source scan: **25 normalized documents / 4657 text-page chunks / 15 targets**
+- Review 007 localization result: **15/15 target families had a citation/synthesis hit; 2/15 also had EO 14040 FBI-container candidates; 13/15 remain citation-localized only**
 - Raw source artifacts remain local-only
 - GitHub stores metadata/provenance, reviewed extractions, evidence-map objects, lineage, schemas, governance, tooling, and controlled-run reports
 
@@ -45,8 +47,9 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Classification chronology | `PARTIAL` | Methodology defined; encoded when source record supports it. |
 | Public vs Internal comparisons | `COMPLETE` | Statement-comparison tooling exists. |
 | Timeline evolution of official conclusions | `ACTIVE` | 9/11 official-layer comparison 007 active; Bayoumi/Thumairy evolution objects exist. |
-| Source genealogy / independence | `ACTIVE` | Report-level and named-source dependency maps now encoded; local source recovery scan is next gate. |
-| Shared-upstream / anti-double-counting discipline | `ACTIVE` | Review 007B risk register now separates narrative repetition from independent corroboration. |
+| Source genealogy / independence | `ACTIVE` | Report-level and named-source dependency maps encoded; local recovery scan now distinguishes citations from container candidates. |
+| Shared-upstream / anti-double-counting discipline | `ACTIVE` | Review 007B risk register separates narrative repetition from independent corroboration. |
+| Citation localization vs source recovery distinction | `COMPLETE` | 15/15 citation hits cannot be represented as 15 recovered source records; EO 14040 candidates are counted separately. |
 | Evidence Integrity | `PARTIAL` | Methodology locked; systematic digital/video/audio/physical records still expanding. |
 | Capability Registry | `QUEUED` | First-class durable capability object family still needed. |
 | Discovery Layer | `QUEUED` | First-class durable discovery workflow still needed. |
@@ -75,8 +78,8 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Embedded dashboard favicon | `COMPLETE` | data-URI SVG; no external favicon asset required |
 | FBI P0 Review Desk | `ACTIVE` | 27 P0 packets + source/boundary safeguards |
 | Named-source recovery scanner | `COMPLETE` | read-only local normalized-text signature scanner; never promotes records or claims physical pages |
-| Named Source Recovery UI | `COMPLETE` | standalone searchable local page; candidate hit and physical-page warnings preserved |
-| Review 007 one-command local checkpoint | `PREPARED` | scanner + audits + verifier + sanitized self-report in one command; local run still required |
+| Named Source Recovery UI | `COMPLETE` | standalone searchable page; now separates Commission citation/synthesis hits from EO 14040 container candidates |
+| Review 007 one-command local checkpoint | `COMPLETE` | executed successfully; sanitized self-report published; verifier remained 36/0 |
 | Physical PDF page mapper | `QUEUED` | required before segment/text-page indices can be treated as physical pages |
 | Capability Registry UI | `QUEUED` | waits on durable capability object family |
 | Discovery Inbox UI | `QUEUED` | waits on durable Discovery object workflow |
@@ -130,17 +133,18 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Individual child promotion | `HOLD` | do not claim promotion until source/page/boundary checks are satisfied |
 | Joint Inquiry final report | `PARTIAL` | acquired + published as `US CONGRESS-2002-9-11-joint-inquiry-001`; substantive review pending |
 | 9/11 Commission Chapter 7 standalone acquisition target | `SUPERSEDED` | retain as review focus; acquisition replaced by full official GovInfo final report |
-| 9/11 Commission Final Report — official government edition | `PARTIAL` | acquired/resumed as `COMMISSION-2004-9-11-commission-001`; Chapter 7 genealogy pass active |
+| 9/11 Commission Final Report — official government edition | `PARTIAL` | acquired/resumed; Chapter 7 genealogy pass active |
 | Terrorist Financing Staff Monograph | `PARTIAL` | acquired + published; normalized text available; principal negative finding encoded |
 | 9/11 and Terrorist Travel monograph | `PARTIAL` | acquired + published; normalized text available |
 | CIA IG 9/11 Accountability | `PARTIAL` | acquired + published; image-only primary PDF preserved; deliberate extraction plan 007C prepared |
-| Cross-document official-layer review 007 | `ACTIVE` | acquisition closed at 36/0; source genealogy, wording evolution, negative findings and anti-double-counting controls active |
-| Review 007A named-source recovery map | `ACTIVE` | named Thumairy/Bayoumi/Abdullah upstream records prioritized; local container scan pending |
+| Cross-document official-layer review 007 | `ACTIVE` | acquisition closed at 36/0; genealogy, wording evolution, negative findings and anti-double-counting controls active |
+| Review 007A named-source recovery map | `ACTIVE` | local scan complete: 15/15 any hits, 2/15 EO 14040 container-candidate families, 13/15 citation/synthesis only |
 | Review 007B shared-upstream risk register | `ACTIVE` | structural and proposition-level overcount risks explicitly recorded |
 | Review 007C CIA OIG extraction plan | `PREPARED` | preserve primary image-only artifact; official text-bearing companion preferred; OCR last-resort derivative |
-| Named upstream Thumairy source bundle | `ACTIVE` | dependency + `UNMAPPED_REFERENCED_EVIDENCE` object created; local recovery scan pending |
-| Named upstream Bayoumi source bundle | `ACTIVE` | dependency + `UNMAPPED_REFERENCED_EVIDENCE` object created; local recovery scan pending |
-| Named upstream Mohdar Abdullah source bundle | `ACTIVE` | dependency + `UNMAPPED_REFERENCED_EVIDENCE` object created; local recovery scan pending |
+| Review 007D recovery interpretation | `ACTIVE` | durable interpretation separates citation localization from underlying-container recovery |
+| Named upstream Thumairy source bundle | `ACTIVE` | Benomrane family has §2(b)(i) candidates at normalized text pages 173/175; core 2002 Thumairy ECs remain unmapped |
+| Named upstream Bayoumi source bundle | `ACTIVE` | Caysan Bin Don / Isamu Dyson family has §2(c) candidates at normalized text pages 60/118; other named Bayoumi records remain unmapped |
+| Named upstream Mohdar Abdullah source bundle | `ACTIVE` | current scan localized citations only; no EO 14040 exact-signature candidate yet |
 | Official-layer source dependency objects | `ACTIVE` | Joint Inquiry, Commission final, staff monographs, CIA OIG, Encore and named source bundles encoded in part |
 | Bayoumi statement evolution | `ACTIVE` | Commission 2004 vs FBI 2016 comparison object created; shared records still to map |
 | Thumairy statement evolution | `ACTIVE` | Commission scoped negative finding vs later FBI rereview comparison object created |
@@ -209,7 +213,9 @@ The local verifier remains authoritative for raw-corpus integrity.
 **Review gate:** `docs/reviews/phase2-cross-document-007-911-official-closeout.md`  
 **Named-source map:** `docs/reviews/phase2-cross-document-007a-911-named-source-recovery-map.md`  
 **Shared-upstream control:** `docs/reviews/phase2-cross-document-007b-shared-upstream-risk-register.md`  
-**CIA OIG extraction plan:** `docs/reviews/phase2-cross-document-007c-cia-oig-extraction-plan.md`
+**CIA OIG extraction plan:** `docs/reviews/phase2-cross-document-007c-cia-oig-extraction-plan.md`  
+**Named-source result analysis:** `docs/reviews/phase2-cross-document-007d-named-source-recovery-analysis.md`  
+**Named-source run report:** `docs/run-reports/2026-08-27-review-007-named-source-recovery.md`
 
 ### Final acquisition result
 
@@ -222,11 +228,31 @@ The local verifier remains authoritative for raw-corpus integrity.
 - Existing immutable artifact from the failed shared namespace was preserved, not overwritten or deleted
 - Core intake was hardened so future source labels and orphan raw slots cannot reproduce this class of collision
 
+### Named-source recovery result
+
+The controlled local Review 007 scan completed with **36 / 0** verifier status and no evidence-state mutation.
+
+- 25 normalized documents scanned
+- 4657 normalized text-page chunks scanned
+- 15 named source target families
+- 15 / 15 had at least one candidate occurrence somewhere in the corpus
+- 2 / 15 also had candidate occurrences inside EO 14040 FBI release containers
+- 13 / 15 were localized only through citation/synthesis text under the current signatures
+- 0 child records promoted
+- 0 physical-page claims made
+
+EO 14040 candidate families:
+
+- Caysan Bin Don / Isamu Dyson → `FBI-2022-eo14040-2-c-001`, normalized text pages 60 and 118
+- Qualid Moncef Benomrane → `FBI-2021-eo14040-2-b-i-001`, normalized text pages 173 and 175
+
+These are **candidate localizations**, not recovered child records. The remaining 13 source families remain `UNMAPPED_REFERENCED_EVIDENCE` rather than absent/destroyed.
+
 ### Source-genealogy result so far
 
 The closeout sources are explicitly prevented from being counted as independent confirmations merely because they are separate official publications.
 
-Encoded relationships now include:
+Encoded relationships include:
 
 - Joint Inquiry support-network assertions → underlying FBI records
 - Commission Chapter 7 → FBI/CIA source classes cited in its notes
@@ -239,21 +265,7 @@ Encoded relationships now include:
 - 2016 Operation Encore EC → underlying FBI serials/interviews/liaison/analysis
 - 2021 closing synthesis → 2016 EC
 
-Exact Git-backed searches did not locate the highest-priority named Commission source records as individually promoted records. Their state is therefore `UNMAPPED_REFERENCED_EVIDENCE`, **not** absent/destroyed; they may already be embedded in the local EO 14040 containers.
-
-### Local Review 007 checkpoint prepared
-
-`tools/run-review-007-local.sh` is the next controlled local step. It:
-
-1. scans local normalized records for the named source signatures;
-2. runs dependency and review-state audits;
-3. generates the Named Source Recovery UI;
-4. runs the full corpus verifier;
-5. writes local-only detailed recovery outputs;
-6. publishes a **sanitized** Git-backed run report containing target labels, parent document IDs/SHA-256s and text-page indices, but no normalized-text previews;
-7. performs no evidence-state mutation and no child promotion.
-
-A scanner hit remains a candidate until the source boundary and physical page are verified.
+A Commission citation is now explicitly treated as a **source address**, not independent corroboration or proof that the cited record has been recovered.
 
 ### Sprint / Review 007 stop gate
 
@@ -261,17 +273,18 @@ Do **not** count repeated statements across Joint Inquiry, Commission staff work
 
 ## Current operational order
 
-1. Run `tools/run-review-007-local.sh` on the local BlackIndex corpus; its sanitized report will self-publish if no unrelated files are already staged.
-2. Read the published named-source recovery report and map high-confidence parent-container hits; do not promote child records yet.
-3. Verify candidate source boundaries and physical pages before any child promotion.
-4. Continue negative-finding encoding with exact wording, scope, evidence access and competing later findings.
-5. Use Review 007B to audit shared-upstream source families before increasing corroboration strength.
-6. Advance Review 007C using an official text-bearing CIA OIG companion if available; do not replace the image-only primary artifact or silently OCR it.
-7. Review generated local record-integrity objects and publish them deliberately; do not commit them merely to clean the working tree.
-8. Inventory the preserved orphan immutable raw artifact from the failed first-pass staff-monograph namespace rather than deleting it.
-9. Implement the physical PDF page mapper before treating FBI segment/text indices as physical page citations.
-10. Once the 9/11 official-layer comparison gate is satisfied, default next corpus expansion is Operation LOOKING GLASS.
-11. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
+1. Review the two EO 14040 candidate families against their source boundaries: Caysan Bin Don / Isamu Dyson in §2(c), and Benomrane in §2(b)(i).
+2. Map those hits to the existing segmentation index and P0 packets where possible; do not promote yet.
+3. Verify physical PDF pages before using any text-page index as a source citation.
+4. Continue targeted recovery for the 13 citation-only named source families, especially the 2002 Thumairy ECs, Bayoumi interview/records set, Abdullah ECs, and CIA `Al-Qa'ida Travel Issues` report.
+5. Continue negative-finding encoding with exact wording, scope, evidence access and competing later findings.
+6. Use Review 007B to audit shared-upstream source families before increasing corroboration strength.
+7. Advance Review 007C using an official text-bearing CIA OIG companion if available; do not replace the image-only primary artifact or silently OCR it.
+8. Review the six generated local record-integrity files deliberately; do not commit them merely to clean the working tree.
+9. Inventory the preserved orphan immutable raw artifact from the failed first-pass staff-monograph namespace rather than deleting it.
+10. Implement the physical PDF page mapper before treating FBI segment/text indices as physical page citations.
+11. Once the 9/11 official-layer comparison gate is satisfied, default next corpus expansion is Operation LOOKING GLASS.
+12. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
 
 ## Completion logging rule
 
