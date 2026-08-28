@@ -20,9 +20,16 @@ class Review007LedgerReconcilerTests(unittest.TestCase):
         new = "| Physical PDF page mapper | `COMPLETE` | verified |"
         self.assertEqual(mod.replace_once(old, old, new), new)
 
-    def test_replace_once_fails_safe_if_marker_missing(self):
+    def test_replace_row_updates_advanced_status_by_identity(self):
+        text = "| Review 007 boundary diagnostic | `COMPLETE` | older wording |\n"
+        new = "| Review 007 boundary diagnostic | `COMPLETE` | canonical wording |"
+        result = mod.replace_row(text, "| Review 007 boundary diagnostic |", new)
+        self.assertEqual(result, new + "\n")
+
+    def test_replace_row_rejects_duplicate_identity(self):
+        text = "| A | `ACTIVE` | one |\n| A | `COMPLETE` | two |\n"
         with self.assertRaises(RuntimeError):
-            mod.replace_once("different text", "missing", "new")
+            mod.replace_row(text, "| A |", "| A | `COMPLETE` | canonical |")
 
     def test_ensure_after_is_idempotent(self):
         anchor = "anchor"
@@ -43,12 +50,21 @@ class Review007LedgerReconcilerTests(unittest.TestCase):
         self.assertEqual(result, text)
         self.assertNotIn(prepared, result)
 
+    def test_prefixed_line_update(self):
+        text = "- Authoritative local verifier checkpoint: **36 checked / 0 failures**\n"
+        updated = mod.replace_prefixed_line(
+            text,
+            "- Authoritative local verifier checkpoint:",
+            "- Authoritative local verifier checkpoint: **37 checked / 0 failures**",
+        )
+        self.assertIn("37 checked / 0 failures", updated)
+
     def test_current_review007_outcomes_are_encoded(self):
         text = MODULE_PATH.read_text(encoding="utf-8")
         self.assertIn("CAND-0005 / CAND-0013 bracketed pending visual confirmation", text)
         self.assertIn("Benomrane exact scan 138-210 found no strong boundary signals", text)
-        self.assertIn("2007 executive-summary vs 2015 full-report release distinction clarified", text)
-        self.assertIn("search/index text is navigation-only", text)
+        self.assertIn("official GPO/FDLP Executive Summary acquired", text)
+        self.assertIn("search/index text remains navigation-only", text)
         self.assertIn("boundary recovery is on HOLD", text)
 
     def test_reconciler_does_not_reference_evidence_object_paths(self):
