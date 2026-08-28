@@ -89,6 +89,23 @@ class Handler(SimpleHTTPRequestHandler):
             return str(self.dashboard_dir / "__blocked__")
         return str(candidate)
 
+    def do_GET(self):
+        if urllib.parse.urlparse(self.path).path == "/__blackindex_health":
+            payload = {
+                "ok": True,
+                "service": "blackindex-dashboard",
+                "schema_version": 1,
+            }
+            body = (json.dumps(payload, sort_keys=True) + "\n").encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "no-store")
+            self.end_headers()
+            self.wfile.write(body)
+            return
+        super().do_GET()
+
     def do_POST(self):
         if self.path != "/actions/resume-fbi-review":
             self.send_error(404)
@@ -132,6 +149,7 @@ def main() -> int:
 
     server = ThreadingHTTPServer((args.bind, args.port), Handler)
     print(f"BlackIndex dashboard: http://{args.bind}:{args.port}/blackindex-dashboard.html")
+    print(f"Health: http://{args.bind}:{args.port}/__blackindex_health")
     print(f"Resume FBI Review action: POST /actions/resume-fbi-review -> review desk :{args.review_port}")
     print("Serving local/dashboard with BlackIndex local actions. Ctrl-C to stop.")
     server.serve_forever()
