@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-2005-cia-oig-exec-summary-to-full-report",
+  "created_at": "2026-08-28T13:19:00+00:00",
+  "assertion_id": "cia-oig-executive-summary-companion-lineage",
+  "source_id": "CIA-2005-9-11-cia-accountability-executive-summary-001",
+  "depends_on": "CIA-2005-9-11-cia-accountability-001",
+  "dependency_type": "executive-summary-companion-subset-of-same-cia-oig-report-lineage",
+  "independence": "dependent",
+  "notes": "The 2007 Executive Summary is a separate official release artifact but a subset/summary in the same CIA OIG accountability-report lineage as the full report. It may be independently important for release/redaction chronology and wording comparison, but it must not be counted as independent corroboration of propositions stated in the full report or Joint Inquiry merely because it is a separate public document. Both BlackIndex artifacts are image-only; pivotal wording requires official page-image verification."
+}
