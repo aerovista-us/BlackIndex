@@ -27,6 +27,13 @@ def ensure_after(text: str, anchor: str, line: str) -> str:
     return text.replace(anchor, anchor + "\n" + line, 1)
 
 
+def ensure_row_after(text: str, anchor: str, row_key: str, line: str) -> str:
+    """Insert a table row only when no row with the same identity exists."""
+    if row_key in text:
+        return text
+    return ensure_after(text, anchor, line)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", required=True)
@@ -43,14 +50,14 @@ def main() -> int:
 
     anchor = "| Review 007D recovery interpretation | `ACTIVE` | durable interpretation separates citation localization from underlying-container recovery |"
     additions = [
-        "| Review 007E physical-page gate | `COMPLETE` | 4/4 target positions exact-mapped to physical PDF pages; 0 unresolved; no OCR/fuzzy matching |",
-        "| Review 007 verified source-image bundle | `COMPLETE` | 3/3 bounded review slices created only after every page in each range exact-matched the parent PDF |",
-        "| Review 007 boundary diagnostic | `PREPARED` | structural before/range/after diagnostic ready; publishes no source text and cannot promote records |",
+        ("| Review 007E physical-page gate |", "| Review 007E physical-page gate | `COMPLETE` | 4/4 target positions exact-mapped to physical PDF pages; 0 unresolved; no OCR/fuzzy matching |"),
+        ("| Review 007 verified source-image bundle |", "| Review 007 verified source-image bundle | `COMPLETE` | 3/3 bounded review slices created only after every page in each range exact-matched the parent PDF |"),
+        ("| Review 007 boundary diagnostic |", "| Review 007 boundary diagnostic | `PREPARED` | structural before/range/after diagnostic ready; publishes no source text and cannot promote records |"),
     ]
     cursor = anchor
-    for line in additions:
-        text = ensure_after(text, cursor, line)
-        cursor = line
+    for row_key, line in additions:
+        text = ensure_row_after(text, cursor, row_key, line)
+        cursor = line if line in text else cursor
 
     checkpoint_anchor = "- Review 007 localization result: **15/15 target families had a citation/synthesis hit; 2/15 also had EO 14040 FBI-container candidates; 13/15 remain citation-localized only**"
     text = ensure_after(
