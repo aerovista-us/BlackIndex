@@ -67,6 +67,15 @@ class Review007LedgerReconcilerTests(unittest.TestCase):
         self.assertIn("search/index text remains navigation-only", text)
         self.assertIn("boundary recovery is on HOLD", text)
 
+    def test_review007c1_and_007g_are_in_single_reconciler(self):
+        text = MODULE_PATH.read_text(encoding="utf-8")
+        self.assertIn("Review 007C1 CIA OIG pivotal-page navigation map", text)
+        self.assertIn("Review 007G Abdullah official FBI recovery", text)
+        self.assertIn("FBI-911-INV-2002-04-APR", text)
+        self.assertIn("FBI-911-INV-2004-05-MAY", text)
+        self.assertIn("July 23, 2002 ROI", text)
+        self.assertIn("May 19, 2004 EC", text)
+
     def test_reconciler_does_not_reference_evidence_object_paths(self):
         text = MODULE_PATH.read_text(encoding="utf-8")
         self.assertNotIn("objects/", text)
