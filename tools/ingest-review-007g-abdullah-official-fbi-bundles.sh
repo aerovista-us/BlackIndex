@@ -60,6 +60,9 @@ VERIFY_RC=$?
 set -e
 printf '%s\n' "$VERIFY_JSON"
 
+VERIFY_CHECKED="$(python3 -c 'import json,sys; print(json.load(sys.stdin).get("checked", ""))' <<<"$VERIFY_JSON" 2>/dev/null || true)"
+VERIFY_FAILURE_COUNT="$(python3 -c 'import json,sys; v=json.load(sys.stdin); print(len(v.get("failures") or []))' <<<"$VERIFY_JSON" 2>/dev/null || true)"
+
 FAIL_TEXT=""
 if (( ${#FAILURES[@]} )); then
   for failure in "${FAILURES[@]}"; do
@@ -74,7 +77,6 @@ python3 - "$ROOT" "$REPORT" "$CALL_ID" "$SUCCEEDED" "$VERIFY_RC" <<'PY'
 from __future__ import annotations
 import json
 import os
-import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -202,8 +204,9 @@ report.write_text("\n".join(lines), encoding="utf-8")
 print(report)
 PY
 
-# Publish only the sanitized run report. Existing unstaged local integrity files
-# do not block this. Pre-existing staged changes do, to avoid mixing unrelated work.
+# Publish the sanitized run report before any living-ledger bookkeeping. Existing
+# unstaged local integrity files do not block this. Pre-existing staged changes
+# do, to avoid mixing unrelated work.
 PRESTAGED="$(git -C "$ROOT" diff --cached --name-only)"
 if [[ -n "$PRESTAGED" ]]; then
   echo "warning: pre-existing staged changes detected; leaving Review 007G report uncommitted:" >&2
@@ -219,12 +222,54 @@ else
   fi
 fi
 
+# Bookkeeping is intentionally downstream of acquisition, verification, and the
+# durable run report. A ledger failure must never hide or invalidate a successful
+# corpus operation.
+echo
+echo "== Reconcile living master ledger =="
+RECON_RC=0
+if [[ -n "$VERIFY_CHECKED" && -n "$VERIFY_FAILURE_COUNT" ]]; then
+  set +e
+  python3 "$ROOT/tools/reconcile-review-007-ledger.py" \
+    --root "$ROOT" \
+    --verifier-checked "$VERIFY_CHECKED" \
+    --verifier-failures "$VERIFY_FAILURE_COUNT"
+  RECON_RC=$?
+  set -e
+else
+  RECON_RC=4
+  echo "warning: verifier JSON could not be summarized for ledger reconciliation." >&2
+fi
+
+if [[ "$RECON_RC" -ne 0 ]]; then
+  echo "warning: living-ledger reconciliation failed after acquisition/report handling (rc=$RECON_RC)." >&2
+  echo "The acquired records, verifier result, and durable run report remain valid." >&2
+else
+  PRESTAGED_LEDGER="$(git -C "$ROOT" diff --cached --name-only)"
+  if [[ -n "$PRESTAGED_LEDGER" ]]; then
+    echo "warning: staged changes appeared before ledger publication; leaving the reconciled master uncommitted:" >&2
+    printf '%s\n' "$PRESTAGED_LEDGER" >&2
+  else
+    git -C "$ROOT" add -- "$ROOT/docs/BLACKINDEX_MASTER_STATUS_AND_BACKLOG.md"
+    if ! git -C "$ROOT" diff --cached --quiet; then
+      git -C "$ROOT" commit -m "BlackIndex: reconcile Review 007G living ledger"
+      git -C "$ROOT" push
+      echo "Published reconciled Review 007G living ledger."
+    else
+      echo "Living ledger already reconciled; nothing new to publish."
+    fi
+  fi
+fi
+
 echo
 echo "Review 007G parent-bundle checkpoint complete."
 echo "No child promotion, OCR, or evidence-state mutation was performed."
 echo "Durable report: $REPORT"
+echo "Living ledger reconciliation exit code: $RECON_RC"
 git -C "$ROOT" status --short
 
+# Only corpus verification governs the sprint exit status. Ledger bookkeeping is
+# downstream and non-authoritative for corpus integrity.
 if [[ "$VERIFY_RC" -ne 0 ]]; then
   exit "$VERIFY_RC"
 fi
