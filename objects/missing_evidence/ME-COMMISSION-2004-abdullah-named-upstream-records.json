@@ -3,32 +3,59 @@
   "object_type": "missing_evidence",
   "object_id": "ME-COMMISSION-2004-abdullah-named-upstream-records",
   "created_at": "2026-08-27T21:45:00+00:00",
-  "updated_at": "2026-08-27T23:54:00+00:00",
+  "updated_at": "2026-08-29T00:00:00+00:00",
   "doc_id": "COMMISSION-2004-9-11-commission-001",
   "category": "UNMAPPED_REFERENCED_EVIDENCE",
-  "summary": "Named FBI interviews and electronic communications cited by the Commission for Mohdar Abdullah's assistance and alleged advance-knowledge statements are not yet individually mapped in BlackIndex",
+  "summary": "Named FBI interviews and electronic communications cited by the Commission for Mohdar Abdullah's assistance and alleged advance-knowledge statements are only partially recovered/mapped in BlackIndex",
   "referenced_by": "9/11 Commission Report, Chapter 7 and Notes to Chapter 7, especially notes 20-23",
-  "last_known_location": "FBI investigative files and Commission source files; some may be embedded in EO 14040 release containers already held locally",
+  "last_known_location": "FBI investigative files and Commission source files; official FBI Vault monthly release bundles now provide direct recovery paths for some May 2004 source records",
   "known_creator": "FBI / Commission source collection",
   "likely_custodian": "FBI / NARA / Commission records custody depending on source",
-  "stated_reason_missing": "Not established as absent. Exact records have not yet been individually recovered and linked to the Commission assertions in BlackIndex.",
+  "stated_reason_missing": "Not established as absent. Some source records have official FBI public-release candidates; other exact Commission-cited records remain individually unmapped.",
   "potential_relevance": "Necessary to distinguish Abdullah's own statements, inmate hearsay, investigator assessments, and the Commission's inability to corroborate particular advance-knowledge accounts",
   "alternative_explanations": [
-    "Relevant records may already be present in EO 14040 containers but remain unsegmented or use signatures not captured by the current recovery scan",
-    "The Commission may cite source-file labels that do not match later public-release titles"
+    "Relevant records may also be present in EO 14040 containers under different release labels",
+    "The Commission may cite source-file labels that do not match later public-release bundle titles",
+    "A monthly FBI release bundle may contain the cited EC without exposing the Commission's exact descriptive title in the public landing page"
   ],
   "recovery_paths": [
-    "continue targeted EO 14040 searches for Abdullah/date combinations and witness names beyond the current exact-signature scan",
-    "recover the FBI EC Abdullah investigation dated 2004-05-19",
-    "recover the Charles Sabah Toma interview EC dated 2004-05-18",
-    "recover the May 17, 2004 FBI interview EC cited for alleged advance knowledge",
+    "ingest and review the official FBI Vault May 2004 9/11 Investigation release bundle, which visibly contains ECs dated 2004-05-17 and 2004-05-18",
+    "ingest and review the official FBI Vault April 2002 9/11 Investigation release bundle for early Abdullah/PENTTBOM lineage context",
+    "continue targeted recovery for the exact FBI ROI interview of Mohdar Abdullah dated 2002-07-23",
+    "continue targeted recovery for the exact FBI EC Abdullah investigation dated 2004-05-19",
     "compare each underlying statement version before treating later summaries as corroboration"
   ],
   "status": "unresolved",
-  "recovery_status": "citation_localized_only",
-  "recovery_checkpoint": "2026-08-27-review-007-named-source-recovery",
+  "recovery_status": "official_fbi_release_candidates_located",
+  "recovery_checkpoint": "2026-08-29-review-007g-official-fbi-discovery",
   "candidate_locations": [],
-  "recovery_note": "The controlled 2026-08-27 scan found the named Abdullah source signatures in Commission citation text but did not locate an EO 14040 FBI-container candidate under the current signatures. This is not evidence that the underlying records are absent.",
+  "recovery_note": "Official FBI Vault discovery on 2026-08-29 located a 13-page May 2004 release bundle containing an EC dated 2004-05-18 whose synopsis is the Charles Sabah Toma interview and a separate EC beginning on physical PDF page 6 dated 2004-05-17 concerning information about Mohdar Abdullah. This directly overlaps Commission notes 22-23. A separate 12-page April 2002 FBI release bundle contains an early San Diego PENTTBOM EC and an FBI summary of a 2001-09-19 Mohdar Abdullah interview; it is useful upstream context but is not the Commission-cited 2002-07-23 ROI. The exact 2002-07-23 ROI and 2004-05-19 Abdullah EC remain unresolved unless later source review proves otherwise.",
+  "official_public_release_candidates": [
+    {
+      "source": "FBI Vault",
+      "title": "9/11 Investigation 2004 05(May)",
+      "url": "https://vault.fbi.gov/9-11%20Commission%20Report/9-11-investigation-2004-05-may",
+      "page_count": 13,
+      "observed_source_records": [
+        "FBI EC dated 2004-05-18 — Charles Sabah Toma interview",
+        "FBI EC dated 2004-05-17 — information concerning Mohdar Abdullah / alleged advance-knowledge statements"
+      ],
+      "recovery_value": "direct candidate for Commission notes 22-23",
+      "ingest_status": "prepared"
+    },
+    {
+      "source": "FBI Vault",
+      "title": "9/11 Investigation 2002 04(Apr)",
+      "url": "https://vault.fbi.gov/9-11%20Commission%20Report/9-11-investigation-2002-04-apr/",
+      "page_count": 12,
+      "observed_source_records": [
+        "FBI PENTTBOM EC dated 2002-04-11",
+        "summary of FBI interview of Mohdar Abdullah dated 2001-09-19"
+      ],
+      "recovery_value": "official upstream lineage context; not the exact 2002-07-23 Commission-cited ROI",
+      "ingest_status": "prepared"
+    }
+  ],
   "named_records": [
     "FBI ROI/interview Mohdar Abdullah — 2001-09-22",
     "FBI ROI/interview Mohdar Abdullah — 2002-01-15",
