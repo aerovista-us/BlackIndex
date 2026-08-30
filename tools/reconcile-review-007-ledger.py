@@ -8,6 +8,7 @@ by stable row identity rather than by requiring an exact obsolete status string.
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 
 
@@ -58,6 +59,19 @@ def replace_prefixed_line(text: str, prefix: str, new_line: str, *, required: bo
         raise RuntimeError(f"duplicate ledger lines found for: {prefix}")
     lines[matches[0]] = new_line
     return "\n".join(lines) + ("\n" if text.endswith("\n") else "")
+
+
+def metadata_native_ids(root: Path) -> set[str]:
+    ids: set[str] = set()
+    for path in sorted((root / "metadata").glob("*.json")):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        native = data.get("native_id")
+        if isinstance(native, str) and native:
+            ids.add(native)
+    return ids
 
 
 def main() -> int:
@@ -115,6 +129,12 @@ def main() -> int:
         "| Review 007C CIA OIG extraction plan |",
         "| Review 007C CIA OIG extraction plan | `ACTIVE` | full report and 2007 official Executive Summary companion acquired; both image-only; search/index text remains navigation-only; pivotal page-image verification pending |",
     )
+    text = ensure_row_after(
+        text,
+        "| Review 007C CIA OIG extraction plan | `ACTIVE` | full report and 2007 official Executive Summary companion acquired; both image-only; search/index text remains navigation-only; pivotal page-image verification pending |",
+        "| Review 007C1 CIA OIG pivotal-page navigation map |",
+        "| Review 007C1 CIA OIG pivotal-page navigation map | `PREPARED` | seven Executive Summary page-image targets narrowed to v-vii and xiii-xvi; physical-page correspondence remains to be visually verified before extraction |",
+    )
     text = replace_row(
         text,
         "| Review 007 boundary diagnostic |",
@@ -141,6 +161,46 @@ def main() -> int:
         "| Named upstream Bayoumi source bundle | `ACTIVE` | CAND-0005 (58-63; anchor 60) and CAND-0013 (116-122; anchor 118) are physically verified/bracketed hypotheses pending visual confirmation; other Bayoumi records remain unmapped |",
     )
 
+    native_ids = metadata_native_ids(root)
+    april_acquired = "FBI-911-INV-2002-04-APR" in native_ids
+    may_acquired = "FBI-911-INV-2004-05-MAY" in native_ids
+    both_abdullah_bundles = april_acquired and may_acquired
+
+    text = replace_row(
+        text,
+        "| Named upstream Mohdar Abdullah source bundle |",
+        (
+            "| Named upstream Mohdar Abdullah source bundle | `ACTIVE` | official FBI April 2002 and May 2004 parent bundles acquired; May 17/18 records require source-boundary review; exact July 23, 2002 ROI and May 19, 2004 EC remain unresolved |"
+            if both_abdullah_bundles
+            else "| Named upstream Mohdar Abdullah source bundle | `ACTIVE` | official FBI April 2002 and May 2004 parent release candidates located; May 2004 visibly overlaps Commission notes 22-23; ingest prepared; exact July 23, 2002 ROI and May 19, 2004 EC remain unresolved |"
+        ),
+    )
+    text = ensure_row_after(
+        text,
+        (
+            "| Named upstream Mohdar Abdullah source bundle | `ACTIVE` | official FBI April 2002 and May 2004 parent bundles acquired; May 17/18 records require source-boundary review; exact July 23, 2002 ROI and May 19, 2004 EC remain unresolved |"
+            if both_abdullah_bundles
+            else "| Named upstream Mohdar Abdullah source bundle | `ACTIVE` | official FBI April 2002 and May 2004 parent release candidates located; May 2004 visibly overlaps Commission notes 22-23; ingest prepared; exact July 23, 2002 ROI and May 19, 2004 EC remain unresolved |"
+        ),
+        "| Review 007G Abdullah official FBI recovery |",
+        (
+            "| Review 007G Abdullah official FBI recovery | `PARTIAL` | both official FBI parent release bundles acquired; child boundaries/duplicate-release analysis pending |"
+            if both_abdullah_bundles
+            else "| Review 007G Abdullah official FBI recovery | `PREPARED` | two official FBI Vault parent bundles identified and controlled ingest script ready; no child promotion authorized |"
+        ),
+    )
+    if both_abdullah_bundles:
+        text = replace_row(
+            text,
+            "| Review 007G Abdullah official FBI recovery |",
+            "| Review 007G Abdullah official FBI recovery | `PARTIAL` | both official FBI parent release bundles acquired; child boundaries/duplicate-release analysis pending |",
+        )
+        text = ensure_after(
+            text,
+            "- Review 007C companion result: **official GPO/FDLP Executive Summary acquired; image-only; no OCR performed**",
+            "- Review 007G Abdullah parent-bundle result: **official FBI April 2002 + May 2004 release bundles acquired; exact child-record identity/boundaries remain under review**",
+        )
+
     # 007C companion acquisition is durable once its metadata record exists.
     companion = root / "metadata/CIA-2005-9-11-cia-accountability-executive-summary-001.json"
     if companion.is_file():
@@ -156,10 +216,11 @@ def main() -> int:
         )
 
     if args.verifier_checked is not None and args.verifier_failures is not None:
+        checkpoint_label = "Review 007G Abdullah official FBI parent-bundle sprint" if both_abdullah_bundles else "Review 007C CIA OIG Executive Summary companion"
         text = replace_prefixed_line(
             text,
             "- Authoritative local verifier checkpoint:",
-            f"- Authoritative local verifier checkpoint: **{args.verifier_checked} checked / {args.verifier_failures} failures** (`2026-08-28` Review 007C CIA OIG Executive Summary companion)",
+            f"- Authoritative local verifier checkpoint: **{args.verifier_checked} checked / {args.verifier_failures} failures** (`2026-08-29` {checkpoint_label})",
         )
         text = replace_row(
             text,
