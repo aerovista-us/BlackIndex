@@ -21,7 +21,14 @@ class Review007GAbdullahIngestTests(unittest.TestCase):
         self.assertNotIn("ocrmypdf", text)
         self.assertNotIn("promote-candidate", text)
         self.assertNotIn("--apply", text)
-        self.assertNotIn("reconcile-review-007-ledger.py", text)
+
+    def test_ledger_reconciliation_is_after_durable_report_publication(self):
+        text = SCRIPT.read_text(encoding="utf-8")
+        published = text.index("Published sanitized Review 007G run report.")
+        reconciler = text.index("reconcile-review-007-ledger.py")
+        self.assertGreater(reconciler, published)
+        self.assertIn("The acquired records, verifier result, and durable run report remain valid.", text)
+        self.assertIn("Only corpus verification governs the sprint exit status", text)
 
     def test_report_preserves_unresolved_exact_records(self):
         text = SCRIPT.read_text(encoding="utf-8")
