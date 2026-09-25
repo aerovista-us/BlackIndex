@@ -100,3 +100,9 @@ python3 tools/evidence_map.py publish --push
 ```
 
 The generated dashboard is written beneath `local/` and remains local-only because it may embed normalized text excerpts.
+
+
+### `research_classifications/`
+Durable epistemic state for a document, assertion, source, artifact, discovery, or capability. Supported states are `canon`, `field_note`, `apocrypha`, `pseudepigrapha`, `deuterocanon`, `fragment`, `rejected`, and `superseded`.
+
+Classification is deliberately separate from the underlying evidence object. Preservation does not imply acceptance, and a state change never rewrites source history. Every transition is recorded in `promotion_history`; authenticity and attribution remain separate fields so doubtful authorship is not confused with doubtful content.
