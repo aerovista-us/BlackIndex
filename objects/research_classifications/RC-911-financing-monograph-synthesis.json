@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-911-financing-monograph-synthesis",
+  "created_at": "2026-09-25",
+  "subject_type": "assertion",
+  "subject_id": "terrorist-financing-monograph-source-base",
+  "canonical_status": "deuterocanon",
+  "reason": "The financing monograph is an official Commission staff synthesis built from classified intelligence, law-enforcement, State Department and Treasury files, interviews, and some Commission-originated work. Its institutional findings are preserved without treating every proposition as independently corroborated.",
+  "review_required": true,
+  "authenticity_status": null,
+  "attribution_status": "attributed-to-9-11-Commission-staff",
+  "provenance_status": "mapped",
+  "corroboration_status": "mixed-upstream-and-original-staff-work",
+  "source_independence": "partially-independent",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-09-25",
+      "reason": "Official staff analysis is retained as an attributed institutional research layer while upstream source reuse remains explicit."
+    }
+  ]
+}
