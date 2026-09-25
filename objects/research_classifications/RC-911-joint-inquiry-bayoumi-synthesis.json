@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-911-joint-inquiry-bayoumi-synthesis",
+  "created_at": "2026-09-25",
+  "subject_type": "assertion",
+  "subject_id": "joint-inquiry-bayoumi-assistance-source-base",
+  "canonical_status": "deuterocanon",
+  "reason": "Attributed congressional synthesis preserved as an institutional finding. The mapped proposition relies on FBI written responses, interviews, financial records, and investigative documents, so the Joint Inquiry is not independent corroboration of those upstream records.",
+  "review_required": true,
+  "authenticity_status": null,
+  "attribution_status": "attributed-to-US-Congress-Joint-Inquiry",
+  "provenance_status": "mapped",
+  "corroboration_status": "requires-upstream-source-review",
+  "source_independence": "dependent",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-09-25",
+      "reason": "Official institutional conclusion is preserved in its original evidentiary context without promoting repeated upstream propositions to independent Canon."
+    }
+  ]
+}

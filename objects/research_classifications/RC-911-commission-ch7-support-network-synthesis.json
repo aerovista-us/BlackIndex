@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-911-commission-ch7-support-network-synthesis",
+  "created_at": "2026-09-25",
+  "subject_type": "assertion",
+  "subject_id": "commission-ch7-california-support-network-source-base",
+  "canonical_status": "deuterocanon",
+  "reason": "Chapter 7 is an official Commission synthesis, but its California support-network discussion is mapped to FBI electronic communications, reports of investigation, interviews, telephone records, prepared statements, and CIA analysis. Preserve the Commission interpretation without counting repetition of those upstream records as independent corroboration.",
+  "review_required": true,
+  "authenticity_status": null,
+  "attribution_status": "attributed-to-9-11-Commission",
+  "provenance_status": "mapped",
+  "corroboration_status": "requires-upstream-source-review",
+  "source_independence": "dependent",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-09-25",
+      "reason": "Official Commission synthesis is accepted as an attributed institutional finding, not as universal Canon for each underlying factual proposition."
+    }
+  ]
+}
