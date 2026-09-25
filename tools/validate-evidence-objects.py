@@ -22,6 +22,7 @@ DIR_TYPES = {
     "source_dependencies": "source_dependency",
     "statement_comparisons": "statement_comparison",
     "investigator_reviews": "investigator_review",
+    "research_classifications": "research_classification",
 }
 REQUIRED = {
     "record_integrity": {"doc_id", "completeness", "redaction_concern", "known_destruction", "missing_referenced_records", "archive_confidence"},
@@ -31,6 +32,7 @@ REQUIRED = {
     "source_dependency": {"assertion_id", "source_id", "depends_on", "dependency_type", "independence"},
     "statement_comparison": {"topic", "public_source", "public_statement", "internal_source", "internal_content", "relationship"},
     "investigator_review": {"report_or_finding", "investigator", "exact_wording", "scope", "conclusion_adopted_as_fact"},
+    "research_classification": {"subject_type", "subject_id", "canonical_status", "reason", "review_required", "promotion_history"},
 }
 
 
@@ -77,6 +79,15 @@ def structural(path: Path, data: dict, docs: set[str]) -> list[str]:
         errs.append("investigator_review.conclusion_adopted_as_fact must remain false")
     if typ == "source_dependency" and data.get("independence") not in {"independent", "partially-independent", "dependent", "unknown"}:
         errs.append("invalid independence value")
+    if typ == "research_classification":
+        states = {"canon", "field_note", "apocrypha", "pseudepigrapha", "deuterocanon", "fragment", "rejected", "superseded"}
+        if data.get("canonical_status") not in states:
+            errs.append("invalid canonical_status")
+        history = data.get("promotion_history", [])
+        if not isinstance(history, list):
+            errs.append("promotion_history must be an array")
+        elif history and history[-1].get("to") != data.get("canonical_status"):
+            errs.append("latest promotion_history.to must match canonical_status")
     return errs
 
 
