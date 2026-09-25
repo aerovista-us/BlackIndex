@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-911-travel-monograph-synthesis",
+  "created_at": "2026-09-25",
+  "subject_type": "assertion",
+  "subject_id": "terrorist-travel-monograph-source-base",
+  "canonical_status": "deuterocanon",
+  "reason": "The travel monograph is an official Commission staff study combining agency records, Commission interviews, prior DOJ OIG interviews, and colleague work. Preserve it as an attributed institutional research layer while keeping reused upstream material distinct from independent corroboration.",
+  "review_required": true,
+  "authenticity_status": null,
+  "attribution_status": "attributed-to-9-11-Commission-staff",
+  "provenance_status": "mapped",
+  "corroboration_status": "mixed-upstream-and-original-staff-work",
+  "source_independence": "partially-independent",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-09-25",
+      "reason": "Official staff analysis is retained in institutional context; reused agency and prior-interview material is not promoted to independent corroboration by repetition."
+    }
+  ]
+}
