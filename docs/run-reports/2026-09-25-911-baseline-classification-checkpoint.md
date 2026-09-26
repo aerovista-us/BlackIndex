@@ -1,5 +1,7 @@
 # 9/11 Official Baseline Classification Checkpoint — 2026-09-25
 
+> **Continuation correction — 2026-09-25:** The classification work in this checkpoint remains valid, but the runtime/next-step section below is **SUPERSEDED** by `docs/run-reports/2026-09-25-review007-authoritative-continuation.md`. The living ledger records the standalone Chapter 7 acquisition target as `SUPERSEDED` by the full official Commission Report. **Do not re-run the four-document baseline ingest merely to create a standalone Chapter 7 record.** The next executable runtime gate is Review 007G Abdullah official FBI parent-bundle acquisition.
+
 ## Purpose
 
 Apply the new BlackIndex Canon / Apocrypha research-state model to the prepared official 9/11 baseline layer without flattening institutional findings into universal fact.
@@ -32,17 +34,23 @@ Created classification objects:
 - `RC-911-financing-monograph-synthesis`
 - `RC-911-travel-monograph-synthesis`
 
-## Chapter 7 record status
+## Chapter 7 record status — superseded continuation note
 
-The repository currently carries Chapter 7 through the full `COMMISSION-2004-9-11-commission-001` record and a dedicated Chapter 7 source-dependency edge. The prepared ingest script also defines a standalone Chapter 7 PDF record (`911Report-Ch7`). That standalone acquisition should still be run when NXCore is available so the four-document prepared ingest checkpoint is literally complete rather than represented by the full-report container.
+The repository carries Chapter 7 through the full `COMMISSION-2004-9-11-commission-001` record and a dedicated Chapter 7 source-dependency edge. The living ledger explicitly marks the standalone Chapter 7 acquisition target as `SUPERSEDED` by the full official government edition.
 
-Do not create a synthetic Chapter 7 artifact in GitHub to substitute for the runtime acquisition, hashing, preservation, normalization, and verification pipeline.
+The earlier continuation assumption that a separate `911Report-Ch7` runtime acquisition was still required is no longer authoritative.
 
-## Runtime gate
+Do not create a synthetic Chapter 7 artifact and do not re-run the official-baseline ingest solely to satisfy that obsolete checklist item.
 
-NXCore Remote Desktop Commander was offline during this continuation pass. Therefore the local `tools/ingest-phase2-911-official-baselines.sh` pipeline was not re-run and no claim is made that local source-vault/runtime state was refreshed on 2026-09-25.
+## Runtime status
 
-When NXCore returns online:
+NXCore Remote Desktop Commander was offline during this continuation pass. Therefore no local source-vault/runtime claim is made for 2026-09-25.
+
+The authoritative next runtime sequence is maintained in:
+
+`docs/run-reports/2026-09-25-review007-authoritative-continuation.md`
+
+Current next executable gate:
 
 ```bash
 cd /srv/NXDrive/BlackIndex 2>/dev/null || cd /srv/Collab/mini.shops/blackindex
@@ -52,19 +60,17 @@ git checkout main
 git pull --ff-only
 
 bash tools/platform-health.sh
-bash tools/ingest-phase2-911-official-baselines.sh
+bash tools/ingest-review-007g-abdullah-official-fbi-bundles.sh
 python3 tools/source-lineage.py --root .
-bash tools/prepare-911-p0-review.sh
+python3 tools/blackindex.py --root . verify
 ```
-
-Then verify:
-
-1. standalone Chapter 7 metadata/raw/normalized artifacts exist and hash cleanly;
-2. all four official-baseline records validate;
-3. source-lineage compile completes;
-4. no official synthesis is counted as independent corroboration merely because it repeats an upstream proposition;
-5. the Encore P0 review queue is regenerated from the current corpus.
 
 ## Next analytical step
 
-After the runtime gate is green, continue with Encore P0 human-review packets. Prioritize source-independence, contradictory interpretations, and any candidate whose apparent corroboration collapses to a shared upstream record.
+After Review 007G parent-bundle acquisition is green:
+
+1. boundary-review the May 17 and May 18, 2004 Abdullah-related FBI records;
+2. preserve July 23, 2002 and May 19, 2004 as unresolved unless actually recovered;
+3. encode any monthly-release ↔ EO 14040 duplicate lineage without increasing corroboration strength;
+4. complete the CIA OIG seven-page visual verification gate;
+5. then reassess Review 007 closeout readiness.
