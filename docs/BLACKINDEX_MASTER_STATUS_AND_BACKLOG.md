@@ -18,7 +18,7 @@
 
 ## Corpus checkpoint
 
-- Authoritative local verifier checkpoint: **37 checked / 0 failures** (`2026-08-28` Review 007C CIA OIG Executive Summary companion)
+- Authoritative local verifier checkpoint: **39 checked / 0 failures** (`2026-08-29` Review 007G Abdullah official FBI parent-bundle sprint)
 - Historical Milestone 1: **25 verified / 0 failures**
 - Operation Encore underlying-record acquisition: **4 / 4** large FBI artifacts acquired/resumed successfully
 - Joint Inquiry final report is acquired/published as `US CONGRESS-2002-9-11-joint-inquiry-001`
@@ -33,6 +33,7 @@
 - Review 007 verified source bundle: **3/3 review slices ready; 0 boundary claims; 0 promotions**
 - Review 007 boundary follow-up: **CAND-0005 / CAND-0013 bracketed pending visual confirmation; Benomrane exact scan 138-210 found no strong boundary signals and is on HOLD**
 - Review 007C companion result: **official GPO/FDLP Executive Summary acquired; image-only; no OCR performed**
+- Review 007G Abdullah parent-bundle result: **official FBI April 2002 + May 2004 release bundles acquired; exact child-record identity/boundaries remain under review**
 - Raw source artifacts remain local-only
 - GitHub stores metadata/provenance, reviewed extractions, evidence-map objects, lineage, schemas, governance, tooling, and controlled-run reports
 
@@ -143,10 +144,11 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Terrorist Financing Staff Monograph | `PARTIAL` | acquired + published; normalized text available; principal negative finding encoded |
 | 9/11 and Terrorist Travel monograph | `PARTIAL` | acquired + published; normalized text available |
 | CIA IG 9/11 Accountability | `PARTIAL` | full official report + separate 2007 Executive Summary companion acquired; both image-only; 007C page-image verification remains pending |
-| Cross-document official-layer review 007 | `ACTIVE` | official-layer corpus at 37/0; genealogy, wording evolution, negative findings and anti-double-counting controls active |
+| Cross-document official-layer review 007 | `ACTIVE` | official-layer corpus at 39/0; genealogy, wording evolution, negative findings and anti-double-counting controls active |
 | Review 007A named-source recovery map | `ACTIVE` | local scan complete: 15/15 any hits, 2/15 EO 14040 container-candidate families, 13/15 citation/synthesis only |
 | Review 007B shared-upstream risk register | `ACTIVE` | structural and proposition-level overcount risks explicitly recorded |
 | Review 007C CIA OIG extraction plan | `ACTIVE` | full report and 2007 official Executive Summary companion acquired; both image-only; search/index text remains navigation-only; pivotal page-image verification pending |
+| Review 007C1 CIA OIG pivotal-page navigation map | `PREPARED` | seven Executive Summary page-image targets narrowed to v-vii and xiii-xvi; physical-page correspondence remains to be visually verified before extraction |
 | Review 007D recovery interpretation | `ACTIVE` | durable interpretation separates citation localization from underlying-container recovery |
 | Review 007E physical-page gate | `COMPLETE` | 4/4 target positions exact-mapped to physical PDF pages; 0 unresolved; no OCR/fuzzy matching |
 | Review 007 verified source-image bundle | `COMPLETE` | 3/3 bounded review slices created only after every page in each range exact-matched the parent PDF |
@@ -155,7 +157,8 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Review 007F Benomrane expansion | `COMPLETE` | exact physical-page scan 138-210 found no strong record-start signals and emitted no range; boundary recovery is on HOLD pending a new identifier/source lead |
 | Named upstream Thumairy source bundle | `ACTIVE` | Benomrane pages 173/175 are physically verified but boundary-unresolved on HOLD after exact scan 138-210; core 2002 Thumairy ECs remain unmapped |
 | Named upstream Bayoumi source bundle | `ACTIVE` | CAND-0005 (58-63; anchor 60) and CAND-0013 (116-122; anchor 118) are physically verified/bracketed hypotheses pending visual confirmation; other Bayoumi records remain unmapped |
-| Named upstream Mohdar Abdullah source bundle | `ACTIVE` | current scan localized citations only; no EO 14040 exact-signature candidate yet |
+| Named upstream Mohdar Abdullah source bundle | `ACTIVE` | official FBI April 2002 and May 2004 parent bundles acquired; May 17/18 records require source-boundary review; exact July 23, 2002 ROI and May 19, 2004 EC remain unresolved |
+| Review 007G Abdullah official FBI recovery | `PARTIAL` | both official FBI parent release bundles acquired; child boundaries/duplicate-release analysis pending |
 | Official-layer source dependency objects | `ACTIVE` | Joint Inquiry, Commission final, staff monographs, CIA OIG, Encore and named source bundles encoded in part |
 | Bayoumi statement evolution | `ACTIVE` | Commission 2004 vs FBI 2016 comparison object created; shared records still to map |
 | Thumairy statement evolution | `ACTIVE` | Commission scoped negative finding vs later FBI rereview comparison object created |
