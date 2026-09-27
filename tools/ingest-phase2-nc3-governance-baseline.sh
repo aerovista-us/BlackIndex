@@ -42,7 +42,27 @@ run_ingest \
   --call-id CALL-NC3-GOVERNANCE-001 \
   --tags "nc3,controlled-document,access-boundary,dod-instruction,public-placeholder"
 
+
+# Controlled governance parents: preserve only the public first-party placeholders.
+run_ingest \
+  "https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodd/S-371001_placeholder.pdf" \
+  --landing-url "https://www.esd.whs.mil/Directives/issuances/dodd/" \
+  --source DOD --collection "DoD Controlled-Issuance Placeholders" \
+  --year 2015 --document-date 2015-05-27 \
+  --title "DoDD S-3710.01 — National Leadership Command Capability (NLCC) — Public Placeholder" --native-id DoDD-S-3710.01-PLACEHOLDER \
+  --call-id CALL-NC3-GOVERNANCE-001 \
+  --tags "nc3,nlcc,controlled-document,access-boundary,dod-directive,public-placeholder"
+
+run_ingest \
+  "https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodd/S-521081_placeholder.pdf" \
+  --landing-url "https://www.esd.whs.mil/Directives/issuances/dodd/" \
+  --source DOD --collection "DoD Controlled-Issuance Placeholders" \
+  --year 2017 --document-date 2017-04-24 \
+  --title "DoDD S-5210.81 — United States Nuclear Weapons Command and Control, Safety and Security — Public Placeholder" --native-id DoDD-S-5210.81-PLACEHOLDER \
+  --call-id CALL-NC3-GOVERNANCE-001 \
+  --tags "nc3,nuclear-command-control,controlled-document,access-boundary,dod-directive,public-placeholder"
+
 python3 "$ROOT/tools/blackindex.py" --root "$ROOT" verify
 
 echo "NC3 governance baseline ingest complete."
-echo "The S-3730.01 corpus record is the public placeholder only; it is not the controlled instruction contents."
+echo "Controlled-issuance corpus records are public placeholders only; they are not the controlled directive contents."
