@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-LOOKING-GLASS-afgsci13-5302v2-directive",
+  "created_at": "2026-09-27",
+  "subject_type": "document",
+  "subject_id": "USAF-2017-air-force-global-strike-command-instructions-001",
+  "canonical_status": "canon",
+  "reason": "Direct official Air Force e-Publishing artifact for AFGSCI 13-5302V2, a mandatory 19 July 2017 AFGSC command instruction defining ALCS crew standardization/evaluation roles and minimum requirements. Canon applies to the preserved directive's existence, text, scope, and references; it does not import the contents of cited EWO, STRATCOM, safety, or technical-order publications that have not been independently acquired.",
+  "review_required": true,
+  "authenticity_status": "official-USAF-ePublishing-preserved-artifact",
+  "attribution_status": "AFGSC-command-instruction-certified-by-HQ-AFGSC-A3T",
+  "provenance_status": "mapped",
+  "corroboration_status": "primary-directive-authenticated-referenced-authority-source-family-incomplete",
+  "source_independence": "primary-source-for-its-own-2017-directive-text",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-09-27",
+      "reason": "Official first-party artifact with stable hash and exact directive identity is sufficiently established as the baseline record for what AFGSCI 13-5302V2 itself says."
+    }
+  ]
+}
