@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-LOOKING-GLASS-winged-shield-vol2-synthesis",
+  "created_at": "2026-09-26",
+  "subject_type": "document",
+  "subject_id": "USAF-1997-air-force-history-and-museums-program-001",
+  "canonical_status": "deuterocanon",
+  "reason": "Official Air Force History and Museums Program institutional synthesis providing broader chronology for Strategic Air Command, Looking Glass, PACCS, and airborne launch-control development. Preserve it as context, not as independent corroboration merely because it is a second publication.",
+  "review_required": true,
+  "authenticity_status": "official-USAF-preserved-artifact",
+  "attribution_status": "attributed-to-Air-Force-History-and-Museums-Program",
+  "provenance_status": "mapped",
+  "corroboration_status": "requires-source-genealogy-review-before-independence-counting",
+  "source_independence": "unknown-relative-to-SAC-history-and-shared-archives",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-09-26",
+      "reason": "Official institutional history retained as a contextual synthesis while shared archival lineage and authority questions remain unresolved."
+    }
+  ]
+}

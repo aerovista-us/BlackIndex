@@ -13,6 +13,8 @@ class OfficialSourceFallbackTests(unittest.TestCase):
         # government hosts instead of being applied to arbitrary sources.
         self.assertIn("https://vault.fbi.gov/*", text)
         self.assertIn("https://www.cia.gov/*", text)
+        self.assertIn("https://www.afgsc.af.mil/*", text)
+        self.assertIn("https://media.defense.gov/*", text)
         self.assertIn("ALLOW_BROWSER_FALLBACK=0", text)
         self.assertIn("ALLOW_BROWSER_FALLBACK=1", text)
 
