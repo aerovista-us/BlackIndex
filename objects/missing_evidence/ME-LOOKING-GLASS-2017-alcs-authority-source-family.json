@@ -33,6 +33,16 @@
     "use NARA, DTIC, GovInfo, or official FOIA reading rooms only when provenance is explicit",
     "do not substitute unofficial mirrors for controlled/classified publications and do not infer their contents from titles alone"
   ],
+  "recovery_attempts": [
+    {
+      "date": "2026-09-27",
+      "record": "AFI 91-117 — Safety Rules for the Airborne Launch Control System",
+      "artifact_url": "https://static.e-publishing.af.mil/production/1/af_se/publication/afi91-117/afi91-117.pdf",
+      "discovery_status": "public search index identifies the 29 August 2022, 10-page, no-releasability-restrictions instruction; index text is discovery context only, not preserved evidence",
+      "nxcore_acquisition_status": "blocked: direct request HTTP 403; browser-navigation retry HTTP 404; browser-TLS retry HTTP 404",
+      "result": "not ingested; no unofficial mirror substituted"
+    }
+  ],
   "status": "unresolved",
-  "recovery_status": "public-or-declassified-source-search-required"
+  "recovery_status": "AFI91-117-indexed-but-first-party-bytes-not-yet-preserved"
 }

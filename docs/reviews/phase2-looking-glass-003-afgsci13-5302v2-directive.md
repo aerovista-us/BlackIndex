@@ -70,3 +70,15 @@ Unofficial mirrors may assist discovery only; they do not become the preserved s
 ## Next gate
 
 Search the named directive family in order of likely public availability, beginning with AFPD 13-5, AFI 13-530, and AFI 91-117. Then test public/declassified availability of the AFGSCI/USSTRATCOM/EAP/technical-order references without inferring unavailable contents.
+
+## Recovery checkpoint — 27 September 2026
+
+AFI 91-117 was tested as the first follow-on source. A public search index identifies the current candidate as the 29 August 2022, 10-page *Safety Rules for the Airborne Launch Control System* publication with no releasability restrictions. That indexed text remains discovery context only.
+
+NXCore could not preserve the official artifact bytes during this pass:
+
+- direct first-party request: HTTP 403;
+- browser-navigation first-party retry: HTTP 404;
+- browser-TLS first-party retry: HTTP 404.
+
+No corpus record was created and no unofficial mirror was substituted. Corpus remains 43/43. Recheck the official e-Publishing path or an alternate official/public repository before promoting this candidate.
