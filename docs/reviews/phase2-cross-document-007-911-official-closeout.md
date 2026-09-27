@@ -2,7 +2,7 @@
 
 ## Status
 
-`ACTIVE — source-genealogy and wording-evolution pass started`
+`MILESTONE COMPLETE — residual source-genealogy recovery continues as backlog`
 
 This review closes the currently defined official-interpretation layer around the existing Operation Encore corpus before BlackIndex opens a new major research cluster.
 
@@ -338,3 +338,23 @@ Default next controlled expansion remains **Operation LOOKING GLASS / nuclear co
 ## Core rule
 
 **BlackIndex records assertions, evidence, provenance, contradictions, omissions, and anomalies. It does not convert incomplete historical records into final determinations.**
+
+## Closeout reconciliation — Review 007M / 2026-09-26
+
+The historical `Still required` list above is preserved as the state of the gate when Review 007 was opened. Subsequent controlled work has now satisfied the closeout milestone.
+
+Current disposition:
+
+1. **Named-source mapping — satisfied to milestone.** Review 007A–I recovered/mapped the strongest available candidates, visually confirmed key boundaries, encoded Commission Notes 22/23 to recovered FBI ECs, and preserves remaining named records as explicit unresolved backlog.
+2. **Principal negative findings — satisfied.** Commission Bayoumi/Thumairy, Financing staff, and CIA OIG findings are encoded as scoped attributed investigator-review objects rather than universal facts.
+3. **CIA OIG image-only review — satisfied to pivotal-page milestone.** Seven Executive Summary pages were visually verified without OCR and the relevant findings/uncertainties encoded.
+4. **Orphan raw-artifact integrity — satisfied.** Review 007J inventoried both metadata-unreferenced legacy Commission artifacts without deletion or corpus inflation.
+5. **Shared-upstream/double-counting control — satisfied for current encoded corpus.** Review 007K/L audit 14 high-risk dependencies, four synthesis classifications, and two comparison guardrails with zero high-risk edges marked independent.
+
+Additional release-integrity work for the Joint Inquiry Part Four / “28 Pages” family is complete to its current milestone in Review 007L.
+
+Review 007 status is therefore:
+
+`MILESTONE COMPLETE — RESIDUAL SOURCE RECOVERY CONTINUES AS BACKLOG`
+
+See `phase2-cross-document-007m-official-layer-closeout-reconciliation.md` for the full gate-by-gate rationale and carried-forward limitations.

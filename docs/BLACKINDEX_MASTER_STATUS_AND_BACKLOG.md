@@ -1,7 +1,7 @@
 # BlackIndex — Living Status, Completion Ledger, and Backlog
 
 **Status:** Authoritative project-progress ledger  
-**Updated:** 2026-08-28  
+**Updated:** 2026-09-26
 **Purpose:** Keep completed work visible while preserving the remaining research and implementation backlog.
 
 > Completion here means the currently defined ingestion, review, or implementation milestone was reached. It does **not** mean the underlying historical question is resolved.
@@ -18,7 +18,7 @@
 
 ## Corpus checkpoint
 
-- Authoritative local verifier checkpoint: **39 checked / 0 failures** (`2026-08-29` Review 007G Abdullah official FBI parent-bundle sprint)
+- Authoritative local verifier checkpoint: **39 checked / 0 failures** (`2026-09-26` Review 007M official-layer closeout reconciliation)
 - Historical Milestone 1: **25 verified / 0 failures**
 - Operation Encore underlying-record acquisition: **4 / 4** large FBI artifacts acquired/resumed successfully
 - Joint Inquiry final report is acquired/published as `US CONGRESS-2002-9-11-joint-inquiry-001`
@@ -54,7 +54,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Public vs Internal comparisons | `COMPLETE` | Statement-comparison tooling exists. |
 | Timeline evolution of official conclusions | `ACTIVE` | 9/11 official-layer comparison 007 active; Bayoumi/Thumairy evolution objects exist. |
 | Source genealogy / independence | `ACTIVE` | Report-level and named-source dependency maps encoded; local recovery scan distinguishes citations from container candidates. |
-| Shared-upstream / anti-double-counting discipline | `ACTIVE` | Review 007B risk register separates narrative repetition from independent corroboration. |
+| Shared-upstream / anti-double-counting discipline | `COMPLETE` | Review 007K/L fail-closed audit covers 14 high-risk dependencies, 4 synthesis classifications, and 2 comparison guards; unresolved genealogy cannot raise corroboration strength. |
 | Citation localization vs source recovery distinction | `COMPLETE` | 15/15 citation hits cannot be represented as 15 recovered source records; EO 14040 candidates are counted separately. |
 | Evidence Integrity | `PARTIAL` | Methodology locked; systematic digital/video/audio/physical records still expanding. |
 | Capability Registry | `QUEUED` | First-class durable capability object family still needed. |
@@ -144,13 +144,13 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Terrorist Financing Staff Monograph | `PARTIAL` | acquired + published; normalized text available; principal negative finding encoded |
 | 9/11 and Terrorist Travel monograph | `PARTIAL` | acquired + published; normalized text available |
 | CIA IG 9/11 Accountability | `PARTIAL` | full report + 2007 Executive Summary preserved; seven pivotal Executive Summary pages visually verified without OCR; reviewed findings encoded; full-report/redaction comparison remains partial |
-| Cross-document official-layer review 007 | `ACTIVE` | official-layer corpus at 39/0; genealogy, wording evolution, negative findings and anti-double-counting controls active |
-| Review 007A named-source recovery map | `ACTIVE` | local scan complete: 15/15 any hits, 2/15 EO 14040 container-candidate families, 13/15 citation/synthesis only |
+| Cross-document official-layer review 007 | `COMPLETE` | Review 007M closes the official-layer milestone at 39/0; residual named-source recovery, proposition-level genealogy, and targeted full-report/version work remain visible backlog |
+| Review 007A named-source recovery map | `COMPLETE` | local scan complete: 15/15 any hits, 2/15 EO 14040 container-candidate families, 13/15 citation/synthesis only; unresolved targets carried into active named-source backlog |
 | Review 007B shared-upstream risk register | `COMPLETE` | Review 007K audit checks 14 high-risk dependencies + 4 synthesis classifications + 2 comparison guardrails; 0 high-risk edges marked independent |
-| Review 007C CIA OIG extraction plan | `ACTIVE` | seven pivotal Executive Summary pages now visually verified; five scoped OIG findings encoded; full-report/version comparison remains open |
+| Review 007C CIA OIG extraction plan | `PARTIAL` | required pivotal Executive Summary gate complete; targeted full-report/redaction/version comparison remains optional future research where material |
 | Review 007C1 CIA OIG pivotal-page navigation map | `COMPLETE` | physical pages 1-3 and 9-12 visually confirmed as Roman v-vii and xiii-xvi; no OCR used |
 | Review 007C2 CIA OIG pivotal-page verification | `COMPLETE` | scope/dependency, misconduct negative finding, no-single-point balance, watchlisting breakdown, and FBI-receipt uncertainty encoded as attributed investigator reviews |
-| Review 007D recovery interpretation | `ACTIVE` | durable interpretation separates citation localization from underlying-container recovery |
+| Review 007D recovery interpretation | `COMPLETE` | durable interpretation separates citation localization from underlying-container recovery; remaining recovery targets live in named-source backlog |
 | Review 007E physical-page gate | `COMPLETE` | 4/4 target positions exact-mapped to physical PDF pages; 0 unresolved; no OCR/fuzzy matching |
 | Review 007 verified source-image bundle | `COMPLETE` | 3/3 bounded review slices created only after every page in each range exact-matched the parent PDF |
 | Review 007 boundary diagnostic | `COMPLETE` | structural pass preserved as historical precursor; later Review 007I visually corrected CAND-0005 and confirmed CAND-0013 |
@@ -160,6 +160,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Review 007J orphan raw artifact inventory | `COMPLETE` | all 41 raw artifacts audited against 39 metadata raw references; 2 legacy Commission artifacts inventoried, preserved, and classified as non-independent release/acquisition variants |
 | Review 007K shared-upstream closeout audit | `COMPLETE` | 14 dependency edges, 4 synthesis classifications, and 2 comparison guardrails audited after Review 007L; no current high-risk official-layer chain is encoded independent |
 | Review 007L Joint Inquiry Part Four release analysis | `COMPLETE` | current GovInfo Part Four public rendering and 2016 HPSCI declassified scan mapped as one dependent release family; “28 pages” distinguished from physical PDF count |
+| Review 007M official-layer closeout reconciliation | `COMPLETE` | five original closeout gates satisfied to defined milestone; residual source recovery remains active backlog; next major corpus gate may open |
 | Named upstream Thumairy source bundle | `ACTIVE` | Benomrane pages 173/175 are physically verified but boundary-unresolved on HOLD after exact scan 138-210; core 2002 Thumairy ECs remain unmapped |
 | Named upstream Bayoumi source bundle | `ACTIVE` | visual boundaries now resolved: CAND-0005 = 57-63 (corrected), CAND-0013 = 116-122 (confirmed); neither later record is treated as the exact Commission-cited original interview; other Bayoumi records remain unmapped |
 | Named upstream Mohdar Abdullah source bundle | `ACTIVE` | May 18 EC visually boundary-confirmed at FBI Vault parent pp. 1-5; May 17 EC visually boundary-confirmed at pp. 6-13; exact July 23, 2002 ROI and May 19, 2004 EC remain unresolved |
@@ -168,7 +169,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Official-layer source dependency objects | `ACTIVE` | Joint Inquiry, Commission final, staff monographs, CIA OIG, Encore and named source bundles encoded in part |
 | Bayoumi statement evolution | `ACTIVE` | Commission 2004 vs FBI 2016 comparison object created; shared records still to map |
 | Thumairy statement evolution | `ACTIVE` | Commission scoped negative finding vs later FBI rereview comparison object created |
-| Principal negative-finding objects | `ACTIVE` | Commission Thumairy, Commission Bayoumi, and financing-monograph findings preserved as attributed investigator reviews |
+| Principal negative-finding objects | `COMPLETE` | current closeout set includes Commission Thumairy/Bayoumi, financing-monograph, and scoped CIA OIG findings/uncertainties as attributed investigator reviews |
 | Joint Inquiry “28 Pages” version family | `COMPLETE` | Review 007L maps current GovInfo Part Four rendering to the 2016 HPSCI declassified scan; same source family, dependent release lineage |
 
 ### Assassination records
@@ -301,12 +302,12 @@ Do **not** count repeated statements across Joint Inquiry, Commission staff work
 2. Leave the Benomrane boundary search on `HOLD` until a new identifier/source lead justifies reopening it.
 3. `PARTIAL/ACTIVE` — Executive Summary pivotal-page gate is complete without OCR (Review 007C2); targeted full-report/redaction/version comparison remains open where materially useful.
 4. Continue targeted recovery for citation-only named source families, especially the 2002 Thumairy ECs, Bayoumi interview/records set, Abdullah ECs, and CIA `Al-Qa'ida Travel Issues` report.
-5. Continue negative-finding encoding with exact wording, scope, evidence access and competing later findings.
+5. `COMPLETE TO CLOSEOUT MILESTONE 2026-09-26` — principal negative findings are encoded with exact wording/scope; add future findings only when new research questions require them.
 6. `COMPLETE 2026-09-26` — Review 007K made the shared-upstream audit reproducible and fail-closed; unresolved genealogy remains non-independent and cannot raise corroboration strength.
 7. Review the generated local record-integrity files deliberately; do not commit them merely to clean the working tree.
 8. `COMPLETE 2026-09-26` — inventoried both metadata-unreferenced raw artifacts: financing monograph legacy byte variant and standalone Chapter 7 subset; both preserved immutably and linked through version-family objects.
 9. `COMPLETE 2026-09-26` — Review 007L mapped the Joint Inquiry Part Four / “28 Pages” release family and encoded the 2016 release as dependent on the same source lineage.
-10. Once the 9/11 official-layer comparison gate is satisfied, default next corpus expansion is Operation LOOKING GLASS.
+10. `READY 2026-09-26` — Review 007M satisfies the official-layer comparison gate; default next corpus expansion is Operation LOOKING GLASS, while residual Review 007 source recovery remains backlog.
 11. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
 
 ## Completion logging rule
