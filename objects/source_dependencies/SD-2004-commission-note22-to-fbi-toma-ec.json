@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-2004-commission-note22-to-fbi-toma-ec",
+  "created_at": "2026-09-27T02:52:42+00:00",
+  "assertion_id": "commission-note22-charles-sabah-toma-source-chain",
+  "source_id": "COMMISSION-2004-9-11-commission-001",
+  "depends_on": "FBI-2004-9-11-commission-fbi-monthly-releases-may-2004-001#physical-pages-1-5",
+  "dependency_type": "commission-note-22-cites-recovered-fbi-electronic-communication",
+  "independence": "dependent",
+  "notes": "Commission Note 22 cites an FBI electronic communication for the interview of Charles Sabah Toma dated May 18, 2004. Review 007H visually confirmed that the official FBI Vault May 2004 parent release contains a complete EC on physical pages 1-5 matching that date and synopsis. This edge records source genealogy only; the Commission citation is not independent corroboration of the underlying FBI record, and no separate child record is promoted by this object."
+}

@@ -33,7 +33,7 @@
 - Review 007 verified source bundle: **3/3 review slices ready; 0 boundary claims; 0 promotions**
 - Review 007 boundary follow-up: **CAND-0005 / CAND-0013 bracketed pending visual confirmation; Benomrane exact scan 138-210 found no strong boundary signals and is on HOLD**
 - Review 007C companion result: **official GPO/FDLP Executive Summary acquired; image-only; no OCR performed**
-- Review 007G Abdullah parent-bundle result: **official FBI April 2002 + May 2004 release bundles acquired; exact child-record identity/boundaries remain under review**
+- Review 007G/007H Abdullah result: **official FBI April 2002 + May 2004 release bundles acquired; May 18 EC boundary confirmed at pp. 1-5 and May 17 EC boundary confirmed at pp. 6-13; no child promotion**
 - Raw source artifacts remain local-only
 - GitHub stores metadata/provenance, reviewed extractions, evidence-map objects, lineage, schemas, governance, tooling, and controlled-run reports
 
@@ -157,8 +157,9 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Review 007F Benomrane expansion | `COMPLETE` | exact physical-page scan 138-210 found no strong record-start signals and emitted no range; boundary recovery is on HOLD pending a new identifier/source lead |
 | Named upstream Thumairy source bundle | `ACTIVE` | Benomrane pages 173/175 are physically verified but boundary-unresolved on HOLD after exact scan 138-210; core 2002 Thumairy ECs remain unmapped |
 | Named upstream Bayoumi source bundle | `ACTIVE` | CAND-0005 (58-63; anchor 60) and CAND-0013 (116-122; anchor 118) are physically verified/bracketed hypotheses pending visual confirmation; other Bayoumi records remain unmapped |
-| Named upstream Mohdar Abdullah source bundle | `ACTIVE` | official FBI April 2002 and May 2004 parent bundles acquired; May 17/18 records require source-boundary review; exact July 23, 2002 ROI and May 19, 2004 EC remain unresolved |
-| Review 007G Abdullah official FBI recovery | `PARTIAL` | both official FBI parent release bundles acquired; child boundaries/duplicate-release analysis pending |
+| Named upstream Mohdar Abdullah source bundle | `ACTIVE` | May 18 EC visually boundary-confirmed at FBI Vault parent pp. 1-5; May 17 EC visually boundary-confirmed at pp. 6-13; exact July 23, 2002 ROI and May 19, 2004 EC remain unresolved |
+| Review 007G Abdullah official FBI recovery | `COMPLETE` | both official FBI parent release bundles acquired at 39/0; Review 007H confirmed May 17/18 record boundaries and found no duplicate copy in the current FBI corpus |
+| Review 007H May 2004 FBI boundary confirmation | `COMPLETE` | Commission note 22 → May 18 EC pp. 1-5; note 23 → May 17 EC pp. 6-13; source-image confirmed, no child promotion |
 | Official-layer source dependency objects | `ACTIVE` | Joint Inquiry, Commission final, staff monographs, CIA OIG, Encore and named source bundles encoded in part |
 | Bayoumi statement evolution | `ACTIVE` | Commission 2004 vs FBI 2016 comparison object created; shared records still to map |
 | Thumairy statement evolution | `ACTIVE` | Commission scoped negative finding vs later FBI rereview comparison object created |
