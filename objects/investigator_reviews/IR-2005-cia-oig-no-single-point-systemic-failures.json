@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "object_type": "investigator_review",
+  "created_at": "2026-09-27T02:56:32+00:00",
+  "investigator": "CIA Office of Inspector General 9/11 Accountability Review Team",
+  "employer_controller": "Central Intelligence Agency, Office of Inspector General",
+  "investigator_independence": null,
+  "access_to_evidence": null,
+  "method_transparency": null,
+  "reproducibility": null,
+  "conflict_exposure": null,
+  "records_unavailable": [],
+  "witnesses_omitted": [],
+  "conclusion_adopted_as_fact": false,
+  "source_doc_id": "CIA-2005-9-11-cia-accountability-executive-summary-001",
+  "source_artifact_sha256": "4ad41550122f7a92090f4da7c4e03c60f0c671a324b8b070b6292d9034587bd2",
+  "verification_method": "direct visual inspection of preserved official Executive Summary page images; no OCR used",
+  "object_id": "IR-2005-cia-oig-no-single-point-systemic-failures",
+  "report_or_finding": "CIA OIG 9/11 Accountability Review — no single point/silver bullet plus systemic failures",
+  "exact_wording": "The Team found neither a “single point of failure” nor a “silver bullet” that would have enabled the Intelligence Community (IC) to predict or prevent the 9/11 attacks. The Team did find, however, failures to implement and manage important processes, to follow through with operations, and to properly share and analyze critical data.",
+  "scope": "Balanced OIG formulation concerning causal/accountability analysis before 9/11: no single failure or simple preventive solution was identified, while multiple process, operational follow-through, information-sharing, and analytical failures were identified.",
+  "source_pages": [
+    "Executive Summary physical p. 3 / Roman p. vii"
+  ],
+  "records_reviewed": [
+    "CIA accountability-review record set summarized by the OIG"
+  ],
+  "workpapers_status": "The public Executive Summary presents the high-level finding; detailed supporting record chains remain in the full report/workpapers.",
+  "notes": "Keep both halves together. Quoting only the no-single-point sentence or only the failures sentence would materially distort the OIG formulation.",
+  "competing_findings": []
+}

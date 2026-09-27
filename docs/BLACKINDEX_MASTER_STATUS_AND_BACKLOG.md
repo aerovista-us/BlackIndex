@@ -143,12 +143,13 @@ The local verifier remains authoritative for raw-corpus integrity.
 | 9/11 Commission Final Report — official government edition | `PARTIAL` | acquired/resumed; Chapter 7 genealogy pass active |
 | Terrorist Financing Staff Monograph | `PARTIAL` | acquired + published; normalized text available; principal negative finding encoded |
 | 9/11 and Terrorist Travel monograph | `PARTIAL` | acquired + published; normalized text available |
-| CIA IG 9/11 Accountability | `PARTIAL` | full official report + separate 2007 Executive Summary companion acquired; both image-only; 007C page-image verification remains pending |
+| CIA IG 9/11 Accountability | `PARTIAL` | full report + 2007 Executive Summary preserved; seven pivotal Executive Summary pages visually verified without OCR; reviewed findings encoded; full-report/redaction comparison remains partial |
 | Cross-document official-layer review 007 | `ACTIVE` | official-layer corpus at 39/0; genealogy, wording evolution, negative findings and anti-double-counting controls active |
 | Review 007A named-source recovery map | `ACTIVE` | local scan complete: 15/15 any hits, 2/15 EO 14040 container-candidate families, 13/15 citation/synthesis only |
 | Review 007B shared-upstream risk register | `ACTIVE` | structural and proposition-level overcount risks explicitly recorded |
-| Review 007C CIA OIG extraction plan | `ACTIVE` | full report and 2007 official Executive Summary companion acquired; both image-only; search/index text remains navigation-only; pivotal page-image verification pending |
-| Review 007C1 CIA OIG pivotal-page navigation map | `PREPARED` | seven Executive Summary page-image targets narrowed to v-vii and xiii-xvi; physical-page correspondence remains to be visually verified before extraction |
+| Review 007C CIA OIG extraction plan | `ACTIVE` | seven pivotal Executive Summary pages now visually verified; five scoped OIG findings encoded; full-report/version comparison remains open |
+| Review 007C1 CIA OIG pivotal-page navigation map | `COMPLETE` | physical pages 1-3 and 9-12 visually confirmed as Roman v-vii and xiii-xvi; no OCR used |
+| Review 007C2 CIA OIG pivotal-page verification | `COMPLETE` | scope/dependency, misconduct negative finding, no-single-point balance, watchlisting breakdown, and FBI-receipt uncertainty encoded as attributed investigator reviews |
 | Review 007D recovery interpretation | `ACTIVE` | durable interpretation separates citation localization from underlying-container recovery |
 | Review 007E physical-page gate | `COMPLETE` | 4/4 target positions exact-mapped to physical PDF pages; 0 unresolved; no OCR/fuzzy matching |
 | Review 007 verified source-image bundle | `COMPLETE` | 3/3 bounded review slices created only after every page in each range exact-matched the parent PDF |
