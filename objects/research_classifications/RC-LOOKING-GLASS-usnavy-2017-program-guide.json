@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-LOOKING-GLASS-usnavy-2017-program-guide",
+  "created_at": "2026-09-27",
+  "subject_type": "document",
+  "subject_id": "US_NAVY-2017-program-guides-001",
+  "canonical_status": "deuterocanon",
+  "reason": "Official 2017 U.S. Navy Program Guide preserved as a program-level institutional description of the E-6B Mercury mission set. It supports service-level program context but is not an operational order and is not assumed independent from joint NC3 program source material.",
+  "review_required": true,
+  "authenticity_status": "official-DOD-media-preserved-artifact",
+  "attribution_status": "attributed-to-US-Navy-program-guide",
+  "provenance_status": "mapped",
+  "corroboration_status": "institutional-program-description",
+  "source_independence": "unknown-at-underlying-program-record-level",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-09-27",
+      "reason": "Preserve the official Navy program description without elevating program summary language to independent operational evidence."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-LOOKING-GLASS-usstratcom-2024-posture",
+  "created_at": "2026-09-27",
+  "subject_type": "document",
+  "subject_id": "USSTRATCOM-2024-congressional-posture-statements-001",
+  "canonical_status": "deuterocanon",
+  "reason": "Official 2024 USSTRATCOM posture statement preserved as a current institutional mission and modernization snapshot. It is authoritative for what the commander represented to Congress, but it is not an operating order or an independent underlying source for every E-4B/E-6B mission proposition it summarizes.",
+  "review_required": true,
+  "authenticity_status": "official-USSTRATCOM-preserved-artifact",
+  "attribution_status": "attributed-to-CDRUSSTRATCOM-congressional-statement",
+  "provenance_status": "mapped",
+  "corroboration_status": "current-institutional-mission-snapshot",
+  "source_independence": "unknown-at-underlying-program-record-level",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-09-27",
+      "reason": "Preserve the official congressional posture statement as an attributed institutional layer without treating it as an operational directive."
+    }
+  ]
+}
