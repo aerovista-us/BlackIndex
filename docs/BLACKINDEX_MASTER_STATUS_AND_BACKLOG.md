@@ -146,7 +146,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 | CIA IG 9/11 Accountability | `PARTIAL` | full report + 2007 Executive Summary preserved; seven pivotal Executive Summary pages visually verified without OCR; reviewed findings encoded; full-report/redaction comparison remains partial |
 | Cross-document official-layer review 007 | `ACTIVE` | official-layer corpus at 39/0; genealogy, wording evolution, negative findings and anti-double-counting controls active |
 | Review 007A named-source recovery map | `ACTIVE` | local scan complete: 15/15 any hits, 2/15 EO 14040 container-candidate families, 13/15 citation/synthesis only |
-| Review 007B shared-upstream risk register | `COMPLETE` | Review 007K audit checks 13 high-risk dependencies + 4 synthesis classifications + 2 comparison guardrails; 0 high-risk edges marked independent |
+| Review 007B shared-upstream risk register | `COMPLETE` | Review 007K audit checks 14 high-risk dependencies + 4 synthesis classifications + 2 comparison guardrails; 0 high-risk edges marked independent |
 | Review 007C CIA OIG extraction plan | `ACTIVE` | seven pivotal Executive Summary pages now visually verified; five scoped OIG findings encoded; full-report/version comparison remains open |
 | Review 007C1 CIA OIG pivotal-page navigation map | `COMPLETE` | physical pages 1-3 and 9-12 visually confirmed as Roman v-vii and xiii-xvi; no OCR used |
 | Review 007C2 CIA OIG pivotal-page verification | `COMPLETE` | scope/dependency, misconduct negative finding, no-single-point balance, watchlisting breakdown, and FBI-receipt uncertainty encoded as attributed investigator reviews |
@@ -158,7 +158,8 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Review 007F Benomrane expansion | `COMPLETE` | exact physical-page scan 138-210 found no strong record-start signals and emitted no range; boundary recovery is on HOLD pending a new identifier/source lead |
 | Review 007I EO 14040 visual boundary confirmation | `COMPLETE` | CAND-0005 corrected visually from 58-63 to 57-63; CAND-0013 visually confirmed at 116-122; no child promotion |
 | Review 007J orphan raw artifact inventory | `COMPLETE` | all 41 raw artifacts audited against 39 metadata raw references; 2 legacy Commission artifacts inventoried, preserved, and classified as non-independent release/acquisition variants |
-| Review 007K shared-upstream closeout audit | `COMPLETE` | 13 dependency edges, 4 synthesis classifications, and 2 comparison guardrails audited; no current high-risk official-layer chain is encoded independent |
+| Review 007K shared-upstream closeout audit | `COMPLETE` | 14 dependency edges, 4 synthesis classifications, and 2 comparison guardrails audited after Review 007L; no current high-risk official-layer chain is encoded independent |
+| Review 007L Joint Inquiry Part Four release analysis | `COMPLETE` | current GovInfo Part Four public rendering and 2016 HPSCI declassified scan mapped as one dependent release family; “28 pages” distinguished from physical PDF count |
 | Named upstream Thumairy source bundle | `ACTIVE` | Benomrane pages 173/175 are physically verified but boundary-unresolved on HOLD after exact scan 138-210; core 2002 Thumairy ECs remain unmapped |
 | Named upstream Bayoumi source bundle | `ACTIVE` | visual boundaries now resolved: CAND-0005 = 57-63 (corrected), CAND-0013 = 116-122 (confirmed); neither later record is treated as the exact Commission-cited original interview; other Bayoumi records remain unmapped |
 | Named upstream Mohdar Abdullah source bundle | `ACTIVE` | May 18 EC visually boundary-confirmed at FBI Vault parent pp. 1-5; May 17 EC visually boundary-confirmed at pp. 6-13; exact July 23, 2002 ROI and May 19, 2004 EC remain unresolved |
@@ -168,7 +169,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Bayoumi statement evolution | `ACTIVE` | Commission 2004 vs FBI 2016 comparison object created; shared records still to map |
 | Thumairy statement evolution | `ACTIVE` | Commission scoped negative finding vs later FBI rereview comparison object created |
 | Principal negative-finding objects | `ACTIVE` | Commission Thumairy, Commission Bayoumi, and financing-monograph findings preserved as attributed investigator reviews |
-| Joint Inquiry “28 Pages” version family | `QUEUED` | dedicated release/version analysis after closeout comparison gate |
+| Joint Inquiry “28 Pages” version family | `COMPLETE` | Review 007L maps current GovInfo Part Four rendering to the 2016 HPSCI declassified scan; same source family, dependent release lineage |
 
 ### Assassination records
 
@@ -304,7 +305,7 @@ Do **not** count repeated statements across Joint Inquiry, Commission staff work
 6. `COMPLETE 2026-09-26` — Review 007K made the shared-upstream audit reproducible and fail-closed; unresolved genealogy remains non-independent and cannot raise corroboration strength.
 7. Review the generated local record-integrity files deliberately; do not commit them merely to clean the working tree.
 8. `COMPLETE 2026-09-26` — inventoried both metadata-unreferenced raw artifacts: financing monograph legacy byte variant and standalone Chapter 7 subset; both preserved immutably and linked through version-family objects.
-9. Run the dedicated Joint Inquiry “28 Pages” release/version analysis after the current CIA OIG/page-image gate.
+9. `COMPLETE 2026-09-26` — Review 007L mapped the Joint Inquiry Part Four / “28 Pages” release family and encoded the 2016 release as dependent on the same source lineage.
 10. Once the 9/11 official-layer comparison gate is satisfied, default next corpus expansion is Operation LOOKING GLASS.
 11. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
 

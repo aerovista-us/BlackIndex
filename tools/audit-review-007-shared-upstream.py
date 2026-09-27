@@ -15,6 +15,7 @@ EXPECTED_DEPENDENCIES = {
     'SD-2004-travel-monograph-source-base': 'partially-independent',
     'SD-2005-cia-oig-exec-summary-to-full-report': 'dependent',
     'SD-2005-cia-oig-to-joint-inquiry': 'dependent',
+    'SD-2016-joint-inquiry-28-pages-to-2002-joint-inquiry': 'dependent',
     'SD-2021-operation-encore-closing-to-2016-ec': 'dependent',
     'SD-20260826T020823Z-b0c0edc7': 'dependent',
 }
