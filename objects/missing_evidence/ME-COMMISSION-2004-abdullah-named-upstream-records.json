@@ -3,10 +3,10 @@
   "object_type": "missing_evidence",
   "object_id": "ME-COMMISSION-2004-abdullah-named-upstream-records",
   "created_at": "2026-08-27T21:45:00+00:00",
-  "updated_at": "2026-08-29T00:00:00+00:00",
+  "updated_at": "2026-09-27T02:52:42+00:00",
   "doc_id": "COMMISSION-2004-9-11-commission-001",
   "category": "UNMAPPED_REFERENCED_EVIDENCE",
-  "summary": "Named FBI interviews and electronic communications cited by the Commission for Mohdar Abdullah's assistance and alleged advance-knowledge statements are only partially recovered/mapped in BlackIndex",
+  "summary": "Named FBI interviews and electronic communications cited by the Commission for Mohdar Abdullah are partially recovered: the May 17 and May 18, 2004 ECs are now acquired and visually boundary-confirmed in an official FBI Vault parent release, while other cited records remain unresolved",
   "referenced_by": "9/11 Commission Report, Chapter 7 and Notes to Chapter 7, especially notes 20-23",
   "last_known_location": "FBI investigative files and Commission source files; official FBI Vault monthly release bundles now provide direct recovery paths for some May 2004 source records",
   "known_creator": "FBI / Commission source collection",
@@ -26,10 +26,27 @@
     "compare each underlying statement version before treating later summaries as corroboration"
   ],
   "status": "unresolved",
-  "recovery_status": "official_fbi_release_candidates_located",
-  "recovery_checkpoint": "2026-08-29-review-007g-official-fbi-discovery",
-  "candidate_locations": [],
-  "recovery_note": "Official FBI Vault discovery on 2026-08-29 located a 13-page May 2004 release bundle containing an EC dated 2004-05-18 whose synopsis is the Charles Sabah Toma interview and a separate EC beginning on physical PDF page 6 dated 2004-05-17 concerning information about Mohdar Abdullah. This directly overlaps Commission notes 22-23. A separate 12-page April 2002 FBI release bundle contains an early San Diego PENTTBOM EC and an FBI summary of a 2001-09-19 Mohdar Abdullah interview; it is useful upstream context but is not the Commission-cited 2002-07-23 ROI. The exact 2002-07-23 ROI and 2004-05-19 Abdullah EC remain unresolved unless later source review proves otherwise.",
+  "recovery_status": "partial_recovery_verified_boundaries",
+  "recovery_checkpoint": "2026-09-26-review-007h-may2004-boundary-confirmation",
+  "candidate_locations": [
+    {
+      "record": "FBI electronic communication \u2014 interview of Charles Sabah Toma \u2014 2004-05-18",
+      "parent_doc_id": "FBI-2004-9-11-commission-fbi-monthly-releases-may-2004-001",
+      "parent_sha256": "10e32decc97abe530126a6b08c1ddb3b8f5a422e1ad7bd4b0ea83815b163715f",
+      "physical_pages": "1-5",
+      "commission_note": "22",
+      "boundary_status": "visually_confirmed"
+    },
+    {
+      "record": "FBI electronic communication \u2014 Abdullah advance-knowledge claims \u2014 2004-05-17",
+      "parent_doc_id": "FBI-2004-9-11-commission-fbi-monthly-releases-may-2004-001",
+      "parent_sha256": "10e32decc97abe530126a6b08c1ddb3b8f5a422e1ad7bd4b0ea83815b163715f",
+      "physical_pages": "6-13",
+      "commission_note": "23",
+      "boundary_status": "visually_confirmed"
+    }
+  ],
+  "recovery_note": "Review 007H visually confirmed two complete FBI EC boundaries inside the acquired May 2004 official FBI Vault parent bundle. Physical pages 1-5 form the 2004-05-18 EC whose synopsis identifies the Charles Sabah Toma interview; page 1 is a fresh FBI EC start and page 5 closes with leads, diamond terminators, and internal page number 5. Physical pages 6-13 form a separate 2004-05-17 EC concerning information attributed to sources about Mohdar Abdullah; page 6 is a fresh FBI EC start and page 13 closes with leads, diamond terminators, and internal page number 8. Commission notes 22 and 23 cite these records by date/content. Exact-signature searches across the current normalized FBI corpus found no second copy of either record, so no duplicate release is presently mapped; that is not proof that no duplicate exists elsewhere. The exact 2002-07-23 ROI and 2004-05-19 Abdullah-investigation EC remain unresolved.",
   "official_public_release_candidates": [
     {
       "source": "FBI Vault",
@@ -37,11 +54,11 @@
       "url": "https://vault.fbi.gov/9-11%20Commission%20Report/9-11-investigation-2004-05-may",
       "page_count": 13,
       "observed_source_records": [
-        "FBI EC dated 2004-05-18 — Charles Sabah Toma interview",
-        "FBI EC dated 2004-05-17 — information concerning Mohdar Abdullah / alleged advance-knowledge statements"
+        "FBI EC dated 2004-05-18 \u2014 Charles Sabah Toma interview",
+        "FBI EC dated 2004-05-17 \u2014 information concerning Mohdar Abdullah / alleged advance-knowledge statements"
       ],
       "recovery_value": "direct candidate for Commission notes 22-23",
-      "ingest_status": "prepared"
+      "ingest_status": "acquired_and_may17_may18_boundaries_verified"
     },
     {
       "source": "FBI Vault",
@@ -53,15 +70,25 @@
         "summary of FBI interview of Mohdar Abdullah dated 2001-09-19"
       ],
       "recovery_value": "official upstream lineage context; not the exact 2002-07-23 Commission-cited ROI",
-      "ingest_status": "prepared"
+      "ingest_status": "acquired_context_only"
     }
   ],
   "named_records": [
-    "FBI ROI/interview Mohdar Abdullah — 2001-09-22",
-    "FBI ROI/interview Mohdar Abdullah — 2002-01-15",
-    "FBI ROI/interview Mohdar Abdullah — 2002-07-23",
-    "FBI EC Abdullah investigation — 2004-05-19",
-    "FBI EC interview Charles Sabah Toma — 2004-05-18",
-    "FBI EC interview concerning Abdullah advance-knowledge claims — 2004-05-17"
+    "FBI ROI/interview Mohdar Abdullah \u2014 2001-09-22",
+    "FBI ROI/interview Mohdar Abdullah \u2014 2002-01-15",
+    "FBI ROI/interview Mohdar Abdullah \u2014 2002-07-23",
+    "FBI EC Abdullah investigation \u2014 2004-05-19",
+    "FBI EC interview Charles Sabah Toma \u2014 2004-05-18",
+    "FBI EC interview concerning Abdullah advance-knowledge claims \u2014 2004-05-17"
+  ],
+  "recovered_named_records": [
+    "FBI EC interview Charles Sabah Toma \u2014 2004-05-18 \u2014 official FBI parent release physical pages 1-5",
+    "FBI EC interview concerning Abdullah advance-knowledge claims \u2014 2004-05-17 \u2014 official FBI parent release physical pages 6-13"
+  ],
+  "unresolved_named_records": [
+    "FBI ROI/interview Mohdar Abdullah \u2014 2001-09-22",
+    "FBI ROI/interview Mohdar Abdullah \u2014 2002-01-15",
+    "FBI ROI/interview Mohdar Abdullah \u2014 2002-07-23",
+    "FBI EC Abdullah investigation \u2014 2004-05-19"
   ]
 }
