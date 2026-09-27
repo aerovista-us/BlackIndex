@@ -2,7 +2,7 @@
 
 ## Status
 
-`ACTIVE — full report + official 2007 Executive Summary companion preserved; both image-only; pivotal page-image verification is next`
+`ACTIVE — official artifacts preserved; seven pivotal Executive Summary pages visually verified and reviewed findings encoded; full-report/version limitations remain`
 
 Primary BlackIndex records:
 

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "object_type": "investigator_review",
+  "created_at": "2026-09-27T02:56:32+00:00",
+  "investigator": "CIA Office of Inspector General 9/11 Accountability Review Team",
+  "employer_controller": "Central Intelligence Agency, Office of Inspector General",
+  "investigator_independence": null,
+  "access_to_evidence": null,
+  "method_transparency": null,
+  "reproducibility": null,
+  "conflict_exposure": null,
+  "records_unavailable": [],
+  "witnesses_omitted": [],
+  "conclusion_adopted_as_fact": false,
+  "source_doc_id": "CIA-2005-9-11-cia-accountability-executive-summary-001",
+  "source_artifact_sha256": "4ad41550122f7a92090f4da7c4e03c60f0c671a324b8b070b6292d9034587bd2",
+  "verification_method": "direct visual inspection of preserved official Executive Summary page images; no OCR used",
+  "object_id": "IR-2005-cia-oig-fbi-receipt-uncertainty",
+  "report_or_finding": "CIA OIG 9/11 Accountability Review — uncertainty over FBI receipt of travel information",
+  "exact_wording": "The Team has not been able to confirm that the information was passed, or that it was not passed.",
+  "scope": "OIG finding concerning a January 2000 effort to pass al-Mihdhar travel information from CIA to FBI channels. The review says one message was never sent, another cable reported that information had been passed, and the Team could not confirm either transmission or non-transmission; it separately found no indication that CTC checked to ensure FBI receipt.",
+  "source_pages": [
+    "Executive Summary physical p. 10 / Roman p. xiv",
+    "Executive Summary physical p. 11 / Roman p. xv"
+  ],
+  "records_reviewed": [
+    "CIA message/cable and accountability material summarized in the Executive Summary"
+  ],
+  "workpapers_status": "The public Executive Summary preserves uncertainty rather than resolving the transmission question. The complete underlying communications/workpapers are not reproduced here.",
+  "notes": "Do not rewrite this as either “CIA definitely told the FBI” or “CIA definitely did not tell the FBI.” The visually verified source expressly preserves uncertainty.",
+  "competing_findings": []
+}

@@ -2,7 +2,7 @@
 
 ## Status
 
-`PREPARED — navigation leads only; official page-image verification still required`
+`COMPLETE — all seven priority Executive Summary page labels visually verified; findings encoded in Review 007C2`
 
 This map narrows Review 007C to a small set of Executive Summary pages. It is **not** a source extraction and does not convert search-index or third-party transcription text into primary evidence.
 
@@ -121,3 +121,7 @@ If any expected Roman label does not correspond to the inferred physical page, s
 ## Core rule
 
 **Navigation text may tell BlackIndex where to look. Only the official page image can tell BlackIndex what to adopt as primary-source wording.**
+
+## Verification result — 2026-09-26
+
+All seven priority pages were visually verified against the preserved official artifact without OCR: physical pages `1, 2, 3, 9, 10, 11, 12` correspond to printed Roman pages `v, vi, vii, xiii, xiv, xv, xvi`. Reviewed findings are recorded in `phase2-cross-document-007c2-cia-oig-pivotal-page-verification.md`.

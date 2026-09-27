@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "object_type": "investigator_review",
+  "created_at": "2026-09-27T02:56:32+00:00",
+  "investigator": "CIA Office of Inspector General 9/11 Accountability Review Team",
+  "employer_controller": "Central Intelligence Agency, Office of Inspector General",
+  "investigator_independence": null,
+  "access_to_evidence": null,
+  "method_transparency": null,
+  "reproducibility": null,
+  "conflict_exposure": null,
+  "records_unavailable": [],
+  "witnesses_omitted": [],
+  "conclusion_adopted_as_fact": false,
+  "source_doc_id": "CIA-2005-9-11-cia-accountability-executive-summary-001",
+  "source_artifact_sha256": "4ad41550122f7a92090f4da7c4e03c60f0c671a324b8b070b6292d9034587bd2",
+  "verification_method": "direct visual inspection of preserved official Executive Summary page images; no OCR used",
+  "object_id": "IR-2005-cia-oig-scope-joint-inquiry-dependence",
+  "report_or_finding": "CIA OIG 9/11 Accountability Review — scope and Joint Inquiry dependency",
+  "exact_wording": "This review focuses only on those findings of the Joint Inquiry that relate to the Central Intelligence Agency.",
+  "scope": "The OIG accountability review was expressly bounded to Joint Inquiry findings relating to CIA and did not reach conclusions about the performance of other agencies or their personnel.",
+  "source_pages": [
+    "Executive Summary physical p. 3 / Roman p. vii",
+    "Executive Summary physical p. 1 / Roman p. v"
+  ],
+  "records_reviewed": [
+    "Joint Inquiry findings relating to CIA",
+    "CIA accountability-review interviews/materials described in the Executive Summary"
+  ],
+  "workpapers_status": "The public Executive Summary describes the scope and coordination with DOJ OIG and the 9/11 Commission but does not reproduce the complete underlying workpapers.",
+  "notes": "Use this object to prevent the CIA OIG and Joint Inquiry from being counted automatically as independent source families for propositions inherited from the Joint Inquiry. The OIG also performed its own interviews and analysis, so dependency is proposition-specific rather than total identity.",
+  "competing_findings": []
+}
