@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "object_type": "version_family",
+  "object_id": "VF-COMMISSION-2004-chapter7-release-family",
+  "created_at": "2026-09-27T03:06:34+00:00",
+  "title": "9/11 Commission Report Chapter 7 — canonical full-report parent and preserved standalone Chapter 7 subset",
+  "doc_ids": [
+    "COMMISSION-2004-9-11-commission-001"
+  ],
+  "relationship_scope": "standalone Chapter 7 release/subset of the canonical full official Commission Report; standalone acquisition target is superseded, not an independent source",
+  "canonical_record": {
+    "doc_id": "COMMISSION-2004-9-11-commission-001",
+    "sha256": "657d41475eb3a9a5e3e87a6c7c51ac1dfbe1af7566d1abff7bf7286e7e1c0e1b",
+    "source_url": "https://www.govinfo.gov/content/pkg/GPO-911REPORT/pdf/GPO-911REPORT.pdf",
+    "relationship": "parent full report containing Chapter 7"
+  },
+  "unregistered_artifacts": [
+    {
+      "path": "/srv/Collab/mini.shops/blackindex/source-vault/raw/9/11 commission/9-11-commission-official-baselines/9/11 COMMISSION-2004-9-11-commission-official-baselines-001.pdf",
+      "sha256": "571a90941790c746d99336134dbae182d10af508d19361974708462e8e02aef8",
+      "bytes": 971373,
+      "pages": 39,
+      "historical_source_url": "https://www.9-11commission.gov/report/911Report_Ch7.pdf",
+      "historical_source_label": "9/11 Commission",
+      "historical_collection": "9/11 Commission Official Baselines",
+      "native_id": "911Report-Ch7",
+      "inventory_status": "preserved_legacy_raw_not_metadata_registered"
+    }
+  ],
+  "content_identification": {
+    "starts_at_printed_page": 215,
+    "ends_at_printed_page": 253,
+    "chapter_title": "7 — THE ATTACK LOOMS",
+    "closing_sentence_present_in_canonical_full_report": true,
+    "standalone_target_status": "superseded_by_full_official_report_parent"
+  },
+  "notes": "The 39-page legacy artifact is the official standalone Chapter 7 PDF prepared by the earlier official-baseline script. Chapter 7 is already represented inside the canonical full Commission Report and by dedicated dependency/classification objects. Retain this immutable raw subset as acquisition/release-history evidence; do not promote it merely to make an obsolete four-document checklist literal."
+}

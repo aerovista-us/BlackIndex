@@ -157,6 +157,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Review 007F boundary hypotheses | `COMPLETE` | historical hypotheses retained; Review 007I later corrected CAND-0005 to 57-63 and confirmed CAND-0013 at 116-122 |
 | Review 007F Benomrane expansion | `COMPLETE` | exact physical-page scan 138-210 found no strong record-start signals and emitted no range; boundary recovery is on HOLD pending a new identifier/source lead |
 | Review 007I EO 14040 visual boundary confirmation | `COMPLETE` | CAND-0005 corrected visually from 58-63 to 57-63; CAND-0013 visually confirmed at 116-122; no child promotion |
+| Review 007J orphan raw artifact inventory | `COMPLETE` | all 41 raw artifacts audited against 39 metadata raw references; 2 legacy Commission artifacts inventoried, preserved, and classified as non-independent release/acquisition variants |
 | Named upstream Thumairy source bundle | `ACTIVE` | Benomrane pages 173/175 are physically verified but boundary-unresolved on HOLD after exact scan 138-210; core 2002 Thumairy ECs remain unmapped |
 | Named upstream Bayoumi source bundle | `ACTIVE` | visual boundaries now resolved: CAND-0005 = 57-63 (corrected), CAND-0013 = 116-122 (confirmed); neither later record is treated as the exact Commission-cited original interview; other Bayoumi records remain unmapped |
 | Named upstream Mohdar Abdullah source bundle | `ACTIVE` | May 18 EC visually boundary-confirmed at FBI Vault parent pp. 1-5; May 17 EC visually boundary-confirmed at pp. 6-13; exact July 23, 2002 ROI and May 19, 2004 EC remain unresolved |
@@ -301,7 +302,7 @@ Do **not** count repeated statements across Joint Inquiry, Commission staff work
 5. Continue negative-finding encoding with exact wording, scope, evidence access and competing later findings.
 6. Use Review 007B to audit shared-upstream source families before increasing corroboration strength.
 7. Review the generated local record-integrity files deliberately; do not commit them merely to clean the working tree.
-8. Inventory the preserved orphan immutable raw artifact from the failed first-pass staff-monograph namespace rather than deleting it.
+8. `COMPLETE 2026-09-26` — inventoried both metadata-unreferenced raw artifacts: financing monograph legacy byte variant and standalone Chapter 7 subset; both preserved immutably and linked through version-family objects.
 9. Run the dedicated Joint Inquiry “28 Pages” release/version analysis after the current CIA OIG/page-image gate.
 10. Once the 9/11 official-layer comparison gate is satisfied, default next corpus expansion is Operation LOOKING GLASS.
 11. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
