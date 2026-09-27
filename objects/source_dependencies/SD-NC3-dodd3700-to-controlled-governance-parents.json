@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-dodd3700-to-controlled-governance-parents",
+  "created_at": "2026-09-27",
+  "assertion_id": "dod-c2-enabling-capabilities-controlled-governance-source-base",
+  "source_id": "DOD-2014-dod-directives-001",
+  "depends_on": "DoDD-S-3710.01-and-DoDD-S-5210.81-controlled-governance-parents",
+  "dependency_type": "public-C2-enabling-capability-directive-explicitly-references-controlled-NLCC-and-nuclear-command-policy",
+  "independence": "dependent",
+  "notes": "DoDD 3700.01 references DoDD S-3710.01 for fixed, mobile, and airborne resources supporting Presidential requirements and also cites DoDD S-5210.81 for nuclear command-and-control safety/security policy. Public placeholders are preserved for both controlled parents; their contents are not inferred."
+}

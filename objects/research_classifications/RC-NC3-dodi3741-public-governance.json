@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-dodi3741-public-governance",
+  "created_at": "2026-09-27",
+  "subject_type": "document",
+  "subject_id": "DOD-2013-dod-instructions-001",
+  "canonical_status": "canon",
+  "reason": "Official public DoDI 3741.01 preserved from the DoD issuances site. Canon applies to the document identity, provenance, and its public NLCC configuration-management policy; the instruction explicitly depends on controlled DoDD S-3710.01 for the governing NLCC construct.",
+  "review_required": false,
+  "authenticity_status": "official-DoD-issuance-preserved-artifact",
+  "attribution_status": "attributed-to-preserved-first-party-public-artifact",
+  "provenance_status": "mapped",
+  "corroboration_status": "public-governance-dependent-on-controlled-NLCC-parent",
+  "source_independence": "document-identity-independent-source-lineage-not-inferred",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-09-27",
+      "reason": "First-party public artifact preserved and hashed with research scope limited to what the artifact itself exposes."
+    }
+  ]
+}
