@@ -31,7 +31,7 @@
 - Review 007 localization result: **15/15 target families had a citation/synthesis hit; 2/15 also had EO 14040 FBI-container candidates; 13/15 remain citation-localized only**
 - Review 007 physical-page result: **4/4 exact physical-page mappings; 0 unresolved; no OCR/fuzzy matching**
 - Review 007 verified source bundle: **3/3 review slices ready; 0 boundary claims; 0 promotions**
-- Review 007 boundary follow-up: **CAND-0005 / CAND-0013 bracketed pending visual confirmation; Benomrane exact scan 138-210 found no strong boundary signals and is on HOLD**
+- Review 007 visual boundary follow-up: **CAND-0005 corrected to physical pages 57-63; CAND-0013 confirmed at 116-122; Benomrane exact scan 138-210 remains on HOLD**
 - Review 007C companion result: **official GPO/FDLP Executive Summary acquired; image-only; no OCR performed**
 - Review 007G/007H Abdullah result: **official FBI April 2002 + May 2004 release bundles acquired; May 18 EC boundary confirmed at pp. 1-5 and May 17 EC boundary confirmed at pp. 6-13; no child promotion**
 - Raw source artifacts remain local-only
@@ -153,11 +153,12 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Review 007D recovery interpretation | `ACTIVE` | durable interpretation separates citation localization from underlying-container recovery |
 | Review 007E physical-page gate | `COMPLETE` | 4/4 target positions exact-mapped to physical PDF pages; 0 unresolved; no OCR/fuzzy matching |
 | Review 007 verified source-image bundle | `COMPLETE` | 3/3 bounded review slices created only after every page in each range exact-matched the parent PDF |
-| Review 007 boundary diagnostic | `COMPLETE` | executed at 36/0; CAND-0005 and CAND-0013 require visual confirmation; Benomrane remained a segmentation-gap review |
-| Review 007F boundary hypotheses | `COMPLETE` | CAND-0005 and CAND-0013 are bracketed hypotheses pending visual/source-image confirmation; no boundary claim or promotion |
+| Review 007 boundary diagnostic | `COMPLETE` | structural pass preserved as historical precursor; later Review 007I visually corrected CAND-0005 and confirmed CAND-0013 |
+| Review 007F boundary hypotheses | `COMPLETE` | historical hypotheses retained; Review 007I later corrected CAND-0005 to 57-63 and confirmed CAND-0013 at 116-122 |
 | Review 007F Benomrane expansion | `COMPLETE` | exact physical-page scan 138-210 found no strong record-start signals and emitted no range; boundary recovery is on HOLD pending a new identifier/source lead |
+| Review 007I EO 14040 visual boundary confirmation | `COMPLETE` | CAND-0005 corrected visually from 58-63 to 57-63; CAND-0013 visually confirmed at 116-122; no child promotion |
 | Named upstream Thumairy source bundle | `ACTIVE` | Benomrane pages 173/175 are physically verified but boundary-unresolved on HOLD after exact scan 138-210; core 2002 Thumairy ECs remain unmapped |
-| Named upstream Bayoumi source bundle | `ACTIVE` | CAND-0005 (58-63; anchor 60) and CAND-0013 (116-122; anchor 118) are physically verified/bracketed hypotheses pending visual confirmation; other Bayoumi records remain unmapped |
+| Named upstream Bayoumi source bundle | `ACTIVE` | visual boundaries now resolved: CAND-0005 = 57-63 (corrected), CAND-0013 = 116-122 (confirmed); neither later record is treated as the exact Commission-cited original interview; other Bayoumi records remain unmapped |
 | Named upstream Mohdar Abdullah source bundle | `ACTIVE` | May 18 EC visually boundary-confirmed at FBI Vault parent pp. 1-5; May 17 EC visually boundary-confirmed at pp. 6-13; exact July 23, 2002 ROI and May 19, 2004 EC remain unresolved |
 | Review 007G Abdullah official FBI recovery | `COMPLETE` | both official FBI parent release bundles acquired at 39/0; Review 007H confirmed May 17/18 record boundaries and found no duplicate copy in the current FBI corpus |
 | Review 007H May 2004 FBI boundary confirmation | `COMPLETE` | Commission note 22 → May 18 EC pp. 1-5; note 23 → May 17 EC pp. 6-13; source-image confirmed, no child promotion |
@@ -293,9 +294,9 @@ Do **not** count repeated statements across Joint Inquiry, Commission staff work
 
 ## Current operational order
 
-1. Visually confirm the source-image boundaries for `CAND-0005` and `CAND-0013`; keep them unpromoted until that gate is satisfied.
+1. `COMPLETE 2026-09-26` — visually reviewed `CAND-0005` and `CAND-0013`; corrected 0005 to `57-63`, confirmed 0013 at `116-122`, and kept both unpromoted as source-recovery objects.
 2. Leave the Benomrane boundary search on `HOLD` until a new identifier/source lead justifies reopening it.
-3. Advance Review 007C by verifying pivotal CIA OIG passages against official page images in the full report and Executive Summary; no silent OCR or search-index quotation.
+3. `PARTIAL/ACTIVE` — Executive Summary pivotal-page gate is complete without OCR (Review 007C2); targeted full-report/redaction/version comparison remains open where materially useful.
 4. Continue targeted recovery for citation-only named source families, especially the 2002 Thumairy ECs, Bayoumi interview/records set, Abdullah ECs, and CIA `Al-Qa'ida Travel Issues` report.
 5. Continue negative-finding encoding with exact wording, scope, evidence access and competing later findings.
 6. Use Review 007B to audit shared-upstream source families before increasing corroboration strength.
