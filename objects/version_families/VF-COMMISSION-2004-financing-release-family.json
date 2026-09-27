@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "object_type": "version_family",
+  "object_id": "VF-COMMISSION-2004-financing-release-family",
+  "created_at": "2026-09-27T03:06:34+00:00",
+  "title": "9/11 Commission Terrorist Financing monograph — canonical GovInfo record and preserved legacy acquisition artifact",
+  "doc_ids": [
+    "COMMISSION-2004-9-11-commission-terrorist-financing-staff-monograph-001"
+  ],
+  "relationship_scope": "same textual monograph preserved through two PDF byte variants/acquisition paths; legacy raw artifact is not a second independent source",
+  "canonical_record": {
+    "doc_id": "COMMISSION-2004-9-11-commission-terrorist-financing-staff-monograph-001",
+    "sha256": "596e3318674a4bd66acf1fd8f7725d20e9e9f596379089f6f0ac0cb71082c9db",
+    "source_url": "https://www.govinfo.gov/content/pkg/GOVPUB-Y3-PURL-LPS53198/pdf/GOVPUB-Y3-PURL-LPS53198.pdf",
+    "source_namespace": "COMMISSION",
+    "pages": 155
+  },
+  "unregistered_artifacts": [
+    {
+      "path": "/srv/Collab/mini.shops/blackindex/source-vault/raw/9/11 commission/9-11-commission-staff-monographs/9/11 COMMISSION-2004-9-11-commission-staff-monographs-001.pdf",
+      "sha256": "685aded194a5afaf9f57c04069c8be476a9064fbf31efe2471ff2e7f744da38a",
+      "bytes": 537715,
+      "pages": 155,
+      "historical_source_url": "https://www.9-11commission.gov/staff_statements/911_TerrFin_Monograph.pdf",
+      "historical_source_label": "9/11 Commission",
+      "historical_collection": "9/11 Commission Staff Monographs",
+      "native_id": "911-TerrFin-Monograph",
+      "inventory_status": "preserved_legacy_raw_not_metadata_registered",
+      "normalized_text_sha256": "414881dcb7d24f30843e23db07693ad8de4b2dd782e3d0f6f7123540cc740f60"
+    }
+  ],
+  "comparison_result": {
+    "canonical_normalized_text_sha256": "414881dcb7d24f30843e23db07693ad8de4b2dd782e3d0f6f7123540cc740f60",
+    "legacy_normalized_text_sha256": "414881dcb7d24f30843e23db07693ad8de4b2dd782e3d0f6f7123540cc740f60",
+    "normalized_text_exact_match": true,
+    "pdf_bytes_identical": false
+  },
+  "notes": "The legacy raw file is a byte-different PDF rendering/acquisition of the same 155-page Terrorist Financing monograph. Full normalized text matches the canonical GovInfo artifact exactly. Preserve the raw artifact for acquisition-history integrity, but never count it as independent corroboration or a second document merely because its PDF SHA differs."
+}
