@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-cjcsi5119-public-charter",
+  "created_at": "2026-09-27",
+  "subject_type": "document",
+  "subject_id": "JCS-2007-cjcs-instructions-001",
+  "canonical_status": "canon",
+  "reason": "Official public CJCSI 5119.01C preserved from the Joint Staff. Canon applies to the public charter and its stated Nuclear C3 direction, management, operation, and technical-support responsibilities; it does not expose all higher-level national or controlled guidance.",
+  "review_required": false,
+  "authenticity_status": "official-Joint-Staff-preserved-artifact",
+  "attribution_status": "attributed-to-preserved-first-party-public-artifact",
+  "provenance_status": "mapped",
+  "corroboration_status": "public-charter-higher-level-guidance-not-assumed-complete",
+  "source_independence": "document-identity-independent-source-lineage-not-inferred",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-09-27",
+      "reason": "First-party public artifact preserved and hashed with research scope limited to what the artifact itself exposes."
+    }
+  ]
+}
