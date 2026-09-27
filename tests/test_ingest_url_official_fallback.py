@@ -16,6 +16,7 @@ class OfficialSourceFallbackTests(unittest.TestCase):
         self.assertIn("https://www.afgsc.af.mil/*", text)
         self.assertIn("https://media.defense.gov/*", text)
         self.assertIn("https://static.e-publishing.af.mil/*", text)
+        self.assertIn("https://www.stratcom.mil/*", text)
         self.assertIn("ALLOW_BROWSER_FALLBACK=0", text)
         self.assertIn("ALLOW_BROWSER_FALLBACK=1", text)
 

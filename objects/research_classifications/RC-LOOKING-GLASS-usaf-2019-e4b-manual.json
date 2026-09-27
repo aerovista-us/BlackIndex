@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-LOOKING-GLASS-usaf-2019-e4b-manual",
+  "created_at": "2026-09-27",
+  "subject_type": "document",
+  "subject_id": "USAF-2019-air-force-manuals-001",
+  "canonical_status": "canon",
+  "reason": "Official AFMAN 11-2E-4B Volume 3, E-4B Operations Procedures, preserved from the first-party Air Force e-Publishing artifact. Canon status applies to the document identity, provenance, and attributable command/governance statements. This research pass intentionally does not promote detailed operating procedures into analytical findings.",
+  "review_required": false,
+  "authenticity_status": "official-USAF-ePublishing-preserved-artifact",
+  "attribution_status": "attributed-to-Secretary-of-the-Air-Force-manual",
+  "provenance_status": "mapped",
+  "corroboration_status": "document-authenticated-governance-use-only",
+  "source_independence": "official-directive-layer-not-assumed-independent-of-governing-orders",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-09-27",
+      "reason": "First-party public artifact preserved and hashed; research use is bounded to document identity and high-level command/governance mapping."
+    }
+  ]
+}
