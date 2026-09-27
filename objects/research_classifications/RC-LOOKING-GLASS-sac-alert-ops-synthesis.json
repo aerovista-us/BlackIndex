@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-LOOKING-GLASS-sac-alert-ops-synthesis",
+  "created_at": "2026-09-26",
+  "subject_type": "document",
+  "subject_id": "USAF-1991-strategic-air-command-historical-studies-001",
+  "canonical_status": "deuterocanon",
+  "reason": "Official Headquarters Strategic Air Command historical synthesis documenting alert operations, Looking Glass, PACCS, EC-135 transition, and ALCS chronology. Preserve it as an attributed institutional history; it is not itself an operational order, Emergency War Order, nuclear-use authorization, or complete underlying record set.",
+  "review_required": true,
+  "authenticity_status": "official-USAF-preserved-artifact",
+  "attribution_status": "attributed-to-Headquarters-Strategic-Air-Command-Office-of-the-Historian",
+  "provenance_status": "mapped",
+  "corroboration_status": "requires-underlying-record-review-for-authority-or-procedure-claims",
+  "source_independence": "unknown-at-underlying-record-level",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-09-26",
+      "reason": "Official institutional history accepted as a research baseline while capability, authority, procedure, and upstream-source questions remain separate."
+    }
+  ]
+}

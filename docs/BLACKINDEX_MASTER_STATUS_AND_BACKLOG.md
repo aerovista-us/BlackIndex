@@ -171,6 +171,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Thumairy statement evolution | `ACTIVE` | Commission scoped negative finding vs later FBI rereview comparison object created |
 | Principal negative-finding objects | `COMPLETE` | current closeout set includes Commission Thumairy/Bayoumi, financing-monograph, and scoped CIA OIG findings/uncertainties as attributed investigator reviews |
 | Joint Inquiry “28 Pages” version family | `COMPLETE` | Review 007L maps current GovInfo Part Four rendering to the 2016 HPSCI declassified scan; same source family, dependent release lineage |
+| Operation LOOKING GLASS official USAF baseline | `ACTIVE` | 2/2 official histories acquired as USAF records; 41/0 corpus; capability chronology established, authority/procedure/source-independence questions remain open |
 
 ### Assassination records
 
@@ -180,7 +181,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 
 ### Nuclear / continuity
 
-- Operation LOOKING GLASS — `QUEUED`
+- Operation LOOKING GLASS — `ACTIVE` — official USAF baseline 2/2 acquired; corpus 41/0; synthesis classifications encoded
 - SIOP / SAC / Emergency War Orders / TACAMO / NEACP / NIGHTWATCH — `QUEUED`
 
 ### Intelligence / political controversies
@@ -307,7 +308,7 @@ Do **not** count repeated statements across Joint Inquiry, Commission staff work
 7. Review the generated local record-integrity files deliberately; do not commit them merely to clean the working tree.
 8. `COMPLETE 2026-09-26` — inventoried both metadata-unreferenced raw artifacts: financing monograph legacy byte variant and standalone Chapter 7 subset; both preserved immutably and linked through version-family objects.
 9. `COMPLETE 2026-09-26` — Review 007L mapped the Joint Inquiry Part Four / “28 Pages” release family and encoded the 2016 release as dependent on the same source lineage.
-10. `READY 2026-09-26` — Review 007M satisfies the official-layer comparison gate; default next corpus expansion is Operation LOOKING GLASS, while residual Review 007 source recovery remains backlog.
+10. `ACTIVE 2026-09-26` — Operation LOOKING GLASS opened with two official USAF histories; next gate is operational/authority-source recovery (PACCS/EWO/SIOP/TACAMO/NEACP-NIGHTWATCH), while residual Review 007 source recovery remains backlog.
 11. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
 
 ## Completion logging rule
