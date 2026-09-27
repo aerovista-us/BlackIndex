@@ -14,15 +14,15 @@
   "stated_reason_missing": "Not established as absent. The cited records have not yet been individually acquired from an authorized public or declassified first-party source.",
   "potential_relevance": "Needed to separate crew evaluation rules from the underlying nuclear command authority, execution-order authentication, positive-control, code-control, alert-operations, and technical operating procedures.",
   "named_records": [
-    "AFPD 13-5 — Air Force Nuclear Enterprise",
-    "AFI 13-530 — Intercontinental Ballistic Missile (ICBM) Nuclear Operations",
-    "AFI 91-117 — Safety Rules for the Airborne Launch Control System",
-    "AFGSCI 13-5302V4 — ALCS Emergency War Order (EWO) Training and Evaluation Procedures",
-    "AFGSCI 13-5304 — Emergency War Order (EAP) Generation and Targeting–ICBM (GATI)",
+    "AFPD 13-5 \u2014 Air Force Nuclear Enterprise",
+    "AFI 13-530 \u2014 Intercontinental Ballistic Missile (ICBM) Nuclear Operations",
+    "AFI 91-117 \u2014 Safety Rules for the Airborne Launch Control System",
+    "AFGSCI 13-5302V4 \u2014 ALCS Emergency War Order (EWO) Training and Evaluation Procedures",
+    "AFGSCI 13-5304 \u2014 Emergency War Order (EAP) Generation and Targeting\u2013ICBM (GATI)",
     "EAP-STRAT Volumes 1, 3, 8, 11, and 16",
-    "STRATCOM Directive 501-1 — ALCS Operation",
-    "STRATCOM Instruction 530-02 — Airborne Command Post Concept of Alert Operations",
-    "T.O. 21M-LGM30F-1-24 — Airborne Launch Control Center Operation Instructions"
+    "STRATCOM Directive 501-1 \u2014 ALCS Operation",
+    "STRATCOM Instruction 530-02 \u2014 Airborne Command Post Concept of Alert Operations",
+    "T.O. 21M-LGM30F-1-24 \u2014 Airborne Launch Control Center Operation Instructions"
   ],
   "alternative_explanations": [
     "Some references may have been superseded by later public directives",
@@ -36,7 +36,7 @@
   "recovery_attempts": [
     {
       "date": "2026-09-27",
-      "record": "AFI 91-117 — Safety Rules for the Airborne Launch Control System",
+      "record": "AFI 91-117 \u2014 Safety Rules for the Airborne Launch Control System",
       "artifact_url": "https://static.e-publishing.af.mil/production/1/af_se/publication/afi91-117/afi91-117.pdf",
       "discovery_status": "public search index identifies the 29 August 2022, 10-page, no-releasability-restrictions instruction; index text is discovery context only, not preserved evidence",
       "nxcore_acquisition_status": "blocked: direct request HTTP 403; browser-navigation retry HTTP 404; browser-TLS retry HTTP 404",
@@ -44,5 +44,56 @@
     }
   ],
   "status": "unresolved",
-  "recovery_status": "AFI91-117-indexed-but-first-party-bytes-not-yet-preserved"
+  "recovery_status": "public-recoverable-policy-successor-layer-recovered-controlled-and-unpublished-source-family-remains-open",
+  "recovered_records": [
+    {
+      "record": "AFPD 13-5 \u2014 Air Force Nuclear Mission",
+      "doc_id": "USAF-2018-air-force-policy-directives-001",
+      "status": "recovered-official-first-party"
+    },
+    {
+      "record": "AFI 13-520 \u2014 Aircraft and ICBM Nuclear Operations",
+      "doc_id": "USAF-2018-air-force-instructions-001",
+      "status": "recovered-official-first-party-successor-to-AFI13-530"
+    }
+  ],
+  "historical_predecessor_status": {
+    "record": "AFI 13-530 \u2014 Intercontinental Ballistic Missile (ICBM) Nuclear Operations",
+    "date": "2015-09-08",
+    "evidence": "AFI 13-520 cover explicitly lists AFI13-530, 8 September 2015, as superseded",
+    "official_artifact_attempt": "legacy static e-Publishing path returned HTTP 404 on 2026-09-27",
+    "status": "superseded-historical-source-unrecovered"
+  },
+  "public_declassified_availability_scan_2026_09_27": [
+    {
+      "record": "AFGSCI 13-5302V4 \u2014 ALCS Emergency War Order Training and Evaluation Procedures",
+      "status": "not-publicly-recovered",
+      "attempt": "first-party e-Publishing title/path search and direct expected-path fetch; no public artifact recovered"
+    },
+    {
+      "record": "AFGSCI 13-5304 \u2014 Emergency War Order (EAP) Generation and Targeting\u2013ICBM",
+      "status": "classified-reference-not-sought-outside-authorized-public-sources",
+      "attempt": "public AFGSCI 13-5302V2 cites this publication with an (S) marking; expected public e-Publishing path did not yield an artifact"
+    },
+    {
+      "record": "STRATCOM Directive 501-1 \u2014 ALCS Operation",
+      "status": "not-publicly-recovered",
+      "attempt": "USSTRATCOM first-party web/FOIA-index search located references but no public directive artifact"
+    },
+    {
+      "record": "STRATCOM Instruction 530-02 \u2014 Airborne Command Post Concept of Alert Operations",
+      "status": "not-publicly-recovered",
+      "attempt": "USSTRATCOM first-party web/FOIA-index search located references but no public instruction artifact"
+    },
+    {
+      "record": "EAP-STRAT Volumes 1, 3, 8, 11, and 16",
+      "status": "not-publicly-recovered",
+      "attempt": "official Air Force publications confirm titles/references, but no public first-party EAP-STRAT artifact was located"
+    },
+    {
+      "record": "T.O. 21M-LGM30F-1-24 \u2014 Airborne Launch Control Center Operation Instructions",
+      "status": "not-publicly-recovered",
+      "attempt": "official references located; no public first-party technical-order artifact recovered"
+    }
+  ]
 }

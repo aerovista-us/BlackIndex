@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-LOOKING-GLASS-afi13-520-successor",
+  "created_at": "2026-09-27",
+  "subject_type": "document",
+  "subject_id": "USAF-2018-air-force-instructions-001",
+  "canonical_status": "canon",
+  "reason": "Official AFI 13-520, Aircraft and ICBM Nuclear Operations, preserved from the first-party e-Publishing artifact. The publication explicitly implements AFPD 13-5 and supersedes AFI 13-530 dated 8 September 2015. Canon status applies to this preserved successor text and its stated supersession history; it does not make the missing AFI 13-530 text recoverable by inference.",
+  "review_required": false,
+  "authenticity_status": "official-USAF-ePublishing-preserved-artifact",
+  "attribution_status": "attributed-to-Secretary-of-the-Air-Force-instruction",
+  "provenance_status": "mapped",
+  "corroboration_status": "document-authenticated-successor-layer",
+  "source_independence": "dependent-on-AFPD13-5-for-policy-implementation",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-09-27",
+      "reason": "First-party public artifact preserved and hashed; document identity, date, implementation relationship, and supersession statement established."
+    }
+  ]
+}
