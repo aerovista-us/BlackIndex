@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-LOOKING-GLASS-afpd13-5-policy",
+  "created_at": "2026-09-27",
+  "subject_type": "document",
+  "subject_id": "USAF-2018-air-force-policy-directives-001",
+  "canonical_status": "canon",
+  "reason": "Official Air Force Policy Directive 13-5, Air Force Nuclear Mission, preserved from the first-party e-Publishing artifact with exact date, title, text, and hash. Canon status applies to the document and its attributable policy statements, not to unseen DoD or operational publications it references.",
+  "review_required": false,
+  "authenticity_status": "official-USAF-ePublishing-preserved-artifact",
+  "attribution_status": "attributed-to-Secretary-of-the-Air-Force-policy-directive",
+  "provenance_status": "mapped",
+  "corroboration_status": "document-authenticated-policy-layer",
+  "source_independence": "policy-layer",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-09-27",
+      "reason": "First-party public artifact preserved and hashed; document identity and provenance established."
+    }
+  ]
+}

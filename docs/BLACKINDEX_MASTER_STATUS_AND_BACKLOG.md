@@ -171,10 +171,11 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Thumairy statement evolution | `ACTIVE` | Commission scoped negative finding vs later FBI rereview comparison object created |
 | Principal negative-finding objects | `COMPLETE` | current closeout set includes Commission Thumairy/Bayoumi, financing-monograph, and scoped CIA OIG findings/uncertainties as attributed investigator reviews |
 | Joint Inquiry “28 Pages” version family | `COMPLETE` | Review 007L maps current GovInfo Part Four rendering to the 2016 HPSCI declassified scan; same source family, dependent release lineage |
-| Operation LOOKING GLASS official USAF baseline | `ACTIVE` | 2 official histories + DoD FY1966 program report + 2017 AFGSC ALCS directive acquired; corpus 43/0; document-level authority map sharpened, controlling EWO/authentication source family remains open |
+| Operation LOOKING GLASS official USAF baseline | `ACTIVE` | 2 official histories + DoD FY1966 program report + 2017 AFGSC ALCS directive + AFPD 13-5 + AFI 13-520 acquired; corpus 45/0; authority/version lineage sharpened, controlling EWO/authentication source family remains open |
 | LOOKING GLASS DoD FY1966 program record | `COMPLETE` | contemporaneous DoD annual report preserved as `DOD-1967-department-of-defense-annual-reports-001`; PACCS/EC-135/airborne launch-control statements reviewed; exact authority chain not inferred |
 | LOOKING GLASS AFGSCI 13-5302V2 directive | `COMPLETE TO SOURCE-MAP MILESTONE` | official 19 Jul 2017 ALCS crew Stan/Eval directive preserved as `USAF-2017-air-force-global-strike-command-instructions-001`; document is Canon, cited EWO/STRATCOM/technical-order family remains unresolved |
-| LOOKING GLASS AFI 91-117 acquisition | `BLOCKED` | 29 Aug 2022 public first-party candidate identified; NXCore direct fetch 403 and both navigation/browser-TLS retries 404 on 2026-09-27; no mirror ingested, corpus remains 43/0 |
+| LOOKING GLASS AFI 91-117 acquisition | `BLOCKED` | 29 Aug 2022 public first-party candidate identified; NXCore direct fetch 403 and both navigation/browser-TLS retries 404 on 2026-09-27; no mirror ingested, corpus remains 45/0 |
+| LOOKING GLASS AFPD 13-5 / AFI 13-520 recovery | `COMPLETE TO VERSION/SOURCE-LINEAGE MILESTONE` | both official Air Force artifacts preserved; AFI 13-520 explicitly supersedes AFI 13-530 dated 8 Sep 2015; predecessor remains unrecovered from first-party host |
 
 ### Assassination records
 
@@ -184,7 +185,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 
 ### Nuclear / continuity
 
-- Operation LOOKING GLASS — `ACTIVE` — two official USAF histories + contemporaneous DoD FY1966 program report + AFGSCI 13-5302V2 acquired; corpus 43/0; next gate is public/declassified recovery of the named EWO/STRATCOM authority-source family
+- Operation LOOKING GLASS — `ACTIVE` — two official USAF histories + contemporaneous DoD FY1966 program report + AFGSCI 13-5302V2 + AFPD 13-5 + AFI 13-520 acquired; corpus 45/0; next gate is public/declassified recovery of the remaining EWO/STRATCOM authority-source family and historical AFI 13-530
 - SIOP / SAC / Emergency War Orders / TACAMO / NEACP / NIGHTWATCH — `QUEUED`
 
 ### Intelligence / political controversies
