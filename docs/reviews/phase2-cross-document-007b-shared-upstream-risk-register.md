@@ -18,6 +18,7 @@ Independence must be evaluated at the lowest recoverable source layer.
 
 | Downstream documents | Shared-upstream risk | Current treatment | Next proof needed |
 |---|---|---|---|
+| Current Joint Inquiry public-report parent + 2016 HPSCI “28 Pages” release | `DEPENDENT / RELEASE FAMILY` | same Part Four source lineage; later declassification exposes additional text but is not a second source event | compare specific release/redaction differences only when materially relevant |
 | Joint Inquiry + 9/11 Commission Final Report | `HIGH / PARTIALLY MAPPED` | both rely heavily on FBI investigative material concerning the California support network; do not count repeated Bayoumi/Thumairy facts twice | recover named FBI records and identify exact overlap |
 | Commission staff work + Commission Final Report | `HIGH / STRUCTURAL` | same Commission institution; staff work fed hearings/statements/drafting; final report is an adopted synthesis, not an independent source family | map final-report footnotes to staff/source records where material |
 | Terrorist Financing monograph + Commission Final Report | `HIGH / STRUCTURAL` | staff monograph and final report share Commission research and agency access | identify statements copied/reframed from shared staff work |
@@ -117,3 +118,5 @@ Review 007's shared-upstream counting-control requirement is **complete for the 
 ## Review 007K audit result
 
 The reproducible audit checks 13 high-risk source-dependency objects, four official synthesis classifications, and two temporal comparison guardrails. Current result: **0 high-risk edges marked independent; 0 audit errors**. See `phase2-cross-document-007k-shared-upstream-closeout-audit.md`.
+
+Review 007L additionally encodes the 2016 HPSCI Part Four release as dependent on the same Joint Inquiry source family represented by the current GovInfo parent.

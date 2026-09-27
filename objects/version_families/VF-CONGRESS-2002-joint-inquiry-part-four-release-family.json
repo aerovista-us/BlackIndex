@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "object_type": "version_family",
+  "object_id": "VF-CONGRESS-2002-joint-inquiry-part-four-release-family",
+  "created_at": "2026-09-27T03:20:00+00:00",
+  "title": "Joint Inquiry Part Four / ‘28 Pages’ release family",
+  "doc_ids": [
+    "US CONGRESS-2002-9-11-joint-inquiry-001",
+    "CONGRESS-2002-9-11-joint-inquiry-28-pages-001"
+  ],
+  "relationship_scope": "same Joint Inquiry Part Four source family represented by the current GovInfo public-report parent and the later 2016 HPSCI declassified scan; not independent evidentiary sources",
+  "release_chronology": [
+    {
+      "release": "Current GovInfo Joint Inquiry public-report parent",
+      "doc_id": "US CONGRESS-2002-9-11-joint-inquiry-001",
+      "source_url": "https://www.govinfo.gov/content/pkg/CRPT-107hrpt792/pdf/CRPT-107hrpt792.pdf",
+      "physical_pdf_pages": "427-454",
+      "public_report_pages": "395-422",
+      "embedded_original_page_markers": "415-443",
+      "description": "Public-report rendering of Part Four with extensive bracketed/redacted material. Current retrieval state is preserved; this object does not claim byte identity with the exact PDF first posted in 2002."
+    },
+    {
+      "release": "HPSCI newly declassified Part Four release",
+      "public_release_date": "2016-07-15",
+      "doc_id": "CONGRESS-2002-9-11-joint-inquiry-28-pages-001",
+      "source_url": "https://intelligence.house.gov/UploadedFiles/declasspart4.pdf",
+      "canonical_landing_url": "https://intelligence.house.gov/2016/07/15/intel-committee-publishes-declassified-28-pages/",
+      "physical_pdf_pages": "1-34",
+      "components": [
+        "physical pages 1-4: January 29, 2003 transmittal letter to CIA Director George Tenet",
+        "physical page 5: Joint Inquiry report title page",
+        "physical pages 6-34: scanned Part Four original-page family, beginning original page 415 and ending original page 443"
+      ],
+      "residual_redactions": true,
+      "description": "HPSCI described this as the newly declassified Joint Inquiry section commonly called the ‘28 pages,’ released after declassification review with remaining redactions to protect sources and methods."
+    }
+  ],
+  "page_mapping": {
+    "govinfo_parent_physical_range": "427-454",
+    "govinfo_public_page_range": "395-422",
+    "original_part_four_page_family": "415-443",
+    "hpsci_release_part_four_physical_range": "6-34",
+    "representative_visual_checks": [
+      {"hpsci_physical_page": 6, "original_page": 415},
+      {"hpsci_physical_page": 7, "original_page": 416},
+      {"hpsci_physical_page": 15, "original_page": 424},
+      {"hpsci_physical_page": 20, "original_page": 429},
+      {"hpsci_physical_page": 25, "original_page": 434},
+      {"hpsci_physical_page": 30, "original_page": 439},
+      {"hpsci_physical_page": 33, "original_page": 442},
+      {"hpsci_physical_page": 34, "original_page": 443}
+    ]
+  },
+  "interpretation_guard": "The conventional ‘28 pages’ label is not a physical-PDF page count. The 2016 artifact contains 34 physical pages including transmittal/title material, while its Part Four scan spans original pages 415-443. Differences in wording, redaction, or rendering are release/version evidence, not independent corroboration of the underlying allegations.",
+  "notes": "The current GovInfo parent and 2016 HPSCI release represent the same Joint Inquiry Part Four lineage. The later release exposes substantially more specific text in places while retaining redactions. BlackIndex must preserve the Joint Inquiry’s own caveats about verification and scope and must not treat the later publication as a second source event."
+}

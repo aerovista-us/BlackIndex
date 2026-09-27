@@ -26,7 +26,7 @@ CI coverage:
 
 Current controlled set:
 
-- source-dependency objects checked: **13**;
+- source-dependency objects checked: **14**;
 - official synthesis research classifications checked: **4**;
 - Bayoumi/Thumairy temporal comparison guardrails checked: **2**;
 - high-risk dependency edges marked `independent`: **0**;
@@ -34,7 +34,7 @@ Current controlled set:
 
 Dependency treatment:
 
-- **11** high-risk edges are encoded `dependent`;
+- **12** high-risk edges are encoded `dependent`;
 - **2** staff-monograph edges are encoded `partially-independent` because their source bases mix reused government material with some original Commission staff interviews/work;
 - **0** high-risk edges are encoded `independent`.
 
@@ -75,6 +75,12 @@ The later closing synthesis is encoded as dependent on the 2016 EC. Repetition d
 `CONTROLLED — exact recovered citation chains`
 
 Review 007H visually confirmed the May 18 and May 17 FBI EC boundaries and encoded Commission Notes 22 and 23 as dependent on those recovered FBI records. The Commission's citation is a source address, not an additional witness/source event.
+
+### Joint Inquiry public parent ↔ 2016 “28 Pages” release
+
+`CONTROLLED — same Part Four source family`
+
+Review 007L encodes the 2016 HPSCI declassified Part Four artifact as dependent on the same Joint Inquiry Part Four lineage represented by the current GovInfo public-report parent. Reduced redaction and later publication do not create independent corroboration.
 
 ### Duplicate/release-family risk
 
