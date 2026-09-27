@@ -2,7 +2,7 @@
 
 ## Status
 
-`ACTIVE — anti-double-counting control`
+`COMPLETE — anti-double-counting control audited for current encoded corpus; source recovery remains active`
 
 This register identifies places where multiple BlackIndex documents may repeat, summarize, reinterpret, or audit the same upstream evidence.
 
@@ -108,8 +108,12 @@ instead of showing a misleading raw count of five.
 
 ## Gate contribution
 
-Review 007's shared-upstream requirement is considered **started and structurally controlled**, but not complete until the P0 named-source recovery scan in Review 007A has run against local EO 14040 text and high-confidence overlaps are encoded.
+Review 007's shared-upstream counting-control requirement is **complete for the current encoded corpus state**. The Review 007A local scan ran, Review 007H/007I resolved key source boundaries, explicit dependency edges now cover the principal official-layer chains, and Review 007K adds a fail-closed audit. Source genealogy remains incomplete for some named records; those gaps stay non-independent/unknown and cannot increase corroboration strength.
 
 ## Core rule
 
 **Repetition measures narrative persistence. Independence measures corroboration. They are not the same thing.**
+
+## Review 007K audit result
+
+The reproducible audit checks 13 high-risk source-dependency objects, four official synthesis classifications, and two temporal comparison guardrails. Current result: **0 high-risk edges marked independent; 0 audit errors**. See `phase2-cross-document-007k-shared-upstream-closeout-audit.md`.
