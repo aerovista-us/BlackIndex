@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-LOOKING-GLASS-dod-fy1966-program-report",
+  "created_at": "2026-09-26",
+  "subject_type": "document",
+  "subject_id": "DOD-1967-department-of-defense-annual-reports-001",
+  "canonical_status": "deuterocanon",
+  "reason": "Contemporaneous official Department of Defense annual program report describing FY1966 PACCS, EC-135 command-and-control survivability, airborne launch-control capability, and the Air Force post-attack command-control mission. It is stronger than a retrospective history for program-era capability, but remains a high-level annual report rather than an Emergency War Order, SIOP directive, authentication procedure, or nuclear-use authorization.",
+  "review_required": true,
+  "authenticity_status": "official-DOD-GovInfo-preserved-artifact",
+  "attribution_status": "attributed-to-Department-of-Defense-and-service-secretaries",
+  "provenance_status": "mapped",
+  "corroboration_status": "capability-and-program-posture-supported-authority-chain-still-requires-operational-source",
+  "source_independence": "unknown-at-underlying-program-record-level",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-09-26",
+      "reason": "Contemporaneous official program report preserved as an attributed institutional layer while capability is kept separate from launch authority, authentication, procedure, and actual use."
+    }
+  ]
+}
