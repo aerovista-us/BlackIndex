@@ -174,6 +174,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Operation LOOKING GLASS official USAF baseline | `ACTIVE` | 2 official histories + DoD FY1966 program report + 2017 AFGSC ALCS directive acquired; corpus 43/0; document-level authority map sharpened, controlling EWO/authentication source family remains open |
 | LOOKING GLASS DoD FY1966 program record | `COMPLETE` | contemporaneous DoD annual report preserved as `DOD-1967-department-of-defense-annual-reports-001`; PACCS/EC-135/airborne launch-control statements reviewed; exact authority chain not inferred |
 | LOOKING GLASS AFGSCI 13-5302V2 directive | `COMPLETE TO SOURCE-MAP MILESTONE` | official 19 Jul 2017 ALCS crew Stan/Eval directive preserved as `USAF-2017-air-force-global-strike-command-instructions-001`; document is Canon, cited EWO/STRATCOM/technical-order family remains unresolved |
+| LOOKING GLASS AFI 91-117 acquisition | `BLOCKED` | 29 Aug 2022 public first-party candidate identified; NXCore direct fetch 403 and both navigation/browser-TLS retries 404 on 2026-09-27; no mirror ingested, corpus remains 43/0 |
 
 ### Assassination records
 
