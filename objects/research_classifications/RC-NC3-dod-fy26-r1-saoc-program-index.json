@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-dod-fy26-r1-saoc-program-index",
+  "created_at": "2026-10-01",
+  "subject_type": "document",
+  "subject_id": "DOD-2025-fy-2026-rdt-e-programs-r-1-001",
+  "canonical_status": "deuterocanon",
+  "reason": "Official DoD FY2026 R-1 budget/program index establishing SAOC program element 0604288F and its FY2026 request context. It is a program/funding layer, not the detailed Air Force justification, an appropriation or expenditure record, an operational directive, or proof of delivery or use.",
+  "review_required": true,
+  "authenticity_status": "official-DOD-Comptroller-first-party-preserved-artifact",
+  "attribution_status": "attributed-to-Department-of-Defense-budget-submission",
+  "provenance_status": "mapped",
+  "corroboration_status": "program-element-and-budget-request-layer",
+  "source_independence": "official-budget-program-layer-not-assumed-independent-of-service-program-submissions",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-10-01",
+      "reason": "Preserved as an official program-index layer while keeping budget request, appropriation, expenditure, delivery, readiness, authority, and use as separate propositions."
+    }
+  ]
+}

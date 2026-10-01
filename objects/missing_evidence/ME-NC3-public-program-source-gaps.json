@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "object_type": "missing_evidence",
+  "object_id": "ME-NC3-public-program-source-gaps",
+  "created_at": "2026-10-01T22:55:00+00:00",
+  "updated_at": "2026-10-01T22:55:00+00:00",
+  "doc_id": "DOD-2025-fy-2026-rdt-e-programs-r-1-001",
+  "category": "UNMAPPED_REFERENCED_EVIDENCE",
+  "summary": "Public first-party NC3 program/governance sources are known and indexed but not yet preserved because the current artifact path is inaccessible, transport retrieval fails, or the present BlackIndex intake path does not capture HTML source pages.",
+  "referenced_by": "FY2026 DoD/Navy budget indexes; 2025-2026 USSTRATCOM posture statements; Air Force e-Publishing index; official NAVAIR program pages",
+  "last_known_location": "Air Force e-Publishing, Air Force Financial Management budget materials, Department of the Navy FY2026 budget books, NAVAIR public program pages",
+  "known_creator": "Department of the Air Force / Department of the Navy / NAVAIR",
+  "likely_custodian": "AFGSC / SAF-FM / Department of the Navy FMB / NAVAIR",
+  "stated_reason_missing": "The sources are public or publicly indexed; current gaps are first-party artifact retrieval/transport or capture-format limitations, not evidence that the records do not exist.",
+  "potential_relevance": "Would deepen source genealogy beneath high-level NC3 posture statements for the NC3 Center, SAOC, and TACAMO/E-130J programs without relying on platform operating procedures.",
+  "named_records": [
+    "AFGSCMD 63-101 — USAF Nuclear Command, Control, and Communications (NC3) Center",
+    "Air Force FY2026 RDT&E detailed SAOC justification — PE 0604288F",
+    "Department of the Navy FY2026 RDT&E BA5 detailed TACAMO Modernization justification — PE 0605180N",
+    "NAVAIR E-130J/TACAMO public program source pages"
+  ],
+  "alternative_explanations": [
+    "A first-party artifact may have moved or require a different official archive path",
+    "Large Navy/Air Force PDFs may be intermittently retrievable despite being publicly listed",
+    "Official HTML-only program pages may require a durable HTML capture path rather than PDF intake"
+  ],
+  "recovery_paths": [
+    "retry the official AFGSCMD 63-101 e-Publishing/archive path without substituting unofficial mirrors",
+    "retry the official Air Force FY2026 detailed SAOC budget volume and Navy FY2026 BA5 book",
+    "add a provenance-preserving first-party HTML capture format before ingesting NAVAIR/USSTRATCOM HTML-only program pages",
+    "do not convert indexed snippets, search excerpts, or print-to-PDF renderings into primary-source artifacts"
+  ],
+  "status": "unresolved",
+  "recovery_status": "program-index-parents-preserved-detailed-first-party-program-sources-partially-unrecovered"
+}

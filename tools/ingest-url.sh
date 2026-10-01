@@ -56,7 +56,7 @@ UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrom
 # impersonation to arbitrary third-party URLs.
 ALLOW_BROWSER_FALLBACK=0
 case "$URL" in
-  https://vault.fbi.gov/*|https://www.cia.gov/*|https://cia.gov/*|https://www.afgsc.af.mil/*|https://afgsc.af.mil/*|https://media.defense.gov/*|https://static.e-publishing.af.mil/*|https://www.stratcom.mil/*|https://stratcom.mil/*|https://www.esd.whs.mil/*|https://esd.whs.mil/*|https://www.jcs.mil/*|https://jcs.mil/*)
+  https://vault.fbi.gov/*|https://www.cia.gov/*|https://cia.gov/*|https://www.afgsc.af.mil/*|https://afgsc.af.mil/*|https://media.defense.gov/*|https://static.e-publishing.af.mil/*|https://www.stratcom.mil/*|https://stratcom.mil/*|https://www.esd.whs.mil/*|https://esd.whs.mil/*|https://www.jcs.mil/*|https://jcs.mil/*|https://comptroller.defense.gov/*|https://www.comptroller.defense.gov/*|https://www.secnav.navy.mil/*|https://secnav.navy.mil/*)
     ALLOW_BROWSER_FALLBACK=1
     ;;
 esac
@@ -135,6 +135,22 @@ if [[ "$ALLOW_BROWSER_FALLBACK" -eq 1 ]] && needs_browser_retry; then
     set -e
   else
     echo "Browser-TLS fallback is not bootstrapped. Run: bash tools/bootstrap-browser-fetch.sh" >&2
+  fi
+fi
+
+# Some first-party hosts reject or stall when the browser-TLS request carries a
+# landing-page referer even though the direct artifact URL is public. After the
+# referer-bearing browser attempt fails, allow one final same-host browser-TLS
+# request without a referer. This remains restricted by ALLOW_BROWSER_FALLBACK.
+if [[ "$ALLOW_BROWSER_FALLBACK" -eq 1 ]] && needs_browser_retry && [[ -n "$REFERER" ]]; then
+  BROWSER_PY="$ROOT/local/tools/browser-fetch-venv/bin/python"
+  if [[ -x "$BROWSER_PY" ]]; then
+    echo "Browser-TLS referer retry did not yield the PDF; retrying same official URL without referer..." >&2
+    rm -f "$TMP"; TMP="$(mktemp "$ROOT/local/cache/url-ingest.XXXXXX.pdf")"
+    set +e
+    "$BROWSER_PY" "$ROOT/tools/fetch-browser-tls.py" "$URL" "$TMP"
+    DOWNLOAD_RC=$?
+    set -e
   fi
 fi
 

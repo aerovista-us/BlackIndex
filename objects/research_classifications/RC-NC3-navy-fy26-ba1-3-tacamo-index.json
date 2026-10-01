@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-navy-fy26-ba1-3-tacamo-index",
+  "created_at": "2026-10-01",
+  "subject_type": "document",
+  "subject_id": "US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-001",
+  "canonical_status": "deuterocanon",
+  "reason": "Official Navy FY2026 BA1-3 RDT&E budget book containing the R-1/index entry for TACAMO Modernization program element 0605180N. Because TACAMO is Budget Activity 5, this artifact is an index/program-line layer and not the detailed BA5 TACAMO justification book.",
+  "review_required": true,
+  "authenticity_status": "official-Department-of-Navy-first-party-preserved-artifact",
+  "attribution_status": "attributed-to-Department-of-Navy-budget-submission",
+  "provenance_status": "mapped",
+  "corroboration_status": "program-element-and-budget-index-layer",
+  "source_independence": "official-budget-index-layer-not-assumed-independent-of-detailed-Navy-program-submission",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-10-01",
+      "reason": "Preserved as the official TACAMO budget index layer while the detailed BA5 justification remains a separate unrecovered first-party source."
+    }
+  ]
+}
