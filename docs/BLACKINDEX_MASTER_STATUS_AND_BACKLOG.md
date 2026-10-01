@@ -171,13 +171,14 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Thumairy statement evolution | `ACTIVE` | Commission scoped negative finding vs later FBI rereview comparison object created |
 | Principal negative-finding objects | `COMPLETE` | current closeout set includes Commission Thumairy/Bayoumi, financing-monograph, and scoped CIA OIG findings/uncertainties as attributed investigator reviews |
 | Joint Inquiry “28 Pages” version family | `COMPLETE` | Review 007L maps current GovInfo Part Four rendering to the 2016 HPSCI declassified scan; same source family, dependent release lineage |
-| Operation LOOKING GLASS official USAF baseline | `ACTIVE` | authority-family public layer, TACAMO/NIGHTWATCH baseline, and first NC3 public-governance stack acquired; corpus 54/0; controlled parents remain explicit access gaps |
+| Operation LOOKING GLASS official USAF baseline | `ACTIVE` | authority-family public layer, TACAMO/NIGHTWATCH baseline, NC3 governance stack, and modernization/currency layer acquired; corpus 58/0; controlled parents remain explicit access gaps |
 | LOOKING GLASS DoD FY1966 program record | `COMPLETE` | contemporaneous DoD annual report preserved as `DOD-1967-department-of-defense-annual-reports-001`; PACCS/EC-135/airborne launch-control statements reviewed; exact authority chain not inferred |
 | LOOKING GLASS AFGSCI 13-5302V2 directive | `COMPLETE TO SOURCE-MAP MILESTONE` | official 19 Jul 2017 ALCS crew Stan/Eval directive preserved as `USAF-2017-air-force-global-strike-command-instructions-001`; document is Canon, cited EWO/STRATCOM/technical-order family remains unresolved |
 | LOOKING GLASS AFI 91-117 acquisition | `BLOCKED` | 29 Aug 2022 public first-party candidate identified; NXCore direct fetch 403 and both navigation/browser-TLS retries 404 on 2026-09-27; no mirror ingested, corpus remains 45/0 |
 | LOOKING GLASS AFPD 13-5 / AFI 13-520 recovery | `COMPLETE TO VERSION/SOURCE-LINEAGE MILESTONE` | both official Air Force artifacts preserved; AFI 13-520 explicitly supersedes AFI 13-530 dated 8 Sep 2015; predecessor remains unrecovered from first-party host |
 | LOOKING GLASS TACAMO / NIGHTWATCH baseline | `COMPLETE TO OFFICIAL MISSION/COMMAND BASELINE MILESTONE` | USSTRATCOM 2024 posture statement, Navy Program Guide 2017, and AFMAN 11-2E-4B V3 preserved; corpus 48/0; detailed procedures intentionally excluded from analytical findings |
-| NC3 public governance / controlled-access baseline | `COMPLETE TO FIRST SOURCE-GENEALOGY MILESTONE` | DoDI 3741.01, DoDD 3700.01, CJCSI 5119.01C plus public placeholders for S-3730.01, S-3710.01 and S-5210.81 preserved; corpus 54/0; controlled contents not inferred |
+| NC3 public governance / controlled-access baseline | `COMPLETE TO FIRST SOURCE-GENEALOGY MILESTONE` | DoDI 3741.01, DoDD 3700.01, CJCSI 5119.01C plus public placeholders for S-3730.01, S-3710.01 and S-5210.81 preserved; controlled contents not inferred |
+| NC3 modernization / governance currency | `COMPLETE TO MODERNIZATION/CURRENCY MILESTONE` | 2022 NPR, 2025/2026 USSTRATCOM posture statements, S-5100.92 placeholder, 2024-2026 posture version family, and 2026-10-01 issuance-index currency snapshot encoded; corpus 58/0 |
 
 ### Assassination records
 
@@ -187,7 +188,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 
 ### Nuclear / continuity
 
-- Operation LOOKING GLASS — `ACTIVE` — public ALCS authority-policy layer, TACAMO/NIGHTWATCH mission baseline, and first NC3 governance/source-genealogy baseline acquired; corpus 54/0; next gate is current governance currency, adjacent public NC3 modernization records, and controlled-parent source mapping
+- Operation LOOKING GLASS — `ACTIVE` — public ALCS authority-policy layer, TACAMO/NIGHTWATCH mission baseline, NC3 governance/source-genealogy baseline, and modernization/currency pass acquired; corpus 58/0; next gate is NC3 Enterprise Center / SAOC / E-130J public source genealogy and controlled-parent mapping
 - SIOP / SAC / Emergency War Orders / TACAMO / NEACP / NIGHTWATCH — `QUEUED`
 
 ### Intelligence / political controversies
@@ -314,7 +315,7 @@ Do **not** count repeated statements across Joint Inquiry, Commission staff work
 7. Review the generated local record-integrity files deliberately; do not commit them merely to clean the working tree.
 8. `COMPLETE 2026-09-26` — inventoried both metadata-unreferenced raw artifacts: financing monograph legacy byte variant and standalone Chapter 7 subset; both preserved immutably and linked through version-family objects.
 9. `COMPLETE 2026-09-26` — Review 007L mapped the Joint Inquiry Part Four / “28 Pages” release family and encoded the 2016 release as dependent on the same source lineage.
-10. `ACTIVE 2026-09-27` — Operation LOOKING GLASS / NC3 recovery now includes AFPD 13-5, AFI 13-520, TACAMO/NIGHTWATCH mission records, DoDI 3741.01, DoDD 3700.01, CJCSI 5119.01C, and controlled-access placeholders for S-3730.01, S-3710.01, and S-5210.81. Corpus is 54/0. Continue current-governance currency/source genealogy and public/declassified NC3 recovery; controlled directive contents remain explicit gaps and must not be inferred from lower layers.
+10. `ACTIVE 2026-10-01` — Operation LOOKING GLASS / NC3 recovery now includes the ALCS authority-policy layer, TACAMO/NIGHTWATCH mission records, first NC3 governance stack, 2022 NPR, 2024-2026 USSTRATCOM posture version family, and controlled-access placeholders including S-5100.92. Corpus is 58/0. Continue NC3 Enterprise Center / SAOC / E-130J public source genealogy and controlled-parent mapping; controlled directive contents remain explicit gaps and must not be inferred from lower layers.
 11. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
 
 ## Completion logging rule

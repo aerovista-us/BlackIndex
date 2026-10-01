@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-dodi3741-to-dodi-s510092",
+  "created_at": "2026-10-01T22:23:00+00:00",
+  "assertion_id": "dodi3741-nlcc-governance-framework-source-base",
+  "source_id": "DOD-2013-dod-instructions-001",
+  "depends_on": "DoDI S-5100.92 \u2014 Defense and National Leadership Command Capability (DNLCC) Governance",
+  "dependency_type": "public-NLCC-configuration-instruction-explicitly-relies-on-controlled-DNLCC-governance-instruction",
+  "independence": "dependent",
+  "notes": "DoDI 3741.01 explicitly cites DoDI S-5100.92 as a DNLCC governance reference. The public 3741.01 layer therefore cannot substitute for or independently corroborate the unavailable controlled governance contents."
+}

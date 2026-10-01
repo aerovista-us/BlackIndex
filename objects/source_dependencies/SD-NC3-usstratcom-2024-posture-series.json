@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-usstratcom-2024-posture-series",
+  "created_at": "2026-10-01T22:23:00+00:00",
+  "assertion_id": "usstratcom-nc3-modernization-annual-series-2024",
+  "source_id": "USSTRATCOM-2024-congressional-posture-statements-001",
+  "depends_on": "USSTRATCOM institutional NC3 enterprise reporting, program-of-record status, and annual posture-statement lineage",
+  "dependency_type": "same-institution-annual-posture-series-for-repeated-NC3-modernization-propositions",
+  "independence": "dependent",
+  "notes": "For repeated NC3 mission and modernization propositions, the 2024 statement is an institutional snapshot and must not be counted as independent from adjacent USSTRATCOM annual posture statements or the underlying program reporting they summarize."
+}

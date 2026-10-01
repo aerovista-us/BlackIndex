@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "object_type": "version_family",
+  "object_id": "VF-NC3-usstratcom-posture-2024-2026",
+  "created_at": "2026-10-01T22:23:00+00:00",
+  "title": "USSTRATCOM annual congressional posture statement NC3 series, 2024-2026",
+  "doc_ids": [
+    "USSTRATCOM-2024-congressional-posture-statements-001",
+    "USSTRATCOM-2025-congressional-posture-statements-001",
+    "USSTRATCOM-2026-congressional-posture-statements-001"
+  ],
+  "relationship_scope": "annual statements from the same institutional command lineage; useful for time-bounded change tracking but not independent corroboration of repeated NC3 program propositions",
+  "release_chronology": [
+    {
+      "release": "2024 posture statement",
+      "document_date": "2024-02-29",
+      "doc_id": "USSTRATCOM-2024-congressional-posture-statements-001",
+      "description": "Describes NC3 enterprise modernization and E-4B/E-6B recapitalization as part of the command's 2024 posture."
+    },
+    {
+      "release": "2025 posture statement",
+      "document_date": "2025-03-26",
+      "doc_id": "USSTRATCOM-2025-congressional-posture-statements-001",
+      "description": "Adds the Detect-Decide-Direct mission framework and names SAOC, E-130J TACAMO, satellite communications, warning/tracking, ground NC3, and cyber/data priorities."
+    },
+    {
+      "release": "2026 posture statement",
+      "document_date": "2026-03-17",
+      "doc_id": "USSTRATCOM-2026-congressional-posture-statements-001",
+      "description": "Updates the modernization picture with the NC3 Enterprise Center, SAOC, E-130J TACAMO recapitalization, E-6B Airborne Command Post replacement, resilient satellite communications, missile warning/tracking, ground NC3, cyber, and AI/ML integration."
+    }
+  ],
+  "interpretation_guard": "Repeated language or program descriptions across these annual statements are same-institution longitudinal evidence, not three independent confirmations. Time-specific additions may document change in the command's public posture but still require underlying program/governance records for independent source support.",
+  "notes": "Use this family to compare public NC3 posture over time. Do not infer classified requirements, controlled directives, detailed platform procedures, or actual operational use from the posture series."
+}
