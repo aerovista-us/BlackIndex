@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-usstratcom-2026-tacamo-to-fy26-navy-budget-lineage",
+  "created_at": "2026-10-01T22:55:00+00:00",
+  "assertion_id": "usstratcom-2026-tacamo-modernization-program-lineage",
+  "source_id": "USSTRATCOM-2026-congressional-posture-statements-001",
+  "depends_on": "US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-001 / TACAMO Modernization PE 0605180N budget-index lineage",
+  "dependency_type": "cross-institution-summary-shares-TACAMO-program-of-record-lineage",
+  "independence": "partially-independent",
+  "notes": "The USSTRATCOM statement is a separately issued institutional publication, but its public TACAMO/E-130J modernization claim shares the underlying Navy program-of-record lineage represented by PE 0605180N. The preserved BA1-3 artifact is only the budget index/R-1 layer; the detailed BA5 justification remains unrecovered."
+}

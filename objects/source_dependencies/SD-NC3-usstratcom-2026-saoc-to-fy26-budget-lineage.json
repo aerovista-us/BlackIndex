@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-usstratcom-2026-saoc-to-fy26-budget-lineage",
+  "created_at": "2026-10-01T22:55:00+00:00",
+  "assertion_id": "usstratcom-2026-saoc-modernization-program-lineage",
+  "source_id": "USSTRATCOM-2026-congressional-posture-statements-001",
+  "depends_on": "DOD-2025-fy-2026-rdt-e-programs-r-1-001 / SAOC PE 0604288F program-of-record and budget lineage",
+  "dependency_type": "cross-institution-summary-shares-SAOC-program-of-record-lineage",
+  "independence": "partially-independent",
+  "notes": "The USSTRATCOM statement is a separately issued institutional publication, but its claim that SAOC is an active modernization program is not independent of the underlying DoD/Air Force program-of-record and budget lineage summarized by the FY2026 R-1. Budget request evidence does not establish delivery, readiness, authority, or operational use."
+}
