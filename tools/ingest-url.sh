@@ -56,7 +56,7 @@ UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrom
 # impersonation to arbitrary third-party URLs.
 ALLOW_BROWSER_FALLBACK=0
 case "$URL" in
-  https://vault.fbi.gov/*|https://www.cia.gov/*|https://cia.gov/*|https://www.afgsc.af.mil/*|https://afgsc.af.mil/*|https://media.defense.gov/*|https://static.e-publishing.af.mil/*|https://www.stratcom.mil/*|https://stratcom.mil/*|https://www.esd.whs.mil/*|https://esd.whs.mil/*|https://www.jcs.mil/*|https://jcs.mil/*)
+  https://vault.fbi.gov/*|https://www.cia.gov/*|https://cia.gov/*|https://www.afgsc.af.mil/*|https://afgsc.af.mil/*|https://media.defense.gov/*|https://static.e-publishing.af.mil/*|https://www.stratcom.mil/*|https://stratcom.mil/*|https://www.esd.whs.mil/*|https://esd.whs.mil/*|https://www.jcs.mil/*|https://jcs.mil/*|https://comptroller.defense.gov/*|https://www.comptroller.defense.gov/*|https://www.secnav.navy.mil/*|https://secnav.navy.mil/*)
     ALLOW_BROWSER_FALLBACK=1
     ;;
 esac
