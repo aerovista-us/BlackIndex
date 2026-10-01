@@ -23,6 +23,7 @@ class OfficialSourceFallbackTests(unittest.TestCase):
         self.assertIn("https://www.secnav.navy.mil/*", text)
         self.assertIn("ALLOW_BROWSER_FALLBACK=0", text)
         self.assertIn("ALLOW_BROWSER_FALLBACK=1", text)
+        self.assertIn("retrying same official URL without referer", text)
 
         # A WAF/interstitial may return HTTP 200 with HTML. The retry decision
         # therefore has to inspect PDF magic as well as curl's exit code.

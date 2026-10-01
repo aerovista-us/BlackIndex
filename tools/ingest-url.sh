@@ -138,6 +138,22 @@ if [[ "$ALLOW_BROWSER_FALLBACK" -eq 1 ]] && needs_browser_retry; then
   fi
 fi
 
+# Some first-party hosts reject or stall when the browser-TLS request carries a
+# landing-page referer even though the direct artifact URL is public. After the
+# referer-bearing browser attempt fails, allow one final same-host browser-TLS
+# request without a referer. This remains restricted by ALLOW_BROWSER_FALLBACK.
+if [[ "$ALLOW_BROWSER_FALLBACK" -eq 1 ]] && needs_browser_retry && [[ -n "$REFERER" ]]; then
+  BROWSER_PY="$ROOT/local/tools/browser-fetch-venv/bin/python"
+  if [[ -x "$BROWSER_PY" ]]; then
+    echo "Browser-TLS referer retry did not yield the PDF; retrying same official URL without referer..." >&2
+    rm -f "$TMP"; TMP="$(mktemp "$ROOT/local/cache/url-ingest.XXXXXX.pdf")"
+    set +e
+    "$BROWSER_PY" "$ROOT/tools/fetch-browser-tls.py" "$URL" "$TMP"
+    DOWNLOAD_RC=$?
+    set -e
+  fi
+fi
+
 if [[ "$DOWNLOAD_RC" -ne 0 ]]; then
   echo "error: download failed after all configured acquisition tiers (rc=$DOWNLOAD_RC): $URL" >&2
   echo "landing page: ${REFERER:-not supplied}" >&2
