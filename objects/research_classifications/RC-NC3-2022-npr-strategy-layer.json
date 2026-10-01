@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-2022-npr-strategy-layer",
+  "created_at": "2026-10-01",
+  "subject_type": "document",
+  "subject_id": "DOD-2022-national-defense-strategy-and-nuclear-posture-reviews-001",
+  "canonical_status": "deuterocanon",
+  "reason": "Official unclassified Department of Defense strategic-policy layer. The 2022 Nuclear Posture Review defines high-level NC3 mission functions and modernization/resilience goals, but it is not an operational order, technical procedure, authentication instruction, or substitute for controlled NC3 governance directives.",
+  "review_required": true,
+  "authenticity_status": "official-DOD-first-party-preserved-artifact",
+  "attribution_status": "attributed-to-Department-of-Defense-strategic-review",
+  "provenance_status": "mapped",
+  "corroboration_status": "strategic-policy-layer-not-underlying-program-record",
+  "source_independence": "institutional-policy-source-not-assumed-independent-of-DOD-NC3-program-reporting",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-10-01",
+      "reason": "Preserved as an official strategic-policy layer while keeping policy statements separate from controlled governance, program records, detailed procedures, and actual use."
+    }
+  ]
+}

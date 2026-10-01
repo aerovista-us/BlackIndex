@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-s510092-placeholder",
+  "created_at": "2026-10-01",
+  "subject_type": "document",
+  "subject_id": "DOD-2009-dod-controlled-issuance-placeholders-001",
+  "canonical_status": "canon",
+  "reason": "Official DoD public placeholder for DoDI S-5100.92. Canon status applies only to the placeholder's identity, title/date, controlled-document status, and stated public-access restriction; it does not apply to the unavailable controlled governance contents.",
+  "review_required": false,
+  "authenticity_status": "official-DOD-public-placeholder-preserved-artifact",
+  "attribution_status": "attributed-to-DoD-issuance-placeholder",
+  "provenance_status": "mapped",
+  "corroboration_status": "access-boundary-only",
+  "source_independence": "not-applicable-to-controlled-content",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-10-01",
+      "reason": "First-party placeholder preserved by hash; controlled contents remain unavailable and are not inferred."
+    }
+  ]
+}
