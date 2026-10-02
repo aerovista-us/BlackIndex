@@ -86,13 +86,38 @@ SCRIPT = r'''
     renderView();
   }
 
+  function aiJsonRequest(url,{method='GET',body=null,timeout=300000}={}){
+    return new Promise((resolve,reject)=>{
+      const xhr=new XMLHttpRequest();
+      xhr.open(method,url,true);
+      xhr.timeout=timeout;
+      xhr.setRequestHeader('Accept','application/json');
+      if(body!==null)xhr.setRequestHeader('Content-Type','application/json');
+      xhr.onreadystatechange=()=>{
+        if(xhr.readyState!==4)return;
+        let data=null;
+        try{data=xhr.responseText?JSON.parse(xhr.responseText):null}catch(_){}
+        if(xhr.status>=200&&xhr.status<300){
+          resolve({ok:true,status:xhr.status,data});
+        }else{
+          const msg=(data&&data.error)||('HTTP '+(xhr.status||'request failed'));
+          reject(new Error(msg));
+        }
+      };
+      xhr.onerror=()=>reject(new Error('Network request failed'));
+      xhr.ontimeout=()=>reject(new Error('AI request timed out'));
+      xhr.send(body===null?null:JSON.stringify(body));
+    });
+  }
+
   async function loadAiStatus(){
     try{
-      const r=await fetch('/api/ai/status',{cache:'no-store'});
-      aiState=await r.json();
-    }catch(e){aiState={available:false,error:String(e)}}
+      const response=await aiJsonRequest('/api/ai/status',{method:'GET',timeout:5000});
+      aiState=response.data||{available:false,error:'Empty AI status response'};
+    }catch(e){aiState={available:false,error:String(e.message||e)}}
     return aiState;
   }
+
   function sourceSelection(){
     const sel=window.getSelection();
     if(!sel||!sel.rangeCount)return '';
@@ -186,13 +211,13 @@ SCRIPT = r'''
     }
     setBusy(panel,true,action==='summary'?'Summarizing source…':action==='ask'?'Searching source + answering…':action==='mode'?`Building ${mode} view…`:action==='compare'?'Comparing grounded source excerpts…':'Summarizing selected source…');
     try{
-      const r=await fetch('/api/ai/research',{
+      const response=await aiJsonRequest('/api/ai/research',{
         method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify(body),
+        body,
+        timeout:depth==='deep'?300000:120000,
       });
-      const data=await r.json();
-      if(!r.ok||!data.ok)throw new Error(data.error||`HTTP ${r.status}`);
+      const data=response.data||{};
+      if(!data.ok)throw new Error(data.error||('HTTP '+response.status));
       renderResult(panel,data.result);
     }catch(e){
       const box=panel.querySelector('[data-ai-result]');

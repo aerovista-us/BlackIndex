@@ -41,6 +41,9 @@ class AiResearchUiTests(unittest.TestCase):
             self.assertIn("data-ai-compare-doc", text)
             self.assertIn("data-ai-compare-focus", text)
             self.assertIn("citation_docs", text)
+            self.assertIn("XMLHttpRequest", text)
+            self.assertIn("aiJsonRequest", text)
+            self.assertNotIn("fetch('/api/ai/", text)
 
     def test_server_exposes_local_ai_endpoints_without_evidence_writes(self):
         src = (ROOT / "tools" / "blackindex-ui-server.py").read_text(encoding="utf-8")
