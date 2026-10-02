@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-navy-e130j-award-to-dod-contract-action",
+  "created_at": "2026-10-02T01:12:00+00:00",
+  "assertion_id": "navy-2024-e130j-award-publication-lineage",
+  "source_id": "US_NAVY-2024-press-releases-001",
+  "depends_on": "DOD-2024-contract-announcements-001 / contract N0001925C0130 award action",
+  "dependency_type": "institutional-announcement-reports-same-underlying-contract-award",
+  "independence": "dependent",
+  "notes": "The Navy press release and DoD daily contract notice describe the same E-130J TACAMO contract action. They are separate publications, not separate award events, and must not be double-counted as independent corroboration."
+}

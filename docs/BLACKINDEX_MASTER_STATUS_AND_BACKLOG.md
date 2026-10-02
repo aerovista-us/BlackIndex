@@ -171,7 +171,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Thumairy statement evolution | `ACTIVE` | Commission scoped negative finding vs later FBI rereview comparison object created |
 | Principal negative-finding objects | `COMPLETE` | current closeout set includes Commission Thumairy/Bayoumi, financing-monograph, and scoped CIA OIG findings/uncertainties as attributed investigator reviews |
 | Joint Inquiry “28 Pages” version family | `COMPLETE` | Review 007L maps current GovInfo Part Four rendering to the 2016 HPSCI declassified scan; same source family, dependent release lineage |
-| Operation LOOKING GLASS official USAF baseline | `ACTIVE` | authority-family public layer, TACAMO/NIGHTWATCH baseline, NC3 governance/modernization layer, SAOC/TACAMO program-index genealogy, and provenance-preserving NAVAIR HTML program pages acquired; corpus 62/0; controlled and public-artifact gaps remain explicit |
+| Operation LOOKING GLASS official USAF baseline | `ACTIVE` | authority-family public layer, TACAMO/NIGHTWATCH baseline, NC3 governance/modernization layer, SAOC/TACAMO program-index genealogy, NAVAIR HTML program pages, and E-130J award records acquired; corpus 64/0; controlled and public-artifact gaps remain explicit |
 | LOOKING GLASS DoD FY1966 program record | `COMPLETE` | contemporaneous DoD annual report preserved as `DOD-1967-department-of-defense-annual-reports-001`; PACCS/EC-135/airborne launch-control statements reviewed; exact authority chain not inferred |
 | LOOKING GLASS AFGSCI 13-5302V2 directive | `COMPLETE TO SOURCE-MAP MILESTONE` | official 19 Jul 2017 ALCS crew Stan/Eval directive preserved as `USAF-2017-air-force-global-strike-command-instructions-001`; document is Canon, cited EWO/STRATCOM/technical-order family remains unresolved |
 | LOOKING GLASS AFI 91-117 acquisition | `BLOCKED` | 29 Aug 2022 public first-party candidate identified; NXCore direct fetch 403 and both navigation/browser-TLS retries 404 on 2026-09-27; no mirror ingested, corpus remains 45/0 |
@@ -181,6 +181,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 | NC3 modernization / governance currency | `COMPLETE TO MODERNIZATION/CURRENCY MILESTONE` | 2022 NPR, 2025/2026 USSTRATCOM posture statements, S-5100.92 placeholder, 2024-2026 posture version family, and 2026-10-01 issuance-index currency snapshot encoded |
 | NC3 program-source genealogy | `COMPLETE TO PROGRAM-INDEX/SOURCE-GENEALOGY MILESTONE` | DoD FY2026 R-1 SAOC PE 0604288F and Navy FY2026 TACAMO PE 0605180N index parent preserved; corpus 60/0; detailed Air Force SAOC, Navy BA5 TACAMO, and AFGSCMD 63-101 remain explicit public-source retrieval gaps |
 | NC3 HTML program-page capture | `COMPLETE TO HTML-CAPTURE/PROGRAM-PUBLICATION MILESTONE` | first-party NAVAIR product page and dated 2024 E-130J announcement preserved as immutable HTML with visible-text derivatives; corpus 62/0; PMA-271 shared lineage encoded |
+| NC3 E-130J award-state resolution | `COMPLETE TO AWARD-STATE/RETRIEVAL-RETRY MILESTONE` | DoD 18 Dec 2024 contract action and Navy 19 Dec 2024 award announcement preserved; earlier planned-award state resolved; corpus 64/0; detailed SAOC/BA5/AFGSCMD retrieval gaps remain explicit |
 
 ### Assassination records
 
@@ -190,7 +191,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 
 ### Nuclear / continuity
 
-- Operation LOOKING GLASS — `ACTIVE` — public ALCS authority-policy layer, TACAMO/NIGHTWATCH mission baseline, NC3 governance/modernization stack, SAOC/TACAMO program-index genealogy, and first-party NAVAIR HTML capture acquired; corpus 62/0; next gate is dated contract/program follow-up plus retry of detailed SAOC/BA5/AFGSCMD public sources
+- Operation LOOKING GLASS — `ACTIVE` — public ALCS authority-policy layer, TACAMO/NIGHTWATCH mission baseline, NC3 governance/modernization stack, SAOC/TACAMO program-index genealogy, first-party NAVAIR HTML capture, and the E-130J award action acquired; corpus 64/0; next gate is periodic recovery of detailed SAOC/BA5/AFGSCMD public sources and later performance/delivery states only when sourced
 - SIOP / SAC / Emergency War Orders / TACAMO / NEACP / NIGHTWATCH — `QUEUED`
 
 ### Intelligence / political controversies
@@ -317,7 +318,7 @@ Do **not** count repeated statements across Joint Inquiry, Commission staff work
 7. Review the generated local record-integrity files deliberately; do not commit them merely to clean the working tree.
 8. `COMPLETE 2026-09-26` — inventoried both metadata-unreferenced raw artifacts: financing monograph legacy byte variant and standalone Chapter 7 subset; both preserved immutably and linked through version-family objects.
 9. `COMPLETE 2026-09-26` — Review 007L mapped the Joint Inquiry Part Four / “28 Pages” release family and encoded the 2016 release as dependent on the same source lineage.
-10. `ACTIVE 2026-10-01` — Operation LOOKING GLASS / NC3 recovery now includes the ALCS authority-policy layer, TACAMO/NIGHTWATCH mission records, NC3 governance/modernization stack, SAOC PE 0604288F DoD budget lineage, TACAMO PE 0605180N Navy budget-index lineage, and first-party NAVAIR HTML program publications. Corpus is 62/0. Next: preserve dated contract/program follow-up where useful and retry the detailed SAOC/BA5/AFGSCMD public sources; controlled directive contents remain explicit gaps and must not be inferred from lower layers.
+10. `ACTIVE 2026-10-02` — Operation LOOKING GLASS / NC3 recovery now includes the ALCS authority-policy layer, TACAMO/NIGHTWATCH mission records, NC3 governance/modernization stack, SAOC PE 0604288F DoD budget lineage, TACAMO PE 0605180N Navy budget-index lineage, first-party NAVAIR HTML program publications, and the Dec 2024 E-130J contract action. Corpus is 64/0. Detailed SAOC Volume II, Navy BA5 TACAMO, and AFGSCMD 63-101 remain explicit first-party retrieval gaps; controlled directive contents remain explicit gaps and must not be inferred from lower layers.
 11. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
 
 ## Completion logging rule

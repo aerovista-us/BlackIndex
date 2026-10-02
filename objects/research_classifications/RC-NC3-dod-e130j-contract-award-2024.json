@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-dod-e130j-contract-award-2024",
+  "created_at": "2026-10-02",
+  "subject_type": "document",
+  "subject_id": "DOD-2024-contract-announcements-001",
+  "canonical_status": "canon",
+  "reason": "Official DoD contract announcement recording the 18 Dec 2024 E-130J TACAMO engineering and manufacturing development award. Canon status applies to the preserved award-action record and its stated contract facts; it does not establish later performance, delivery, readiness, authority, or operational use.",
+  "review_required": false,
+  "authenticity_status": "official-DOD-first-party-preserved-HTML",
+  "attribution_status": "attributed-to-DOD-daily-contract-announcement",
+  "provenance_status": "mapped",
+  "corroboration_status": "primary-public-contract-action-record",
+  "source_independence": "primary-award-action-layer",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-10-02",
+      "reason": "First-party DoD contract-action page preserved by hash; use remains bounded to the award facts actually stated."
+    }
+  ]
+}

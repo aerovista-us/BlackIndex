@@ -28,7 +28,8 @@ class NC3ProgramGenealogyObjectTests(unittest.TestCase):
         self.assertIn("AFGSCMD 63-101", joined)
         self.assertIn("RDT&E BA5", joined)
         self.assertIn("SAOC", joined)
-        self.assertIn("capture-format limitations", d["stated_reason_missing"])
+        self.assertIn("transport/retrieval failures", d["stated_reason_missing"])
+        self.assertNotIn("capture-format limitations", d["stated_reason_missing"])
 
     def test_navy_classification_preserves_ba1_3_boundary(self):
         d = load("objects/research_classifications/RC-NC3-navy-fy26-ba1-3-tacamo-index.json")
