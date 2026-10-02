@@ -17,12 +17,79 @@ import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ROOT = Path(os.environ.get("BLACKINDEX_ROOT", REPO_ROOT))
 BUFFER_SIZE = 1024 * 1024
-TEXT_EXTENSIONS = {".txt", ".md", ".csv", ".json", ".xml", ".html", ".htm"}
+HTML_EXTENSIONS = {".html", ".htm"}
+TEXT_EXTENSIONS = {".txt", ".md", ".csv", ".json", ".xml"}
+
+
+
+class VisibleHTMLTextExtractor(HTMLParser):
+    """Deterministically extract visible text from preserved source HTML."""
+
+    SKIP_TAGS = {"script", "style", "noscript", "template", "svg"}
+    BLOCK_TAGS = {
+        "address", "article", "aside", "blockquote", "br", "div", "footer",
+        "h1", "h2", "h3", "h4", "h5", "h6", "header", "hr", "li", "main",
+        "nav", "ol", "p", "pre", "section", "table", "td", "th", "tr", "ul",
+    }
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self._skip_depth = 0
+        self._parts: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs) -> None:
+        tag = tag.lower()
+        if tag in self.SKIP_TAGS:
+            self._skip_depth += 1
+            return
+        if self._skip_depth == 0 and tag in self.BLOCK_TAGS:
+            self._parts.append("\n")
+
+    def handle_endtag(self, tag: str) -> None:
+        tag = tag.lower()
+        if tag in self.SKIP_TAGS:
+            if self._skip_depth:
+                self._skip_depth -= 1
+            return
+        if self._skip_depth == 0 and tag in self.BLOCK_TAGS:
+            self._parts.append("\n")
+
+    def handle_data(self, data: str) -> None:
+        if self._skip_depth == 0:
+            self._parts.append(data)
+
+    def text(self) -> str:
+        joined = "".join(self._parts).replace("\r\n", "\n").replace("\r", "\n")
+        lines = []
+        for line in joined.split("\n"):
+            clean = re.sub(r"[ \t\f\v]+", " ", line).strip()
+            if clean:
+                lines.append(clean)
+        return "\n".join(lines).strip() + "\n" if lines else ""
+
+
+def normalize_html(raw_path: Path, out: Path) -> tuple[Path | None, str]:
+    try:
+        html = raw_path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        html = raw_path.read_text(encoding="utf-8", errors="replace")
+    parser = VisibleHTMLTextExtractor()
+    try:
+        parser.feed(html)
+        parser.close()
+    except Exception:
+        return None, "html-parse-error"
+    text = parser.text()
+    if not text.strip():
+        return None, "html-no-visible-text"
+    out.write_text(text, encoding="utf-8")
+    return out, "html-visible-text"
 
 
 def utc_now() -> str:
@@ -163,6 +230,9 @@ def normalize_text(raw_path: Path, root: Path, doc_id: str) -> tuple[Path | None
     """
     out = root / "normalized/text" / f"{doc_id}.txt"
     suffix = raw_path.suffix.lower()
+
+    if suffix in HTML_EXTENSIONS:
+        return normalize_html(raw_path, out)
 
     if suffix in TEXT_EXTENSIONS:
         try:
