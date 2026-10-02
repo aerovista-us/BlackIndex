@@ -19,6 +19,8 @@ import urllib.parse
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
+import ai_research
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ROOT = Path(os.environ.get("BLACKINDEX_ROOT", REPO_ROOT))
 
@@ -89,8 +91,39 @@ class Handler(SimpleHTTPRequestHandler):
             return str(self.dashboard_dir / "__blocked__")
         return str(candidate)
 
+    def _send_json(self, status: int, payload: dict) -> None:
+        body = (json.dumps(payload, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _read_json_body(self, max_bytes: int = 65536) -> dict:
+        try:
+            length = int(self.headers.get("Content-Length") or "0")
+        except ValueError as exc:
+            raise ValueError("invalid Content-Length") from exc
+        if length <= 0:
+            raise ValueError("request body is required")
+        if length > max_bytes:
+            raise ValueError(f"request body exceeds {max_bytes} bytes")
+        raw = self.rfile.read(length)
+        try:
+            payload = json.loads(raw.decode("utf-8"))
+        except Exception as exc:
+            raise ValueError("request body must be valid JSON") from exc
+        if not isinstance(payload, dict):
+            raise ValueError("request JSON must be an object")
+        return payload
+
     def do_GET(self):
-        if urllib.parse.urlparse(self.path).path == "/__blackindex_health":
+        path = urllib.parse.urlparse(self.path).path
+        if path == "/api/ai/status":
+            self._send_json(200, ai_research.status())
+            return
+        if path == "/__blackindex_health":
             payload = {
                 "ok": True,
                 "service": "blackindex-dashboard",
@@ -107,7 +140,23 @@ class Handler(SimpleHTTPRequestHandler):
         super().do_GET()
 
     def do_POST(self):
-        if self.path != "/actions/resume-fbi-review":
+        path = urllib.parse.urlparse(self.path).path
+        if path == "/api/ai/research":
+            try:
+                payload = self._read_json_body()
+                if not ai_research.status().get("available"):
+                    self._send_json(503, {"ok": False, "error": "local AI provider is unavailable"})
+                    return
+                result = ai_research.handle(self.root, payload)
+                self._send_json(200, {"ok": True, "result": result})
+            except (ValueError, FileNotFoundError) as exc:
+                self._send_json(400, {"ok": False, "error": str(exc)})
+            except TimeoutError as exc:
+                self._send_json(504, {"ok": False, "error": str(exc)})
+            except Exception as exc:
+                self._send_json(502, {"ok": False, "error": f"local AI request failed: {exc}"})
+            return
+        if path != "/actions/resume-fbi-review":
             self.send_error(404)
             return
         ok, prep_log = ensure_review_state(self.root)
@@ -150,6 +199,7 @@ def main() -> int:
     server = ThreadingHTTPServer((args.bind, args.port), Handler)
     print(f"BlackIndex dashboard: http://{args.bind}:{args.port}/blackindex-dashboard.html")
     print(f"Health: http://{args.bind}:{args.port}/__blackindex_health")
+    print(f"AI status: http://{args.bind}:{args.port}/api/ai/status")
     print(f"Resume FBI Review action: POST /actions/resume-fbi-review -> review desk :{args.review_port}")
     print("Serving local/dashboard with BlackIndex local actions. Ctrl-C to stop.")
     server.serve_forever()
