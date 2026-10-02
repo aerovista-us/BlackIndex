@@ -1,7 +1,7 @@
 # BlackIndex — Living Status, Completion Ledger, and Backlog
 
 **Status:** Authoritative project-progress ledger  
-**Updated:** 2026-09-26
+**Updated:** 2026-10-02
 **Purpose:** Keep completed work visible while preserving the remaining research and implementation backlog.
 
 > Completion here means the currently defined ingestion, review, or implementation milestone was reached. It does **not** mean the underlying historical question is resolved.
@@ -18,7 +18,9 @@
 
 ## Corpus checkpoint
 
-- Authoritative local verifier checkpoint: **39 checked / 0 failures** (`2026-09-26` Review 007M official-layer closeout reconciliation)
+- Authoritative local verifier checkpoint: **67 checked / 0 failures** (`2026-10-02`; current corpus / Operation LOOKING GLASS execution-milestone checkpoint)
+- Historical Review 007M official-layer closeout checkpoint: **39 checked / 0 failures** (`2026-09-26`)
+- Record Integrity coverage: **67 / 67 corpus documents** have durable record-integrity objects; **153 evidence objects / 0 validation failures** at this checkpoint.
 - Historical Milestone 1: **25 verified / 0 failures**
 - Operation Encore underlying-record acquisition: **4 / 4** large FBI artifacts acquired/resumed successfully
 - Joint Inquiry final report is acquired/published as `US CONGRESS-2002-9-11-joint-inquiry-001`
@@ -79,6 +81,13 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Record Context | `COMPLETE` | per-record traversal of encoded relationships/gaps/reviews/versions |
 | Research Session | `COMPLETE` | browser-local pins + recent records |
 | Research Session export | `COMPLETE` | pinned IDs, JSON, Markdown, clear recent |
+| Grounded local AI research assistant | `COMPLETE` | Repo-backed assistant added in PR #25; local evidence context only. |
+| AI research navigation modes | `COMPLETE` | Research-mode navigation added in PR #26. |
+| Contextual help system | `COMPLETE` | In-product research guidance added in PR #27. |
+| Inline meaning glossary | `COMPLETE` | Terminology definitions added in PR #28. |
+| Grounded document comparison | `COMPLETE` | Document comparison added in PR #29 with source-grounded framing. |
+| AI request reuse fix | `COMPLETE` | Browser Request-object reuse failure corrected in PR #30. |
+| Nexus BlackIndex workspace launcher | `COMPLETE` | Registered in AeroVista Workspaces / Nexus; public path remains Cloudflare Access protected and launches the tailnet-only BlackIndex runtime. |
 | Search/navigation utilities | `COMPLETE` | quick views, sort, shortcuts, deep links |
 | Research Session observer safety fix | `COMPLETE` | idempotent/frame-coalesced observer path |
 | Embedded dashboard favicon | `COMPLETE` | data-URI SVG; no external favicon asset required |
