@@ -66,10 +66,22 @@ def ensure_layout(root: Path) -> None:
 
 
 def metadata_files(root: Path):
+    """Return document metadata by content, including legacy filename forms.
+
+    Early BlackIndex records may use spaces or older source-token spelling in
+    the filename. The document corpus is authoritative by top-level doc_id, so
+    dashboard enumeration must match verifier/manifest behavior instead of
+    dropping valid legacy records via filename regex.
+    """
     md = root / "metadata"
     if not md.exists():
         return []
-    return sorted(p for p in md.glob("*.json") if DOC_METADATA_RE.match(p.name))
+    files = []
+    for path in md.glob("*.json"):
+        data = read_json(path)
+        if isinstance(data, dict) and data.get("doc_id"):
+            files.append(path)
+    return sorted(files)
 
 
 def get_metadata(root: Path, doc_id: str) -> dict:
