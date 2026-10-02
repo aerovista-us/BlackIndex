@@ -11,6 +11,8 @@ class HtmlUrlIngestGuardTests(unittest.TestCase):
         text = SCRIPT.read_text(encoding="utf-8")
         self.assertIn("https://www.navair.navy.mil/*", text)
         self.assertIn("https://www.stratcom.mil/*", text)
+        self.assertIn("https://www.navy.mil/*", text)
+        self.assertIn("https://www.defense.gov/*", text)
         self.assertIn("ALLOW_BROWSER_FALLBACK=0", text)
         self.assertIn("--expect html", text)
         self.assertIn("attention required! | cloudflare", text)

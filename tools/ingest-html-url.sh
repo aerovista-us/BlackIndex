@@ -27,7 +27,7 @@ trap 'rm -f "$TMP"' EXIT
 UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/151 Safari/537.36'
 ALLOW_BROWSER_FALLBACK=0
 case "$URL" in
-  https://www.navair.navy.mil/*|https://navair.navy.mil/*|https://www.stratcom.mil/*|https://stratcom.mil/*)
+  https://www.navair.navy.mil/*|https://navair.navy.mil/*|https://www.stratcom.mil/*|https://stratcom.mil/*|https://www.navy.mil/*|https://navy.mil/*|https://www.defense.gov/*|https://defense.gov/*)
     ALLOW_BROWSER_FALLBACK=1 ;;
 esac
 
