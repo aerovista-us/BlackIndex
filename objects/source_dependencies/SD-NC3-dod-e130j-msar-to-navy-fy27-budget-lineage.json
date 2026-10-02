@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-dod-e130j-msar-to-navy-fy27-budget-lineage",
+  "created_at": "2026-10-02T19:31:16+00:00",
+  "assertion_id": "e130j-pb2027-msar-to-navy-budget-lineage",
+  "source_id": "DOD-2026-pb-2027-modernized-selected-acquisition-reports-001",
+  "depends_on": "US_NAVY-2026-fy-2027-rdt-e-budget-justification-books-001 / April 2026 Navy TACAMO budget/current-schedule state",
+  "dependency_type": "same-program-cross-reporting-lineage",
+  "independence": "partially-independent",
+  "notes": "MSAR and BA5 are separate official reporting products with different proposition-level value but share the same E-130J program-of-record. Repeated narrative is not counted as independent corroboration."
+}

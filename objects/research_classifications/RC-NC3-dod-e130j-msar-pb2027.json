@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-dod-e130j-msar-pb2027",
+  "created_at": "2026-10-02",
+  "subject_type": "document",
+  "subject_id": "DOD-2026-pb-2027-modernized-selected-acquisition-reports-001",
+  "canonical_status": "canon",
+  "reason": "Official WHS PB2027 E-130J MSAR. Canon for attributed IBR closure, AV1 PDR execution, program quantities, contract delivery counts, and future schedule fields; it does not promote full-system PDR or later test/delivery/acceptance as completed.",
+  "review_required": false,
+  "authenticity_status": "official-WHS-first-party-preserved-artifact",
+  "attribution_status": "attributed-to-DoD-Navy-acquisition-reporting",
+  "provenance_status": "mapped",
+  "corroboration_status": "program-execution-and-acquisition-state",
+  "source_independence": "distinct-official-acquisition-reporting-product-sharing-E130J-program-lineage",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-10-02",
+      "reason": "First-party MSAR preserved and reviewed with completed AV1 PDR and IBR separated from future full-system PDR, test, and delivery milestones."
+    }
+  ]
+}

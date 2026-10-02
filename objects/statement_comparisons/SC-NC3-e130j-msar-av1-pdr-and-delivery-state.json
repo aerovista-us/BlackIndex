@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "object_type": "statement_comparison",
+  "object_id": "SC-NC3-e130j-msar-av1-pdr-and-delivery-state",
+  "created_at": "2026-10-02T19:31:16+00:00",
+  "topic": "E-130J design-review execution and delivery state",
+  "public_source": "US_NAVY-2026-fy-2027-rdt-e-budget-justification-books-001",
+  "public_statement": "FY2027 Navy BA5 preserved a revised schedule but did not provide proposition-level PDR completion evidence.",
+  "internal_source": "DOD-2026-pb-2027-modernized-selected-acquisition-reports-001",
+  "internal_content": "PB2027 MSAR records IBR conduct/closure and AV1 configuration PDR on March 31-April 1, 2026, keeps full-system/final weapon-system PDR estimated for July 2026 with no actual date, and reports zero delivered E-130J development/procurement end items.",
+  "relationship": "later-first-party-acquisition-report-partially-resolves-execution-gap",
+  "notes": "AV1 PDR and IBR are completed execution events. Full-system PDR remains unresolved; zero-delivery applies only to the MSAR observation state."
+}
