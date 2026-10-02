@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-usstratcom-nec-ioc-2019",
+  "created_at": "2026-10-01",
+  "subject_type": "document",
+  "subject_id": "USSTRATCOM-2019-news-releases-001",
+  "canonical_status": "canon",
+  "reason": "Official USSTRATCOM announcement declaring initial operational capability of the NC3 Enterprise Center on 3 Apr 2019. Canon status applies to the stated IOC milestone and public organizational role; it does not expose or establish the contents of controlled governance directives or every downstream NC3 capability.",
+  "review_required": false,
+  "authenticity_status": "official-USSTRATCOM-first-party-preserved-HTML",
+  "attribution_status": "attributed-to-USSTRATCOM-Public-Affairs",
+  "provenance_status": "mapped",
+  "corroboration_status": "primary-organizational-IOC-record",
+  "source_independence": "organizational-milestone-not-assumed-independent-of-governing-policy-lineage",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-10-01",
+      "reason": "First-party IOC announcement preserved by hash; controlled governance content remains separate."
+    }
+  ]
+}
