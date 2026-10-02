@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-gao-2026-e130j-oversight",
+  "created_at": "2026-10-02",
+  "subject_type": "document",
+  "subject_id": "GAO-2026-weapon-systems-annual-assessment-001",
+  "canonical_status": "canon",
+  "reason": "Official GAO-26-108457 oversight report. Canon status applies to provenance and attributed GAO analysis; Navy/program-office statements remain attributed rather than adopted as independent facts.",
+  "review_required": false,
+  "authenticity_status": "official-GAO-first-party-preserved-artifact",
+  "attribution_status": "attributed-to-GAO-oversight-analysis",
+  "provenance_status": "mapped",
+  "corroboration_status": "independent-oversight-layer",
+  "source_independence": "institutionally-independent-oversight-with-program-office-derived-factual-inputs",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-10-02",
+      "reason": "Official GAO report preserved and reviewed with oversight analysis separated from program-office assertions and later program states."
+    }
+  ]
+}

@@ -21,6 +21,8 @@ class OfficialSourceFallbackTests(unittest.TestCase):
         self.assertIn("https://www.jcs.mil/*", text)
         self.assertIn("https://comptroller.defense.gov/*", text)
         self.assertIn("https://www.secnav.navy.mil/*", text)
+        self.assertIn("https://www.gao.gov/*", text)
+        self.assertIn("https://files.gao.gov/*", text)
         self.assertIn("ALLOW_BROWSER_FALLBACK=0", text)
         self.assertIn("ALLOW_BROWSER_FALLBACK=1", text)
         self.assertIn("retrying same official URL without referer", text)
