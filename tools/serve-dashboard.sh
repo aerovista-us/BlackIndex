@@ -20,6 +20,7 @@ python3 "$ROOT/tools/inject-record-context.py" "$ROOT/local/dashboard/blackindex
 python3 "$ROOT/tools/inject-research-session.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 python3 "$ROOT/tools/inject-research-export.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 python3 "$ROOT/tools/inject-ai-research.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
+python3 "$ROOT/tools/inject-help-system.py"   "$ROOT/local/dashboard/blackindex-dashboard.html"   "$ROOT/local/dashboard/work-queue.html"   "$ROOT/local/dashboard/named-source-recovery.html"   "$ROOT/local/dashboard/source-lineage.html"   "$ROOT/local/dashboard/entities.html"
 python3 "$ROOT/tools/inject-favicon.py" "$ROOT/local/dashboard/blackindex-dashboard.html"
 
 if command -v tailscale >/dev/null 2>&1; then

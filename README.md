@@ -171,3 +171,17 @@ See `docs/BlackIndex AI Research Assistant - 2026-10-01.md` for grounding, citat
 AI/source citations in the dashboard are clickable: selecting a citation jumps to the exact normalized Source Text line range and highlights it.
 
 The assistant also includes **Timeline**, **People & Organizations**, and **Explain Simply** modes. Quick Timeline and Quick People/Organizations are source-extractive for speed and precision; Deep mode uses the local AI model for synthesis.
+
+
+## UI help and onboarding
+
+Primary BlackIndex pages now include a shared contextual help layer with:
+
+- persistent **How to** and **Tips** controls;
+- searchable page-specific help;
+- contextual **?** explanations;
+- lightweight **Show me around** tours;
+- a dismissible first-use hint;
+- **H** as the universal help shortcut when not typing.
+
+The help layer is presentation-only and does not change evidence state or source content. See `docs/BlackIndex UI Help System - 2026-10-02.md`.
