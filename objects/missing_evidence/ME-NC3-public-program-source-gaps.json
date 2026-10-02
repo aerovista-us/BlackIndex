@@ -3,20 +3,19 @@
   "object_type": "missing_evidence",
   "object_id": "ME-NC3-public-program-source-gaps",
   "created_at": "2026-10-01T22:55:00+00:00",
-  "updated_at": "2026-10-02T01:12:00+00:00",
+  "updated_at": "2026-10-02T18:52:17+00:00",
   "doc_id": "DOD-2025-fy-2026-rdt-e-programs-r-1-001",
   "category": "UNMAPPED_REFERENCED_EVIDENCE",
-  "summary": "Public first-party NC3 program-source recovery is partial: NAVAIR HTML program pages and the E-130J award records are now preserved, while the detailed Air Force SAOC volume, Navy BA5 TACAMO book, and AFGSCMD 63-101 remain unrecovered because current first-party retrieval paths fail or stall.",
+  "summary": "Public first-party NC3 program-source recovery is partial: NAVAIR HTML program pages, E-130J award records, and the detailed Navy FY2026 BA5 TACAMO justification are preserved. The detailed Air Force SAOC volume and AFGSCMD 63-101 remain unrecovered from first-party paths.",
   "referenced_by": "FY2026 DoD/Navy budget indexes; 2025-2026 USSTRATCOM posture statements; Air Force e-Publishing index; preserved NAVAIR/Navy/DoD E-130J program and award records",
-  "last_known_location": "Air Force e-Publishing; SAF/FM FY2026 RDT&E Volume II; Department of the Navy FY2026 RDT&E BA5 budget book",
+  "last_known_location": "Air Force e-Publishing; SAF/FM FY2026 RDT&E Volume II",
   "known_creator": "Department of the Air Force / Department of the Navy / NAVAIR",
   "likely_custodian": "AFGSC / SAF-FM / Department of the Navy FMB / NAVAIR",
-  "stated_reason_missing": "The remaining sources are public or publicly indexed. Current gaps are first-party transport/retrieval failures, not evidence that the records do not exist.",
-  "potential_relevance": "Would deepen source genealogy beneath high-level NC3 posture statements for the NC3 Center, SAOC, and TACAMO/E-130J programs without relying on platform operating procedures.",
+  "stated_reason_missing": "The remaining SAOC Volume II and AFGSCMD 63-101 sources are public or publicly indexed. Current gaps are first-party transport/retrieval failures, not evidence that the records do not exist.",
+  "potential_relevance": "The remaining Air Force records would deepen source genealogy beneath public NC3/SAOC statements. The recovered Navy BA5 parent now supplies the detailed TACAMO budget/program layer, while execution still requires later test/delivery/acceptance evidence.",
   "named_records": [
-    "AFGSCMD 63-101 — USAF Nuclear Command, Control, and Communications (NC3) Center",
-    "Air Force FY2026 RDT&E Volume II detailed SAOC justification — PE 0604288F",
-    "Department of the Navy FY2026 RDT&E BA5 detailed TACAMO Modernization justification — PE 0605180N"
+    "AFGSCMD 63-101 \u2014 USAF Nuclear Command, Control, and Communications (NC3) Center",
+    "Air Force FY2026 RDT&E Volume II detailed SAOC justification \u2014 PE 0604288F"
   ],
   "alternative_explanations": [
     "A first-party artifact may have moved or require a different official archive path",
@@ -26,26 +25,25 @@
   "recovery_paths": [
     "retry the official AFGSCMD 63-101 e-Publishing/archive path without substituting unofficial mirrors",
     "retry the official SAF/FM FY2026 Air Force RDT&E Volume II artifact containing SAOC PE 0604288F",
-    "retry the official Department of the Navy FY2026 RDT&E BA5 book",
     "do not convert indexed snippets, search excerpts, or unofficial mirrors into primary-source artifacts"
   ],
   "status": "unresolved",
-  "recovery_status": "navair-html-and-award-state-resolved-detailed-saoc-ba5-afgscmd-unrecovered",
+  "recovery_status": "navair-html-and-award-state-resolved-navy-ba5-resolved-detailed-saoc-and-afgscmd-unrecovered",
   "recovered_named_records": [
-    "NAVAIR E-6B Mercury / E-130J living product page — NAVAIR-2026-product-pages-001",
-    "NAVAIR 21 Oct 2024 E-130J program announcement — NAVAIR-2024-news-releases-001",
-    "DoD 18 Dec 2024 E-130J contract action — DOD-2024-contract-announcements-001",
-    "U.S. Navy 19 Dec 2024 E-130J award announcement — US_NAVY-2024-press-releases-001"
+    "NAVAIR E-6B Mercury / E-130J living product page \u2014 NAVAIR-2026-product-pages-001",
+    "NAVAIR 21 Oct 2024 E-130J program announcement \u2014 NAVAIR-2024-news-releases-001",
+    "DoD 18 Dec 2024 E-130J contract action \u2014 DOD-2024-contract-announcements-001",
+    "U.S. Navy 19 Dec 2024 E-130J award announcement \u2014 US_NAVY-2024-press-releases-001",
+    "Department of the Navy FY2026 RDT&E BA5 detailed TACAMO Modernization justification \u2014 US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-002"
   ],
   "unresolved_named_records": [
-    "AFGSCMD 63-101 — USAF Nuclear Command, Control, and Communications (NC3) Center",
-    "Air Force FY2026 RDT&E Volume II detailed SAOC justification — PE 0604288F",
-    "Department of the Navy FY2026 RDT&E BA5 detailed TACAMO Modernization justification — PE 0605180N"
+    "AFGSCMD 63-101 \u2014 USAF Nuclear Command, Control, and Communications (NC3) Center",
+    "Air Force FY2026 RDT&E Volume II detailed SAOC justification \u2014 PE 0604288F"
   ],
   "retrieval_attempts": [
     {
       "attempted_at": "2026-10-02T01:09:00+00:00",
-      "record": "Air Force FY2026 RDT&E Volume II detailed SAOC justification — PE 0604288F",
+      "record": "Air Force FY2026 RDT&E Volume II detailed SAOC justification \u2014 PE 0604288F",
       "official_url": "https://www.saffm.hq.af.mil/Portals/84/documents/FY26/FY26%20Air%20Force%20Research%20and%20Development%20Test%20and%20Evaluation%20Vol%20II.pdf?ver=vrLoWfwr4s9gxxTgIb7qzQ%3D%3D",
       "result": "direct curl TLSV1_ALERT_INTERNAL_ERROR; browser-TLS helper failed with the same TLS alert before bytes were received",
       "artifact_preserved": false
@@ -59,10 +57,32 @@
     },
     {
       "attempted_at": "2026-10-02T01:16:00+00:00",
-      "record": "AFGSCMD 63-101 — USAF Nuclear Command, Control, and Communications (NC3) Center",
+      "record": "AFGSCMD 63-101 \u2014 USAF Nuclear Command, Control, and Communications (NC3) Center",
       "official_url": "https://static.e-publishing.af.mil/production/1/afgsc/publication/afgscmd63-101/afgscmd63-101.pdf",
       "result": "official Air Force search index still identifies the unrestricted 27 Jan 2020 directive, but direct first-party artifact retrieval returns HTTP 404",
       "artifact_preserved": false
+    },
+    {
+      "attempted_at": "2026-10-02T18:41:24+00:00",
+      "record": "Department of the Navy FY2026 RDT&E BA5 detailed TACAMO Modernization book",
+      "official_url": "https://www.secnav.navy.mil/fmc/fmb/Documents/26pres/RDTEN_BA5_Book.pdf",
+      "result": "direct first-party PDF download succeeded; preserved as US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-002; SHA-256 d5f5c1181e9b1885373670338b582efad52f1066f9abb0aaf032c368f90a8333; pdftotext normalization succeeded",
+      "artifact_preserved": true
+    },
+    {
+      "attempted_at": "2026-10-02T18:41:24+00:00",
+      "record": "Air Force FY2026 RDT&E Volume II detailed SAOC justification \u2014 PE 0604288F",
+      "official_url": "https://www.saffm.hq.af.mil/Portals/84/documents/FY26/FY26%20Air%20Force%20Research%20and%20Development%20Test%20and%20Evaluation%20Vol%20II.pdf?ver=vrLoWfwr4s9gxxTgIb7qzQ%3D%3D",
+      "result": "current retry failed before artifact bytes: direct curl TLSV1_ALERT_INTERNAL_ERROR; browser-navigation retry same TLS alert; browser-TLS impersonation same TLS alert",
+      "artifact_preserved": false
+    },
+    {
+      "attempted_at": "2026-10-02T18:34:37+00:00",
+      "record": "Department of the Navy FY2026 RDT&E BA5 detailed TACAMO Modernization justification \u2014 PE 0605180N",
+      "official_url": "https://www.secnav.navy.mil/fmc/fmb/Documents/26pres/RDTEN_BA5_Book.pdf",
+      "result": "first-party artifact acquired and hashed; normalized text contains the complete TACAMO PE 0605180N detailed BA5 section",
+      "artifact_preserved": true,
+      "doc_id": "US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-002"
     }
   ]
 }

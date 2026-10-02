@@ -18,7 +18,7 @@
       "from": null,
       "to": "deuterocanon",
       "changed_at": "2026-10-01",
-      "reason": "Preserved as the official TACAMO budget index layer while the detailed BA5 justification remains a separate unrecovered first-party source."
+      "reason": "Preserved as the official TACAMO budget index layer. The detailed BA5 justification was subsequently recovered as US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-002; this index remains a dependent locator layer rather than independent corroboration."
     }
   ]
 }

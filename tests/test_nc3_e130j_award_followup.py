@@ -36,11 +36,19 @@ class Nc3E130jAwardFollowupTests(unittest.TestCase):
         gap = load("objects/missing_evidence/ME-NC3-public-program-source-gaps.json")
         self.assertEqual(gap["status"], "unresolved")
         self.assertIn("navair-html-and-award-state-resolved", gap["recovery_status"])
+
         unresolved = "\n".join(gap["unresolved_named_records"])
+        recovered = "\n".join(gap["recovered_named_records"])
         self.assertIn("SAOC", unresolved)
-        self.assertIn("BA5", unresolved)
         self.assertIn("AFGSCMD 63-101", unresolved)
-        self.assertEqual(len(gap["retrieval_attempts"]), 3)
+        self.assertNotIn("Navy FY2026 RDT&E BA5", unresolved)
+        self.assertIn("Navy FY2026 RDT&E BA5", recovered)
+
+        ba5_success = [
+            item for item in gap["retrieval_attempts"]
+            if "Navy FY2026 RDT&E BA5" in item["record"] and item["artifact_preserved"]
+        ]
+        self.assertTrue(ba5_success)
 
     def test_review_and_ledger_record_64_record_state(self):
         review = (ROOT / "docs/reviews/phase2-nc3-005-e130j-award-and-detailed-parent-retry.md").read_text(encoding="utf-8")

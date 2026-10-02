@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-snc-saoc-flight-test-2025",
+  "created_at": "2026-10-02",
+  "subject_type": "document",
+  "subject_id": "SNC-2025-saoc-program-press-releases-001",
+  "canonical_status": "deuterocanon",
+  "reason": "First-party corporate statement from SAOC prime contractor SNC reporting its own early risk-reduction flight-test activity, including an August 7, 2025 company-led flight. It is primary to SNC's activity/reporting but is not U.S. Air Force acceptance, certification, measured test performance, or readiness evidence.",
+  "review_required": false,
+  "authenticity_status": "official-SNC-first-party-corporate-preserved-HTML",
+  "attribution_status": "attributed-to-SAOC-prime-contractor-SNC",
+  "provenance_status": "mapped",
+  "corroboration_status": "contractor-primary-execution-layer",
+  "source_independence": "partially-independent-from-government-award-record-but-not-independent-of-SAOC-program-lineage",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-10-02",
+      "reason": "Preserved exact corporate source and bounded it to contractor-reported execution; government acceptance/performance remains an open evidence layer."
+    }
+  ]
+}
