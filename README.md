@@ -164,3 +164,10 @@ AI output is a **derived research aid, not evidence**. It is never automatically
 The default runtime is local Ollama on `127.0.0.1:11434`, using `qwen2.5:1.5b` for Quick and `gemma4:e4b` for Deep. Source content stays on NXCore.
 
 See `docs/BlackIndex AI Research Assistant - 2026-10-01.md` for grounding, citation, runtime, and methodology details.
+
+
+### AI research navigation
+
+AI/source citations in the dashboard are clickable: selecting a citation jumps to the exact normalized Source Text line range and highlights it.
+
+The assistant also includes **Timeline**, **People & Organizations**, and **Explain Simply** modes. Quick Timeline and Quick People/Organizations are source-extractive for speed and precision; Deep mode uses the local AI model for synthesis.

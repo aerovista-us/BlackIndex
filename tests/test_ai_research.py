@@ -55,5 +55,78 @@ class AiResearchTests(unittest.TestCase):
         self.assertNotIn("Global Hawk", windows[0].text)
 
 
+    def test_timeline_selector_prefers_date_heavy_chunks(self):
+        chunks = [
+            ai.Chunk(1, 2, "background without dates"),
+            ai.Chunk(3, 5, "On March 28, 2025 the wing activated. In 2027 FOC was expected."),
+            ai.Chunk(6, 8, "general mission description"),
+        ]
+        chosen = ai.select_timeline_chunks(chunks, 1)
+        self.assertEqual(chosen[0].start, 3)
+
+    def test_entity_selector_prefers_named_entities(self):
+        chunks = [
+            ai.Chunk(1, 2, "generic text"),
+            ai.Chunk(3, 5, "United States Strategic Command and Air Force Global Strike Command coordinated."),
+            ai.Chunk(6, 8, "another generic section"),
+        ]
+        chosen = ai.select_entity_chunks(chunks, 1)
+        self.assertEqual(chosen[0].start, 3)
+
+    def test_handle_rejects_unknown_mode_before_generation(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root / "metadata").mkdir()
+            (root / "normalized" / "text").mkdir(parents=True)
+            (root / "metadata" / "DOC-A.json").write_text(
+                '{"doc_id":"DOC-A","title":"A"}', encoding="utf-8"
+            )
+            (root / "normalized" / "text" / "DOC-A.txt").write_text(
+                "2025 event text\n", encoding="utf-8"
+            )
+            with self.assertRaisesRegex(ValueError, "unsupported research mode"):
+                ai.handle(root, {"action":"mode","doc_id":"DOC-A","mode":"bogus","depth":"quick"})
+
+
+
+    def test_quick_timeline_and_entities_do_not_call_model(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root / "metadata").mkdir()
+            (root / "normalized" / "text").mkdir(parents=True)
+            (root / "metadata" / "DOC-A.json").write_text(
+                '{"doc_id":"DOC-A","title":"A"}', encoding="utf-8"
+            )
+            (root / "normalized" / "text" / "DOC-A.txt").write_text(
+                "On March 28, 2025 Col. Jane Smith joined Air Force Global Strike Command.\n"
+                "The 95th Wing activated Feb. 28, 2025.\n",
+                encoding="utf-8",
+            )
+            original = ai._generate
+            ai._generate = lambda *args, **kwargs: (_ for _ in ()).throw(AssertionError("model called"))
+            try:
+                timeline = ai.handle(
+                    root, {"action":"mode","doc_id":"DOC-A","mode":"timeline","depth":"quick"}
+                )
+                entities = ai.handle(
+                    root, {"action":"mode","doc_id":"DOC-A","mode":"entities","depth":"quick"}
+                )
+            finally:
+                ai._generate = original
+            self.assertEqual(timeline["model"], "extractive")
+            self.assertEqual(entities["model"], "extractive")
+            self.assertTrue(timeline["citation_check"]["citation_ok"])
+            self.assertTrue(entities["citation_check"]["citation_ok"])
+
+    def test_quick_entity_candidates_avoid_generic_air_force_fragment(self):
+        candidates = ai._entity_candidates(
+            "Col. Jane Smith met Eighth Air Force and Air Force Global Strike Command."
+        )
+        self.assertIn("Col. Jane Smith", candidates)
+        self.assertIn("Eighth Air Force", candidates)
+        self.assertIn("Air Force Global Strike Command", candidates)
+        self.assertNotIn("Air Force", candidates)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -71,3 +71,30 @@ The assistant may paraphrase, summarize, organize, or explain what a source says
 - automatically promote its output into durable evidence.
 
 Researchers can copy AI output into their own working notes, but durable evidence-state changes continue through the existing reviewed BlackIndex workflows.
+
+
+## v1.1 research navigation — 2026-10-02
+
+The dashboard now turns valid AI citations such as `[L172]` and `[L172-L180]` into clickable source links.
+
+Clicking a citation:
+
+1. switches the current record to Source Text;
+2. renders the normalized text with stable line numbers;
+3. scrolls to the cited range;
+4. highlights the cited lines; and
+5. preserves the most recent AI result for that document so the researcher can check the source without losing the answer.
+
+Line numbers are a derived presentation layer over the preserved normalized text. They do not alter source bytes or evidence objects.
+
+### Learning modes
+
+Three additional learning controls are available:
+
+- **Timeline** — Quick mode performs an instant source-grounded date-line extract; Deep mode uses the local AI model to synthesize chronology from a broader sampled source set.
+- **People & Organizations** — Quick mode performs an instant source-grounded named-entity scan with exact line citations; Deep mode uses AI for role/relationship synthesis.
+- **Explain Simply** — uses the local AI model to explain sampled source material in plainer language while preserving attribution and uncertainty.
+
+Quick Timeline and Quick People/Organizations intentionally do not call a language model. This avoids slow CPU generation and hallucinated entity/date synthesis while still providing immediate research navigation. Their UI result identifies the mode as an extractive source-grounded aid rather than AI synthesis.
+
+Deep model requests have a separate longer timeout (default 240 seconds, configurable with `BLACKINDEX_AI_DEEP_TIMEOUT`) because the 8B model is CPU-bound on NXCore.

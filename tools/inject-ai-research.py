@@ -26,6 +26,14 @@ STYLE = r'''
 #bi-ai-panel .bi-ai-meta{font-size:12px;color:var(--muted);margin:6px 0}
 #bi-ai-panel .bi-ai-warning{font-size:12px;color:var(--warn);margin-top:6px}
 #bi-ai-panel .bi-ai-copy{margin-top:7px}
+#bi-ai-panel .bi-ai-cite{display:inline-block;padding:1px 5px;margin:0 1px;border:1px solid #60788a;border-radius:5px;background:#17232d;color:#dcecf7;font:inherit;line-height:1.25;vertical-align:baseline}
+#bi-ai-panel .bi-ai-cite:hover{background:#233746;border-color:#91b2c8}
+pre.bi-source-pre{padding:0}
+.bi-source-line{display:grid;grid-template-columns:58px minmax(0,1fr);padding:0 12px;min-height:1.45em}
+.bi-source-line:hover{background:#141d25}
+.bi-source-line.bi-cite-hit{background:#263c48;box-shadow:inset 3px 0 0 #9bc3d8}
+.bi-line-no{color:#657784;text-align:right;padding-right:12px;user-select:none;border-right:1px solid #26313a;margin-right:10px}
+.bi-line-text{min-width:0;white-space:pre-wrap;word-break:break-word}
 @media(max-width:760px){#bi-ai-panel .bi-ai-ask{grid-template-columns:1fr 1fr}.bi-ai-ask input{grid-column:1/-1}}
 </style>
 '''
@@ -33,7 +41,41 @@ STYLE = r'''
 SCRIPT = r'''
 <script>
 (()=>{
-  let aiState=null, aiBusy=false;
+  let aiState=null, aiBusy=false, activeCitation=null, lastAiResult=null;
+  function aiEscape(s){
+    return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function answerHtml(s){
+    return aiEscape(s).replace(/\[L(\d+)(?:-L?(\d+))?\]/g,(_,a,b)=>{
+      const end=b||a;
+      const label=end===a?`[L${a}]`:`[L${a}-L${end}]`;
+      return `<button type="button" class="bi-ai-cite" data-cite-start="${a}" data-cite-end="${end}" title="Jump to source">${label}</button>`;
+    });
+  }
+  function decorateSourceText(){
+    if(tab!=='text'||!current)return;
+    const view=document.getElementById('view');
+    const pre=view&&view.querySelector('pre');
+    if(!pre)return;
+    pre.classList.add('bi-source-pre');
+    const q=document.getElementById('q').value.trim();
+    const lines=String(current.text??'').split('\n');
+    pre.innerHTML=lines.map((line,i)=>{
+      const n=i+1;
+      const hit=activeCitation&&activeCitation.docId===current.metadata.doc_id&&n>=activeCitation.start&&n<=activeCitation.end;
+      return `<span class="bi-source-line${hit?' bi-cite-hit':''}" id="bi-line-${n}" data-line="${n}"><span class="bi-line-no">${n}</span><span class="bi-line-text">${markText(line,q)}</span></span>`;
+    }).join('');
+    if(activeCitation&&activeCitation.docId===current.metadata.doc_id){
+      const target=document.getElementById(`bi-line-${activeCitation.start}`);
+      if(target)requestAnimationFrame(()=>target.scrollIntoView({block:'center',behavior:'smooth'}));
+    }
+  }
+  function jumpToCitation(start,end){
+    if(!current)return;
+    activeCitation={docId:current.metadata.doc_id,start:Number(start),end:Number(end||start)};
+    tab='text';
+    renderView();
+  }
   async function loadAiStatus(){
     try{
       const r=await fetch('/api/ai/status',{cache:'no-store'});
@@ -62,11 +104,15 @@ SCRIPT = r'''
     else if(aiState&&aiState.available)s.textContent=`Local AI ready · fast ${aiState.fast_model} · deep ${aiState.deep_model}`;
   }
   function renderResult(panel,payload){
+    if(current)lastAiResult={docId:current.metadata.doc_id,payload};
     const box=panel.querySelector('[data-ai-result]');
     const pre=box.querySelector('pre');
     const meta=box.querySelector('[data-ai-meta]');
     const warn=box.querySelector('[data-ai-warning]');
-    pre.textContent=payload.answer||'';
+    pre.innerHTML=answerHtml(payload.answer||'');
+    pre.querySelectorAll('.bi-ai-cite').forEach(btn=>{
+      btn.onclick=()=>jumpToCitation(btn.dataset.citeStart,btn.dataset.citeEnd);
+    });
     const c=payload.citation_check||{};
     meta.textContent=`${payload.notice||'AI-derived research aid — not evidence'} · model ${payload.model||'unknown'} · ${coverageText(payload.coverage)}`;
     const problems=[];
@@ -74,9 +120,9 @@ SCRIPT = r'''
     if(c.invalid_citations&&c.invalid_citations.length)problems.push('Out-of-range citations: '+c.invalid_citations.join(', '));
     warn.textContent=problems.join(' ');
     box.hidden=false;
-    box.querySelector('[data-ai-copy]').onclick=()=>navigator.clipboard.writeText(pre.textContent).catch(()=>{});
+    box.querySelector('[data-ai-copy]').onclick=()=>navigator.clipboard.writeText(payload.answer||'').catch(()=>{});
   }
-  async function runAi(panel,action,depth){
+  async function runAi(panel,action,depth,mode=null){
     if(aiBusy||!current)return;
     if(!aiState)await loadAiStatus();
     if(!aiState||!aiState.available){
@@ -104,7 +150,10 @@ SCRIPT = r'''
       }
       body.question=q;
     }
-    setBusy(panel,true,action==='summary'?'Summarizing source…':action==='ask'?'Searching source + answering…':'Summarizing selected source…');
+    if(action==='mode'){
+      body.mode=mode;
+    }
+    setBusy(panel,true,action==='summary'?'Summarizing source…':action==='ask'?'Searching source + answering…':action==='mode'?`Building ${mode} view…`:'Summarizing selected source…');
     try{
       const r=await fetch('/api/ai/research',{
         method:'POST',
@@ -138,11 +187,14 @@ SCRIPT = r'''
       <div class="bi-ai-actions">
         <button type="button" data-ai-summary="quick">Quick Summary</button>
         <button type="button" data-ai-summary="deep">Deep Summary</button>
+        <button type="button" data-ai-mode="timeline">Timeline</button>
+        <button type="button" data-ai-mode="entities">People &amp; Organizations</button>
+        <button type="button" data-ai-mode="explain">Explain Simply</button>
         <button type="button" data-ai-selection>Summarize Selection</button>
       </div>
       <div class="bi-ai-ask">
         <input type="text" data-ai-question maxlength="2000" placeholder="Ask this document…">
-        <select data-ai-depth><option value="quick">Quick</option><option value="deep">Deep</option></select>
+        <select data-ai-depth><option value="quick">Quick</option><option value="deep">Deep (slower)</option></select>
         <button type="button" data-ai-ask>Ask</button>
       </div>
       <div class="bi-ai-result" data-ai-result hidden>
@@ -154,16 +206,22 @@ SCRIPT = r'''
     anchor.parentNode.insertBefore(panel,anchor.nextSibling);
     panel.querySelector('[data-ai-summary="quick"]').onclick=()=>runAi(panel,'summary','quick');
     panel.querySelector('[data-ai-summary="deep"]').onclick=()=>runAi(panel,'summary','deep');
+    panel.querySelectorAll('[data-ai-mode]').forEach(btn=>{
+      btn.onclick=()=>runAi(panel,'mode',panel.querySelector('[data-ai-depth]').value,btn.dataset.aiMode);
+    });
     panel.querySelector('[data-ai-selection]').onclick=()=>runAi(panel,'section_summary',panel.querySelector('[data-ai-depth]').value);
     panel.querySelector('[data-ai-ask]').onclick=()=>runAi(panel,'ask',panel.querySelector('[data-ai-depth]').value);
     panel.querySelector('[data-ai-question]').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();panel.querySelector('[data-ai-ask]').click()}});
+    if(lastAiResult&&lastAiResult.docId===current.metadata.doc_id){
+      renderResult(panel,lastAiResult.payload);
+    }
     loadAiStatus().then(s=>{
       const el=panel.querySelector('[data-ai-status]');
       el.textContent=s&&s.available?`Local AI ready · fast ${s.fast_model} · deep ${s.deep_model}`:'Local AI unavailable';
     });
   }
   const previousRenderView=renderView;
-  renderView=function(){previousRenderView();injectAiPanel()};
+  renderView=function(){previousRenderView();decorateSourceText();injectAiPanel()};
   setTimeout(injectAiPanel,0);
 })();
 </script>

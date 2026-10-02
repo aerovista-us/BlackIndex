@@ -24,11 +24,19 @@ class AiResearchUiTests(unittest.TestCase):
                 self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
             text = page.read_text(encoding="utf-8")
             self.assertEqual(text.count("BLACKINDEX_AI_RESEARCH"), 1)
-            for label in ("AI Research Assistant", "Quick Summary", "Deep Summary", "Summarize Selection", "Ask this document"):
+            for label in ("AI Research Assistant", "Quick Summary", "Deep Summary", "Timeline", "People &amp; Organizations", "Explain Simply", "Summarize Selection", "Ask this document"):
                 self.assertIn(label, text)
             self.assertIn("/api/ai/status", text)
             self.assertIn("/api/ai/research", text)
             self.assertIn("never promoted to evidence", text)
+            self.assertIn("jumpToCitation", text)
+            self.assertIn("bi-source-line", text)
+            self.assertIn("data-ai-mode", text)
+            self.assertIn("jumpToCitation", text)
+            self.assertIn("activeCitation", text)
+            self.assertIn("lastAiResult", text)
+            self.assertIn("bi-cite-hit", text)
+            self.assertIn("data-cite-start", text)
 
     def test_server_exposes_local_ai_endpoints_without_evidence_writes(self):
         src = (ROOT / "tools" / "blackindex-ui-server.py").read_text(encoding="utf-8")
