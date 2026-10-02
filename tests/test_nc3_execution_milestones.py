@@ -39,6 +39,16 @@ class Nc3ExecutionMilestoneTests(unittest.TestCase):
         self.assertIn("expected", review)
         self.assertIn("forecast", review)
 
+    def test_snc_test_activity_is_contractor_primary_not_government_acceptance(self):
+        meta = load("metadata/SNC-2025-saoc-program-press-releases-001.json")
+        rc = load("objects/research_classifications/RC-NC3-snc-saoc-flight-test-2025.json")
+        edge = load("objects/source_dependencies/SD-NC3-snc-2025-saoc-test-to-dod-award-lineage.json")
+        self.assertEqual(meta["evidence_status"], "reviewed")
+        self.assertEqual(rc["canonical_status"], "deuterocanon")
+        self.assertIn("not U.S. Air Force acceptance", rc["reason"])
+        self.assertEqual(edge["independence"], "partially-independent")
+        self.assertIn("does not provide an independent U.S. Air Force acceptance", edge["notes"])
+
 
 if __name__ == "__main__":
     unittest.main()

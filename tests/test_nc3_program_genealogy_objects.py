@@ -21,13 +21,16 @@ class NC3ProgramGenealogyObjectTests(unittest.TestCase):
             "objects/source_dependencies/SD-NC3-usstratcom-2026-tacamo-to-fy26-navy-budget-lineage.json",
         ]:
             self.assertEqual(load(rel)["independence"], "partially-independent")
+
     def test_public_program_source_gaps_remain_unresolved(self):
         d = load("objects/missing_evidence/ME-NC3-public-program-source-gaps.json")
         self.assertEqual(d["status"], "unresolved")
-        joined = "\n".join(d["named_records"])
-        self.assertIn("AFGSCMD 63-101", joined)
-        self.assertIn("RDT&E BA5", joined)
-        self.assertIn("SAOC", joined)
+        unresolved = "\n".join(d["unresolved_named_records"])
+        recovered = "\n".join(d["recovered_named_records"])
+        self.assertIn("AFGSCMD 63-101", unresolved)
+        self.assertIn("SAOC", unresolved)
+        self.assertNotIn("Navy FY2026 RDT&E BA5", unresolved)
+        self.assertIn("Navy FY2026 RDT&E BA5", recovered)
         self.assertIn("transport/retrieval failures", d["stated_reason_missing"])
         self.assertNotIn("capture-format limitations", d["stated_reason_missing"])
 
@@ -39,7 +42,8 @@ class NC3ProgramGenealogyObjectTests(unittest.TestCase):
         detail = load("objects/research_classifications/RC-NC3-navy-fy26-ba5-tacamo-detail.json")
         edge = load("objects/source_dependencies/SD-NC3-navy-fy26-ba1-3-index-to-ba5-detail.json")
         self.assertEqual(detail["canonical_status"], "canon")
-        self.assertIn("planned milestone windows are not proof", detail["reason"])
+        self.assertIn("planned milestones", detail["reason"])
+        self.assertIn("later first-party evidence", detail["reason"])
         self.assertEqual(edge["independence"], "dependent")
         self.assertIn("must not be counted as independent corroboration", edge["notes"])
 

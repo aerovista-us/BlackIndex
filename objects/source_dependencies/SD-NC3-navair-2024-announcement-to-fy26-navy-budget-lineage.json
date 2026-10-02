@@ -5,8 +5,8 @@
   "created_at": "2026-10-01T23:55:00+00:00",
   "assertion_id": "navair-2024-e130j-tacamo-program-lineage",
   "source_id": "NAVAIR-2024-news-releases-001",
-  "depends_on": "US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-002 / TACAMO Modernization PE 0605180N detailed program/budget lineage",
+  "depends_on": "US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-002 / TACAMO Modernization PE 0605180N detailed program-of-record lineage",
   "dependency_type": "public-program-announcement-shares-underlying-Navy-program-of-record-lineage",
   "independence": "partially-independent",
-  "notes": "The NAVAIR announcement is a separately issued PMA-271 public statement, while the FY2026 budget artifact comes from the Navy budget process. They are partially independent publications but share the same TACAMO/E-130J program-of-record lineage."
+  "notes": "The publication is separately issued, but its TACAMO/E-130J modernization statements share the underlying Navy program-of-record lineage. The detailed FY2026 BA5 parent is now preserved; repeated program-state propositions are not treated as independent execution evidence."
 }

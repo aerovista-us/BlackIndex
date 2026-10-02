@@ -1,91 +1,101 @@
 # Department of the Navy FY 2026 RDT&E Budget Estimates — BA 5 Justification Book
 
-- **Doc ID:** `US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-002`
-- **Call ID:** `CALL-NC3-PROGRAM-GENEALOGY-001`
-- **Native ID:** `FY26-RDTEN-BA5`
-- **Source:** U.S. Department of the Navy
-- **Document date:** June 2025 budget submission
-- **SHA-256:** `d5f5c1181e9b1885373670338b582efad52f1066f9abb0aaf032c368f90a8333`
-- **Landing page:** https://www.secnav.navy.mil/fmc/fmb/Pages/Fiscal-Year-2026.aspx
-- **Artifact:** https://www.secnav.navy.mil/fmc/fmb/Documents/26pres/RDTEN_BA5_Book.pdf
-- **Normalized text:** /srv/Collab/mini.shops/blackindex/normalized/text/US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-002.txt
-- **State of record:** `R1` — primary program parent recovered and preliminarily reviewed; later execution evidence remains separate
+- Doc ID: US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-002
+- Call ID: CALL-NC3-PROGRAM-GENEALOGY-001
+- Native ID: FY26-RDTEN-BA5
+- Source: US_NAVY
+- Document date: June 2025
+- SHA-256: d5f5c1181e9b1885373670338b582efad52f1066f9abb0aaf032c368f90a8333
+- Landing page: https://www.secnav.navy.mil/fmc/fmb/Pages/Fiscal-Year-2026.aspx
+- Artifact: https://www.secnav.navy.mil/fmc/fmb/Documents/26pres/RDTEN_BA5_Book.pdf
+- State of record: R2 — first-pass review of TACAMO PE 0605180N complete; execution outcomes remain unverified
 
-> BlackIndex records assertions and the state of the surviving record. This review does not convert planned budget milestones into proof that those milestones occurred.
+> BlackIndex records assertions and the state of the surviving record. This review does not render a final historical verdict.
 
 ## CLAIM
 
-- The detailed FY2026 Navy BA5 justification identifies TACAMO Modernization as PE `0605180N` and describes the E-130J recapitalization program, its FY2025 EMD award state, FY2026 funding plan, acquisition structure, and then-current schedule.
-- The document is evidence of the Navy's June 2025 program/budget position. It is not, by itself, proof that a scheduled 2026 test, review, aircraft build, integration event, delivery, acceptance, deployment, readiness milestone, or fleet conversion was completed.
+This first-party Navy budget justification establishes what the Department of the Navy stated in June 2025 about the TACAMO recapitalization / E-130J program: program scope, requested FY2026 funding, acquisition structure, planned engineering and test activity, and the then-current schedule.
+
+It does not establish that later design reviews, aircraft builds, mission-system modifications, tests, deliveries, retrofit actions, acceptance, readiness, or mission use actually occurred.
 
 ## DOCUMENT CONTENT
 
-- Volume 3 p. 1443 states that the E-130J program is intended to augment and eventually replace the E-6B TACAMO aircraft and records an Engineering & Manufacturing Development contract as awarded in FY2025.
-- The same section says FY2026 funding includes startup materials for three C-130J-30 Government Furnished Equipment System Demonstration Test Articles for mission-system integration.
-- Volume 3 pp. 1445-1446 separates FY2025 accomplishments/plans from FY2026 base plans. The FY2026 language remains prospective and includes continued EMD work, design/integration support, PDR/CDR preparation, and developmental-test support.
-- Volume 3 p. 1447 describes the acquisition structure as three Engineering Development Models, up to three System Demonstration Test Articles, and up to six LRIP operational aircraft, while stating that SDTAs would be retrofitted to fleet configuration after EMD testing.
-- Volume 3 p. 1453 gives the June 2025 schedule windows, including PDR in FY2026 Q2, CSIL Test in FY2026 Q3-Q4, Integrated Test 1 in FY2026 Q2-Q4, air-vehicle and mission-system build/integration windows, and SDTA C-130J-30 GFP build in FY2026 Q1-Q4.
+The BA5 justification identifies PE 0605180N, TACAMO MODERNIZATION, Project 3259 / TACAMO Recap. It lists FY2024 actual funding of $200.494 million, FY2025 funding of $755.316 million, and an FY2026 base request of $1,243.978 million.
+
+The Navy describes E-130J as the TACAMO recapitalization effort intended to augment and eventually replace the E-6B TACAMO aircraft. The source states that an Engineering & Manufacturing Development contract was awarded in FY2025 and describes planned work across the C-130J-30 air vehicle, mission systems, VLF modernization, systems-integration laboratories, communications equipment, infrastructure, EMP hardening, cyber hardening, and structural modification.
+
+For FY2026, the source states that funding includes startup material for three C-130J-30 System Demonstration Test Articles for mission-system integration.
+
+The acquisition-strategy section states a planned structure of three Engineering Development Models, up to three System Demonstration Test Articles, and up to six Low Rate Initial Production operational aircraft. It says SDTA aircraft are intended to be retrofitted into fleet configuration and provided to the fleet after EMD testing. That is a planned acquisition path, not evidence that retrofit, delivery, or fleet acceptance occurred.
+
+The June 2025 R-4A schedule lists planned FY2026 events including Preliminary Design Review in Q2; E-130J EMD air-vehicle build through Q3; mission-system integration modifications in Q3-Q4; SDTA C-130J-30 GFP build in Q1-Q4; CSIL Test in Q3-Q4; Integrated Test 1 in Q2-Q4; and Train the Tester in Q2-Q4.
+
+These entries are retained as planned program states as of June 2025. BlackIndex does not convert the schedule into completed milestones without later first-party execution evidence.
 
 ## SOURCE ATTRIBUTION
 
-- First-party Department of the Navy FY2026 RDT&E budget justification book.
-- The schedule and funding descriptions are program-office/budget-submission statements current to June 2025. They should be read as the Navy's documented program plan/state at publication, not as independent post-event verification.
+- Primary source type: Department of the Navy FY2026 RDT&E budget justification, Budget Activity 5.
+- Institutional role: official Navy budget/program submission.
+- Temporal state: June 2025 program/budget snapshot.
+- Evidence boundary: strong for what the Navy officially represented about program structure, budget request, and schedule; not proof of later execution or outcome.
 
 ## CORROBORATION
 
-- `US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-001` is the FY2026 BA1-3/index layer that identifies TACAMO PE `0605180N` and points to the BA5 detailed material; it is dependent budget lineage, not independent corroboration.
-- `DOD-2024-contract-announcements-001` and `US_NAVY-2024-press-releases-001` separately preserve the December 2024 E-130J award state.
-- `NAVAIR-2024-news-releases-001` and `NAVAIR-2026-product-pages-001` are separate public program publications but share the same TACAMO/E-130J program-of-record lineage.
+Related first-party records already preserved include the Navy FY2026 BA1-3 R-1/index layer, the 18 Dec 2024 DoD E-130J contract action, the 19 Dec 2024 Navy award announcement, the 21 Oct 2024 NAVAIR program announcement, the NAVAIR E-6B/E-130J program page, and USSTRATCOM posture statements.
+
+These publications share program-of-record lineage and must not be counted as wholly independent corroboration of the same program-state propositions.
 
 ## CONFLICTS
 
-- No document-level contradiction was identified in this preliminary pass.
-- Timing language must be normalized carefully because the June 2025 schedule includes future FY2026 windows; later dated first-party records are needed before treating those windows as completed events.
+No direct contradiction is encoded in this pass. The important comparison is planned schedule versus later execution. A later milestone occurring earlier, later, differently, or not at all must be preserved as a dated state change or variance.
 
 ## GAPS
 
-- No later first-party test report, acceptance record, delivery record, or milestone-completion notice was established by this document review.
-- Completion of PDR, CSIL Test, Integrated Test 1, the listed aircraft/MSI build windows, SDTA work, and any delivery/acceptance state remains to be confirmed from later dated first-party records.
-- Detailed operational procedures are outside this research gate and are not inferred from public budget language.
+- No completion evidence for the scheduled FY2026 PDR, aircraft build, mission-system integration, CSIL test, Integrated Test 1, or Train-the-Tester milestones is contained here.
+- The underlying EMD contract, design-review packages, test reports, acceptance records, delivery records, and fleet retrofit records are separate sources.
+- This document does not establish production-option exercise, operational acceptance, IOC/FOC, readiness, nuclear-use authority, or actual mission employment.
+
 ## ALTERNATIVE EXPLANATIONS
 
-- A scheduled milestone may have occurred as planned, moved, been rephased, or remained internal without a public release. Absence of a later public record in the current corpus does not establish non-occurrence.
-- Budget language can lag program execution or describe intended work rather than completed work.
+A budget schedule is a planning and resourcing instrument. Milestones may shift because of technical, contractual, funding, integration, test, supplier, or program-management changes. Absence of a later public completion record is not by itself evidence that a milestone failed or did not occur.
 
 ## UNRESOLVED QUESTIONS
 
-- Which first-party Navy/NAVAIR records, dated after June 2025, document actual completion or status of PDR, CSIL Test, Integrated Test 1, EMD aircraft/MSI integration, and SDTA construction?
-- Do later budget submissions revise the FY2026 schedule or distinguish planned versus completed events?
-- What public milestone evidence exists for delivery, government acceptance, fleet conversion, operational test, or readiness?
+1. Is there a later first-party Navy/NAVAIR record confirming completion of the FY2026 Preliminary Design Review?
+2. Is there first-party evidence that EMD aircraft builds or mission-system integration reached the scheduled FY2026 states?
+3. Is there a dated first-party record for CSIL testing or Integrated Test 1 execution/results?
+4. When were the first SDTA aircraft accepted for modification, test, retrofit, or fleet use?
+5. Which LRIP options, if any, were exercised?
+6. Do later FY2027 budget exhibits revise the FY2026 schedule, quantities, or program state?
 
 ## SOURCE
 
-- FY2026 Navy RDT&E BA5, PE `0605180N`, Volume 3 pp. 1443-1454; pivotal review points at pp. 1443, 1445-1447, and 1453.
-- Preserved parent SHA-256: `d5f5c1181e9b1885373670338b582efad52f1066f9abb0aaf032c368f90a8333`.
+Primary source: Department of the Navy, FY 2026 RDT&E Budget Estimates — BA 5, June 2025, PE 0605180N, Project 3259 / TACAMO Recap.
+
+Pivotal locations:
+- Volume 3 p. 1443 / Navy p. 1 of 12 — program mission, FY2026 request, EMD scope, startup materials for three SDTA aircraft.
+- Volume 3 pp. 1445-1447 / Navy pp. 3-5 of 12 — development plans, DT&E/Integrated Test 1 narrative, acquisition strategy, EDM/SDTA/LRIP structure.
+- Volume 3 pp. 1452-1453 / Navy pp. 10-11 of 12 — R-4A schedule details for PDR, builds, mission-system integration, CSIL Test, Integrated Test 1, and training milestones.
 
 ## NEGATIVE FINDINGS / INVESTIGATOR STATEMENTS
 
-- This review makes no negative finding about whether scheduled FY2026 events occurred. It records only that the June 2025 budget book is a planning/program-state source and is not sufficient execution proof.
+None encoded. This is a budget/program source, not an investigative finding.
 
 ## RECORD INTEGRITY
 
-- Completeness: `5/5` for the preserved first-party BA5 parent artifact
-- Redaction concern: `0/15` observed in the reviewed TACAMO section
-- Known destruction: `Unknown`
-- Missing referenced records: later execution/test/delivery/acceptance records remain outside this artifact
-- Custodian conflicts: `No` identified
-- Version conflicts: `No` identified in this pass
-- Public/internal contradictions: none established
-- Archive confidence: `5/5` for source identity and preserved artifact provenance
+- Completeness: 4/5 — the full official BA5 book and complete 12-page TACAMO PE section are present; underlying contract/design/test records are separate sources.
+- Redaction concern: 0/15 for the reviewed public TACAMO section.
+- Known destruction: Unknown
+- Custodian conflicts: None identified
+- Version conflicts: None identified in this pass
+- Archive confidence: 5/5 for provenance of the preserved first-party Navy artifact.
 
 ## RESEARCH-STATE DIAGNOSTICS
 
-- Evidence density: primary program parent recovered; execution layer incomplete
-- Source confidence: `5/5` for what the Navy budget book itself states
-- Inference dependency: `D0` for document contents; `D3` if used to claim an unverified scheduled event actually occurred
-- State of record: `R1`
+- Source confidence: 5/5 for the Navy's June 2025 published program/budget state; not a score for later execution.
+- Inference dependency: D0 for what the source explicitly states; later execution claims require separate evidence.
+- State of record: R2
 
 ## REVIEW NOTES
 
-- Recovery closes the specific "Navy FY2026 BA5 detailed TACAMO justification" source gap.
-- It does **not** close the separate test/delivery/acceptance/performance-evidence gate.
+This recovery closes the Navy FY2026 BA5 TACAMO detailed-parent retrieval gap. It does not close the broader E-130J execution-evidence gate.

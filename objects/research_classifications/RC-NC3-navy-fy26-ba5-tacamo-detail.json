@@ -6,19 +6,19 @@
   "subject_type": "document",
   "subject_id": "US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-002",
   "canonical_status": "canon",
-  "reason": "Official Navy FY2026 BA5 detailed justification for TACAMO Modernization PE 0605180N. Canon status applies to the preserved budget submission and its stated June 2025 program/funding/schedule position; planned milestone windows are not proof of later execution.",
+  "reason": "Official Department of the Navy FY2026 RDT&E Budget Activity 5 justification containing the detailed TACAMO Modernization PE 0605180N / Project 3259 program record. Canon status applies to provenance and the Navy's dated June 2025 budget, acquisition, and schedule statements; planned milestones are not promoted as completed execution without later first-party evidence.",
   "review_required": false,
   "authenticity_status": "official-Department-of-Navy-first-party-preserved-artifact",
-  "attribution_status": "attributed-to-Department-of-Navy-FY2026-budget-submission",
+  "attribution_status": "attributed-to-Department-of-Navy-budget-submission",
   "provenance_status": "mapped",
-  "corroboration_status": "detailed-program-budget-and-schedule-layer",
-  "source_independence": "not-assumed-independent-of-Navy-R1-index-or-shared-TACAMO-program-lineage",
+  "corroboration_status": "detailed-program-budget-layer",
+  "source_independence": "official-budget-program-layer-shares-TACAMO-program-of-record-lineage",
   "promotion_history": [
     {
       "from": null,
       "to": "canon",
       "changed_at": "2026-10-02",
-      "reason": "First-party BA5 parent recovered by direct official-host download, preserved by hash, normalized, and preliminarily reviewed with plan-versus-execution boundary retained."
+      "reason": "First-party detailed BA5 artifact preserved and reviewed; use remains bounded to the dated program/budget state and does not infer later test, delivery, acceptance, readiness, or use."
     }
   ]
 }
