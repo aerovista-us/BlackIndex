@@ -81,11 +81,12 @@ SCRIPT = r'''
         'Use the URL hash/bookmark behavior to return to a selected record and tab.',
         'Search works across metadata, extraction text, source text, and integrity context.',
         'If a summary says “sampled,” treat it as orientation—not an exhaustive reading of the whole document.'
+        'Compare Two Documents: the open record is A; choose B, optionally enter a focus, then use Quick for a focused extractive alignment or Deep for broader multi-window source alignment with A/B citations.',
       ],
       topics:[
         ['Search & filter','Search matches record metadata and text. Source and status controls narrow the corpus without changing evidence state.'],
         ['Review / Text / Metadata','Review shows research/extraction context. Text shows normalized source. Metadata exposes provenance, collection, SHA, dates, and record identifiers.'],
-        ['AI Research Assistant','Quick Summary, Deep Summary, Summarize Selection, Ask This Document, Timeline, People & Organizations, and Explain Simply all operate as research aids.'],
+        ['AI Research Assistant','Quick Summary, Deep Summary, Summarize Selection, Ask This Document, Timeline, People & Organizations, Explain Simply, and Compare Two Documents all operate as research aids.'],
         ['Clickable citations','AI citations like [L172-L180] switch to Source Text, scroll to the range, and highlight it. Always inspect the source when a point matters.'],
         ['Research session / export','Browser-local research tools let you collect working context without silently mutating durable evidence objects.'],
         ['Resume FBI Review','This opens the controlled review workflow. It does not auto-promote candidate records.']

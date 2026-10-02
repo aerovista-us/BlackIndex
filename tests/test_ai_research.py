@@ -128,5 +128,143 @@ class AiResearchTests(unittest.TestCase):
         self.assertNotIn("Air Force", candidates)
 
 
+    def test_comparison_citation_validator_requires_both_documents(self):
+        a = [ai.Chunk(10, 20, "a")]
+        b = [ai.Chunk(30, 40, "b")]
+        good = ai._validate_comparison_citations(
+            "shared [A:L12-L14] [B:L31-L33]", a, b
+        )
+        one_sided = ai._validate_comparison_citations(
+            "only A [A:L12-L14]", a, b
+        )
+        bad = ai._validate_comparison_citations(
+            "wrong B [A:L12] [B:L12]", a, b
+        )
+        self.assertTrue(good["citation_ok"])
+        self.assertFalse(one_sided["citation_ok"])
+        self.assertFalse(bad["citation_ok"])
+        self.assertIn("B:L12-L12", bad["invalid_citations"])
+
+    def test_compare_documents_is_grounded_and_reports_lineage(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root / "metadata").mkdir()
+            (root / "normalized" / "text").mkdir(parents=True)
+            (root / "objects" / "source_dependencies").mkdir(parents=True)
+            (root / "metadata" / "DOC-A.json").write_text(
+                '{"doc_id":"DOC-A","title":"A"}', encoding="utf-8"
+            )
+            (root / "metadata" / "DOC-B.json").write_text(
+                '{"doc_id":"DOC-B","title":"B"}', encoding="utf-8"
+            )
+            (root / "normalized" / "text" / "DOC-A.txt").write_text(
+                "Alpha program began in 2024.\nShared modernization language.\n",
+                encoding="utf-8",
+            )
+            (root / "normalized" / "text" / "DOC-B.txt").write_text(
+                "Shared modernization language.\nBeta update occurred in 2025.\n",
+                encoding="utf-8",
+            )
+            (root / "objects" / "source_dependencies" / "SD-test.json").write_text(
+                '{"object_id":"SD-test","source_id":"DOC-A","depends_on":"DOC-B",'
+                '"dependency_type":"summary-derived","independence":"dependent",'
+                '"notes":"shared upstream test"}',
+                encoding="utf-8",
+            )
+            original = ai._generate
+            ai._generate = lambda *args, **kwargs: (_ for _ in ()).throw(
+                AssertionError("quick compare called model")
+            )
+            try:
+                result = ai.compare_documents(root, "DOC-A", "DOC-B", "modernization", "quick")
+            finally:
+                ai._generate = original
+            self.assertEqual(result["action"], "compare")
+            self.assertEqual(result["citation_docs"], {"A":"DOC-A","B":"DOC-B"})
+            self.assertTrue(result["citation_check"]["citation_ok"])
+            self.assertEqual(result["lineage"]["status"], "dependent")
+            self.assertTrue(result["coverage"]["comparison"])
+            self.assertEqual(result["model"], "extractive")
+
+    def test_compare_documents_rejects_same_document(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root / "metadata").mkdir()
+            (root / "normalized" / "text").mkdir(parents=True)
+            (root / "metadata" / "DOC-A.json").write_text(
+                '{"doc_id":"DOC-A","title":"A"}', encoding="utf-8"
+            )
+            (root / "normalized" / "text" / "DOC-A.txt").write_text(
+                "text\n", encoding="utf-8"
+            )
+            with self.assertRaisesRegex(ValueError, "two different documents"):
+                ai.compare_documents(root, "DOC-A", "DOC-A", "", "quick")
+
+    def test_unknown_lineage_does_not_claim_independence(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root / "objects" / "source_dependencies").mkdir(parents=True)
+            result = ai._lineage_context(root, "DOC-A", "DOC-B")
+            self.assertEqual(result["status"], "unknown")
+            self.assertIn("not established", result["warning"])
+
+
+    def test_comparison_retrieval_prefers_distinctive_identifier(self):
+        text = (
+            "Generic program delivery budget line.\n"
+            "Another generic program award line.\n"
+            "TACAMO MODERNIZATION E-130J aircraft recapitalization.\n"
+            "Generic readiness program text.\n"
+        )
+        chosen = ai.retrieve_comparison_windows(
+            text,
+            "E-130J TACAMO modernization program award budget delivery readiness",
+            limit=1,
+            radius=0,
+        )
+        self.assertEqual(chosen[0].start, 3)
+        self.assertIn("E-130J", chosen[0].text)
+
+    def test_date_parser_does_not_truncate_month_year(self):
+        text = "closed in April 2024 and award expected January 2025"
+        self.assertEqual(
+            ai._DATE_RE.findall(text),
+            ["April 2024", "January 2025"],
+        )
+
+    def test_deep_compare_is_deterministic_and_cited(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root / "metadata").mkdir()
+            (root / "normalized" / "text").mkdir(parents=True)
+            (root / "objects" / "source_dependencies").mkdir(parents=True)
+            for doc, title, text in (
+                ("DOC-A", "A", "2024 Alpha modernization statement.\nShared NC3 program language.\n"),
+                ("DOC-B", "B", "2025 Beta modernization statement.\nShared NC3 program language.\n"),
+            ):
+                (root / "metadata" / f"{doc}.json").write_text(
+                    '{"doc_id":"%s","title":"%s"}' % (doc, title),
+                    encoding="utf-8",
+                )
+                (root / "normalized" / "text" / f"{doc}.txt").write_text(
+                    text, encoding="utf-8"
+                )
+            original = ai._generate
+            ai._generate = lambda *args, **kwargs: (_ for _ in ()).throw(
+                AssertionError("deep compare called model")
+            )
+            try:
+                result = ai.compare_documents(
+                    root, "DOC-A", "DOC-B", "NC3 modernization", "deep"
+                )
+            finally:
+                ai._generate = original
+            self.assertEqual(result["model"], "extractive")
+            self.assertTrue(result["citation_check"]["citation_ok"])
+            self.assertIn("Deep source-aligned comparison", result["answer"])
+            self.assertIn("## Closest aligned passages", result["answer"])
+            self.assertIn("## Chronology signals", result["answer"])
+
+
 if __name__ == "__main__":
     unittest.main()

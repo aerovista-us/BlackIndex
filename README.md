@@ -192,3 +192,8 @@ The help layer is presentation-only and does not change evidence state or source
 BlackIndex UI terms now expose contextual definitions by hover, keyboard focus, or tap. The searchable How-to panel also includes the same glossary.
 
 Definitions cover integrity fields, workflow/review statuses, source-lineage terms, named-source recovery states, entity relationship labels, AI coverage indicators, and Canon/Apocrypha research-classification terms. The definition layer never annotates Source Text and does not change evidence state.
+
+
+### Compare two documents
+
+The local AI Research Assistant supports grounded document-to-document comparison. Quick Compare is focused source-extractive alignment; Deep Compare is broader deterministic multi-window source alignment. Both are rejected if A/B citation validation fails. Encoded source-lineage context is surfaced with the result so repeated dependent material is not mistaken for independent corroboration.

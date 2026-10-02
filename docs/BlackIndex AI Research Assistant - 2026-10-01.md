@@ -98,3 +98,36 @@ Three additional learning controls are available:
 Quick Timeline and Quick People/Organizations intentionally do not call a language model. This avoids slow CPU generation and hallucinated entity/date synthesis while still providing immediate research navigation. Their UI result identifies the mode as an extractive source-grounded aid rather than AI synthesis.
 
 Deep model requests have a separate longer timeout (default 240 seconds, configurable with `BLACKINDEX_AI_DEEP_TIMEOUT`) because the 8B model is CPU-bound on NXCore.
+
+
+## Compare Two Documents — 2026-10-02
+
+The Evidence Map AI panel can compare the currently open record (Document A) with a second normalized-text record (Document B).
+
+The researcher may provide an optional comparison focus such as a program name, person, authority, claim, or chronology question.
+
+### Quick Compare
+
+Quick Compare is deterministic and does not call a language model.
+
+It retrieves source-aligned excerpts from A and B, prioritizing distinctive identifiers/acronyms and rare focus terms, then reports the selected excerpts, terminology present in both retrieved excerpts, visible date signals, and any encoded BlackIndex source-lineage warning.
+
+Quick citations use document-scoped A/B line references.
+
+### Deep Compare
+
+Deep Compare performs a broader deterministic multi-window source alignment. It identifies the closest line-level source passages, source-specific emphasis terms, visible chronology signals, and source-lineage context.
+
+Deep Compare does not currently use a generative model. Live testing showed that the available local models could not reliably satisfy the A/B citation contract at acceptable latency, so BlackIndex keeps comparison fully extractive until a suitable local model is available.
+
+Both Quick and Deep comparison results are mechanically citation-validated before they are returned.
+
+### Lineage discipline
+
+Before presenting a comparison, BlackIndex checks durable source-dependency objects.
+
+The UI distinguishes dependent, partially independent, explicitly independent for the modeled relationship, shared-upstream, and unknown.
+
+No encoded relationship means independence is unknown, not established.
+
+Comparison output is a research aid only and does not mutate evidence or research-classification state.
