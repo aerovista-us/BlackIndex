@@ -146,3 +146,21 @@ It verifies corpus hashes, validates durable evidence objects against the object
 **v0.1 — Phase 2 evidence corpus underway**
 
 The corpus and evidence-map layers are actively expanding. BlackIndex now includes durable evidence-object validation, source-lineage compilation, conservative lineage-backfill audits, local evidence/lineage dashboards, and gated source-review workflows in addition to the original documents-first research pipeline.
+
+
+## AI research assistant
+
+The local dashboard includes a source-grounded AI research layer for quick learning:
+
+- **Quick Summary**
+- **Deep Summary**
+- **Summarize Selection**
+- **Ask This Document**
+
+The assistant reads preserved normalized source text and reports the exact line ranges supplied to the model. It also reports coverage so a sampled summary is not mistaken for a full-document review.
+
+AI output is a **derived research aid, not evidence**. It is never automatically promoted into assertions, findings, classifications, source dependencies, or Canon.
+
+The default runtime is local Ollama on `127.0.0.1:11434`, using `qwen2.5:1.5b` for Quick and `gemma4:e4b` for Deep. Source content stays on NXCore.
+
+See `docs/BlackIndex AI Research Assistant - 2026-10-01.md` for grounding, citation, runtime, and methodology details.
