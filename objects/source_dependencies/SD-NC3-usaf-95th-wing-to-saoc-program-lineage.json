@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-usaf-95th-wing-to-saoc-program-lineage",
+  "created_at": "2026-10-02T04:45:00+00:00",
+  "assertion_id": "usaf-95th-wing-saoc-transition-lineage",
+  "source_id": "USAF-2025-air-force-global-strike-command-news-001",
+  "depends_on": "DOD-2024-contract-announcements-002 / shared SAOC modernization and transition program lineage",
+  "dependency_type": "organizational-transition-shares-SAOC-program-lineage",
+  "independence": "partially-independent",
+  "notes": "The 95th Wing activation is a distinct Air Force organizational action, while the DoD record is the SAOC contract action. They are partially independent events but share the same broader SAOC modernization/transition lineage and must not be collapsed into one proposition or counted as fully independent proof of SAOC fielding."
+}

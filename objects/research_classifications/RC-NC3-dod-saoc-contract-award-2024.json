@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-dod-saoc-contract-award-2024",
+  "created_at": "2026-10-01",
+  "subject_type": "document",
+  "subject_id": "DOD-2024-contract-announcements-002",
+  "canonical_status": "canon",
+  "reason": "Official DoD contract announcement recording the 26 Apr 2024 Survivable Airborne Operations Center development and production award. Canon status applies to the preserved contract-action record and stated award facts; it does not establish later performance, aircraft delivery, operational readiness, authority, or mission use.",
+  "review_required": false,
+  "authenticity_status": "official-DOD-first-party-preserved-HTML",
+  "attribution_status": "attributed-to-DOD-daily-contract-announcement",
+  "provenance_status": "mapped",
+  "corroboration_status": "primary-public-contract-action-record",
+  "source_independence": "primary-award-action-layer",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-10-01",
+      "reason": "First-party DoD contract-action page preserved by hash; analytical use is bounded to the award facts actually stated."
+    }
+  ]
+}
