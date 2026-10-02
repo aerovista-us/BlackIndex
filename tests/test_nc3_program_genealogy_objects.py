@@ -35,5 +35,13 @@ class NC3ProgramGenealogyObjectTests(unittest.TestCase):
         d = load("objects/research_classifications/RC-NC3-navy-fy26-ba1-3-tacamo-index.json")
         self.assertIn("not the detailed BA5", d["reason"])
 
+    def test_detailed_ba5_parent_is_preserved_without_double_counting_index(self):
+        detail = load("objects/research_classifications/RC-NC3-navy-fy26-ba5-tacamo-detail.json")
+        edge = load("objects/source_dependencies/SD-NC3-navy-fy26-ba1-3-index-to-ba5-detail.json")
+        self.assertEqual(detail["canonical_status"], "canon")
+        self.assertIn("planned milestone windows are not proof", detail["reason"])
+        self.assertEqual(edge["independence"], "dependent")
+        self.assertIn("must not be counted as independent corroboration", edge["notes"])
+
 if __name__ == "__main__":
     unittest.main()
