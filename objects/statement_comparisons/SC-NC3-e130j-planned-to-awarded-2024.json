@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "object_type": "statement_comparison",
+  "object_id": "SC-NC3-e130j-planned-to-awarded-2024",
+  "created_at": "2026-10-02T01:12:00+00:00",
+  "topic": "E-130J TACAMO prime-contract award timing and status",
+  "public_source": "NAVAIR-2024-news-releases-001",
+  "public_statement": "On 21 Oct 2024, NAVAIR stated that the E-130J integration solicitation had closed and that contract award was scheduled for January 2025.",
+  "internal_source": "DOD-2024-contract-announcements-001",
+  "internal_content": "The DoD contract announcement for 18 Dec 2024 records award of contract N0001925C0130 to Northrop Grumman Systems Corp. for E-130J TACAMO engineering and manufacturing development, with a stated value of $3,459,276,000.",
+  "relationship": "later-first-party-contract-action-resolves-earlier-planning-state",
+  "notes": "The award occurred before the month forecast in the October planning statement. This resolves award status only; it does not establish later contract performance, aircraft delivery, operational readiness, nuclear-use authority, or mission employment."
+}
