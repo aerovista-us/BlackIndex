@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "object_type": "missing_evidence",
+  "object_id": "ME-NC3-tacamo-execution-confirmation",
+  "created_at": "2026-10-02T19:12:49+00:00",
+  "updated_at": "2026-10-02T19:12:49+00:00",
+  "doc_id": "US_NAVY-2026-fy-2027-rdt-e-budget-justification-books-001",
+  "category": "MISSING_EXECUTION_EVIDENCE",
+  "summary": "The official FY2027 Navy budget preserves a revised TACAMO/E-130J schedule but does not supply the underlying records needed to prove completion, results, delivery, acceptance, certification, readiness, or operational use.",
+  "referenced_by": "FY2026 and FY2027 Navy TACAMO BA5 schedule comparison; Operation LOOKING GLASS execution gate",
+  "last_known_location": "NAVAIR / PMA-271 / NAWCAD / COMOPTEVFOR program, engineering, test, contracting, and acceptance records",
+  "known_creator": "Department of the Navy / NAVAIR / PMA-271 / Navy test organizations",
+  "likely_custodian": "NAVAIR / PMA-271 / NAWCAD / COMOPTEVFOR",
+  "stated_reason_missing": "Preserved budget submissions describe funding, plans, and schedule windows but do not reproduce the underlying milestone-completion, test-result, delivery, or acceptance records.",
+  "potential_relevance": "These records are required to distinguish a revised program schedule from actual completion, test performance, delivery, acceptance, readiness, or operational fielding.",
+  "named_records": [
+    "E-130J Preliminary Design Review completion record and actual completion date/outcome",
+    "E-130J EMD aircraft build completion/delivery records",
+    "E-130J mission-system integration completion records",
+    "E-130J CSIL test execution/results records",
+    "E-130J Integrated Test 1 execution/results records",
+    "E-130J SDTA procurement award, delivery, modification, retrofit, and acceptance records"
+  ],
+  "alternative_explanations": [
+    "Milestones may have occurred but their completion records may not be publicly released",
+    "Program schedule changes may reflect funding, sequencing, integration, contracting, or reporting changes rather than technical failure",
+    "Different schedule views may track APB, program-management, contract, and test windows at different levels of granularity"
+  ],
+  "recovery_paths": [
+    "search first-party NAVAIR/PMA-271 releases and program pages for dated PDR/CDR, build, integration, and test milestones",
+    "search Navy/DoD contract actions for SDTA procurement and modification awards",
+    "search NAWCAD/COMOPTEVFOR first-party material for CSIL, Integrated Test, operational assessment, and acceptance milestones",
+    "compare later Navy FY2028 budget exhibits against the April 2026 current schedule"
+  ],
+  "status": "unresolved",
+  "recovery_status": "fy27-budget-schedule-update-preserved-execution-confirmation-unresolved",
+  "recovered_named_records": [],
+  "unresolved_named_records": [
+    "E-130J Preliminary Design Review completion record and actual completion date/outcome",
+    "E-130J EMD aircraft build completion/delivery records",
+    "E-130J mission-system integration completion records",
+    "E-130J CSIL test execution/results records",
+    "E-130J Integrated Test 1 execution/results records",
+    "E-130J SDTA procurement award, delivery, modification, retrofit, and acceptance records"
+  ],
+  "retrieval_attempts": []
+}
