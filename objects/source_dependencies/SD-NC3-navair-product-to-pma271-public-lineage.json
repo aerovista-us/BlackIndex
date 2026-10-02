@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-navair-product-to-pma271-public-lineage",
+  "created_at": "2026-10-01T23:55:00+00:00",
+  "assertion_id": "navair-e130j-living-product-page-program-lineage",
+  "source_id": "NAVAIR-2026-product-pages-001",
+  "depends_on": "NAVAIR-2024-news-releases-001 / shared PMA-271 TACAMO-E-130J public program lineage",
+  "dependency_type": "living-program-summary-shares-PMA-271-public-program-lineage",
+  "independence": "dependent",
+  "notes": "The living product page and dated NAVAIR announcement originate from the same PMA-271 public program lineage. Repetition across these pages must not increase corroboration strength as if they were independent sources."
+}

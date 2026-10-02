@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-navair-e130j-product-page",
+  "created_at": "2026-10-01",
+  "subject_type": "document",
+  "subject_id": "NAVAIR-2026-product-pages-001",
+  "canonical_status": "deuterocanon",
+  "reason": "Official living NAVAIR E-6B/E-130J product page preserved as a retrieval-state snapshot. It is authoritative for NAVAIR's public program description at capture time, but it is not an operating directive or an independent underlying program record.",
+  "review_required": true,
+  "authenticity_status": "official-NAVAIR-first-party-preserved-HTML",
+  "attribution_status": "attributed-to-NAVAIR-PMA-271-product-page",
+  "provenance_status": "mapped",
+  "corroboration_status": "living-institutional-program-summary",
+  "source_independence": "dependent-on-shared-PMA-271-program-publication-lineage",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-10-01",
+      "reason": "Preserve the first-party program page without counting it as independent corroboration of the same PMA-271 program lineage."
+    }
+  ]
+}

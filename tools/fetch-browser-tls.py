@@ -28,12 +28,18 @@ def main() -> int:
     ap.add_argument("output")
     ap.add_argument("--referer")
     ap.add_argument("--impersonate", default="chrome")
+    ap.add_argument("--expect", choices=("pdf", "html"), default="pdf")
     args = ap.parse_args()
 
     out = Path(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)
+    accept = (
+        "application/pdf,application/octet-stream;q=0.9,*/*;q=0.8"
+        if args.expect == "pdf"
+        else "text/html,application/xhtml+xml;q=0.9,*/*;q=0.8"
+    )
     headers = {
-        "Accept": "application/pdf,application/octet-stream;q=0.9,*/*;q=0.8",
+        "Accept": accept,
         "Accept-Language": "en-US,en;q=0.9",
         "Cache-Control": "no-cache",
         "Pragma": "no-cache",
@@ -73,11 +79,29 @@ def main() -> int:
         print(f"error: browser-TLS fetch failed: {exc}", file=sys.stderr)
         return 22
 
-    magic = out.read_bytes()[:5]
-    if magic != b"%PDF-":
-        out.unlink(missing_ok=True)
-        print(f"error: browser-TLS response is not PDF (magic={magic!r})", file=sys.stderr)
-        return 4
+    prefix = out.read_bytes()[:262144]
+    if args.expect == "pdf":
+        magic = prefix[:5]
+        if magic != b"%PDF-":
+            out.unlink(missing_ok=True)
+            print(f"error: browser-TLS response is not PDF (magic={magic!r})", file=sys.stderr)
+            return 4
+    else:
+        probe = prefix.decode("utf-8", errors="ignore").lower()
+        stripped = probe.lstrip()
+        html_like = stripped.startswith("<!doctype html") or stripped.startswith("<html") or "<html" in probe[:16384]
+        block_markers = (
+            "attention required! | cloudflare",
+            "/cdn-cgi/challenge-platform",
+            "cf-error-details",
+            "cf-chl-",
+        )
+        blocked = any(marker in probe for marker in block_markers)
+        if not html_like or blocked:
+            out.unlink(missing_ok=True)
+            reason = "blocked/interstitial HTML" if blocked else "not recognizable HTML"
+            print(f"error: browser-TLS response is {reason}", file=sys.stderr)
+            return 4
 
     print(f"Browser-TLS fetch complete: {size} bytes sha256={digest.hexdigest()}")
     return 0

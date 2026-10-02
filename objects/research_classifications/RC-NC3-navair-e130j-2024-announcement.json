@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-navair-e130j-2024-announcement",
+  "created_at": "2026-10-01",
+  "subject_type": "document",
+  "subject_id": "NAVAIR-2024-news-releases-001",
+  "canonical_status": "deuterocanon",
+  "reason": "Official dated NAVAIR/PMA-271 announcement identifying E-130J as the TACAMO recapitalization aircraft and describing the program's intended mission relationship. It is an institutional public statement, not a controlling directive or independent proof of every underlying program fact.",
+  "review_required": true,
+  "authenticity_status": "official-NAVAIR-first-party-preserved-HTML",
+  "attribution_status": "attributed-to-NAVAIR-PMA-271-and-SCW-1-public-announcement",
+  "provenance_status": "mapped",
+  "corroboration_status": "dated-institutional-program-announcement",
+  "source_independence": "same-PMA-271-program-lineage-as-product-page-partially-independent-from-budget-process-layer",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "deuterocanon",
+      "changed_at": "2026-10-01",
+      "reason": "Preserve the dated public program announcement while separating it from operating authority and from later contract/delivery outcomes."
+    }
+  ]
+}
