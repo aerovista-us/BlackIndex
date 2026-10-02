@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-snc-2025-saoc-test-to-dod-award-lineage",
+  "created_at": "2026-10-02T18:50:00+00:00",
+  "assertion_id": "snc-2025-saoc-risk-reduction-test-execution",
+  "source_id": "SNC-2025-saoc-program-press-releases-001",
+  "depends_on": "DOD-2024-contract-announcements-002 / SAOC award and stated EMD program scope",
+  "dependency_type": "contractor-execution-report-follows-awarded-SAOC-program",
+  "independence": "partially-independent",
+  "notes": "SNC is primary to its own reported flight-test activity but is a program participant and prime contractor. The source advances the public execution layer beyond the award event; it does not provide an independent U.S. Air Force acceptance, certification, or measured-performance layer."
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-navy-fy26-ba1-3-index-to-ba5-detail",
+  "created_at": "2026-10-02T18:40:00+00:00",
+  "assertion_id": "navy-fy26-tacamo-index-to-detail-lineage",
+  "source_id": "US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-001",
+  "depends_on": "US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-002 / TACAMO Modernization PE 0605180N detailed BA5 justification",
+  "dependency_type": "budget-index-locates-detailed-program-justification",
+  "independence": "dependent",
+  "notes": "The BA1-3 artifact is the Navy R-1/index layer. The recovered BA5 artifact is the detailed TACAMO program parent. They are one FY2026 Navy budget lineage and must not be counted as independent corroboration."
+}

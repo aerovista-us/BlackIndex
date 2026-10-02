@@ -18,9 +18,9 @@
 
 ## Corpus checkpoint
 
-- Authoritative local verifier checkpoint: **67 checked / 0 failures** (`2026-10-02`; current corpus / Operation LOOKING GLASS execution-milestone checkpoint)
+- Authoritative local verifier checkpoint: **69 checked / 0 failures** (`2026-10-02`; current corpus / Operation LOOKING GLASS detailed-program + contractor-execution checkpoint)
 - Historical Review 007M official-layer closeout checkpoint: **39 checked / 0 failures** (`2026-09-26`)
-- Record Integrity coverage: **67 / 67 corpus documents** have durable record-integrity objects; **153 evidence objects / 0 validation failures** at this checkpoint.
+- Record Integrity coverage: **69 / 69 corpus documents** have durable record-integrity objects; **159 evidence objects / 0 validation failures** at this checkpoint.
 - Historical Milestone 1: **25 verified / 0 failures**
 - Operation Encore underlying-record acquisition: **4 / 4** large FBI artifacts acquired/resumed successfully
 - Joint Inquiry final report is acquired/published as `US CONGRESS-2002-9-11-joint-inquiry-001`
@@ -180,7 +180,7 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Thumairy statement evolution | `ACTIVE` | Commission scoped negative finding vs later FBI rereview comparison object created |
 | Principal negative-finding objects | `COMPLETE` | current closeout set includes Commission Thumairy/Bayoumi, financing-monograph, and scoped CIA OIG findings/uncertainties as attributed investigator reviews |
 | Joint Inquiry “28 Pages” version family | `COMPLETE` | Review 007L maps current GovInfo Part Four rendering to the 2016 HPSCI declassified scan; same source family, dependent release lineage |
-| Operation LOOKING GLASS official USAF baseline | `ACTIVE` | authority-family public layer, TACAMO/NIGHTWATCH baseline, NC3 governance/modernization layer, SAOC/TACAMO program-index genealogy, NAVAIR HTML program pages, E-130J award records, and initial NC3 execution milestones acquired; corpus 67/0; controlled and public-artifact gaps remain explicit |
+| Operation LOOKING GLASS official USAF baseline | `ACTIVE` | authority-family public layer, TACAMO/NIGHTWATCH baseline, NC3 governance/modernization layer, detailed Navy FY2026 BA5 TACAMO parent, NAVAIR HTML program pages, E-130J award records, and contractor-primary SAOC risk-reduction flight-test evidence acquired; corpus 69/0; Air Force SAOC Volume II, AFGSCMD 63-101, and government acceptance/performance evidence remain explicit gaps |
 | LOOKING GLASS DoD FY1966 program record | `COMPLETE` | contemporaneous DoD annual report preserved as `DOD-1967-department-of-defense-annual-reports-001`; PACCS/EC-135/airborne launch-control statements reviewed; exact authority chain not inferred |
 | LOOKING GLASS AFGSCI 13-5302V2 directive | `COMPLETE TO SOURCE-MAP MILESTONE` | official 19 Jul 2017 ALCS crew Stan/Eval directive preserved as `USAF-2017-air-force-global-strike-command-instructions-001`; document is Canon, cited EWO/STRATCOM/technical-order family remains unresolved |
 | LOOKING GLASS AFI 91-117 acquisition | `BLOCKED` | 29 Aug 2022 public first-party candidate identified; NXCore direct fetch 403 and both navigation/browser-TLS retries 404 on 2026-09-27; no mirror ingested, corpus remains 45/0 |
@@ -188,10 +188,10 @@ The local verifier remains authoritative for raw-corpus integrity.
 | LOOKING GLASS TACAMO / NIGHTWATCH baseline | `COMPLETE TO OFFICIAL MISSION/COMMAND BASELINE MILESTONE` | USSTRATCOM 2024 posture statement, Navy Program Guide 2017, and AFMAN 11-2E-4B V3 preserved; corpus 48/0; detailed procedures intentionally excluded from analytical findings |
 | NC3 public governance / controlled-access baseline | `COMPLETE TO FIRST SOURCE-GENEALOGY MILESTONE` | DoDI 3741.01, DoDD 3700.01, CJCSI 5119.01C plus public placeholders for S-3730.01, S-3710.01 and S-5210.81 preserved; controlled contents not inferred |
 | NC3 modernization / governance currency | `COMPLETE TO MODERNIZATION/CURRENCY MILESTONE` | 2022 NPR, 2025/2026 USSTRATCOM posture statements, S-5100.92 placeholder, 2024-2026 posture version family, and 2026-10-01 issuance-index currency snapshot encoded |
-| NC3 program-source genealogy | `COMPLETE TO PROGRAM-INDEX/SOURCE-GENEALOGY MILESTONE` | DoD FY2026 R-1 SAOC PE 0604288F and Navy FY2026 TACAMO PE 0605180N index parent preserved; corpus 60/0; detailed Air Force SAOC, Navy BA5 TACAMO, and AFGSCMD 63-101 remain explicit public-source retrieval gaps |
+| NC3 program-source genealogy | `COMPLETE TO DETAILED NAVY-PARENT / PARTIAL AIR-FORCE-PARENT MILESTONE` | DoD FY2026 R-1 SAOC PE 0604288F index lineage and the detailed Navy FY2026 BA5 TACAMO PE 0605180N parent are preserved; the BA1-3 Navy index is explicitly dependent on the BA5 parent. Detailed Air Force SAOC Volume II remains transport-blocked from NXCore and AFGSCMD 63-101 remains unrecovered |
 | NC3 HTML program-page capture | `COMPLETE TO HTML-CAPTURE/PROGRAM-PUBLICATION MILESTONE` | first-party NAVAIR product page and dated 2024 E-130J announcement preserved as immutable HTML with visible-text derivatives; corpus 62/0; PMA-271 shared lineage encoded |
 | NC3 E-130J award-state resolution | `COMPLETE TO AWARD-STATE/RETRIEVAL-RETRY MILESTONE` | DoD 18 Dec 2024 contract action and Navy 19 Dec 2024 award announcement preserved; earlier planned-award state resolved; corpus 64/0; detailed SAOC/BA5/AFGSCMD retrieval gaps remain explicit |
-| NC3 execution-milestone baseline | `COMPLETE TO EXECUTION-MILESTONE BASELINE` | SAOC contract award, 95th Wing activation, and NC3 Enterprise Center IOC preserved as separate time-bounded states; corpus 67/0; delivery/readiness/FOC/use not inferred |
+| NC3 execution-milestone baseline | `ACTIVE — CONTRACTOR EXECUTION LAYER ADDED` | SAOC contract award, 95th Wing activation, NC3 Enterprise Center IOC, and SNC contractor-primary reporting of the 7 Aug 2025 SAOC EMD risk-reduction flight are preserved as separate time-bounded states; corpus 69/0. SNC evidence is not treated as U.S. Air Force acceptance/certification/performance evidence; delivery/readiness/FOC/use remain uninferred |
 
 ### Assassination records
 
@@ -328,7 +328,7 @@ Do **not** count repeated statements across Joint Inquiry, Commission staff work
 7. Review the generated local record-integrity files deliberately; do not commit them merely to clean the working tree.
 8. `COMPLETE 2026-09-26` — inventoried both metadata-unreferenced raw artifacts: financing monograph legacy byte variant and standalone Chapter 7 subset; both preserved immutably and linked through version-family objects.
 9. `COMPLETE 2026-09-26` — Review 007L mapped the Joint Inquiry Part Four / “28 Pages” release family and encoded the 2016 release as dependent on the same source lineage.
-10. `ACTIVE 2026-10-02` — Operation LOOKING GLASS / NC3 recovery now includes the ALCS authority-policy layer, TACAMO/NIGHTWATCH mission records, NC3 governance/modernization stack, SAOC PE 0604288F DoD budget lineage, TACAMO PE 0605180N Navy budget-index lineage, first-party NAVAIR HTML program publications, the Dec 2024 E-130J contract action, the Apr 2024 SAOC contract action, the Feb 2025 95th Wing activation, and the Apr 2019 NEC IOC. Corpus is 67/0. Next: first-party test/delivery/acceptance/performance evidence and periodic recovery of detailed SAOC Volume II, Navy BA5 TACAMO, and AFGSCMD 63-101; controlled directive contents remain explicit gaps.
+10. `ACTIVE 2026-10-02` — Operation LOOKING GLASS / NC3 recovery now includes the ALCS authority-policy layer, TACAMO/NIGHTWATCH mission records, NC3 governance/modernization stack, SAOC PE 0604288F DoD budget lineage, the detailed Navy FY2026 BA5 TACAMO PE 0605180N parent, first-party NAVAIR HTML program publications, the Dec 2024 E-130J contract action, the Apr 2024 SAOC contract action, the Feb 2025 95th Wing activation, the Apr 2019 NEC IOC, and SNC contractor-primary reporting of the 7 Aug 2025 SAOC EMD risk-reduction flight. Corpus is 69/0. Next: U.S. government test/acceptance/certification/performance evidence, later first-party confirmation of TACAMO FY2026 execution milestones, and periodic recovery of detailed Air Force SAOC Volume II plus AFGSCMD 63-101; controlled directive contents remain explicit gaps.
 11. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
 
 ## Completion logging rule

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-navy-fy26-ba5-tacamo-detail",
+  "created_at": "2026-10-02",
+  "subject_type": "document",
+  "subject_id": "US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-002",
+  "canonical_status": "canon",
+  "reason": "Official Navy FY2026 BA5 detailed justification for TACAMO Modernization PE 0605180N. Canon status applies to the preserved budget submission and its stated June 2025 program/funding/schedule position; planned milestone windows are not proof of later execution.",
+  "review_required": false,
+  "authenticity_status": "official-Department-of-Navy-first-party-preserved-artifact",
+  "attribution_status": "attributed-to-Department-of-Navy-FY2026-budget-submission",
+  "provenance_status": "mapped",
+  "corroboration_status": "detailed-program-budget-and-schedule-layer",
+  "source_independence": "not-assumed-independent-of-Navy-R1-index-or-shared-TACAMO-program-lineage",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-10-02",
+      "reason": "First-party BA5 parent recovered by direct official-host download, preserved by hash, normalized, and preliminarily reviewed with plan-versus-execution boundary retained."
+    }
+  ]
+}
