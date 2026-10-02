@@ -20,6 +20,9 @@ STYLE = r'''
 #bi-ai-panel button:hover{border-color:#687887}
 #bi-ai-panel button:disabled{opacity:.5;cursor:wait}
 #bi-ai-panel .bi-ai-ask{display:grid;grid-template-columns:1fr auto auto;gap:7px;margin-top:8px}
+#bi-ai-panel .bi-ai-compare{display:grid;grid-template-columns:minmax(220px,1fr) minmax(180px,1fr) auto auto;gap:7px;margin-top:8px}
+#bi-ai-panel .bi-ai-compare select,#bi-ai-panel .bi-ai-compare input{min-width:0;width:100%}
+#bi-ai-panel .bi-ai-compare-note{font-size:11px;color:var(--muted);margin-top:5px}
 #bi-ai-panel .bi-ai-ask input{min-width:0;width:100%}
 #bi-ai-panel .bi-ai-result{margin-top:10px;border-top:1px solid var(--line);padding-top:10px}
 #bi-ai-panel .bi-ai-result pre{white-space:pre-wrap;word-break:break-word;max-height:520px;overflow:auto;background:#0c1116;border:1px solid var(--line);border-radius:7px;padding:11px}
@@ -34,7 +37,7 @@ pre.bi-source-pre{padding:0}
 .bi-source-line.bi-cite-hit{background:#263c48;box-shadow:inset 3px 0 0 #9bc3d8}
 .bi-line-no{color:#657784;text-align:right;padding-right:12px;user-select:none;border-right:1px solid #26313a;margin-right:10px}
 .bi-line-text{min-width:0;white-space:pre-wrap;word-break:break-word}
-@media(max-width:760px){#bi-ai-panel .bi-ai-ask{grid-template-columns:1fr 1fr}.bi-ai-ask input{grid-column:1/-1}}
+@media(max-width:760px){#bi-ai-panel .bi-ai-ask{grid-template-columns:1fr 1fr}.bi-ai-ask input{grid-column:1/-1}#bi-ai-panel .bi-ai-compare{grid-template-columns:1fr 1fr}#bi-ai-panel .bi-ai-compare select,#bi-ai-panel .bi-ai-compare input{grid-column:1/-1}}
 </style>
 '''
 
@@ -45,13 +48,16 @@ SCRIPT = r'''
   function aiEscape(s){
     return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
-  function answerHtml(s){
-    return aiEscape(s).replace(/\[L(\d+)(?:-L?(\d+))?\]/g,(_,a,b)=>{
+  function answerHtml(s,payload={}){
+    const docsByLabel=payload.citation_docs||{};
+    return aiEscape(s).replace(/\[(?:(A|B):)?L(\d+)(?:-L?(\d+))?\]/g,(_,label,a,b)=>{
       const end=b||a;
-      const label=end===a?`[L${a}]`:`[L${a}-L${end}]`;
-      return `<button type="button" class="bi-ai-cite" data-cite-start="${a}" data-cite-end="${end}" title="Jump to source">${label}</button>`;
+      const shown=label?(end===a?`[${label}:L${a}]`:`[${label}:L${a}-L${end}]`):(end===a?`[L${a}]`:`[L${a}-L${end}]`);
+      const docId=label?docsByLabel[label]:(current&&current.metadata.doc_id);
+      return `<button type="button" class="bi-ai-cite" data-cite-start="${a}" data-cite-end="${end}" data-cite-doc="${aiEscape(docId||'')}" title="Jump to source">${shown}</button>`;
     });
   }
+
   function decorateSourceText(){
     if(tab!=='text'||!current)return;
     const view=document.getElementById('view');
@@ -70,12 +76,16 @@ SCRIPT = r'''
       if(target)requestAnimationFrame(()=>target.scrollIntoView({block:'center',behavior:'smooth'}));
     }
   }
-  function jumpToCitation(start,end){
-    if(!current)return;
-    activeCitation={docId:current.metadata.doc_id,start:Number(start),end:Number(end||start)};
+  function jumpToCitation(docId,start,end){
+    const target=docs.find(d=>d.metadata.doc_id===docId);
+    if(!target)return;
+    current=target;
+    activeCitation={docId,start:Number(start),end:Number(end||start)};
     tab='text';
+    renderList();
     renderView();
   }
+
   async function loadAiStatus(){
     try{
       const r=await fetch('/api/ai/status',{cache:'no-store'});
@@ -92,6 +102,14 @@ SCRIPT = r'''
   }
   function coverageText(c){
     if(!c)return '';
+    if(c.comparison&&c.documents){
+      return ['A','B'].map(label=>{
+        const d=c.documents[label]||{};
+        const ranges=(d.line_ranges||[]).map(x=>`${label}:L${x[0]}-L${x[1]}`).join(', ');
+        const scope=d.complete?'complete':`sampled ${d.chunks_used||0} of ${d.chunks_total||0}`;
+        return `${label} ${scope}${ranges?' · '+ranges:''}`;
+      }).join(' · ');
+    }
     const ranges=(c.line_ranges||[]).map(x=>`L${x[0]}-L${x[1]}`).join(', ');
     const scope=c.complete?'complete source coverage':`sampled ${c.chunks_used} of ${c.chunks_total} chunks`;
     return [scope,ranges].filter(Boolean).join(' · ');
@@ -104,20 +122,24 @@ SCRIPT = r'''
     else if(aiState&&aiState.available)s.textContent=`Local AI ready · fast ${aiState.fast_model} · deep ${aiState.deep_model}`;
   }
   function renderResult(panel,payload){
-    if(current)lastAiResult={docId:current.metadata.doc_id,payload};
+    if(current){
+      const docIds=payload.citation_docs?Object.values(payload.citation_docs):[current.metadata.doc_id];
+      lastAiResult={docIds,payload};
+    }
     const box=panel.querySelector('[data-ai-result]');
     const pre=box.querySelector('pre');
     const meta=box.querySelector('[data-ai-meta]');
     const warn=box.querySelector('[data-ai-warning]');
-    pre.innerHTML=answerHtml(payload.answer||'');
+    pre.innerHTML=answerHtml(payload.answer||'',payload);
     pre.querySelectorAll('.bi-ai-cite').forEach(btn=>{
-      btn.onclick=()=>jumpToCitation(btn.dataset.citeStart,btn.dataset.citeEnd);
+      btn.onclick=()=>jumpToCitation(btn.dataset.citeDoc,btn.dataset.citeStart,btn.dataset.citeEnd);
     });
     const c=payload.citation_check||{};
     meta.textContent=`${payload.notice||'AI-derived research aid — not evidence'} · model ${payload.model||'unknown'} · ${coverageText(payload.coverage)}`;
     const problems=[];
     if(!c.citations_found)problems.push('No source-line citations were produced.');
     if(c.invalid_citations&&c.invalid_citations.length)problems.push('Out-of-range citations: '+c.invalid_citations.join(', '));
+    if(payload.lineage&&payload.lineage.warning)problems.push('Lineage: '+payload.lineage.warning);
     warn.textContent=problems.join(' ');
     box.hidden=false;
     box.querySelector('[data-ai-copy]').onclick=()=>navigator.clipboard.writeText(payload.answer||'').catch(()=>{});
@@ -153,7 +175,16 @@ SCRIPT = r'''
     if(action==='mode'){
       body.mode=mode;
     }
-    setBusy(panel,true,action==='summary'?'Summarizing source…':action==='ask'?'Searching source + answering…':action==='mode'?`Building ${mode} view…`:'Summarizing selected source…');
+    if(action==='compare'){
+      const compareDoc=panel.querySelector('[data-ai-compare-doc]').value;
+      if(!compareDoc){
+        panel.querySelector('[data-ai-status]').textContent='Choose a second document first.';
+        return;
+      }
+      body.compare_doc_id=compareDoc;
+      body.focus=panel.querySelector('[data-ai-compare-focus]').value.trim();
+    }
+    setBusy(panel,true,action==='summary'?'Summarizing source…':action==='ask'?'Searching source + answering…':action==='mode'?`Building ${mode} view…`:action==='compare'?'Comparing grounded source excerpts…':'Summarizing selected source…');
     try{
       const r=await fetch('/api/ai/research',{
         method:'POST',
@@ -170,6 +201,18 @@ SCRIPT = r'''
       box.querySelector('[data-ai-meta]').textContent='No evidence state was changed.';
       box.querySelector('[data-ai-warning]').textContent='';
     }finally{setBusy(panel,false)}
+  }
+  function compareOptions(){
+    if(!current)return '<option value="">Compare with…</option>';
+    const currentId=current.metadata.doc_id;
+    const candidates=docs
+      .filter(d=>d.metadata.doc_id!==currentId&&String(d.text||'').trim())
+      .slice()
+      .sort((a,b)=>String(a.metadata.title||a.metadata.doc_id).localeCompare(String(b.metadata.title||b.metadata.doc_id)));
+    return '<option value="">Compare with…</option>'+candidates.map(d=>{
+      const label=`${d.metadata.title||d.metadata.doc_id} · ${d.metadata.source||''}`;
+      return `<option value="${aiEscape(d.metadata.doc_id)}">${aiEscape(label)}</option>`;
+    }).join('');
   }
   function injectAiPanel(){
     if(!current)return;
@@ -197,6 +240,13 @@ SCRIPT = r'''
         <select data-ai-depth><option value="quick">Quick</option><option value="deep">Deep (slower)</option></select>
         <button type="button" data-ai-ask>Ask</button>
       </div>
+      <div class="bi-ai-compare">
+        <select data-ai-compare-doc>${compareOptions()}</select>
+        <input type="text" data-ai-compare-focus maxlength="2000" placeholder="Optional comparison focus…">
+        <button type="button" data-ai-compare="quick">Quick Compare</button>
+        <button type="button" data-ai-compare="deep">Deep Compare</button>
+      </div>
+      <div class="bi-ai-compare-note">Document A is the currently open record. Comparison citations use A/B labels and can jump to either source.</div>
       <div class="bi-ai-result" data-ai-result hidden>
         <div class="bi-ai-meta" data-ai-meta></div>
         <pre></pre>
@@ -211,8 +261,11 @@ SCRIPT = r'''
     });
     panel.querySelector('[data-ai-selection]').onclick=()=>runAi(panel,'section_summary',panel.querySelector('[data-ai-depth]').value);
     panel.querySelector('[data-ai-ask]').onclick=()=>runAi(panel,'ask',panel.querySelector('[data-ai-depth]').value);
+    panel.querySelectorAll('[data-ai-compare]').forEach(btn=>{
+      btn.onclick=()=>runAi(panel,'compare',btn.dataset.aiCompare);
+    });
     panel.querySelector('[data-ai-question]').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();panel.querySelector('[data-ai-ask]').click()}});
-    if(lastAiResult&&lastAiResult.docId===current.metadata.doc_id){
+    if(lastAiResult&&lastAiResult.docIds&&lastAiResult.docIds.includes(current.metadata.doc_id)){
       renderResult(panel,lastAiResult.payload);
     }
     loadAiStatus().then(s=>{

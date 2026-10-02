@@ -177,7 +177,7 @@ def retrieve_windows(text: str, query: str, limit: int = 2, radius: int = 4) -> 
 _DATE_RE = re.compile(
     r"\b(?:19|20)\d{2}\b|\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|"
     r"May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|"
-    r"Dec(?:ember)?)\s+\d{1,2}(?:,\s*\d{4})?",
+    r"Dec(?:ember)?)\s+(?:(?:19|20)\d{2}|\d{1,2}(?:,\s*(?:19|20)\d{2})?)\b",
     re.IGNORECASE,
 )
 _ENTITY_RE = re.compile(
@@ -340,6 +340,534 @@ def _generate(model: str, prompt: str, timeout: int = DEFAULT_TIMEOUT, max_token
     if not response:
         raise RuntimeError(data.get("error") or "local AI returned an empty response")
     return response
+
+
+
+def _labeled_prompt_text(chunk: Chunk, label: str) -> str:
+    lines = chunk.text.splitlines()
+    return "\n".join(
+        f"[{label}:L{chunk.start + i}] {line}" for i, line in enumerate(lines)
+    )
+
+
+def _validate_comparison_citations(
+    answer: str,
+    allowed_a: list[Chunk],
+    allowed_b: list[Chunk],
+) -> dict:
+    allowed = {
+        "A": [(c.start, c.end) for c in allowed_a],
+        "B": [(c.start, c.end) for c in allowed_b],
+    }
+    found: list[tuple[str, int, int]] = []
+    for m in re.finditer(r"\[(A|B):L(\d+)(?:-L?(\d+))?\]", answer):
+        label = m.group(1)
+        start = int(m.group(2))
+        end = int(m.group(3) or m.group(2))
+        found.append((label, start, end))
+    invalid = [
+        (label, start, end)
+        for label, start, end in found
+        if not any(
+            start >= lo and end <= hi and start <= end
+            for lo, hi in allowed[label]
+        )
+    ]
+    counts = {
+        "A": sum(1 for label, _, _ in found if label == "A"),
+        "B": sum(1 for label, _, _ in found if label == "B"),
+    }
+    return {
+        "citations_found": len(found),
+        "citations_by_document": counts,
+        "invalid_citations": [
+            f"{label}:L{start}-L{end}" for label, start, end in invalid
+        ],
+        "citation_ok": bool(found) and counts["A"] > 0 and counts["B"] > 0 and not invalid,
+    }
+
+
+def _comparison_query(text_a: str, text_b: str, focus: str) -> str:
+    focus = (focus or "").strip()
+    if focus:
+        return focus
+    terms_a = _terms(text_a)
+    terms_b = _terms(text_b)
+    shared = terms_a & terms_b
+    if not shared:
+        return ""
+    def score(term: str) -> tuple[int, int, str]:
+        return (
+            text_a.lower().count(term) + text_b.lower().count(term),
+            len(term),
+            term,
+        )
+    return " ".join(sorted(shared, key=score, reverse=True)[:12])
+
+
+
+def _comparison_focus_terms(query: str) -> list[tuple[str, float]]:
+    raw = re.findall(r"[A-Za-z0-9][A-Za-z0-9_-]{2,}", query or "")
+    out = []
+    seen = set()
+    for token in raw:
+        low = token.lower()
+        if low in STOPWORDS or low in seen:
+            continue
+        seen.add(low)
+        distinctive = (
+            any(ch.isdigit() for ch in token)
+            or "-" in token
+            or (token.isupper() and len(token) >= 4)
+        )
+        weight = 10.0 if distinctive else 1.0 + min(len(token) / 5.0, 2.5)
+        out.append((low, weight))
+    return out
+
+
+def retrieve_comparison_windows(
+    text: str,
+    query: str,
+    limit: int = 1,
+    radius: int = 1,
+) -> list[Chunk]:
+    lines = text.splitlines()
+    if not lines:
+        return []
+    weighted = _comparison_focus_terms(query)
+    if not weighted:
+        return rank_chunks(split_chunks(text), query, limit=limit)
+
+    term_df = {
+        term: sum(1 for line in lines if term in line.lower())
+        for term, _ in weighted
+    }
+    scored = []
+    total = max(1, len(lines))
+    for idx, line in enumerate(lines):
+        lower = line.lower()
+        score = 0.0
+        distinct_hits = 0
+        for term, base in weighted:
+            if term not in lower:
+                continue
+            rarity = max(1.0, total / max(1, term_df[term]))
+            bonus = min(5.0, rarity ** 0.5)
+            score += base * bonus
+            if base >= 10:
+                distinct_hits += 1
+        if score:
+            score += distinct_hits * 25
+            scored.append((score, idx))
+    scored.sort(reverse=True)
+
+    chosen = []
+    used = []
+    for _, idx in scored:
+        start = max(0, idx - radius)
+        end = min(len(lines), idx + radius + 1)
+        if any(not (end <= a or start >= b) for a, b in used):
+            continue
+        chosen.append(Chunk(start + 1, end, "\n".join(lines[start:end])))
+        used.append((start, end))
+        if len(chosen) >= limit:
+            break
+    return sorted(chosen, key=lambda c: c.start) or rank_chunks(
+        split_chunks(text), query, limit=limit
+    )
+
+
+def _comparison_windows(text: str, query: str, depth: str) -> list[Chunk]:
+    if query:
+        chosen = retrieve_comparison_windows(
+            text,
+            query,
+            limit=2 if depth == "deep" else 1,
+            radius=3 if depth == "deep" else 1,
+        )
+    else:
+        chosen = sample_chunks(split_chunks(text), 2 if depth == "deep" else 1)
+    if depth == "quick":
+        chosen = [compact_chunk(c, 800) for c in chosen]
+    return chosen
+
+
+def _lineage_context(root: Path, left_doc_id: str, right_doc_id: str) -> dict:
+    objects: list[dict] = []
+    for path in sorted((root / "objects" / "source_dependencies").glob("*.json")):
+        try:
+            item = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if isinstance(item, dict):
+            objects.append(item)
+
+    direct = []
+    left_edges = []
+    right_edges = []
+    for item in objects:
+        source_id = str(item.get("source_id") or "")
+        depends_on = str(item.get("depends_on") or "")
+        blob = json.dumps(item, sort_keys=True)
+        if source_id == left_doc_id:
+            left_edges.append(item)
+        if source_id == right_doc_id:
+            right_edges.append(item)
+        if (
+            (source_id == left_doc_id and right_doc_id in depends_on)
+            or (source_id == right_doc_id and left_doc_id in depends_on)
+            or (left_doc_id in blob and right_doc_id in blob)
+        ):
+            direct.append(item)
+
+    shared = []
+    for a in left_edges:
+        for b in right_edges:
+            dep_a = str(a.get("depends_on") or "").strip().lower()
+            dep_b = str(b.get("depends_on") or "").strip().lower()
+            if dep_a and dep_a == dep_b:
+                shared.append({
+                    "left_object_id": a.get("object_id"),
+                    "right_object_id": b.get("object_id"),
+                    "depends_on": a.get("depends_on"),
+                })
+
+    levels = [
+        str(item.get("independence") or "unknown")
+        for item in direct
+        if item.get("independence")
+    ]
+    if shared:
+        status = "shared-upstream"
+    elif "dependent" in levels:
+        status = "dependent"
+    elif "partially-independent" in levels:
+        status = "partially-independent"
+    elif "independent" in levels:
+        status = "independent"
+    else:
+        status = "unknown"
+
+    if status == "unknown":
+        warning = (
+            "No explicit direct lineage relationship between these two document IDs was found. "
+            "Treat independence as unknown, not established."
+        )
+    elif status == "shared-upstream":
+        warning = (
+            "BlackIndex source-dependency objects show shared upstream lineage. "
+            "Repeated propositions must not be counted as independent corroboration by document count."
+        )
+    elif status == "dependent":
+        warning = (
+            "BlackIndex encodes a dependent relationship relevant to these records. "
+            "Do not count repeated material as independent corroboration."
+        )
+    elif status == "partially-independent":
+        warning = (
+            "BlackIndex encodes partial independence: some publication/source lineage is distinct, "
+            "but material upstream evidence overlaps."
+        )
+    else:
+        warning = (
+            "BlackIndex encodes an independent relationship for the modeled dependency scope. "
+            "Independence does not itself establish truth or agreement."
+        )
+
+    return {
+        "status": status,
+        "warning": warning,
+        "direct_edges": [
+            {
+                "object_id": item.get("object_id"),
+                "dependency_type": item.get("dependency_type"),
+                "independence": item.get("independence"),
+                "notes": item.get("notes"),
+            }
+            for item in direct[:8]
+        ],
+        "shared_upstream": shared[:8],
+    }
+
+
+
+def _quick_compare_extract(
+    chosen_a: list[Chunk],
+    chosen_b: list[Chunk],
+    lineage: dict,
+) -> str:
+    text_a = " ".join(c.text for c in chosen_a)
+    text_b = " ".join(c.text for c in chosen_b)
+    shared = sorted(
+        _terms(text_a) & _terms(text_b),
+        key=lambda term: (
+            text_a.lower().count(term) + text_b.lower().count(term),
+            len(term),
+            term,
+        ),
+        reverse=True,
+    )[:10]
+    dates_a = []
+    dates_b = []
+    for m in _DATE_RE.finditer(text_a):
+        if m.group(0) not in dates_a:
+            dates_a.append(m.group(0))
+    for m in _DATE_RE.finditer(text_b):
+        if m.group(0) not in dates_b:
+            dates_b.append(m.group(0))
+
+    a = chosen_a[0]
+    b = chosen_b[0]
+    a_cite = f"[A:L{a.start}-L{a.end}]"
+    b_cite = f"[B:L{b.start}-L{b.end}]"
+    rows = [
+        "Quick source-aligned comparison — choose Deep Compare for broader multi-window alignment.",
+        f"- **Document A focus:** {_clean_excerpt(a.text, 280)} {a_cite}",
+        f"- **Document B focus:** {_clean_excerpt(b.text, 280)} {b_cite}",
+    ]
+    if shared:
+        rows.append(
+            "- **Shared terminology in the retrieved excerpts:** "
+            + ", ".join(shared)
+            + f". {a_cite} {b_cite}"
+        )
+    if dates_a or dates_b:
+        rows.append(
+            "- **Date signals in the retrieved excerpts:** "
+            + f"A: {', '.join(dates_a[:6]) or 'none'}; "
+            + f"B: {', '.join(dates_b[:6]) or 'none'}. "
+            + f"{a_cite} {b_cite}"
+        )
+    rows.append(f"- **Lineage caution:** {lineage['warning']} {a_cite} {b_cite}")
+    return "\n".join(rows)
+
+
+
+def _comparison_result_base(
+    left_doc_id: str,
+    right_doc_id: str,
+    left_meta: dict,
+    right_meta: dict,
+    left_text: str,
+    right_text: str,
+    chosen_a: list[Chunk],
+    chosen_b: list[Chunk],
+    focus: str,
+    lineage: dict,
+) -> dict:
+    return {
+        "action": "compare",
+        "focus": (focus or "").strip(),
+        "documents": {
+            "A": {"doc_id": left_doc_id, "title": left_meta.get("title")},
+            "B": {"doc_id": right_doc_id, "title": right_meta.get("title")},
+        },
+        "citation_docs": {"A": left_doc_id, "B": right_doc_id},
+        "coverage": {
+            "comparison": True,
+            "documents": {
+                "A": {
+                    "chunks_used": len(chosen_a),
+                    "chunks_total": len(split_chunks(left_text)),
+                    "line_ranges": [[c.start, c.end] for c in chosen_a],
+                    "complete": len(chosen_a) == len(split_chunks(left_text)),
+                },
+                "B": {
+                    "chunks_used": len(chosen_b),
+                    "chunks_total": len(split_chunks(right_text)),
+                    "line_ranges": [[c.start, c.end] for c in chosen_b],
+                    "complete": len(chosen_b) == len(split_chunks(right_text)),
+                },
+            },
+            "retrieval": "focus-ranked" if focus else "shared-term-ranked",
+        },
+        "lineage": lineage,
+    }
+
+
+def _comparison_lines(chunks: list[Chunk]) -> list[tuple[int, str, set[str]]]:
+    rows = []
+    for chunk in chunks:
+        for offset, raw in enumerate(chunk.text.splitlines()):
+            text = re.sub(r"\s+", " ", raw).strip()
+            if not text:
+                continue
+            rows.append((chunk.start + offset, text, _terms(text)))
+    return rows
+
+
+def _deep_compare_extract(
+    chosen_a: list[Chunk],
+    chosen_b: list[Chunk],
+    lineage: dict,
+) -> str:
+    lines_a = _comparison_lines(chosen_a)
+    lines_b = _comparison_lines(chosen_b)
+    terms_a = set().union(*(row[2] for row in lines_a)) if lines_a else set()
+    terms_b = set().union(*(row[2] for row in lines_b)) if lines_b else set()
+
+    pairs = []
+    for a_no, a_text, a_terms in lines_a:
+        for b_no, b_text, b_terms in lines_b:
+            shared = a_terms & b_terms
+            if not shared:
+                continue
+            distinctive = [
+                t for t in shared
+                if any(ch.isdigit() for ch in t) or "-" in t or len(t) >= 6
+            ]
+            score = len(shared) * 2 + len(distinctive) * 3
+            pairs.append((score, a_no, a_text, b_no, b_text, shared))
+    pairs.sort(reverse=True, key=lambda x: x[0])
+
+    selected = []
+    used_a = set()
+    used_b = set()
+    for item in pairs:
+        _, a_no, _, b_no, _, _ = item
+        if a_no in used_a or b_no in used_b:
+            continue
+        selected.append(item)
+        used_a.add(a_no)
+        used_b.add(b_no)
+        if len(selected) >= 3:
+            break
+
+    rows = [
+        "Deep source-aligned comparison — deterministic multi-window analysis; no AI synthesis.",
+        "## Closest aligned passages",
+    ]
+    if selected:
+        for _, a_no, a_text, b_no, b_text, shared in selected:
+            shared_text = ", ".join(sorted(shared)[:8])
+            rows.append(
+                f"- A: {_clean_excerpt(a_text, 220)} [A:L{a_no}] "
+                f"| B: {_clean_excerpt(b_text, 220)} [B:L{b_no}] "
+                f"| shared terms: {shared_text or 'none'}."
+            )
+    else:
+        a = chosen_a[0]
+        b = chosen_b[0]
+        rows.append(
+            f"- No strong line-level term alignment was found in the retrieved excerpts. "
+            f"[A:L{a.start}-L{a.end}] [B:L{b.start}-L{b.end}]"
+        )
+
+    only_a = sorted(
+        terms_a - terms_b,
+        key=lambda t: (sum(t in line.lower() for _, line, _ in lines_a), len(t), t),
+        reverse=True,
+    )[:12]
+    only_b = sorted(
+        terms_b - terms_a,
+        key=lambda t: (sum(t in line.lower() for _, line, _ in lines_b), len(t), t),
+        reverse=True,
+    )[:12]
+    a0 = chosen_a[0]
+    b0 = chosen_b[0]
+    rows.extend([
+        "## Source-specific emphasis",
+        f"- Terms present only in the retrieved A windows: {', '.join(only_a) or 'none'}. [A:L{a0.start}-L{a0.end}]",
+        f"- Terms present only in the retrieved B windows: {', '.join(only_b) or 'none'}. [B:L{b0.start}-L{b0.end}]",
+    ])
+
+    date_rows = []
+    for label, source_lines in (("A", lines_a), ("B", lines_b)):
+        seen = set()
+        for line_no, line, _ in source_lines:
+            for match in _DATE_RE.finditer(line):
+                value = match.group(0)
+                key = value.lower()
+                if key in seen:
+                    continue
+                seen.add(key)
+                date_rows.append("- " + label + ": " + value + " [" + label + ":L" + str(line_no) + "]")
+                if len(seen) >= 6:
+                    break
+            if len(seen) >= 6:
+                break
+    rows.append("## Chronology signals")
+    if date_rows:
+        rows.extend(date_rows)
+    else:
+        rows.append(
+            f"- No explicit date signal was found in the retrieved windows. "
+            f"[A:L{a0.start}-L{a0.end}] [B:L{b0.start}-L{b0.end}]"
+        )
+
+    rows.extend([
+        "## Source lineage",
+        f"- {lineage['warning']} [A:L{a0.start}-L{a0.end}] [B:L{b0.start}-L{b0.end}]",
+        "## Limitation",
+        f"- This comparison covers retrieved excerpts, not necessarily both complete documents. "
+        f"Absence from a retrieved window is not a contradiction. "
+        f"[A:L{a0.start}-L{a0.end}] [B:L{b0.start}-L{b0.end}]",
+    ])
+    return "\n".join(rows)
+
+
+def compare_documents(
+    root: Path,
+    left_doc_id: str,
+    right_doc_id: str,
+    focus: str = "",
+    depth: str = "quick",
+) -> dict:
+    if not right_doc_id:
+        raise ValueError("compare_doc_id is required")
+    if left_doc_id == right_doc_id:
+        raise ValueError("choose two different documents")
+    if len(focus or "") > MAX_QUESTION_CHARS:
+        raise ValueError(
+            f"comparison focus is too large; maximum is {MAX_QUESTION_CHARS} characters"
+        )
+
+    left_meta, left_text = load_document(root, left_doc_id)
+    right_meta, right_text = load_document(root, right_doc_id)
+    if not left_text.strip() or not right_text.strip():
+        raise ValueError("both comparison documents require normalized source text")
+
+    query = _comparison_query(left_text, right_text, focus)
+    chosen_a = _comparison_windows(left_text, query, depth)
+    chosen_b = _comparison_windows(right_text, query, depth)
+    if not chosen_a or not chosen_b:
+        raise ValueError("comparison source retrieval returned no usable excerpts")
+
+    lineage = _lineage_context(root, left_doc_id, right_doc_id)
+    base = _comparison_result_base(
+        left_doc_id,
+        right_doc_id,
+        left_meta,
+        right_meta,
+        left_text,
+        right_text,
+        chosen_a,
+        chosen_b,
+        focus,
+        lineage,
+    )
+
+    if depth == "quick":
+        answer = _quick_compare_extract(chosen_a, chosen_b, lineage)
+        notice = "Source-grounded quick comparison — not AI synthesis or evidence"
+    else:
+        answer = _deep_compare_extract(chosen_a, chosen_b, lineage)
+        notice = "Source-grounded deep comparison — not AI synthesis or evidence"
+
+    citation_check = _validate_comparison_citations(answer, chosen_a, chosen_b)
+    if not citation_check["citation_ok"]:
+        raise RuntimeError(
+            "comparison failed citation validation; no comparison was accepted"
+        )
+
+    return {
+        **base,
+        "depth": depth,
+        "model": "extractive",
+        "answer": answer,
+        "citation_check": citation_check,
+        "notice": notice,
+    }
 
 
 def _validate_citations(answer: str, allowed: list[Chunk]) -> dict:
@@ -695,4 +1223,12 @@ def handle(root: Path, payload: dict) -> dict:
         return ask_document(root, doc_id, str(payload.get("question") or ""), depth)
     if action == "mode":
         return analyze_document_mode(root, doc_id, str(payload.get("mode") or ""), depth)
+    if action == "compare":
+        return compare_documents(
+            root,
+            doc_id,
+            str(payload.get("compare_doc_id") or "").strip(),
+            str(payload.get("focus") or ""),
+            depth,
+        )
     raise ValueError("unsupported AI action")
