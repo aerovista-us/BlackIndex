@@ -1,0 +1,32 @@
+{
+  "alternate_versions": [],
+  "archive_confidence": 5,
+  "artifact_type": "pdf",
+  "chain_of_custody": [],
+  "classification_chronology": [],
+  "completeness": 5,
+  "created_at": "2026-10-02T19:08:01+00:00",
+  "custodian_conflicts": [],
+  "declassification_authority": null,
+  "destruction_chronology": [],
+  "doc_id": "US_NAVY-2026-fy-2027-rdt-e-budget-justification-books-001",
+  "known_destruction": "unknown",
+  "missing_referenced_records": [
+    "underlying E-130J PDR/CDR records",
+    "aircraft build and mission-system integration completion records",
+    "CSIL and Integrated Test execution/results records",
+    "SDTA procurement, delivery, retrofit, and acceptance records"
+  ],
+  "notes": "Official first-party FY2027 Navy RDT&E BA5 artifact preserved by hash. Complete PE 0605180N / Project 3259 section is present. FY2026-to-FY2027 schedule differences are treated as dated program-state revisions, not proof of execution outcomes.",
+  "object_id": "RI-US_NAVY-2026-fy-2027-rdt-e-budget-justification-books-001",
+  "object_type": "record_integrity",
+  "public_internal_contradictions": [],
+  "record_creator": "US_NAVY",
+  "record_custodian": "Department of the Navy, Office of the Assistant Secretary of the Navy (Financial Management and Comptroller)",
+  "redaction_concern": 0,
+  "release_chronology": [],
+  "schema_version": 1,
+  "updated_at": "2026-10-02T19:12:49+00:00",
+  "version_conflicts": [],
+  "withholding_authority": null
+}

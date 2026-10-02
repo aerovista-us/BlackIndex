@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-navy-fy27-ba5-to-fy26-ba5-lineage",
+  "created_at": "2026-10-02T19:12:49+00:00",
+  "assertion_id": "navy-tacamo-fy26-to-fy27-budget-lineage",
+  "source_id": "US_NAVY-2026-fy-2027-rdt-e-budget-justification-books-001",
+  "depends_on": "US_NAVY-2025-fy-2026-rdt-e-budget-justification-books-002 / June 2025 TACAMO PE 0605180N detailed BA5 state",
+  "dependency_type": "same-program-longitudinal-budget-state",
+  "independence": "dependent",
+  "notes": "The FY2026 and FY2027 BA5 books are separate dated first-party Navy publications but share the same PE 0605180N / Project 3259 program-of-record lineage. They are appropriate for longitudinal state comparison and must not be counted as independent corroboration of execution."
+}
