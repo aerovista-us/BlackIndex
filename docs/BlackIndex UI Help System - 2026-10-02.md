@@ -128,3 +128,113 @@ It injects help into:
 - `entities.html`
 
 Injection is idempotent.
+
+
+## Inline definitions / “What does this mean?” — 2026-10-02
+
+The help layer now includes a shared inline glossary engine.
+
+Definitions appear in two places:
+
+- directly beside or on supported UI terms through hover/focus/tap affordances; and
+- inside the searchable **How to** panel under **Glossary / What does this mean?**
+
+The inline layer is presentation-only and deliberately skips Source Text / `<pre>` content.
+
+### Supported definition groups
+
+#### Record integrity
+
+- Archive confidence
+- Completeness
+- Redaction concern
+- Missing refs / missing evidence
+
+Archive confidence follows the BlackIndex methodology definition: completeness and reconstructability of the accessible archive. It is not a truth score.
+
+The numeric completeness and redaction fields are explained without inventing undocumented per-number thresholds.
+
+#### Workflow / review states
+
+- Unreviewed
+- Reviewed
+- Corroborated
+- Contested
+- Review-state drift
+- Neutral review stub
+- PROMOTE
+- HOLD
+- MERGE
+- REJECT-BOUNDARY
+- Review required
+
+These definitions explicitly distinguish workflow state from historical truth.
+
+#### Source lineage
+
+- Dependent
+- Partially independent
+- Independent
+- Independence unknown
+- Shared upstream family
+- Encoded dependency edge
+- Research pair
+
+The glossary preserves the BlackIndex rule that document count is not the same as independent evidentiary lineage.
+
+#### Named-source recovery
+
+- Candidate hit
+- Citation/synthesis only
+- EO 14040 candidate
+- Text-page index
+- Physical page
+
+These definitions preserve the distinction between localization, container candidates, and visually verified source boundaries/pages.
+
+#### Entities
+
+- Document mention
+- Genealogy edge
+- Alias
+
+Entity help reiterates that mentions and relationships do not transfer conduct, culpability, ideology, or evidentiary weight.
+
+#### AI research
+
+- Sampled AI coverage
+- Complete source coverage
+- AI-derived research aid
+- Extractive
+
+Sampled coverage is explicitly identified as orientation rather than exhaustive document review. Complete input coverage does not turn AI output into evidence.
+
+#### Research classification
+
+The searchable glossary also defines:
+
+- Canon
+- Field note
+- Apocrypha
+- Pseudepigrapha
+- Deuterocanon
+- Fragment
+- Rejected
+- Superseded
+- Authenticity status
+- Attribution status
+- Provenance status
+- Corroboration status
+- Source independence
+- Classification confidence
+
+These definitions explain BlackIndex research state rather than asserting historical truth.
+
+### Interaction
+
+- Mouse hover shows the definition.
+- Keyboard focus shows the definition.
+- Tap/click pins the definition for mobile use.
+- Escape or the close button dismisses it.
+- Dense repeated status cells use dotted-underlined text instead of adding an icon to every row.
+- Compact labels and summary cards may show a small `i` control.

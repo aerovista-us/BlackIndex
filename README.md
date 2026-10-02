@@ -185,3 +185,10 @@ Primary BlackIndex pages now include a shared contextual help layer with:
 - **H** as the universal help shortcut when not typing.
 
 The help layer is presentation-only and does not change evidence state or source content. See `docs/BlackIndex UI Help System - 2026-10-02.md`.
+
+
+### Inline “What does this mean?” definitions
+
+BlackIndex UI terms now expose contextual definitions by hover, keyboard focus, or tap. The searchable How-to panel also includes the same glossary.
+
+Definitions cover integrity fields, workflow/review statuses, source-lineage terms, named-source recovery states, entity relationship labels, AI coverage indicators, and Canon/Apocrypha research-classification terms. The definition layer never annotates Source Text and does not change evidence state.
