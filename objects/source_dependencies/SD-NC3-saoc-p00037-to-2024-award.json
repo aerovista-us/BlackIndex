@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-saoc-p00037-to-2024-award",
+  "created_at": "2026-10-03T00:14:36+00:00",
+  "assertion_id": "saoc-p00037-same-contract-execution-lineage",
+  "source_id": "DOD-2026-contract-announcements-003",
+  "depends_on": "DOD-2024-contract-announcements-002 / original SAOC contract FA2834-24-C-B002 award state",
+  "dependency_type": "same-contract-longitudinal-execution-state",
+  "independence": "dependent",
+  "notes": "The 2026 modification is a later first-party action on the same SAOC contract. It is a distinct dated execution state but not independent corroboration of the underlying award/program narrative."
+}

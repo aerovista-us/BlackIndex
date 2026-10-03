@@ -1,88 +1,85 @@
 # Contracts for Sept. 3, 2026 — SAOC Contract Modification P00037
 
-- **Doc ID:** `DOD-2026-contract-announcements-003`
-- **Call ID:** `CALL-NC3-EXECUTION-FOLLOWUP-006`
-- **Native ID:** DOW-CONTRACTS-2026-09-03
-- **Source:** DOD
-- **Document date:** 2026-09-03
-- **SHA-256:** `0b4db4d0f52ff96f349480fcf742bd6e82dcd2a84fe58c7e371ab2e03ef9a51e`
-- **Landing page:** Not recorded
-- **Artifact:** https://www.war.gov/News/Contracts/Contract/Article/4590748/contracts-for-sept-3-2026/
-- **Normalized text:** /srv/Collab/mini.shops/blackindex/normalized/text/DOD-2026-contract-announcements-003.txt
-- **State of record:** `R0` — intake complete; substantive review pending
+- Doc ID: DOD-2026-contract-announcements-003
+- Source: DOD / War.gov contract announcement
+- Document date: 2026-09-03
+- Contract: FA2834-24-C-B002
+- Modification: P00037
+- SHA-256: 0b4db4d0f52ff96f349480fcf742bd6e82dcd2a84fe58c7e371ab2e03ef9a51e
+- State of record: R1 — official contract-execution state reviewed; outcome and acceptance remain separate evidence
 
 > BlackIndex records assertions and the state of the surviving record. This review does not render a final historical verdict.
 
 ## CLAIM
 
-- TODO: What assertion, allegation, proposal, event, or question is this passage relevant to?
+This first-party Department of Defense contract announcement establishes that the SAOC contract remained in funded execution in 2026 and records modification P00037 for $30,967,151.
+
+The announced scope is: a funded modification to the existing SAOC development and production contract; the public announcement does not state a narrower technical work package.
+
+The record does not establish successful completion of the funded work, aircraft delivery, government acceptance, airworthiness certification, system performance, operational readiness, IOC/FOC, or mission employment.
 
 ## DOCUMENT CONTENT
 
-- TODO: Neutrally describe what is actually present in the document. Preserve proposal / approval / implementation / execution / outcome distinctions.
+Sierra Nevada Company LLC is the contractor and FA2834-24-C-B002 is the underlying SAOC contract. The modification brings the announced cumulative face value to $13,113,048,798. Work is identified at Englewood, Colorado, with expected completion Dec. 31, 2027. FY2025 RDT&E funds of $5,115,516 and FY2026 RDT&E funds of $10,610,452 were obligated.
+
+The contracting activity is the Air Force Life Cycle Management Center at Hanscom Air Force Base, Massachusetts.
 
 ## SOURCE ATTRIBUTION
 
-- TODO: Who is asserting or recording the information? Note role, institution, date, proximity to events, and whether this is firsthand, investigative, retrospective, or derivative.
+- Source class: official daily DoD/War.gov contract announcement.
+- Evidence role: primary public contract-action record.
+- Temporal boundary: contract action as announced on 2026-09-03.
+- Inference boundary: funded scope and contract state are direct; technical success, delivery, acceptance, and readiness require separate records.
 
 ## CORROBORATION
 
-- TODO: List genuinely independent supporting material. Record source dependencies rather than counting derivative reports as independent corroboration.
+The April 26, 2024 DoD SAOC award record establishes the underlying contract award and broad development/production scope. The three 2026 modification records form a same-contract execution sequence and are dependent for repeated underlying-program propositions.
 
 ## CONFLICTS
 
-- TODO: Record inconsistent documents, testimony, timelines, technical evidence, later findings, or competing interpretations.
+No direct contradiction is encoded. Cumulative face values in public modification announcements do not form a simple arithmetic running total across every public notice, so BlackIndex preserves each notice as a dated contract state rather than inferring omitted modifications or accounting adjustments.
 
 ## GAPS
 
-- TODO: Redactions, missing attachments, destroyed records, unavailable workpapers, unexamined evidence, ambiguous identities, or other unresolved archive limitations.
+- modification statement of work / contract attachment;
+- completion or closeout record for this funded work;
+- government engineering or developmental-test results;
+- aircraft delivery and acceptance records;
+- airworthiness, certification, performance, readiness, IOC/FOC, or operational-use evidence.
 
 ## ALTERNATIVE EXPLANATIONS
 
-- TODO: Record the strongest reasonable mundane, procedural, innocent, or competing explanation for each important anomaly.
+A contract modification can fund repair, engineering, program change, or other work without demonstrating that the work later succeeded or that the system was accepted. A changing cumulative face value may also reflect intervening contract actions not individually preserved in this sequence.
 
 ## UNRESOLVED QUESTIONS
 
-- TODO: What specific document, testimony, version, technical record, or archival recovery would materially improve the record?
+1. What underlying contract document defines the complete work package for modification P00037?
+2. What first-party record documents completion or acceptance of the funded work?
+3. What government test or airworthiness record documents the next technical milestone?
+4. When is the first SAOC EMD aircraft formally delivered or accepted?
 
 ## SOURCE
 
-- TODO: Exact primary-source citation and page number for every pivotal passage.
+Official Department of Defense / War.gov daily contract announcement dated 2026-09-03, SAOC contract FA2834-24-C-B002, modification P00037.
 
 ## NEGATIVE FINDINGS / INVESTIGATOR STATEMENTS
 
-- TODO where applicable. Preserve exact wording such as `no evidence found`, `unable to substantiate`, or `no credible evidence`. Attribute the statement to the investigator; do not silently convert it into a fact about the underlying event.
+None encoded. Lack of an outcome statement in a contract announcement is not evidence of failure or non-completion.
 
 ## RECORD INTEGRITY
 
-- Completeness: `__/5`
-- Redaction concern: `__/15`
-- Known destruction: `Yes / No / Unknown`
-- Missing referenced records: `__`
-- Custodian conflicts: `Yes / No / Unknown`
-- Version conflicts: `Yes / No / Unknown`
-- Public/internal contradictions: `__`
-- Archive confidence: `__/5`
+- Completeness: 5/5 for the preserved public HTML contract announcement.
+- Redaction concern: 0/15 for the cited public contract entry.
+- Known destruction: Unknown.
+- Missing referenced records: underlying modification/SOW and later completion, test, delivery, and acceptance records.
+- Archive confidence: 5/5 for the preserved first-party War.gov artifact.
 
 ## RESEARCH-STATE DIAGNOSTICS
 
-- Plausibility: `__/15` — motive / capability / opportunity only
-- Evidence density: `__/30`
-- Obstruction / anomaly: `__/20`
-- Source confidence: `__/5` per pivotal assertion/source
-- Inference dependency: `D0 / D1 / D2 / D3 / D4`
-- State of record: `R0 / R1 / R2 / R3 / R4 / R5`
-
-These values describe the current evidence map. They are not final determinations.
-
-## MECHANISMS / OPERATIONAL ANALOGS
-
-- TODO
-
-## CANDIDATE CONTROLS / DETECTIONS
-
-- TODO
+- Source confidence: 5/5 for the public contract-action facts.
+- Inference dependency: D0 for the stated award/modification facts; outcome claims require separate evidence.
+- State of record: R1
 
 ## REVIEW NOTES
 
-- TODO
+Use this record as a dated contract-execution state only.

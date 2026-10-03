@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "object_type": "statement_comparison",
+  "object_id": "SC-NC3-saoc-2024-award-to-2026-contract-execution",
+  "created_at": "2026-10-03T00:14:36+00:00",
+  "topic": "SAOC award-to-2026 government contract-execution progression",
+  "public_source": "DOD-2024-contract-announcements-002",
+  "public_statement": "The April 26, 2024 DoD announcement awarded FA2834-24-C-B002 for SAOC development and production, including engineering and manufacturing development aircraft, ground systems, production aircraft, and interim contractor support.",
+  "internal_source": "DOD-2026-contract-announcements-001; DOD-2026-contract-announcements-002; DOD-2026-contract-announcements-003",
+  "internal_content": "The 2026 DoD contract sequence records P00026 funding repair of stringer cracks on the EMD1 aircraft, followed by P00031 and P00037 funded SAOC modifications on the same contract. These establish continuing government contract execution and an EMD1 aircraft-specific repair work package, not successful repair, delivery, acceptance, certification, readiness, or operational use.",
+  "relationship": "later-first-party-contract-actions-demonstrate-bounded-execution-of-original-award",
+  "notes": "The three modifications share the same contract lineage and are not counted as independent corroboration of the underlying program narrative. P00026 adds a narrower direct fact: repair work was funded for the EMD1 aircraft."
+}
