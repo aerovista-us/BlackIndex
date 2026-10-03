@@ -59,8 +59,8 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Shared-upstream / anti-double-counting discipline | `COMPLETE` | Review 007K/L fail-closed audit covers 14 high-risk dependencies, 4 synthesis classifications, and 2 comparison guards; unresolved genealogy cannot raise corroboration strength. |
 | Citation localization vs source recovery distinction | `COMPLETE` | 15/15 citation hits cannot be represented as 15 recovered source records; EO 14040 candidates are counted separately. |
 | Evidence Integrity | `PARTIAL` | Methodology locked; systematic digital/video/audio/physical records still expanding. |
-| Capability Registry | `QUEUED` | First-class durable capability object family still needed. |
-| Discovery Layer | `QUEUED` | First-class durable discovery workflow still needed. |
+| Capability Registry | `COMPLETE TO DURABLE REGISTRY MILESTONE` | First-class time-scoped capability objects, schema validation, CLI creation, linked evidence, limitations, and fail-closed `use_in_event_inferred: false` invariant implemented. |
+| Discovery Layer | `COMPLETE TO DURABLE INBOX MILESTONE` | First-class discovery objects, schema validation, CLI capture, evidence boundaries, promotion targets, linked documents/objects, and open-item queue integration implemented. |
 | Entity / relationship graph | `ACTIVE` | Explicit mentions + genealogy + research xrefs; no culpability inference. |
 | State of Record `R0–R5` | `COMPLETE` | Investigation maturity, not truth. |
 | Inference Dependency `D0–D4` | `COMPLETE` | Direct evidence vs inference-chain discipline. |
@@ -97,8 +97,8 @@ The local verifier remains authoritative for raw-corpus integrity.
 | Named Source Recovery UI | `COMPLETE` | standalone searchable page; separates Commission citation/synthesis hits from EO 14040 container candidates |
 | Review 007 one-command local checkpoint | `COMPLETE` | executed successfully; sanitized self-report published |
 | Physical PDF page mapper | `COMPLETE` | Review 007 exact mapper verified 4/4 named-source positions against physical PDF pages with no OCR/fuzzy matching |
-| Capability Registry UI | `QUEUED` | waits on durable capability object family |
-| Discovery Inbox UI | `QUEUED` | waits on durable Discovery object workflow |
+| Capability Registry UI | `COMPLETE` | Standalone searchable local registry renders holder, domain, evidence state, time scope, sources, linked records, limitations, and the permanent Capability ≠ use boundary. |
+| Discovery Inbox UI | `COMPLETE` | Standalone searchable local inbox plus Work Queue integration; workflow state is explicitly separated from evidence status. |
 
 ## Research / ingestion ledger
 
@@ -336,7 +336,7 @@ Do **not** count repeated statements across Joint Inquiry, Commission staff work
 8. `COMPLETE 2026-09-26` — inventoried both metadata-unreferenced raw artifacts: financing monograph legacy byte variant and standalone Chapter 7 subset; both preserved immutably and linked through version-family objects.
 9. `COMPLETE 2026-09-26` — Review 007L mapped the Joint Inquiry Part Four / “28 Pages” release family and encoded the 2016 release as dependent on the same source lineage.
 10. `ACTIVE 2026-10-02` — Operation LOOKING GLASS / NC3 now includes the ALCS authority-policy layer, TACAMO/NIGHTWATCH mission records, NC3 governance/modernization, SAOC PE 0604288F budget lineage, Navy FY2026/FY2027 TACAMO states, PB2027 E-130J MSAR, GAO 2025→2026 oversight progression, NAVAIR publications, E-130J award action, Mar 2026 P00011 training-system option, the Apr 2024 SAOC award, Jan/Mar/Sep 2026 War.gov SAOC contract modifications, 95th Wing activation, NEC IOC, and bounded SNC contractor flight-test reporting. Corpus is 77/0. P00026 directly records funded stringer-crack repair on the SAOC EMD1 aircraft; P00011 proves training-support option execution but not aircraft delivery. Full-system PDR has a July-2026 secondary lead only; nonzero delivery, CSIL/IT1, SAOC repair completion/acceptance, AFGSCMD 63-101 artifact recovery, and the exact SAF/FM Volume II artifact remain open.
-11. Discovery objects, Capability Registry, Toka, and Bentov/Gateway remain queued platform/research work after the current corpus gate.
+11. `COMPLETE TO PLATFORM FOUNDATION MILESTONE 2026-10-02` — Discovery objects/inbox and the time-scoped Capability Registry/UI are implemented and covered by platform health. Toka capability mapping and Bentov/Gateway remain queued research work that can now use these durable object families.
 
 ## Completion logging rule
 

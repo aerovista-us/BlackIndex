@@ -56,6 +56,18 @@ Structured comparison between a public statement and an internal/contemporaneous
 ### `investigator_reviews/`
 Context for investigative findings, especially negative findings. Preserve exact wording and record independence, access, scope, method transparency, reproducibility, conflicts, unavailable evidence, omitted witnesses, and surviving workpapers.
 
+### `discoveries/`
+Durable inbox for ad hoc leads, candidate sources, artifacts, entities, capability leads, contradictions, gaps, and research questions. A Discovery object records why something deserves follow-up and its evidence boundary. Discovery status is workflow state only; it does not promote the underlying claim to evidence or fact.
+
+Create one with `python3 tools/evidence_map.py discovery ...`. Open Discovery objects also appear in the Work Queue and in `local/dashboard/discovery-inbox.html`.
+
+### `capabilities/`
+Time-scoped registry of claimed, documented, demonstrated, reported-operational, historical, retired, disputed, or unknown capabilities. Every Capability object must identify the holder, domain, observation date, time-scope note, source references, and limitations.
+
+`use_in_event_inferred` is schema-locked to `false`. A capability record may establish that an actor had or was reported to have an ability; it never establishes that the ability was used in a particular event. Event-use claims require separate evidence objects.
+
+Create one with `python3 tools/evidence_map.py capability ...`. The registry renders at `local/dashboard/capability-registry.html`.
+
 ## Source-genealogy rule
 
 BlackIndex distinguishes **document count** from **independent evidentiary lineage**.

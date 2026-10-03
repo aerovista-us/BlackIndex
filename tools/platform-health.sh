@@ -43,6 +43,14 @@ echo "== Work Queue UI generation =="
 python3 "$ROOT/tools/work-queue-ui.py" --root "$ROOT"
 
 echo
+echo "== Discovery Inbox UI generation =="
+python3 "$ROOT/tools/discovery-ui.py" --root "$ROOT"
+
+echo
+echo "== Capability Registry UI generation =="
+python3 "$ROOT/tools/capability-registry-ui.py" --root "$ROOT"
+
+echo
 echo "== Named Source Recovery UI generation =="
 python3 "$ROOT/tools/named-source-recovery-ui.py" --root "$ROOT"
 

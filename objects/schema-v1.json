@@ -21,7 +21,9 @@
         "source_dependency",
         "statement_comparison",
         "investigator_review",
-        "research_classification"
+        "research_classification",
+        "discovery",
+        "capability"
       ]
     },
     "object_id": {
@@ -430,6 +432,218 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "object_type": {
+            "const": "discovery"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "title",
+          "summary",
+          "discovery_type",
+          "discovered_at",
+          "status",
+          "source_refs",
+          "linked_doc_ids",
+          "linked_object_ids",
+          "evidence_boundary"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "discovery_type": {
+            "enum": [
+              "lead",
+              "source",
+              "artifact",
+              "entity",
+              "capability",
+              "contradiction",
+              "gap",
+              "question",
+              "other"
+            ]
+          },
+          "discovered_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "new",
+              "triaged",
+              "researching",
+              "promoted",
+              "held",
+              "resolved",
+              "rejected"
+            ]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "linked_doc_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "linked_object_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence_boundary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "promotion_targets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "object_type": {
+            "const": "capability"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "capability_name",
+          "holder",
+          "holder_type",
+          "domain",
+          "description",
+          "capability_status",
+          "observed_at",
+          "time_scope_note",
+          "source_refs",
+          "linked_doc_ids",
+          "linked_object_ids",
+          "limitations",
+          "use_in_event_inferred"
+        ],
+        "properties": {
+          "capability_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "holder": {
+            "type": "string",
+            "minLength": 1
+          },
+          "holder_type": {
+            "enum": [
+              "organization",
+              "government",
+              "military_unit",
+              "person",
+              "system",
+              "program",
+              "unknown"
+            ]
+          },
+          "domain": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "capability_status": {
+            "enum": [
+              "claimed",
+              "documented",
+              "demonstrated",
+              "reported_operational",
+              "historical",
+              "retired",
+              "disputed",
+              "unknown"
+            ]
+          },
+          "observed_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "valid_from": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "valid_to": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "time_scope_note": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "linked_doc_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "linked_object_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "use_in_event_inferred": {
+            "const": false
+          },
+          "notes": {
+            "type": "string"
           }
         }
       }

@@ -23,6 +23,8 @@ DIR_TYPES = {
     "statement_comparisons": "statement_comparison",
     "investigator_reviews": "investigator_review",
     "research_classifications": "research_classification",
+    "discoveries": "discovery",
+    "capabilities": "capability",
 }
 REQUIRED = {
     "record_integrity": {"doc_id", "completeness", "redaction_concern", "known_destruction", "missing_referenced_records", "archive_confidence"},
@@ -33,6 +35,8 @@ REQUIRED = {
     "statement_comparison": {"topic", "public_source", "public_statement", "internal_source", "internal_content", "relationship"},
     "investigator_review": {"report_or_finding", "investigator", "exact_wording", "scope", "conclusion_adopted_as_fact"},
     "research_classification": {"subject_type", "subject_id", "canonical_status", "reason", "review_required", "promotion_history"},
+    "discovery": {"title", "summary", "discovery_type", "discovered_at", "status", "source_refs", "linked_doc_ids", "linked_object_ids", "evidence_boundary"},
+    "capability": {"capability_name", "holder", "holder_type", "domain", "description", "capability_status", "observed_at", "time_scope_note", "source_refs", "linked_doc_ids", "linked_object_ids", "limitations", "use_in_event_inferred"},
 }
 
 
@@ -52,7 +56,7 @@ def metadata_ids(root: Path) -> set[str]:
     return out
 
 
-def structural(path: Path, data: dict, docs: set[str]) -> list[str]:
+def structural(path: Path, data: dict, docs: set[str], object_ids: set[str]) -> list[str]:
     errs = []
     if data.get("schema_version") != 1:
         errs.append("schema_version must be 1")
@@ -88,6 +92,27 @@ def structural(path: Path, data: dict, docs: set[str]) -> list[str]:
             errs.append("promotion_history must be an array")
         elif history and history[-1].get("to") != data.get("canonical_status"):
             errs.append("latest promotion_history.to must match canonical_status")
+    if typ in {"discovery", "capability"}:
+        unknown_docs = [x for x in data.get("linked_doc_ids", []) if x not in docs]
+        if unknown_docs:
+            errs.append("unknown linked_doc_ids: " + ", ".join(unknown_docs))
+        unknown_objects = [x for x in data.get("linked_object_ids", []) if x not in object_ids]
+        if unknown_objects:
+            errs.append("unknown linked_object_ids: " + ", ".join(unknown_objects))
+        if not isinstance(data.get("source_refs"), list):
+            errs.append("source_refs must be an array")
+    if typ == "discovery":
+        if data.get("discovery_type") not in {"lead", "source", "artifact", "entity", "capability", "contradiction", "gap", "question", "other"}:
+            errs.append("invalid discovery_type")
+        if data.get("status") not in {"new", "triaged", "researching", "promoted", "held", "resolved", "rejected"}:
+            errs.append("invalid discovery status")
+    if typ == "capability":
+        if data.get("use_in_event_inferred") is not False:
+            errs.append("capability.use_in_event_inferred must remain false")
+        if data.get("capability_status") not in {"claimed", "documented", "demonstrated", "reported_operational", "historical", "retired", "disputed", "unknown"}:
+            errs.append("invalid capability_status")
+        if not isinstance(data.get("domain"), list) or not data.get("domain"):
+            errs.append("capability.domain must be a non-empty array")
     return errs
 
 
@@ -106,6 +131,16 @@ def main() -> int:
     except ImportError:
         pass
 
+    object_ids = set()
+    for directory in DIR_TYPES:
+        for path in sorted((root / "objects" / directory).glob("*.json")):
+            try:
+                data = read(path)
+            except Exception:
+                continue
+            if data.get("object_id"):
+                object_ids.add(data["object_id"])
+
     checked = 0
     failures = []
     notices = []
@@ -117,7 +152,7 @@ def main() -> int:
             except Exception as exc:
                 failures.append({"path": str(path.relative_to(root)), "errors": [f"invalid JSON: {exc}"]})
                 continue
-            errs = structural(path, data, docs)
+            errs = structural(path, data, docs, object_ids)
             if validator:
                 errs.extend(sorted({e.message for e in validator.iter_errors(data)}))
             if errs:
