@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "object_type": "source_dependency",
+  "object_id": "SD-NC3-gao-2026-to-gao-2025-e130j-oversight-lineage",
+  "created_at": "2026-10-02T19:46:19+00:00",
+  "assertion_id": "gao-e130j-annual-oversight-lineage",
+  "source_id": "GAO-2026-weapon-systems-annual-assessment-001",
+  "depends_on": "GAO-2025-weapon-systems-annual-assessment-001 / prior GAO E-130J oversight assessment",
+  "dependency_type": "annual-oversight-longitudinal-lineage",
+  "independence": "dependent",
+  "notes": "GAO-26-108457 explicitly relies on the prior annual assessment for the earlier E-130J risk state. The two reports provide longitudinal oversight, not independent duplicate corroboration."
+}

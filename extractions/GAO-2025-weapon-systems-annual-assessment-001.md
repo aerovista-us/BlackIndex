@@ -1,88 +1,63 @@
-# Weapon Systems Annual Assessment: DOD Leaders Should Ensure That Newer Programs Are Structured for Speed and Innovation
+# GAO Weapon Systems Annual Assessment 2025 — E-130J
 
-- **Doc ID:** `GAO-2025-weapon-systems-annual-assessment-001`
-- **Call ID:** `CALL-NC3-EXECUTION-FOLLOWUP-004`
-- **Native ID:** GAO-25-107569
-- **Source:** GAO
-- **Document date:** 2025-06-11
-- **SHA-256:** `ab93c06ab8461e968663e4abc08438b21998c72a61e7c197a11597e017ca6f9f`
-- **Landing page:** https://www.gao.gov/products/gao-25-107569
-- **Artifact:** https://www.gao.gov/assets/gao-25-107569.pdf
-- **Normalized text:** /srv/Collab/mini.shops/blackindex/normalized/text/GAO-2025-weapon-systems-annual-assessment-001.txt
-- **State of record:** `R0` — intake complete; substantive review pending
-
-> BlackIndex records assertions and the state of the surviving record. This review does not render a final historical verdict.
+- Doc ID: GAO-2025-weapon-systems-annual-assessment-001
+- Native ID: GAO-25-107569
+- Source: GAO
+- Publication date: June 11, 2025
+- SHA-256: ab93c06ab8461e968663e4abc08438b21998c72a61e7c197a11597e017ca6f9f
+- State of record: R1 — independent oversight snapshot reviewed
 
 ## CLAIM
 
-- TODO: What assertion, allegation, proposal, event, or question is this passage relevant to?
+GAO reports that the Navy entered E-130J system development in December 2024 despite acknowledged technical risks involving systems integration, manufacturing, and reliability/availability/maintainability.
+
+GAO attributes those risk findings to a September 2024 independent technical risk assessment. The underlying assessment is not preserved here and remains a separate evidence target.
 
 ## DOCUMENT CONTENT
 
-- TODO: Neutrally describe what is actually present in the document. Preserve proposal / approval / implementation / execution / outcome distinctions.
+GAO says unresolved technical risks could affect cost and schedule and challenge mission achievement. It reports that the C-130J airframe may not meet operational-availability requirements and that the Navy technical-risk team expected integration complexity to translate into manufacturing issues.
+
+GAO also reports software development as a medium risk, driven partly by cybersecurity changes.
+
+The program office told GAO it acknowledged technical risk and had used risk-reduction contracts with subcontractors to address obsolescence and size, weight, and power-cooling risks. GAO incorporated technical comments where appropriate.
+
+The development-practice/software table is current as of January 2025.
 
 ## SOURCE ATTRIBUTION
 
-- TODO: Who is asserting or recording the information? Note role, institution, date, proximity to events, and whether this is firsthand, investigative, retrospective, or derivative.
+GAO is institutionally independent oversight. The technical-risk-assessment details are GAO's summary of an underlying September 2024 assessment that BlackIndex has not independently recovered.
 
 ## CORROBORATION
 
-- TODO: List genuinely independent supporting material. Record source dependencies rather than counting derivative reports as independent corroboration.
+GAO-26-108457 later reports that integration risks had materialized and that the low-rate production decision moved by about one year. The two GAO reports form a longitudinal oversight sequence, not independent duplicate corroboration.
 
-## CONFLICTS
-
-- TODO: Record inconsistent documents, testimony, timelines, technical evidence, later findings, or competing interpretations.
+Later Navy FY2027 budget and PB2027 MSAR records provide separate program-state evidence.
 
 ## GAPS
 
-- TODO: Redactions, missing attachments, destroyed records, unavailable workpapers, unexamined evidence, ambiguous identities, or other unresolved archive limitations.
+The September 2024 independent technical risk assessment itself remains missing, including its full methodology, risk scoring, supporting data, authorship details, and any classified/unclassified annex structure.
 
 ## ALTERNATIVE EXPLANATIONS
 
-- TODO: Record the strongest reasonable mundane, procedural, innocent, or competing explanation for each important anomaly.
-
-## UNRESOLVED QUESTIONS
-
-- TODO: What specific document, testimony, version, technical record, or archival recovery would materially improve the record?
+Technical-risk identification before development start is a normal acquisition-control function. Risk identification is not equivalent to a finding that the program will fail.
 
 ## SOURCE
 
-- TODO: Exact primary-source citation and page number for every pivotal passage.
-
-## NEGATIVE FINDINGS / INVESTIGATOR STATEMENTS
-
-- TODO where applicable. Preserve exact wording such as `no evidence found`, `unable to substantiate`, or `no credible evidence`. Attribute the statement to the investigator; do not silently convert it into a fact about the underlying event.
+U.S. Government Accountability Office, GAO-25-107569, Weapon Systems Annual Assessment, June 11, 2025, pp. 125–126.
 
 ## RECORD INTEGRITY
 
-- Completeness: `__/5`
-- Redaction concern: `__/15`
-- Known destruction: `Yes / No / Unknown`
-- Missing referenced records: `__`
-- Custodian conflicts: `Yes / No / Unknown`
-- Version conflicts: `Yes / No / Unknown`
-- Public/internal contradictions: `__`
-- Archive confidence: `__/5`
+- Completeness: 5/5
+- Redaction concern: 0/15 for reviewed E-130J pages
+- Known destruction: Unknown
+- Archive confidence: 5/5
 
 ## RESEARCH-STATE DIAGNOSTICS
 
-- Plausibility: `__/15` — motive / capability / opportunity only
-- Evidence density: `__/30`
-- Obstruction / anomaly: `__/20`
-- Source confidence: `__/5` per pivotal assertion/source
-- Inference dependency: `D0 / D1 / D2 / D3 / D4`
-- State of record: `R0 / R1 / R2 / R3 / R4 / R5`
-
-These values describe the current evidence map. They are not final determinations.
-
-## MECHANISMS / OPERATIONAL ANALOGS
-
-- TODO
-
-## CANDIDATE CONTROLS / DETECTIONS
-
-- TODO
+- Source confidence: 5/5 for GAO's published analysis and attributed statements.
+- Inference dependency: D1 for GAO summaries of the missing September 2024 technical-risk assessment.
+- State of record: R1
 
 ## REVIEW NOTES
 
-- TODO
+This is the nearest preserved public source to the September 2024 technical-risk assessment, but it is not a substitute for that underlying assessment.

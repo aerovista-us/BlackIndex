@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "object_type": "missing_evidence",
+  "object_id": "ME-NC3-e130j-2024-independent-technical-risk-assessment",
+  "created_at": "2026-10-02T19:46:19+00:00",
+  "updated_at": "2026-10-02T19:46:19+00:00",
+  "doc_id": "GAO-2025-weapon-systems-annual-assessment-001",
+  "category": "UNMAPPED_REFERENCED_EVIDENCE",
+  "summary": "GAO 2025 and 2026 both rely on a September 2024 independent E-130J technical risk assessment, but the underlying assessment has not been recovered as a durable artifact.",
+  "referenced_by": "GAO-25-107569 and GAO-26-108457 E-130J assessments",
+  "last_known_location": "Department of the Navy / E-130J acquisition program technical-risk records",
+  "known_creator": "Independent technical risk assessment team; exact office not established from preserved public sources",
+  "likely_custodian": "Department of the Navy / NAVAIR / E-130J program acquisition records",
+  "stated_reason_missing": "No first-party public artifact or exact official document identifier was located in the current search pass.",
+  "potential_relevance": "Would expose the original methodology, risk categories, supporting evidence, severity judgments, and exact language behind GAO summaries of integration, manufacturing, operational-availability, and related risks.",
+  "named_records": [
+    "September 2024 E-130J independent technical risk assessment"
+  ],
+  "alternative_explanations": [
+    "The assessment may be an internal acquisition artifact not publicly released",
+    "A public version may exist under a title or identifier not exposed in GAO citations",
+    "Portions may be classified or controlled while summary findings are public"
+  ],
+  "recovery_paths": [
+    "search NAVAIR and DoD acquisition repositories for technical risk assessment identifiers",
+    "review future MSAR and GAO citations for title, office, or document number",
+    "preserve any released public version without treating GAO summary as a substitute"
+  ],
+  "status": "unresolved",
+  "recovery_status": "gao-2025-and-2026-summaries-preserved-underlying-assessment-unrecovered",
+  "recovered_named_records": [],
+  "unresolved_named_records": [
+    "September 2024 E-130J independent technical risk assessment"
+  ],
+  "retrieval_attempts": [
+    {
+      "attempted_at": "2026-10-02T19:46:19+00:00",
+      "record": "September 2024 E-130J independent technical risk assessment",
+      "result": "current public search found GAO summaries but no first-party underlying artifact or exact document identifier",
+      "artifact_preserved": false
+    }
+  ]
+}
