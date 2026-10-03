@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "object_type": "missing_evidence",
+  "object_id": "ME-NC3-saoc-government-test-acceptance-performance",
+  "created_at": "2026-10-03T00:14:36+00:00",
+  "updated_at": "2026-10-03T00:14:36+00:00",
+  "doc_id": "DOD-2026-contract-announcements-001",
+  "category": "MISSING_EXECUTION_EVIDENCE",
+  "summary": "Official 2024 award and 2026 contract modifications establish SAOC contract execution, including EMD1 aircraft repair work, but do not establish successful repair, government test results, aircraft delivery/acceptance, certification, readiness, IOC/FOC, or operational use.",
+  "referenced_by": "Operation LOOKING GLASS SAOC execution gate and 2024-to-2026 contract progression",
+  "last_known_location": "Air Force Life Cycle Management Center / SAOC program office / Air Force test and airworthiness organizations",
+  "known_creator": "Department of the Air Force / AFLCMC / SAOC program office / government test organizations",
+  "likely_custodian": "AFLCMC / SAOC program office / Air Force Test Center or applicable airworthiness and test authorities",
+  "stated_reason_missing": "Public contract announcements describe funded actions and expected completion but do not reproduce engineering completion, test-result, delivery, acceptance, certification, or readiness records.",
+  "potential_relevance": "Required to distinguish funded contract activity from demonstrated technical performance and government acceptance.",
+  "named_records": [
+    "SAOC EMD1 stringer-crack repair completion / return-to-test or airworthiness record",
+    "SAOC government developmental flight-test execution and results",
+    "SAOC EMD aircraft delivery and government acceptance record",
+    "SAOC system performance / certification evidence",
+    "SAOC IOC/FOC/readiness or operational-employment record"
+  ],
+  "alternative_explanations": [
+    "Relevant records may exist but may not be publicly released",
+    "Contract modifications can precede completion by months or years",
+    "Government test, airworthiness, and acceptance may be documented in systems not indexed by public contract announcements"
+  ],
+  "recovery_paths": [
+    "search Air Force and AFLCMC public releases for E-4C/SAOC EMD aircraft milestones",
+    "search official DoD contract announcements for follow-on SAOC modifications, delivery, or acceptance language",
+    "search Air Force Test Center and government test publications for SAOC test milestones",
+    "compare later budget and acquisition reports for delivery, testing, or readiness state"
+  ],
+  "status": "unresolved",
+  "recovery_status": "contract-execution-recovered-government-test-delivery-acceptance-unresolved",
+  "recovered_named_records": [
+    "SAOC original development/production award \u2014 DOD-2024-contract-announcements-002",
+    "SAOC EMD1 stringer-crack repair modification P00026 \u2014 DOD-2026-contract-announcements-001",
+    "SAOC modification P00031 \u2014 DOD-2026-contract-announcements-002",
+    "SAOC modification P00037 \u2014 DOD-2026-contract-announcements-003"
+  ],
+  "unresolved_named_records": [
+    "SAOC EMD1 stringer-crack repair completion / return-to-test or airworthiness record",
+    "SAOC government developmental flight-test execution and results",
+    "SAOC EMD aircraft delivery and government acceptance record",
+    "SAOC system performance / certification evidence",
+    "SAOC IOC/FOC/readiness or operational-employment record"
+  ],
+  "retrieval_attempts": []
+}
