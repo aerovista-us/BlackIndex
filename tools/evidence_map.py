@@ -34,6 +34,9 @@ OBJECT_TYPES = (
     "source_dependencies",
     "statement_comparisons",
     "investigator_reviews",
+    "research_classifications",
+    "discoveries",
+    "capabilities",
 )
 
 
@@ -342,6 +345,91 @@ def cmd_investigator(args) -> int:
     return 0
 
 
+def existing_object_ids(root: Path) -> set[str]:
+    out = set()
+    for path in object_files(root):
+        data = read_json(path)
+        if data.get("object_id"):
+            out.add(data["object_id"])
+    return out
+
+
+def validate_links(root: Path, doc_ids: list[str], object_ids: list[str]) -> None:
+    for doc_id in doc_ids:
+        get_metadata(root, doc_id)
+    known = existing_object_ids(root)
+    missing = [object_id for object_id in object_ids if object_id not in known]
+    if missing:
+        raise ValueError("unknown linked object_id(s): " + ", ".join(missing))
+
+
+def cmd_discovery(args) -> int:
+    root = Path(args.root)
+    ensure_layout(root)
+    linked_docs = args.linked_doc_id or []
+    linked_objects = args.linked_object_id or []
+    validate_links(root, linked_docs, linked_objects)
+    path = next_object_path(root, "discoveries", "DISC")
+    obj = {
+        "schema_version": 1,
+        "object_type": "discovery",
+        "object_id": path.stem,
+        "created_at": now(),
+        "updated_at": now(),
+        "title": args.title,
+        "summary": args.summary,
+        "discovery_type": args.discovery_type,
+        "discovered_at": args.discovered_at or now(),
+        "status": args.status,
+        "source_refs": args.source_ref or [],
+        "linked_doc_ids": linked_docs,
+        "linked_object_ids": linked_objects,
+        "evidence_boundary": args.evidence_boundary,
+        "promotion_targets": args.promotion_target or [],
+        "notes": args.note or "",
+    }
+    write_json(path, obj)
+    build_object_index(root)
+    print(path)
+    return 0
+
+
+def cmd_capability(args) -> int:
+    root = Path(args.root)
+    ensure_layout(root)
+    linked_docs = args.linked_doc_id or []
+    linked_objects = args.linked_object_id or []
+    validate_links(root, linked_docs, linked_objects)
+    path = next_object_path(root, "capabilities", "CAP")
+    obj = {
+        "schema_version": 1,
+        "object_type": "capability",
+        "object_id": path.stem,
+        "created_at": now(),
+        "updated_at": now(),
+        "capability_name": args.name,
+        "holder": args.holder,
+        "holder_type": args.holder_type,
+        "domain": args.domain,
+        "description": args.description,
+        "capability_status": args.capability_status,
+        "observed_at": args.observed_at,
+        "valid_from": args.valid_from,
+        "valid_to": args.valid_to,
+        "time_scope_note": args.time_scope_note,
+        "source_refs": args.source_ref,
+        "linked_doc_ids": linked_docs,
+        "linked_object_ids": linked_objects,
+        "limitations": args.limitation or [],
+        "use_in_event_inferred": False,
+        "notes": args.note or "",
+    }
+    write_json(path, obj)
+    build_object_index(root)
+    print(path)
+    return 0
+
+
 def object_files(root: Path):
     for kind in OBJECT_TYPES:
         base = root / "objects" / kind
@@ -411,7 +499,7 @@ pre{{white-space:pre-wrap;word-break:break-word;background:var(--panel);border:1
 const docs=DATA.documents;let filtered=docs.slice();let current=null;let tab='extraction';
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}}[m]));
 const src=[...new Set(docs.map(d=>d.metadata.source).filter(Boolean))].sort();document.getElementById('source').innerHTML+=""+src.map(s=>`<option>${{esc(s)}}</option>`).join('');
-function counts(){{const c=DATA.evidence_map.counts||{{}};document.getElementById('summary').textContent=`${{docs.length}} documents · ${{c.record_integrity||0}} integrity · ${{c.missing_evidence||0}} missing-evidence · ${{c.version_comparisons||0}} version comparisons · generated ${{DATA.generated_at}}`;}}
+function counts(){{const c=DATA.evidence_map.counts||{{}};document.getElementById('summary').textContent=`${{docs.length}} documents · ${{c.record_integrity||0}} integrity · ${{c.missing_evidence||0}} missing-evidence · ${{c.discoveries||0}} discoveries · ${{c.capabilities||0}} capabilities · generated ${{DATA.generated_at}}`;}}
 function searchable(d){{return JSON.stringify(d.metadata)+' '+d.extraction+' '+d.text+' '+JSON.stringify(d.integrity)}}
 function apply(){{const q=document.getElementById('q').value.trim().toLowerCase(),s=document.getElementById('source').value;filtered=docs.filter(d=>(!s||d.metadata.source===s)&&(!q||searchable(d).toLowerCase().includes(q)));renderList();}}
 function renderList(){{const el=document.getElementById('list');el.innerHTML=filtered.map((d,i)=>`<div class="item ${{current===d?'active':''}}" data-i="${{i}}"><b>${{esc(d.metadata.title||d.metadata.doc_id)}}</b><div class="meta">${{esc(d.metadata.doc_id)}} · ${{esc(d.metadata.source)}} · ${{esc(d.metadata.collection)}}</div></div>`).join('')||'<div class="item">No matches</div>';el.querySelectorAll('[data-i]').forEach(x=>x.onclick=()=>{{current=filtered[+x.dataset.i];tab='extraction';renderList();renderView();}})}}
@@ -488,6 +576,8 @@ def build_parser():
     s=sub.add_parser("source-dependency",help="record whether sources/assertions are genuinely independent");s.add_argument("--assertion-id",required=True);s.add_argument("--source-id",required=True);s.add_argument("--depends-on",required=True);s.add_argument("--dependency-type",default="derived");s.add_argument("--independence",choices=["independent","partially-independent","dependent","unknown"],default="unknown");s.add_argument("--note");s.set_defaults(func=cmd_dependency)
     s=sub.add_parser("statement-compare",help="record public statement vs internal record comparison");s.add_argument("--topic",required=True);s.add_argument("--public-source",required=True);s.add_argument("--public-statement",required=True);s.add_argument("--internal-source",required=True);s.add_argument("--internal-content",required=True);s.add_argument("--relationship",choices=["consistent","partially-consistent","in-tension","contradictory","unclear"],default="unclear");s.add_argument("--note");s.set_defaults(func=cmd_statement_compare)
     s=sub.add_parser("investigator-review",help="record a negative finding or investigator/report reliability context");s.add_argument("--report-or-finding",required=True);s.add_argument("--investigator",required=True);s.add_argument("--employer-controller");s.add_argument("--exact-wording",required=True);s.add_argument("--scope");s.add_argument("--records-reviewed",action="append");s.add_argument("--records-unavailable",action="append");s.add_argument("--witnesses-omitted",action="append");s.add_argument("--workpapers-status");s.add_argument("--competing-finding",action="append");s.add_argument("--independence",type=int,choices=range(0,6));s.add_argument("--access",type=int,choices=range(0,6));s.add_argument("--transparency",type=int,choices=range(0,6));s.add_argument("--reproducibility",type=int,choices=range(0,6));s.add_argument("--conflict-exposure",type=int,choices=range(0,6));s.add_argument("--note");s.set_defaults(func=cmd_investigator)
+    s=sub.add_parser("discovery",help="capture an ad hoc research lead without promoting it to evidence");s.add_argument("--title",required=True);s.add_argument("--summary",required=True);s.add_argument("--type",dest="discovery_type",choices=["lead","source","artifact","entity","capability","contradiction","gap","question","other"],default="lead");s.add_argument("--discovered-at");s.add_argument("--status",choices=["new","triaged","researching","promoted","held","resolved","rejected"],default="new");s.add_argument("--source-ref",action="append");s.add_argument("--linked-doc-id",action="append");s.add_argument("--linked-object-id",action="append");s.add_argument("--evidence-boundary",required=True);s.add_argument("--promotion-target",action="append");s.add_argument("--note");s.set_defaults(func=cmd_discovery)
+    s=sub.add_parser("capability",help="record a time-scoped capability without inferring event use");s.add_argument("--name",required=True);s.add_argument("--holder",required=True);s.add_argument("--holder-type",choices=["organization","government","military_unit","person","system","program","unknown"],default="unknown");s.add_argument("--domain",action="append",required=True);s.add_argument("--description",required=True);s.add_argument("--status",dest="capability_status",choices=["claimed","documented","demonstrated","reported_operational","historical","retired","disputed","unknown"],default="documented");s.add_argument("--observed-at",required=True);s.add_argument("--valid-from");s.add_argument("--valid-to");s.add_argument("--time-scope-note",required=True);s.add_argument("--source-ref",action="append",required=True);s.add_argument("--linked-doc-id",action="append");s.add_argument("--linked-object-id",action="append");s.add_argument("--limitation",action="append");s.add_argument("--note");s.set_defaults(func=cmd_capability)
     s=sub.add_parser("index",help="rebuild local evidence-map index");s.set_defaults(func=cmd_index)
     s=sub.add_parser("search",help="search durable evidence-map objects");s.add_argument("query");s.add_argument("--limit",type=int,default=20);s.set_defaults(func=cmd_search)
     s=sub.add_parser("dashboard",help="build one self-contained local HTML dashboard");s.add_argument("--output");s.add_argument("--max-text-per-doc",type=int,default=250000);s.set_defaults(func=cmd_dashboard)
