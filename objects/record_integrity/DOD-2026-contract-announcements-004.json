@@ -1,0 +1,31 @@
+{
+  "alternate_versions": [],
+  "archive_confidence": 5,
+  "artifact_type": "html",
+  "chain_of_custody": [],
+  "classification_chronology": [],
+  "completeness": 5,
+  "created_at": "2026-10-03T00:20:58+00:00",
+  "custodian_conflicts": [],
+  "declassification_authority": null,
+  "destruction_chronology": [],
+  "doc_id": "DOD-2026-contract-announcements-004",
+  "known_destruction": "unknown",
+  "missing_referenced_records": [
+    "underlying P00011 option/statement of work",
+    "training-product delivery and acceptance records",
+    "aircraft/test/acceptance records"
+  ],
+  "notes": "Official public E-130J contract-action HTML preserved by hash. Evidence is bounded to P00011 option exercise, funding, training-system scope, and expected completion.",
+  "object_id": "RI-DOD-2026-contract-announcements-004",
+  "object_type": "record_integrity",
+  "public_internal_contradictions": [],
+  "record_creator": "DOD",
+  "record_custodian": "Department of Defense / War.gov; Naval Air Systems Command contracting activity",
+  "redaction_concern": 0,
+  "release_chronology": [],
+  "schema_version": 1,
+  "updated_at": "2026-10-03T00:22:36+00:00",
+  "version_conflicts": [],
+  "withholding_authority": null
+}

@@ -3,7 +3,7 @@
   "object_type": "missing_evidence",
   "object_id": "ME-NC3-tacamo-execution-confirmation",
   "created_at": "2026-10-02T19:12:49+00:00",
-  "updated_at": "2026-10-02T19:31:16+00:00",
+  "updated_at": "2026-10-03T00:22:36+00:00",
   "doc_id": "US_NAVY-2026-fy-2027-rdt-e-budget-justification-books-001",
   "category": "MISSING_EXECUTION_EVIDENCE",
   "summary": "PB2027 MSAR closes IBR and AV1-PDR execution and records zero aircraft delivered at that state. Full-system PDR, build completion, CSIL/IT1, SDTA delivery/acceptance, certification, readiness, and use remain unresolved.",
@@ -37,7 +37,8 @@
   "recovered_named_records": [
     "E-130J Integrated Baseline Review conduct/closure \u2014 DOD-2026-pb-2027-modernized-selected-acquisition-reports-001",
     "E-130J AV1 configuration Preliminary Design Review, March 31-April 1 2026 \u2014 DOD-2026-pb-2027-modernized-selected-acquisition-reports-001",
-    "E-130J zero-delivery state at PB2027 MSAR observation \u2014 DOD-2026-pb-2027-modernized-selected-acquisition-reports-001"
+    "E-130J zero-delivery state at PB2027 MSAR observation \u2014 DOD-2026-pb-2027-modernized-selected-acquisition-reports-001",
+    "E-130J P00011 training-system option exercise \u2014 DOD-2026-contract-announcements-004"
   ],
   "unresolved_named_records": [
     "E-130J full-system/final weapon-system Preliminary Design Review completion record and outcome",
@@ -55,6 +56,20 @@
       "result": "official WHS artifact preserved; IBR closure, AV1 PDR execution, future full-system PDR, and zero-delivery state mapped",
       "artifact_preserved": true,
       "doc_id": "DOD-2026-pb-2027-modernized-selected-acquisition-reports-001"
+    },
+    {
+      "attempted_at": "2026-10-03T00:22:36+00:00",
+      "record": "E-130J full-system/final weapon-system PDR completion record",
+      "official_url": "NAVAIR/PMA-271 public release and program-page search",
+      "result": "no first-party Navy/NAVAIR completion artifact located in current sweep; secondary Aviation Week reporting dated 7 Aug 2026 says the program passed a PDR in July 2026, retained as a lead only and not promoted as primary evidence",
+      "artifact_preserved": false
+    },
+    {
+      "attempted_at": "2026-10-03T00:22:36+00:00",
+      "record": "E-130J first nonzero development/GFE aircraft delivery",
+      "official_url": "NAVAIR/PMA-271/DVIDS/DoD public-source search",
+      "result": "no first-party delivery/acceptance record located; DVIDS 2024 imagery states planned government delivery in 2026 and NAVAIR social reporting says the first airframe emerged from the line in 2025, neither is treated as proof of government delivery",
+      "artifact_preserved": false
     }
   ]
 }

@@ -3,12 +3,12 @@
   "object_type": "missing_evidence",
   "object_id": "ME-NC3-public-program-source-gaps",
   "created_at": "2026-10-01T22:55:00+00:00",
-  "updated_at": "2026-10-03T00:14:36+00:00",
+  "updated_at": "2026-10-03T00:22:36+00:00",
   "doc_id": "DOD-2025-fy-2026-rdt-e-programs-r-1-001",
   "category": "UNMAPPED_REFERENCED_EVIDENCE",
   "summary": "Public first-party NC3 program-source recovery is partial: NAVAIR HTML program pages, E-130J award records, and the detailed Navy FY2026 BA5 TACAMO justification are preserved. The detailed Air Force SAOC volume and AFGSCMD 63-101 remain unrecovered from first-party paths.",
   "referenced_by": "FY2026 DoD/Navy budget indexes; 2025-2026 USSTRATCOM posture statements; Air Force e-Publishing index; preserved NAVAIR/Navy/DoD E-130J program and award records",
-  "last_known_location": "Exact SAF/FM FY2026 RDT&E Volume II first-party URL confirmed; AFGSC e-Publishing/publication path for AFGSCMD 63-101 remains unresolved",
+  "last_known_location": "AFGSCMD 63-101 exact static e-Publishing URL identified but current live fetch returns 403/404; SAF/FM FY2026 RDT&E Volume II exact Portals and LinkClick first-party URLs identified but NXCore TLS negotiation fails",
   "known_creator": "Department of the Air Force / Department of the Navy / NAVAIR",
   "likely_custodian": "AFGSC / SAF-FM / Department of the Navy FMB / NAVAIR",
   "stated_reason_missing": "The remaining SAOC Volume II and AFGSCMD 63-101 sources are public or publicly indexed. Current gaps are first-party transport/retrieval failures, not evidence that the records do not exist.",
@@ -89,6 +89,20 @@
       "record": "Air Force FY2026 RDT&E Volume II detailed SAOC justification \u2014 PE 0604288F",
       "official_url": "https://www.saffm.hq.af.mil/Portals/84/documents/FY26/FY26%20Air%20Force%20Research%20and%20Development%20Test%20and%20Evaluation%20Vol%20II.pdf?ver=vrLoWfwr4s9gxxTgIb7qzQ%3D%3D",
       "result": "exact first-party artifact URL confirmed; NXCore direct, browser-navigation, browser-TLS with referer, and browser-TLS without referer all failed with TLSV1_ALERT_INTERNAL_ERROR",
+      "artifact_preserved": false
+    },
+    {
+      "attempted_at": "2026-10-03T00:22:36+00:00",
+      "record": "AFGSCMD 63-101 \u2014 USAF Nuclear Command, Control, and Communications (NC3) Center",
+      "official_url": "https://static.e-publishing.af.mil/production/1/afgsc/publication/afgscmd63-101/afgscmd63-101.pdf",
+      "result": "official search index exposes the unrestricted 27 Jan 2020 directive and text, but current NXCore direct fetch returns 403 and browser-navigation/browser-TLS paths return 404; no artifact bytes preserved",
+      "artifact_preserved": false
+    },
+    {
+      "attempted_at": "2026-10-03T00:22:36+00:00",
+      "record": "Air Force FY2026 RDT&E Volume II detailed SAOC justification \u2014 PE 0604288F",
+      "official_url": "https://www.saffm.hq.af.mil/LinkClick.aspx?fileticket=tzM3UxGZI3Q%3D&portalid=84",
+      "result": "alternate official SAF/FM LinkClick endpoint identified from the public index; NXCore TLS negotiation fails with TLSV1_ALERT_INTERNAL_ERROR before artifact bytes are received",
       "artifact_preserved": false
     }
   ]

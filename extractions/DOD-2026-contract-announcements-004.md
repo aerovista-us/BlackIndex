@@ -1,88 +1,87 @@
 # Contracts for March 2, 2026 — E-130J Training Systems Option P00011
 
-- **Doc ID:** `DOD-2026-contract-announcements-004`
-- **Call ID:** `CALL-NC3-EXECUTION-FOLLOWUP-007`
-- **Native ID:** DOW-CONTRACTS-2026-03-02
-- **Source:** DOD
-- **Document date:** 2026-03-02
-- **SHA-256:** `0a9e0fb00e2e23ace344f63766c27135b8ccb5107c9ebcecaae0ee5e369e4463`
-- **Landing page:** Not recorded
-- **Artifact:** https://www.war.gov/News/Contracts/Contract/Article/4419143/contracts-for-march-2-2026/
-- **Normalized text:** /srv/Collab/mini.shops/blackindex/normalized/text/DOD-2026-contract-announcements-004.txt
-- **State of record:** `R0` — intake complete; substantive review pending
+- Doc ID: DOD-2026-contract-announcements-004
+- Source: DOD / War.gov contract announcement
+- Document date: 2026-03-02
+- Contract: N0001925C0130
+- Modification: P00011
+- SHA-256: 0a9e0fb00e2e23ace344f63766c27135b8ccb5107c9ebcecaae0ee5e369e4463
+- State of record: R1 — official contract-execution state reviewed; aircraft/test/delivery outcomes remain separate evidence
 
 > BlackIndex records assertions and the state of the surviving record. This review does not render a final historical verdict.
 
 ## CLAIM
 
-- TODO: What assertion, allegation, proposal, event, or question is this passage relevant to?
+This first-party DoD contract announcement establishes that the Navy exercised E-130J contract options for the design, development, and delivery of training weapon-system materials/courseware under N0001925C0130.
+
+It records a $225,109,424 P00011 modification, with $54,904,255 in FY2026 Navy RDT&E funds obligated at award and work expected to be completed in March 2027.
+
+This is direct evidence of funded training-system execution. It is not evidence that an E-130J aircraft was delivered, that full-system PDR was completed, that CSIL/Integrated Test occurred, or that the weapon system was accepted, certified, ready, or operational.
 
 ## DOCUMENT CONTENT
 
-- TODO: Neutrally describe what is actually present in the document. Preserve proposal / approval / implementation / execution / outcome distinctions.
+Northrop Grumman Systems Corp. is identified as the contractor. The option covers design, development, and delivery of E-130J training weapon-system training materials/courseware in support of TACAMO recapitalization.
+
+Work is allocated across Orlando, Oklahoma City, and Melbourne, with Naval Air Systems Command at Patuxent River as the contracting activity.
 
 ## SOURCE ATTRIBUTION
 
-- TODO: Who is asserting or recording the information? Note role, institution, date, proximity to events, and whether this is firsthand, investigative, retrospective, or derivative.
+- Source class: official daily DoD/War.gov contract announcement.
+- Evidence role: primary public contract-action record.
+- Temporal boundary: contract action announced March 2, 2026.
+- Inference boundary: option exercise, funding, scope, and expected completion are direct; later delivery/performance requires separate evidence.
 
 ## CORROBORATION
 
-- TODO: List genuinely independent supporting material. Record source dependencies rather than counting derivative reports as independent corroboration.
+The Dec. 18, 2024 E-130J EMD award record identifies training courseware/devices as part of the broader contract scope. P00011 is a later action on the same contract and therefore a longitudinal execution state, not independent corroboration of the original award.
 
 ## CONFLICTS
 
-- TODO: Record inconsistent documents, testimony, timelines, technical evidence, later findings, or competing interpretations.
+No contradiction is encoded. The action concerns training-system deliverables and cannot be substituted for aircraft delivery or mission-system test completion.
 
 ## GAPS
 
-- TODO: Redactions, missing attachments, destroyed records, unavailable workpapers, unexamined evidence, ambiguous identities, or other unresolved archive limitations.
+- actual delivery/acceptance of training-system products;
+- full-system/final weapon-system PDR completion;
+- EMD aircraft delivery;
+- mission-system integration completion;
+- CSIL and Integrated Test 1 execution/results;
+- SDTA delivery/acceptance;
+- government certification/readiness.
 
 ## ALTERNATIVE EXPLANATIONS
 
-- TODO: Record the strongest reasonable mundane, procedural, innocent, or competing explanation for each important anomaly.
+Training-system development can progress before, during, or after aircraft integration milestones. Its funding does not by itself establish the maturity or completion state of the aircraft weapon system.
 
 ## UNRESOLVED QUESTIONS
 
-- TODO: What specific document, testimony, version, technical record, or archival recovery would materially improve the record?
+1. When were P00011 training products delivered and accepted?
+2. Is there a first-party July 2026 full-system PDR completion record?
+3. What source first records a nonzero E-130J/GFE aircraft delivery?
+4. What first-party record documents CSIL or Integrated Test 1 execution?
 
 ## SOURCE
 
-- TODO: Exact primary-source citation and page number for every pivotal passage.
+Official Department of Defense / War.gov daily contract announcement dated March 2, 2026, E-130J contract N0001925C0130, modification P00011.
 
 ## NEGATIVE FINDINGS / INVESTIGATOR STATEMENTS
 
-- TODO where applicable. Preserve exact wording such as `no evidence found`, `unable to substantiate`, or `no credible evidence`. Attribute the statement to the investigator; do not silently convert it into a fact about the underlying event.
+None encoded.
 
 ## RECORD INTEGRITY
 
-- Completeness: `__/5`
-- Redaction concern: `__/15`
-- Known destruction: `Yes / No / Unknown`
-- Missing referenced records: `__`
-- Custodian conflicts: `Yes / No / Unknown`
-- Version conflicts: `Yes / No / Unknown`
-- Public/internal contradictions: `__`
-- Archive confidence: `__/5`
+- Completeness: 5/5 for the preserved public HTML contract announcement.
+- Redaction concern: 0/15 for the cited public contract entry.
+- Known destruction: Unknown.
+- Missing referenced records: underlying option/SOW and later product delivery/acceptance records.
+- Archive confidence: 5/5.
 
 ## RESEARCH-STATE DIAGNOSTICS
 
-- Plausibility: `__/15` — motive / capability / opportunity only
-- Evidence density: `__/30`
-- Obstruction / anomaly: `__/20`
-- Source confidence: `__/5` per pivotal assertion/source
-- Inference dependency: `D0 / D1 / D2 / D3 / D4`
-- State of record: `R0 / R1 / R2 / R3 / R4 / R5`
-
-These values describe the current evidence map. They are not final determinations.
-
-## MECHANISMS / OPERATIONAL ANALOGS
-
-- TODO
-
-## CANDIDATE CONTROLS / DETECTIONS
-
-- TODO
+- Source confidence: 5/5 for the contract-action facts.
+- Inference dependency: D0 for the stated modification facts; later execution outcomes require separate evidence.
+- State of record: R1
 
 ## REVIEW NOTES
 
-- TODO
+Use this record as a bounded E-130J training-system contract-execution state only.

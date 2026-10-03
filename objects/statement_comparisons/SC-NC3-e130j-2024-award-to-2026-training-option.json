@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "object_type": "statement_comparison",
+  "object_id": "SC-NC3-e130j-2024-award-to-2026-training-option",
+  "created_at": "2026-10-03T00:22:36+00:00",
+  "topic": "E-130J original EMD scope to 2026 training-system option execution",
+  "public_source": "DOD-2024-contract-announcements-001",
+  "public_statement": "The Dec. 18, 2024 E-130J EMD award included training courseware/devices, integration laboratories, product support, initial spares, and test/delivery of three engineering development model aircraft.",
+  "internal_source": "DOD-2026-contract-announcements-004",
+  "internal_content": "The March 2, 2026 P00011 modification exercises options for design, development, and delivery of E-130J training weapon-system materials/courseware and obligates FY2026 RDT&E funds. It advances the training-support portion of the contract but does not establish aircraft delivery or test/acceptance completion.",
+  "relationship": "later-first-party-contract-option-executes-one-support-scope-of-original-award",
+  "notes": "Same-contract lineage. Training-system execution must not be counted as evidence that aircraft delivery, full-system PDR, CSIL, Integrated Test 1, or acceptance occurred."
+}
