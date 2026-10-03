@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-e130j-p00011-training-2026",
+  "created_at": "2026-10-02",
+  "subject_type": "document",
+  "subject_id": "DOD-2026-contract-announcements-004",
+  "canonical_status": "canon",
+  "reason": "Official DoD/War.gov E-130J P00011 contract modification under N0001925C0130. Canon for the dated option exercise, funding, training-system scope, and expected completion only; it does not establish aircraft delivery, PDR/test completion, acceptance, certification, readiness, or operational use.",
+  "review_required": false,
+  "authenticity_status": "official-DOD-first-party-preserved-HTML",
+  "attribution_status": "attributed-to-DOD-daily-contract-announcement",
+  "provenance_status": "mapped",
+  "corroboration_status": "primary-public-contract-action-record",
+  "source_independence": "same-E130J-contract-execution-lineage",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-10-02",
+      "reason": "First-party contract-action page preserved and reviewed with aircraft/test outcome boundary explicit."
+    }
+  ]
+}
