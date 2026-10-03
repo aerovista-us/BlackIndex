@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "object_type": "statement_comparison",
+  "object_id": "SC-NC3-gao-e130j-2025-to-2026-risk-progression",
+  "created_at": "2026-10-02T19:46:19+00:00",
+  "topic": "E-130J technical-risk progression across GAO annual assessments",
+  "public_source": "GAO-2025-weapon-systems-annual-assessment-001",
+  "public_statement": "GAO 2025 reports pre-development risks in systems integration, manufacturing, reliability/availability/maintainability, operational availability, and software/cybersecurity, based partly on a September 2024 independent technical risk assessment.",
+  "internal_source": "GAO-2026-weapon-systems-annual-assessment-001",
+  "internal_content": "GAO 2026 reports that integration risks had materialized, cites mission-system weight reduction, and says the low-rate production decision moved by approximately one year.",
+  "relationship": "later-oversight-report-describes-materialization-of-earlier-identified-risk",
+  "notes": "This establishes a longitudinal GAO oversight narrative, not independent proof that every predicted risk caused each later schedule change."
+}

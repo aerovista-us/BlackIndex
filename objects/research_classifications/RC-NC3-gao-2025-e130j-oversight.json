@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "object_type": "research_classification",
+  "object_id": "RC-NC3-gao-2025-e130j-oversight",
+  "created_at": "2026-10-02",
+  "subject_type": "document",
+  "subject_id": "GAO-2025-weapon-systems-annual-assessment-001",
+  "canonical_status": "canon",
+  "reason": "Official GAO-25-107569 oversight report. Canon for GAO published and attributed analysis; its summary of the September 2024 independent technical risk assessment is derivative until the underlying assessment is recovered.",
+  "review_required": false,
+  "authenticity_status": "official-GAO-first-party-preserved-artifact",
+  "attribution_status": "attributed-to-GAO-oversight-analysis",
+  "provenance_status": "mapped",
+  "corroboration_status": "prior-independent-oversight-layer",
+  "source_independence": "institutionally-independent-oversight-with-underlying-Navy-risk-assessment-summary",
+  "promotion_history": [
+    {
+      "from": null,
+      "to": "canon",
+      "changed_at": "2026-10-02",
+      "reason": "Official GAO report preserved and reviewed with underlying technical-risk-assessment dependency explicit."
+    }
+  ]
+}
